@@ -3,8 +3,8 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hornet_node/main_development.dart';
 
-class AnalyticsPage extends StatelessWidget {
-  const AnalyticsPage({Key? key}) : super(key: key);
+class HornetPage extends StatelessWidget {
+  const HornetPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
