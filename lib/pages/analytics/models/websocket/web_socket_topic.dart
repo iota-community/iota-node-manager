@@ -1,0 +1,19 @@
+enum WebSocketTopic {
+  syncStatus,
+  publicNodeStatus,
+  nodeStatus,
+  mPSMetrics,
+  tipSelMetric,
+  ms,
+  peerMetric,
+  confirmedMsMetrics,
+  vertex,
+  solidInfo,
+  confirmedInfo,
+  milestoneInfo,
+  tipInfo,
+  dBSizeMetric,
+  dBCleanup,
+  spamMetrics,
+  avgSpamMetrics
+}

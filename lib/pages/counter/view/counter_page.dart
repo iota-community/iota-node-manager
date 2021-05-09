@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hornet_node/counter/counter.dart';
+import 'package:hornet_node/pages/counter/counter.dart';
 import 'package:hornet_node/l10n/l10n.dart';
 
 class CounterPage extends StatelessWidget {
