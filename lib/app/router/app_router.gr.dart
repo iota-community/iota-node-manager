@@ -89,7 +89,9 @@ class AppRouter extends _i1.RootStackRouter {
             _i1.RouteConfig('*#redirect',
                 path: '*', redirectTo: '', fullMatch: true)
           ])
-        ])
+        ]),
+        _i1.RouteConfig('*#redirect',
+            path: '*', redirectTo: '/', fullMatch: true)
       ];
 }
 

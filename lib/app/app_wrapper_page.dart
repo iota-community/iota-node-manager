@@ -10,42 +10,45 @@ class AppWrapperPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return Scaffold(
-      appBar: AppBar(title: Text(l10n.counterAppBarTitle)),
-      body: AutoTabsScaffold(
-        routes: [
-          const HomeRouter(),
-          const AnalyticsRouter(),
-          const PeersRouter(),
-          const ExplorerRouter(),
-        ],
-        bottomNavigationBuilder: (_, tabsRouter) {
-          return BottomNavigationBar(
-            currentIndex: tabsRouter.activeIndex,
-            onTap: tabsRouter.setActiveIndex,
-            items: [
-              const BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home_outlined,
-                ),
-                label: 'Home',
+    return AutoTabsScaffold(
+      appBarBuilder: (context, tabsRouter) {
+        return AppBar(
+          title: Text(context.topRoute.name),
+          leading: const AutoBackButton(),
+        );
+      },
+      routes: [
+        const HomeRouter(),
+        const AnalyticsRouter(),
+        const PeersRouter(),
+        const ExplorerRouter(),
+      ],
+      bottomNavigationBuilder: (_, tabsRouter) {
+        return BottomNavigationBar(
+          currentIndex: tabsRouter.activeIndex,
+          onTap: tabsRouter.setActiveIndex,
+          items: [
+            const BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home_outlined,
               ),
-              const BottomNavigationBarItem(
-                icon: Icon(Icons.analytics_outlined),
-                label: 'Analytics',
-              ),
-              const BottomNavigationBarItem(
-                icon: Icon(Icons.account_tree_outlined),
-                label: 'Peers',
-              ),
-              const BottomNavigationBarItem(
-                icon: Icon(Icons.explore_outlined),
-                label: 'Explorer',
-              ),
-            ],
-          );
-        },
-      ),
+              label: 'Home',
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.analytics_outlined),
+              label: 'Analytics',
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.account_tree_outlined),
+              label: 'Peers',
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.explore_outlined),
+              label: 'Explorer',
+            ),
+          ],
+        );
+      },
     );
   }
 }
