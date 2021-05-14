@@ -4,6 +4,7 @@ import 'package:hornet_node/app/app_wrapper_page.dart';
 import 'package:hornet_node/pages/analytics/analytics.dart';
 import 'package:hornet_node/pages/explorer/explorer.dart';
 import 'package:hornet_node/pages/home/home.dart';
+import 'package:hornet_node/pages/manage_node/manage_node.dart';
 import 'package:hornet_node/pages/peers/peers.dart';
 
 @MaterialAutoRouter(
@@ -63,6 +64,11 @@ import 'package:hornet_node/pages/peers/peers.dart';
         ),
       ],
     ),
+    AutoRoute(
+      path: 'manage_node',
+      name: 'ManageNodeRouter',
+      page: ManageNodePage,
+    )
   ],
 )
 class $AppRouter {}

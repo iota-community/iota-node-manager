@@ -7,10 +7,11 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import '../../pages/analytics/analytics.dart' as _i5;
-import '../../pages/explorer/explorer.dart' as _i7;
-import '../../pages/home/home.dart' as _i4;
-import '../../pages/peers/peers.dart' as _i6;
+import '../../pages/analytics/analytics.dart' as _i6;
+import '../../pages/explorer/explorer.dart' as _i8;
+import '../../pages/home/home.dart' as _i5;
+import '../../pages/manage_node/manage_node.dart' as _i4;
+import '../../pages/peers/peers.dart' as _i7;
 import '../app_wrapper_page.dart' as _i3;
 
 class AppRouter extends _i1.RootStackRouter {
@@ -23,6 +24,11 @@ class AppRouter extends _i1.RootStackRouter {
         routeData: routeData,
         builder: (_) {
           return const _i3.AppWrapperPage();
+        }),
+    ManageNodeRouter.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i4.ManageNodePage();
         }),
     HomeRouter.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -47,22 +53,22 @@ class AppRouter extends _i1.RootStackRouter {
     HomeRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i4.HomePage();
+          return const _i5.HomePage();
         }),
     AnalyticsRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i5.AnalyticsPage();
+          return const _i6.AnalyticsPage();
         }),
     PeersRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i6.PeersPage();
+          return const _i7.PeersPage();
         }),
     ExplorerRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i7.ExplorerPage();
+          return const _i8.ExplorerPage();
         })
   };
 
@@ -89,7 +95,8 @@ class AppRouter extends _i1.RootStackRouter {
             _i1.RouteConfig('*#redirect',
                 path: '*', redirectTo: '', fullMatch: true)
           ])
-        ])
+        ]),
+        _i1.RouteConfig(ManageNodeRouter.name, path: 'manage_node')
       ];
 }
 
@@ -98,6 +105,12 @@ class AppWrapperRoute extends _i1.PageRouteInfo {
       : super(name, path: '/', initialChildren: children);
 
   static const String name = 'AppWrapperRoute';
+}
+
+class ManageNodeRouter extends _i1.PageRouteInfo {
+  const ManageNodeRouter() : super(name, path: 'manage_node');
+
+  static const String name = 'ManageNodeRouter';
 }
 
 class HomeRouter extends _i1.PageRouteInfo {

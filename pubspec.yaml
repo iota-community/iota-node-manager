@@ -13,23 +13,38 @@ dependencies:
     sdk: flutter
   auto_route: ^2.2.0
   bloc: ^7.0.0
+  envify: ^2.0.0
   flutter_bloc: ^7.0.0
-  freezed_annotation: ^0.14.1
-  intl: ^0.17.0
-  json_serializable: ^4.1.1
-  velocity_x: ^3.0.0
+  freezed_annotation: ^0.14.2
   hive: ^2.0.4
   hive_flutter: ^1.0.0
+  intl: ^0.17.0
+  json_serializable: ^4.1.2
+  retrofit: ^2.0.0-beta1
+  velocity_x: ^3.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   auto_route_generator: ^2.1.0
-  build_runner:
   bloc_test: ^8.0.0
-  freezed: ^0.14.1+3
+  build_runner:
+  envify_generator: ^2.0.0
+  freezed: ^0.14.2
   mocktail: ^0.1.2
+  retrofit_generator:
+    git:
+      url: https://github.com/trevorwang/retrofit.dart.git
+      path: generator
+      ref: master
   very_good_analysis: ^2.0.3
+
+dependency_overrides:
+  retrofit:
+    git:
+      url: https://github.com/trevorwang/retrofit.dart.git
+      path: annotation
+      ref: master
 
 flutter:
   uses-material-design: true

@@ -211,6 +211,34 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  dio:
+    dependency: transitive
+    description:
+      name: dio
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0"
+  dotenv:
+    dependency: transitive
+    description:
+      name: dotenv
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
+  envify:
+    dependency: "direct main"
+    description:
+      name: envify
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
+  envify_generator:
+    dependency: "direct dev"
+    description:
+      name: envify_generator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -267,14 +295,14 @@ packages:
       name: freezed
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.14.1+3"
+    version: "0.14.2"
   freezed_annotation:
     dependency: "direct main"
     description:
       name: freezed_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.14.1"
+    version: "0.14.2"
   frontend_server_client:
     dependency: transitive
     description:
@@ -358,7 +386,7 @@ packages:
       name: json_serializable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.1"
+    version: "4.1.2"
   logging:
     dependency: transitive
     description:
@@ -513,6 +541,31 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  quiver:
+    dependency: transitive
+    description:
+      name: quiver
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
+  retrofit:
+    dependency: "direct main"
+    description:
+      path: annotation
+      ref: master
+      resolved-ref: "040272ae42c7aea6eafc885f7e5927a542955991"
+      url: "https://github.com/trevorwang/retrofit.dart.git"
+    source: git
+    version: "2.0.0-beta1"
+  retrofit_generator:
+    dependency: "direct dev"
+    description:
+      path: generator
+      ref: master
+      resolved-ref: "040272ae42c7aea6eafc885f7e5927a542955991"
+      url: "https://github.com/trevorwang/retrofit.dart.git"
+    source: git
+    version: "2.0.0-beta2"
   shelf:
     dependency: transitive
     description:
@@ -644,6 +697,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  tuple:
+    dependency: transitive
+    description:
+      name: tuple
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   typed_data:
     dependency: transitive
     description:
