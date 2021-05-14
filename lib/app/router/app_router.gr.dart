@@ -96,7 +96,9 @@ class AppRouter extends _i1.RootStackRouter {
                 path: '*', redirectTo: '', fullMatch: true)
           ])
         ]),
-        _i1.RouteConfig(ManageNodeRouter.name, path: 'manage_node')
+        _i1.RouteConfig(ManageNodeRouter.name, path: 'manage_node'),
+    _i1.RouteConfig('*#redirect',
+        path: '*', redirectTo: '/', fullMatch: true)
       ];
 }
 

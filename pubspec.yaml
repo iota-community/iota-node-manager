@@ -21,7 +21,6 @@ dependencies:
   intl: ^0.17.0
   json_serializable: ^4.1.2
   retrofit: ^2.0.0-beta1
-  velocity_x: ^3.0.0
 
 dev_dependencies:
   flutter_test:

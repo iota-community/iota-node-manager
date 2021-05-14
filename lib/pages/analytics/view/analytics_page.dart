@@ -13,10 +13,12 @@ class AnalyticsPage extends StatelessWidget {
       builder: (BuildContext context, Box box, Widget? child) {
         bool darkMode = box.get('darkMode', defaultValue: false);
         return Center(
+          heightFactor: 2,
           child: Switch(
             value: darkMode,
             onChanged: (val) {
               box.put('darkMode', !darkMode);
+
             },
           ),
         );

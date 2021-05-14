@@ -68,7 +68,8 @@ import 'package:hornet_node/pages/peers/peers.dart';
       path: 'manage_node',
       name: 'ManageNodeRouter',
       page: ManageNodePage,
-    )
+    ),
+    RedirectRoute(path: '*', redirectTo: '/'),
   ],
 )
 class $AppRouter {}

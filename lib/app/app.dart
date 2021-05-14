@@ -14,12 +14,19 @@ import 'package:hornet_node/l10n/l10n.dart';
 import 'package:hornet_node/main_development.dart';
 import 'package:hornet_node/app/themes/custom_themes.dart';
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
 
   @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  final _appRouter = AppRouter();
+
+  @override
   Widget build(BuildContext context) {
-    final _appRouter = AppRouter();
+
     return ValueListenableBuilder(
       valueListenable: Hive.box(darkModeBox).listenable(),
       builder: (BuildContext context, Box box, Widget? child) {
