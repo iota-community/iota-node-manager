@@ -56,6 +56,8 @@ unlinked.ds
 unlinked_spec.ds
 .fvm/
 env.g.dart
+.env.development
+.env.production
 
 # Android related
 **/android/**/gradle-wrapper.jar
