@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:hornet_node/main_development.dart';
+import 'package:hornet_node/main_common.dart';
 
 class AnalyticsPage extends StatelessWidget {
   const AnalyticsPage({Key? key}) : super(key: key);

@@ -7,11 +7,10 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hornet_node/app/app.dart';
 import 'package:hornet_node/app/app_bloc_observer.dart';
+import 'package:hornet_node/main_common.dart';
 
-const darkModeBox = 'darkMode';
 void main() async {
-  await Hive.initFlutter();
-  await Hive.openBox(darkModeBox);
+  await mainCommon();
 
   Bloc.observer = AppBlocObserver();
   FlutterError.onError = (details) {

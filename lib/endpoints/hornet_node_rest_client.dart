@@ -2,16 +2,18 @@ import 'package:hornet_node/endpoints/models/auth/auth.dart';
 import 'package:hornet_node/endpoints/models/info/info.dart';
 import 'package:hornet_node/endpoints/models/tips/tips.dart';
 import 'package:hornet_node/endpoints/models/treasury/treasury.dart';
+import 'package:injectable/injectable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
 
 part 'hornet_node_rest_client.g.dart';
 
+@lazySingleton
 @RestApi()
 abstract class HornetNodeRestClient {
-  factory HornetNodeRestClient(Dio dio, {String baseUrl}) =
-      _HornetNodeRestClient;
+  @factoryMethod
+  factory HornetNodeRestClient(Dio dio) = _HornetNodeRestClient;
 
   @POST('{baseUrl}/auth')
   Future<void> login(@Path() String baseUrl, @Body() Auth auth);
