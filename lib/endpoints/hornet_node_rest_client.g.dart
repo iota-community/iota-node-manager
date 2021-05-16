@@ -14,6 +14,20 @@ class _HornetNodeRestClient implements HornetNodeRestClient {
   String? baseUrl;
 
   @override
+  Future<void> login(baseUrl, auth) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(auth.toJson());
+    await _dio.fetch<void>(_setStreamType<void>(
+        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '$baseUrl/auth',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    return null;
+  }
+
+  @override
   Future<Info> info(baseUrl) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

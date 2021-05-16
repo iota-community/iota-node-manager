@@ -18,7 +18,6 @@ class AnalyticsPage extends StatelessWidget {
             value: darkMode,
             onChanged: (val) {
               box.put('darkMode', !darkMode);
-
             },
           ),
         );

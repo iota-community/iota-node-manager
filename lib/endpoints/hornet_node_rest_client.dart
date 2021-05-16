@@ -1,3 +1,4 @@
+import 'package:hornet_node/endpoints/models/auth/auth.dart';
 import 'package:hornet_node/endpoints/models/info/info.dart';
 import 'package:hornet_node/endpoints/models/tips/tips.dart';
 import 'package:hornet_node/endpoints/models/treasury/treasury.dart';
@@ -12,6 +13,11 @@ abstract class HornetNodeRestClient {
   factory HornetNodeRestClient(Dio dio, {String baseUrl}) =
       _HornetNodeRestClient;
 
+  @POST('{baseUrl}/auth')
+  Future<void> login(@Path() String baseUrl, @Body() Auth auth);
+
+  // Public endpoints
+
   @GET('{baseUrl}/api/v1/info')
   Future<Info> info(@Path() String baseUrl);
 
@@ -23,4 +29,8 @@ abstract class HornetNodeRestClient {
 
   @GET('{baseUrl}/health')
   Future<HttpResponse<void>> health(@Path() String baseUrl);
+
+  // Private endpoints
+  // @Header("x-csrf-token") String csrfToken
+
 }

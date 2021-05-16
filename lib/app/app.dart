@@ -26,7 +26,6 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-
     return ValueListenableBuilder(
       valueListenable: Hive.box(darkModeBox).listenable(),
       builder: (BuildContext context, Box box, Widget? child) {
