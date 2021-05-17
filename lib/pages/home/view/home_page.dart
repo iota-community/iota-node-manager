@@ -1,11 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hornet_node/configureDependencies.dart';
-import 'package:hornet_node/endpoints/hornet_node_rest_client.dart';
 import 'package:hornet_node/pages/home/cubit/hornet_cubit.dart';
-import 'package:retrofit/dio.dart';
+import 'package:hornet_node/pages/home/cubit/info_cubit.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,23 +11,51 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  _HomePageState();
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: [
-          const Text('Home'),
-          ElevatedButton(
-            onPressed: () => context.read<HornetCubit>().health(),
-            child: const Text('Helath'),
-          )
+          BlocBuilder<HornetCubit, HornetState>(
+            builder: (context, state) {
+              return Row(
+                children: [
+                  const Text('Health'),
+                  state.maybeMap(
+                      healthy: (_) => Container(
+                            color: Colors.green,
+                            height: 50,
+                            width: 50,
+                          ),
+                      unhealthy: (_) => Container(
+                            height: 50,
+                            width: 50,
+                            color: Colors.red,
+                          ),
+                      orElse: () => const SizedBox())
+                ],
+              );
+            },
+          ),
+          BlocBuilder<InfoCubit, InfoState>(
+            builder: (context, state) {
+              return Row(
+                children: [
+                  const Text('Health'),
+                  state.map(
+                    initial: (_) => Container(),
+                    loadInProgress: (_) => const CircularProgressIndicator(),
+                    loadFailure: (_) => Container(
+                      color: Colors.red,
+                      height: 50,
+                      width: 50,
+                    ),
+                    loadSuccess: (value) => Text(value.info.data!.name!),
+                  ),
+                ],
+              );
+            },
+          ),
         ],
       ),
     );

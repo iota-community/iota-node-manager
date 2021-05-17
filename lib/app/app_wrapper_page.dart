@@ -5,6 +5,7 @@ import 'package:hornet_node/app/router/app_router.gr.dart';
 import 'package:hornet_node/configureDependencies.dart';
 import 'package:hornet_node/l10n/l10n.dart';
 import 'package:hornet_node/pages/home/cubit/hornet_cubit.dart';
+import 'package:hornet_node/pages/home/cubit/info_cubit.dart';
 
 class AppWrapperPage extends StatelessWidget {
   const AppWrapperPage({Key? key}) : super(key: key);
@@ -12,8 +13,15 @@ class AppWrapperPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    return BlocProvider(
-      create: (context) => getIt<HornetCubit>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+        create: (context) => getIt<HornetCubit>()..health(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<InfoCubit>()..loadInfo(),
+        ),
+      ],
       child: AutoTabsScaffold(
         appBarBuilder: (context, tabsRouter) {
           return AppBar(
