@@ -10,18 +10,17 @@ part 'info_state.dart';
 
 @injectable
 class InfoCubit extends Cubit<InfoState> {
-  InfoCubit(this._hornetNodeRestClient)
-      : super(const InfoState.initial());
+  InfoCubit(this._hornetNodeRestClient) : super(const InfoState.initial());
 
   final HornetNodeRestClient _hornetNodeRestClient;
 
-  Future<void> loadInfo() async {
+  Future<void> info() async {
     emit(const InfoState.loadInProgress());
     try {
       var response =
-      await _hornetNodeRestClient.info('https://iota.devster-hh.de');
+          await _hornetNodeRestClient.info('https://iota.devster-hh.de');
       emit(InfoState.loadSuccess(response));
-    } on Exception catch(_) {
+    } on Exception catch (_) {
       emit(const InfoState.loadFailure());
     }
   }

@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'hornet_cubit.dart';
+part of 'health_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,8 +13,12 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$HornetStateTearOff {
-  const _$HornetStateTearOff();
+class _$HealthStateTearOff {
+  const _$HealthStateTearOff();
+
+  _Initial initial() {
+    return const _Initial();
+  }
 
   _Healthy healthy() {
     return const _Healthy();
@@ -26,18 +30,20 @@ class _$HornetStateTearOff {
 }
 
 /// @nodoc
-const $HornetState = _$HornetStateTearOff();
+const $HealthState = _$HealthStateTearOff();
 
 /// @nodoc
-mixin _$HornetState {
+mixin _$HealthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() healthy,
     required TResult Function() unhealthy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? healthy,
     TResult Function()? unhealthy,
     required TResult orElse(),
@@ -45,12 +51,14 @@ mixin _$HornetState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_Healthy value) healthy,
     required TResult Function(_Unhealthy value) unhealthy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_Healthy value)? healthy,
     TResult Function(_Unhealthy value)? unhealthy,
     required TResult orElse(),
@@ -59,19 +67,112 @@ mixin _$HornetState {
 }
 
 /// @nodoc
-abstract class $HornetStateCopyWith<$Res> {
-  factory $HornetStateCopyWith(
-          HornetState value, $Res Function(HornetState) then) =
-      _$HornetStateCopyWithImpl<$Res>;
+abstract class $HealthStateCopyWith<$Res> {
+  factory $HealthStateCopyWith(
+          HealthState value, $Res Function(HealthState) then) =
+      _$HealthStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$HornetStateCopyWithImpl<$Res> implements $HornetStateCopyWith<$Res> {
-  _$HornetStateCopyWithImpl(this._value, this._then);
+class _$HealthStateCopyWithImpl<$Res> implements $HealthStateCopyWith<$Res> {
+  _$HealthStateCopyWithImpl(this._value, this._then);
 
-  final HornetState _value;
+  final HealthState _value;
   // ignore: unused_field
-  final $Res Function(HornetState) _then;
+  final $Res Function(HealthState) _then;
+}
+
+/// @nodoc
+abstract class _$InitialCopyWith<$Res> {
+  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
+      __$InitialCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$InitialCopyWithImpl<$Res> extends _$HealthStateCopyWithImpl<$Res>
+    implements _$InitialCopyWith<$Res> {
+  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
+      : super(_value, (v) => _then(v as _Initial));
+
+  @override
+  _Initial get _value => super._value as _Initial;
+}
+
+/// @nodoc
+
+class _$_Initial with DiagnosticableTreeMixin implements _Initial {
+  const _$_Initial();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'HealthState.initial()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'HealthState.initial'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _Initial);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() healthy,
+    required TResult Function() unhealthy,
+  }) {
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? healthy,
+    TResult Function()? unhealthy,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Healthy value) healthy,
+    required TResult Function(_Unhealthy value) unhealthy,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Healthy value)? healthy,
+    TResult Function(_Unhealthy value)? unhealthy,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Initial implements HealthState {
+  const factory _Initial() = _$_Initial;
 }
 
 /// @nodoc
@@ -81,7 +182,7 @@ abstract class _$HealthyCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$HealthyCopyWithImpl<$Res> extends _$HornetStateCopyWithImpl<$Res>
+class __$HealthyCopyWithImpl<$Res> extends _$HealthStateCopyWithImpl<$Res>
     implements _$HealthyCopyWith<$Res> {
   __$HealthyCopyWithImpl(_Healthy _value, $Res Function(_Healthy) _then)
       : super(_value, (v) => _then(v as _Healthy));
@@ -97,13 +198,13 @@ class _$_Healthy with DiagnosticableTreeMixin implements _Healthy {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'HornetState.healthy()';
+    return 'HealthState.healthy()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'HornetState.healthy'));
+    properties..add(DiagnosticsProperty('type', 'HealthState.healthy'));
   }
 
   @override
@@ -117,6 +218,7 @@ class _$_Healthy with DiagnosticableTreeMixin implements _Healthy {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() healthy,
     required TResult Function() unhealthy,
   }) {
@@ -126,6 +228,7 @@ class _$_Healthy with DiagnosticableTreeMixin implements _Healthy {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? healthy,
     TResult Function()? unhealthy,
     required TResult orElse(),
@@ -139,6 +242,7 @@ class _$_Healthy with DiagnosticableTreeMixin implements _Healthy {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_Healthy value) healthy,
     required TResult Function(_Unhealthy value) unhealthy,
   }) {
@@ -148,6 +252,7 @@ class _$_Healthy with DiagnosticableTreeMixin implements _Healthy {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_Healthy value)? healthy,
     TResult Function(_Unhealthy value)? unhealthy,
     required TResult orElse(),
@@ -159,7 +264,7 @@ class _$_Healthy with DiagnosticableTreeMixin implements _Healthy {
   }
 }
 
-abstract class _Healthy implements HornetState {
+abstract class _Healthy implements HealthState {
   const factory _Healthy() = _$_Healthy;
 }
 
@@ -171,7 +276,7 @@ abstract class _$UnhealthyCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$UnhealthyCopyWithImpl<$Res> extends _$HornetStateCopyWithImpl<$Res>
+class __$UnhealthyCopyWithImpl<$Res> extends _$HealthStateCopyWithImpl<$Res>
     implements _$UnhealthyCopyWith<$Res> {
   __$UnhealthyCopyWithImpl(_Unhealthy _value, $Res Function(_Unhealthy) _then)
       : super(_value, (v) => _then(v as _Unhealthy));
@@ -187,13 +292,13 @@ class _$_Unhealthy with DiagnosticableTreeMixin implements _Unhealthy {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'HornetState.unhealthy()';
+    return 'HealthState.unhealthy()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'HornetState.unhealthy'));
+    properties..add(DiagnosticsProperty('type', 'HealthState.unhealthy'));
   }
 
   @override
@@ -207,6 +312,7 @@ class _$_Unhealthy with DiagnosticableTreeMixin implements _Unhealthy {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() healthy,
     required TResult Function() unhealthy,
   }) {
@@ -216,6 +322,7 @@ class _$_Unhealthy with DiagnosticableTreeMixin implements _Unhealthy {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? healthy,
     TResult Function()? unhealthy,
     required TResult orElse(),
@@ -229,6 +336,7 @@ class _$_Unhealthy with DiagnosticableTreeMixin implements _Unhealthy {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_Healthy value) healthy,
     required TResult Function(_Unhealthy value) unhealthy,
   }) {
@@ -238,6 +346,7 @@ class _$_Unhealthy with DiagnosticableTreeMixin implements _Unhealthy {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_Healthy value)? healthy,
     TResult Function(_Unhealthy value)? unhealthy,
     required TResult orElse(),
@@ -249,6 +358,6 @@ class _$_Unhealthy with DiagnosticableTreeMixin implements _Unhealthy {
   }
 }
 
-abstract class _Unhealthy implements HornetState {
+abstract class _Unhealthy implements HealthState {
   const factory _Unhealthy() = _$_Unhealthy;
 }

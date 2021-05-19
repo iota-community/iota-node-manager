@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hornet_node/app/router/app_router.gr.dart';
 import 'package:hornet_node/configureDependencies.dart';
 import 'package:hornet_node/l10n/l10n.dart';
-import 'package:hornet_node/pages/home/cubit/hornet_cubit.dart';
+import 'package:hornet_node/pages/home/cubit/health_cubit.dart';
 import 'package:hornet_node/pages/home/cubit/info_cubit.dart';
 
 class AppWrapperPage extends StatelessWidget {
@@ -16,10 +16,10 @@ class AppWrapperPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-        create: (context) => getIt<HornetCubit>()..health(),
+          create: (context) => getIt<HealthCubit>(),
         ),
         BlocProvider(
-          create: (context) => getIt<InfoCubit>()..loadInfo(),
+          create: (context) => getIt<InfoCubit>(),
         ),
       ],
       child: AutoTabsScaffold(
