@@ -20,12 +20,18 @@ class _$HealthStateTearOff {
     return const _Initial();
   }
 
-  _Healthy healthy() {
-    return const _Healthy();
+  _LoadInProgress loadInProgress() {
+    return const _LoadInProgress();
   }
 
-  _Unhealthy unhealthy() {
-    return const _Unhealthy();
+  _LoadSuccess loadSuccess(int? statusCode) {
+    return _LoadSuccess(
+      statusCode,
+    );
+  }
+
+  _LoadFailure loadFailure() {
+    return const _LoadFailure();
   }
 }
 
@@ -37,30 +43,34 @@ mixin _$HealthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() healthy,
-    required TResult Function() unhealthy,
+    required TResult Function() loadInProgress,
+    required TResult Function(int? statusCode) loadSuccess,
+    required TResult Function() loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? healthy,
-    TResult Function()? unhealthy,
+    TResult Function()? loadInProgress,
+    TResult Function(int? statusCode)? loadSuccess,
+    TResult Function()? loadFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Healthy value) healthy,
-    required TResult Function(_Unhealthy value) unhealthy,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_LoadSuccess value) loadSuccess,
+    required TResult Function(_LoadFailure value) loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Healthy value)? healthy,
-    TResult Function(_Unhealthy value)? unhealthy,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,8 +136,9 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() healthy,
-    required TResult Function() unhealthy,
+    required TResult Function() loadInProgress,
+    required TResult Function(int? statusCode) loadSuccess,
+    required TResult Function() loadFailure,
   }) {
     return initial();
   }
@@ -136,8 +147,9 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? healthy,
-    TResult Function()? unhealthy,
+    TResult Function()? loadInProgress,
+    TResult Function(int? statusCode)? loadSuccess,
+    TResult Function()? loadFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -150,8 +162,9 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Healthy value) healthy,
-    required TResult Function(_Unhealthy value) unhealthy,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_LoadSuccess value) loadSuccess,
+    required TResult Function(_LoadFailure value) loadFailure,
   }) {
     return initial(this);
   }
@@ -160,8 +173,9 @@ class _$_Initial with DiagnosticableTreeMixin implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Healthy value)? healthy,
-    TResult Function(_Unhealthy value)? unhealthy,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -176,40 +190,45 @@ abstract class _Initial implements HealthState {
 }
 
 /// @nodoc
-abstract class _$HealthyCopyWith<$Res> {
-  factory _$HealthyCopyWith(_Healthy value, $Res Function(_Healthy) then) =
-      __$HealthyCopyWithImpl<$Res>;
+abstract class _$LoadInProgressCopyWith<$Res> {
+  factory _$LoadInProgressCopyWith(
+          _LoadInProgress value, $Res Function(_LoadInProgress) then) =
+      __$LoadInProgressCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$HealthyCopyWithImpl<$Res> extends _$HealthStateCopyWithImpl<$Res>
-    implements _$HealthyCopyWith<$Res> {
-  __$HealthyCopyWithImpl(_Healthy _value, $Res Function(_Healthy) _then)
-      : super(_value, (v) => _then(v as _Healthy));
+class __$LoadInProgressCopyWithImpl<$Res>
+    extends _$HealthStateCopyWithImpl<$Res>
+    implements _$LoadInProgressCopyWith<$Res> {
+  __$LoadInProgressCopyWithImpl(
+      _LoadInProgress _value, $Res Function(_LoadInProgress) _then)
+      : super(_value, (v) => _then(v as _LoadInProgress));
 
   @override
-  _Healthy get _value => super._value as _Healthy;
+  _LoadInProgress get _value => super._value as _LoadInProgress;
 }
 
 /// @nodoc
 
-class _$_Healthy with DiagnosticableTreeMixin implements _Healthy {
-  const _$_Healthy();
+class _$_LoadInProgress
+    with DiagnosticableTreeMixin
+    implements _LoadInProgress {
+  const _$_LoadInProgress();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'HealthState.healthy()';
+    return 'HealthState.loadInProgress()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'HealthState.healthy'));
+    properties..add(DiagnosticsProperty('type', 'HealthState.loadInProgress'));
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Healthy);
+    return identical(this, other) || (other is _LoadInProgress);
   }
 
   @override
@@ -219,22 +238,24 @@ class _$_Healthy with DiagnosticableTreeMixin implements _Healthy {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() healthy,
-    required TResult Function() unhealthy,
+    required TResult Function() loadInProgress,
+    required TResult Function(int? statusCode) loadSuccess,
+    required TResult Function() loadFailure,
   }) {
-    return healthy();
+    return loadInProgress();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? healthy,
-    TResult Function()? unhealthy,
+    TResult Function()? loadInProgress,
+    TResult Function(int? statusCode)? loadSuccess,
+    TResult Function()? loadFailure,
     required TResult orElse(),
   }) {
-    if (healthy != null) {
-      return healthy();
+    if (loadInProgress != null) {
+      return loadInProgress();
     }
     return orElse();
   }
@@ -243,67 +264,202 @@ class _$_Healthy with DiagnosticableTreeMixin implements _Healthy {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Healthy value) healthy,
-    required TResult Function(_Unhealthy value) unhealthy,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_LoadSuccess value) loadSuccess,
+    required TResult Function(_LoadFailure value) loadFailure,
   }) {
-    return healthy(this);
+    return loadInProgress(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Healthy value)? healthy,
-    TResult Function(_Unhealthy value)? unhealthy,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
     required TResult orElse(),
   }) {
-    if (healthy != null) {
-      return healthy(this);
+    if (loadInProgress != null) {
+      return loadInProgress(this);
     }
     return orElse();
   }
 }
 
-abstract class _Healthy implements HealthState {
-  const factory _Healthy() = _$_Healthy;
+abstract class _LoadInProgress implements HealthState {
+  const factory _LoadInProgress() = _$_LoadInProgress;
 }
 
 /// @nodoc
-abstract class _$UnhealthyCopyWith<$Res> {
-  factory _$UnhealthyCopyWith(
-          _Unhealthy value, $Res Function(_Unhealthy) then) =
-      __$UnhealthyCopyWithImpl<$Res>;
+abstract class _$LoadSuccessCopyWith<$Res> {
+  factory _$LoadSuccessCopyWith(
+          _LoadSuccess value, $Res Function(_LoadSuccess) then) =
+      __$LoadSuccessCopyWithImpl<$Res>;
+  $Res call({int? statusCode});
 }
 
 /// @nodoc
-class __$UnhealthyCopyWithImpl<$Res> extends _$HealthStateCopyWithImpl<$Res>
-    implements _$UnhealthyCopyWith<$Res> {
-  __$UnhealthyCopyWithImpl(_Unhealthy _value, $Res Function(_Unhealthy) _then)
-      : super(_value, (v) => _then(v as _Unhealthy));
+class __$LoadSuccessCopyWithImpl<$Res> extends _$HealthStateCopyWithImpl<$Res>
+    implements _$LoadSuccessCopyWith<$Res> {
+  __$LoadSuccessCopyWithImpl(
+      _LoadSuccess _value, $Res Function(_LoadSuccess) _then)
+      : super(_value, (v) => _then(v as _LoadSuccess));
 
   @override
-  _Unhealthy get _value => super._value as _Unhealthy;
+  _LoadSuccess get _value => super._value as _LoadSuccess;
+
+  @override
+  $Res call({
+    Object? statusCode = freezed,
+  }) {
+    return _then(_LoadSuccess(
+      statusCode == freezed
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Unhealthy with DiagnosticableTreeMixin implements _Unhealthy {
-  const _$_Unhealthy();
+class _$_LoadSuccess with DiagnosticableTreeMixin implements _LoadSuccess {
+  const _$_LoadSuccess(this.statusCode);
+
+  @override
+  final int? statusCode;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'HealthState.unhealthy()';
+    return 'HealthState.loadSuccess(statusCode: $statusCode)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'HealthState.unhealthy'));
+    properties
+      ..add(DiagnosticsProperty('type', 'HealthState.loadSuccess'))
+      ..add(DiagnosticsProperty('statusCode', statusCode));
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Unhealthy);
+    return identical(this, other) ||
+        (other is _LoadSuccess &&
+            (identical(other.statusCode, statusCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.statusCode, statusCode)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(statusCode);
+
+  @JsonKey(ignore: true)
+  @override
+  _$LoadSuccessCopyWith<_LoadSuccess> get copyWith =>
+      __$LoadSuccessCopyWithImpl<_LoadSuccess>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadInProgress,
+    required TResult Function(int? statusCode) loadSuccess,
+    required TResult Function() loadFailure,
+  }) {
+    return loadSuccess(statusCode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadInProgress,
+    TResult Function(int? statusCode)? loadSuccess,
+    TResult Function()? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadSuccess != null) {
+      return loadSuccess(statusCode);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_LoadSuccess value) loadSuccess,
+    required TResult Function(_LoadFailure value) loadFailure,
+  }) {
+    return loadSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (loadSuccess != null) {
+      return loadSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadSuccess implements HealthState {
+  const factory _LoadSuccess(int? statusCode) = _$_LoadSuccess;
+
+  int? get statusCode => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$LoadSuccessCopyWith<_LoadSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$LoadFailureCopyWith<$Res> {
+  factory _$LoadFailureCopyWith(
+          _LoadFailure value, $Res Function(_LoadFailure) then) =
+      __$LoadFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$LoadFailureCopyWithImpl<$Res> extends _$HealthStateCopyWithImpl<$Res>
+    implements _$LoadFailureCopyWith<$Res> {
+  __$LoadFailureCopyWithImpl(
+      _LoadFailure _value, $Res Function(_LoadFailure) _then)
+      : super(_value, (v) => _then(v as _LoadFailure));
+
+  @override
+  _LoadFailure get _value => super._value as _LoadFailure;
+}
+
+/// @nodoc
+
+class _$_LoadFailure with DiagnosticableTreeMixin implements _LoadFailure {
+  const _$_LoadFailure();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'HealthState.loadFailure()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'HealthState.loadFailure'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _LoadFailure);
   }
 
   @override
@@ -313,22 +469,24 @@ class _$_Unhealthy with DiagnosticableTreeMixin implements _Unhealthy {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() healthy,
-    required TResult Function() unhealthy,
+    required TResult Function() loadInProgress,
+    required TResult Function(int? statusCode) loadSuccess,
+    required TResult Function() loadFailure,
   }) {
-    return unhealthy();
+    return loadFailure();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? healthy,
-    TResult Function()? unhealthy,
+    TResult Function()? loadInProgress,
+    TResult Function(int? statusCode)? loadSuccess,
+    TResult Function()? loadFailure,
     required TResult orElse(),
   }) {
-    if (unhealthy != null) {
-      return unhealthy();
+    if (loadFailure != null) {
+      return loadFailure();
     }
     return orElse();
   }
@@ -337,27 +495,29 @@ class _$_Unhealthy with DiagnosticableTreeMixin implements _Unhealthy {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Healthy value) healthy,
-    required TResult Function(_Unhealthy value) unhealthy,
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_LoadSuccess value) loadSuccess,
+    required TResult Function(_LoadFailure value) loadFailure,
   }) {
-    return unhealthy(this);
+    return loadFailure(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Healthy value)? healthy,
-    TResult Function(_Unhealthy value)? unhealthy,
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_LoadSuccess value)? loadSuccess,
+    TResult Function(_LoadFailure value)? loadFailure,
     required TResult orElse(),
   }) {
-    if (unhealthy != null) {
-      return unhealthy(this);
+    if (loadFailure != null) {
+      return loadFailure(this);
     }
     return orElse();
   }
 }
 
-abstract class _Unhealthy implements HealthState {
-  const factory _Unhealthy() = _$_Unhealthy;
+abstract class _LoadFailure implements HealthState {
+  const factory _LoadFailure() = _$_LoadFailure;
 }

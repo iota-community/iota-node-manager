@@ -7,12 +7,13 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import '../../pages/analytics/analytics.dart' as _i6;
-import '../../pages/explorer/explorer.dart' as _i8;
-import '../../pages/home/home.dart' as _i5;
-import '../../pages/manage_node/manage_node.dart' as _i4;
-import '../../pages/peers/peers.dart' as _i7;
+import '../../pages/add_node/add_node.dart' as _i4;
+import '../../pages/analytics/analytics.dart' as _i7;
+import '../../pages/explorer/explorer.dart' as _i9;
+import '../../pages/home/home.dart' as _i6;
+import '../../pages/peers/peers.dart' as _i8;
 import '../app_wrapper_page.dart' as _i3;
+import '../node_wrapper_page.dart' as _i5;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -25,10 +26,15 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i3.AppWrapperPage();
         }),
-    ManageNodeRouter.name: (routeData) => _i1.MaterialPageX<dynamic>(
+    AddNodeRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i4.ManageNodePage();
+          return const _i4.AddNodePage();
+        }),
+    NodeWrapperRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i5.NodeWrapperPage();
         }),
     HomeRouter.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -53,28 +59,30 @@ class AppRouter extends _i1.RootStackRouter {
     HomeRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i5.HomePage();
+          return const _i6.HomePage();
         }),
     AnalyticsRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i6.AnalyticsPage();
+          return const _i7.AnalyticsPage();
         }),
     PeersRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i7.PeersPage();
+          return const _i8.PeersPage();
         }),
     ExplorerRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i8.ExplorerPage();
+          return const _i9.ExplorerPage();
         })
   };
 
   @override
   List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(AppWrapperRoute.name, path: '/', children: [
+        _i1.RouteConfig(AppWrapperRoute.name, path: '/'),
+        _i1.RouteConfig(AddNodeRoute.name, path: '/add'),
+        _i1.RouteConfig(NodeWrapperRoute.name, path: '/node', children: [
           _i1.RouteConfig(HomeRouter.name, path: 'home', children: [
             _i1.RouteConfig(HomeRoute.name, path: ''),
             _i1.RouteConfig('*#redirect',
@@ -96,23 +104,28 @@ class AppRouter extends _i1.RootStackRouter {
                 path: '*', redirectTo: '', fullMatch: true)
           ])
         ]),
-        _i1.RouteConfig(ManageNodeRouter.name, path: 'manage_node'),
         _i1.RouteConfig('*#redirect',
             path: '*', redirectTo: '/', fullMatch: true)
       ];
 }
 
 class AppWrapperRoute extends _i1.PageRouteInfo {
-  const AppWrapperRoute({List<_i1.PageRouteInfo>? children})
-      : super(name, path: '/', initialChildren: children);
+  const AppWrapperRoute() : super(name, path: '/');
 
   static const String name = 'AppWrapperRoute';
 }
 
-class ManageNodeRouter extends _i1.PageRouteInfo {
-  const ManageNodeRouter() : super(name, path: 'manage_node');
+class AddNodeRoute extends _i1.PageRouteInfo {
+  const AddNodeRoute() : super(name, path: '/add');
 
-  static const String name = 'ManageNodeRouter';
+  static const String name = 'AddNodeRoute';
+}
+
+class NodeWrapperRoute extends _i1.PageRouteInfo {
+  const NodeWrapperRoute({List<_i1.PageRouteInfo>? children})
+      : super(name, path: '/node', initialChildren: children);
+
+  static const String name = 'NodeWrapperRoute';
 }
 
 class HomeRouter extends _i1.PageRouteInfo {

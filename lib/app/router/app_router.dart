@@ -1,18 +1,21 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:hornet_node/app/app_wrapper_page.dart';
+import 'package:hornet_node/app/node_wrapper_page.dart';
+import 'package:hornet_node/pages/add_node/add_node.dart';
 import 'package:hornet_node/pages/analytics/analytics.dart';
 import 'package:hornet_node/pages/explorer/explorer.dart';
 import 'package:hornet_node/pages/home/home.dart';
-import 'package:hornet_node/pages/manage_node/manage_node.dart';
 import 'package:hornet_node/pages/peers/peers.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
+    AutoRoute(path: '/', page: AppWrapperPage, children: []),
+    AutoRoute(path: '/add', page: AddNodePage),
     AutoRoute(
-      path: '/',
-      page: AppWrapperPage,
+      path: '/node',
+      page: NodeWrapperPage,
       children: [
         AutoRoute(
           path: 'home',
@@ -63,11 +66,6 @@ import 'package:hornet_node/pages/peers/peers.dart';
           ],
         ),
       ],
-    ),
-    AutoRoute(
-      path: 'manage_node',
-      name: 'ManageNodeRouter',
-      page: ManageNodePage,
     ),
     RedirectRoute(path: '*', redirectTo: '/'),
   ],

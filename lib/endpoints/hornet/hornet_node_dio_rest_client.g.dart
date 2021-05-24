@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'hornet_node_rest_client.dart';
+part of 'hornet_node_dio_rest_client.dart';
 
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
 
-class _HornetNodeRestClient implements HornetNodeRestClient {
-  _HornetNodeRestClient(this._dio, {this.baseUrl});
+class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
+  _HornetNodeDioRestClientImpl(this._dio, {this.baseUrl});
 
   final Dio _dio;
 

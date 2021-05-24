@@ -27,20 +27,27 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   const Text('Health'),
                   state.map(
-                    healthy: (_) => Container(
-                      color: Colors.green,
-                      height: 50,
-                      width: 50,
-                    ),
-                    unhealthy: (_) => Container(
-                      height: 50,
-                      width: 50,
-                      color: Colors.red,
-                    ),
                     initial: (_) {
                       BlocProvider.of<HealthCubit>(context).health();
                       return const SizedBox();
                     },
+                    loadInProgress: (_) => Container(
+                      height: 50,
+                      width: 50,
+                      child: const CircularProgressIndicator(),
+                    ),
+                    loadSuccess: (value) => Container(
+                      height: 50,
+                      width: 50,
+                      color:
+                          value.statusCode == 200 ? Colors.green : Colors.red,
+                    ),
+                    loadFailure: (_) => Container(
+                      color: Colors.red,
+                      height: 50,
+                      width: 50,
+                      child: const Text('Failure'),
+                    ),
                   ),
                   TextButton(
                     style: TextButton.styleFrom(
@@ -59,7 +66,7 @@ class _HomePageState extends State<HomePage> {
             builder: (context, state) {
               return Row(
                 children: [
-                  const Text('Health'),
+                  const Text('Info'),
                   state.map(
                     initial: (_) {
                       BlocProvider.of<InfoCubit>(context).info();
