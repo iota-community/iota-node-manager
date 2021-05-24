@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hornet_node/configureDependencies.dart';
+import 'package:hornet_node/models/database/hornet_node.dart';
+import 'package:hornet_node/models/hornet/info/info.dart';
 import 'package:hornet_node/pages/home/cubit/health_cubit.dart';
 import 'package:hornet_node/pages/home/cubit/info_cubit.dart';
+import 'package:hornet_node/repository/node_repository.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,80 +26,79 @@ class _HomePageState extends State<HomePage> {
     return Container(
       child: Column(
         children: [
-          BlocBuilder<HealthCubit, HealthState>(
-            builder: (context, state) {
-              return Row(
-                children: [
-                  const Text('Health'),
-                  state.map(
-                    initial: (_) {
-                      BlocProvider.of<HealthCubit>(context).health();
-                      return const SizedBox();
-                    },
-                    loadInProgress: (_) => Container(
-                      height: 50,
-                      width: 50,
-                      child: const CircularProgressIndicator(),
-                    ),
-                    loadSuccess: (value) => Container(
-                      height: 50,
-                      width: 50,
-                      color:
-                          value.statusCode == 200 ? Colors.green : Colors.red,
-                    ),
-                    loadFailure: (_) => Container(
-                      color: Colors.red,
-                      height: 50,
-                      width: 50,
-                      child: const Text('Failure'),
-                    ),
-                  ),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      primary: Colors.blue,
-                    ),
-                    onPressed: () {
-                      BlocProvider.of<HealthCubit>(context).health();
-                    },
-                    child: const Text('Reload'),
-                  )
-                ],
-              );
-            },
-          ),
-          BlocBuilder<InfoCubit, InfoState>(
-            builder: (context, state) {
-              return Row(
-                children: [
-                  const Text('Info'),
-                  state.map(
-                    initial: (_) {
-                      BlocProvider.of<InfoCubit>(context).info();
-                      return Container();
-                    },
-                    loadInProgress: (_) => const CircularProgressIndicator(),
-                    loadFailure: (_) => Container(
-                      color: Colors.red,
-                      height: 50,
-                      width: 50,
-                    ),
-                    loadSuccess: (value) => Text(value.info.data!.name!),
-                  ),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      primary: Colors.blue,
-                    ),
-                    onPressed: () {
-                      BlocProvider.of<InfoCubit>(context).info();
-                    },
-                    child: const Text('Reload'),
-                  )
-                ],
-              );
-            },
-          ),
+          const _TitleCard(),
         ],
       ),
+    );
+  }
+}
+
+class _TitleCard extends StatelessWidget {
+  const _TitleCard({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    return BlocBuilder<InfoCubit, InfoState>(
+      builder: (context, state) {
+        return state.maybeMap(
+          loadSuccess: (value) {
+            var info = value.info;
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                child: Container(
+                  width: width * 0.9,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Column(
+                            children: [
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  info.data?.name ?? '',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(info.data?.networkId ?? ''),
+                              ),
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(info.data?.version ?? ''),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: 90,
+                          padding: const EdgeInsets.all(8),
+                          color: Theme.of(context).accentColor,
+                          child: SvgPicture.asset(
+                            'assets/svg/hornet_banner.svg',
+                            semanticsLabel: 'Acme Logo',
+                            fit: BoxFit.fitHeight,
+                          ),
+                          // child: ,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+          orElse: () => const CircularProgressIndicator(),
+        );
+      },
     );
   }
 }

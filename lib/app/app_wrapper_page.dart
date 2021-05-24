@@ -63,7 +63,7 @@ class _AppWrapperPageState extends State<AppWrapperPage> {
     //     'Chikko Node', 'https://iota.mss-solutions.de', '123456789'));
 
     _repository.addNode(HornetNode(
-        'Chikko Node', 'https://iota.mss-solutions.de', '123456789'));
+        'Chikko Node Node Node', 'https://iota.mss-solutions.de', '123456789'));
 
     // Hive.box<List>(HiveBoxConstants.selectedNodeBox)
     //   ..put('nodes', [HornetNode('Mpoch Node', 'https://iota.devster-hh.de')]);
