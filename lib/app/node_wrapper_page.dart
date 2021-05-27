@@ -30,7 +30,7 @@ class NodeWrapperPage extends StatelessWidget {
         appBarBuilder: (context, tabsRouter) {
           return AppBar(
             title: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 // const Padding(
                 //   padding: EdgeInsets.all(8.0),
