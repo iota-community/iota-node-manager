@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'data.dart';
+part of 'treasury_data.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,33 +12,33 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Data _$DataFromJson(Map<String, dynamic> json) {
-  return _Data.fromJson(json);
+TreasuryData _$TreasuryDataFromJson(Map<String, dynamic> json) {
+  return _TreasuryData.fromJson(json);
 }
 
 /// @nodoc
-class _$DataTearOff {
-  const _$DataTearOff();
+class _$TreasuryDataTearOff {
+  const _$TreasuryDataTearOff();
 
-  _Data call(
+  _TreasuryData call(
       {@JsonKey(name: 'milestoneId') String? milestoneId,
       @JsonKey(name: 'amount') int? amount}) {
-    return _Data(
+    return _TreasuryData(
       milestoneId: milestoneId,
       amount: amount,
     );
   }
 
-  Data fromJson(Map<String, Object> json) {
-    return Data.fromJson(json);
+  TreasuryData fromJson(Map<String, Object> json) {
+    return TreasuryData.fromJson(json);
   }
 }
 
 /// @nodoc
-const $Data = _$DataTearOff();
+const $TreasuryData = _$TreasuryDataTearOff();
 
 /// @nodoc
-mixin _$Data {
+mixin _$TreasuryData {
   @JsonKey(name: 'milestoneId')
   String? get milestoneId => throw _privateConstructorUsedError;
   @JsonKey(name: 'amount')
@@ -46,25 +46,27 @@ mixin _$Data {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DataCopyWith<Data> get copyWith => throw _privateConstructorUsedError;
+  $TreasuryDataCopyWith<TreasuryData> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DataCopyWith<$Res> {
-  factory $DataCopyWith(Data value, $Res Function(Data) then) =
-      _$DataCopyWithImpl<$Res>;
+abstract class $TreasuryDataCopyWith<$Res> {
+  factory $TreasuryDataCopyWith(
+          TreasuryData value, $Res Function(TreasuryData) then) =
+      _$TreasuryDataCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'milestoneId') String? milestoneId,
       @JsonKey(name: 'amount') int? amount});
 }
 
 /// @nodoc
-class _$DataCopyWithImpl<$Res> implements $DataCopyWith<$Res> {
-  _$DataCopyWithImpl(this._value, this._then);
+class _$TreasuryDataCopyWithImpl<$Res> implements $TreasuryDataCopyWith<$Res> {
+  _$TreasuryDataCopyWithImpl(this._value, this._then);
 
-  final Data _value;
+  final TreasuryData _value;
   // ignore: unused_field
-  final $Res Function(Data) _then;
+  final $Res Function(TreasuryData) _then;
 
   @override
   $Res call({
@@ -85,9 +87,11 @@ class _$DataCopyWithImpl<$Res> implements $DataCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$DataCopyWith<$Res> implements $DataCopyWith<$Res> {
-  factory _$DataCopyWith(_Data value, $Res Function(_Data) then) =
-      __$DataCopyWithImpl<$Res>;
+abstract class _$TreasuryDataCopyWith<$Res>
+    implements $TreasuryDataCopyWith<$Res> {
+  factory _$TreasuryDataCopyWith(
+          _TreasuryData value, $Res Function(_TreasuryData) then) =
+      __$TreasuryDataCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'milestoneId') String? milestoneId,
@@ -95,20 +99,21 @@ abstract class _$DataCopyWith<$Res> implements $DataCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res>
-    implements _$DataCopyWith<$Res> {
-  __$DataCopyWithImpl(_Data _value, $Res Function(_Data) _then)
-      : super(_value, (v) => _then(v as _Data));
+class __$TreasuryDataCopyWithImpl<$Res> extends _$TreasuryDataCopyWithImpl<$Res>
+    implements _$TreasuryDataCopyWith<$Res> {
+  __$TreasuryDataCopyWithImpl(
+      _TreasuryData _value, $Res Function(_TreasuryData) _then)
+      : super(_value, (v) => _then(v as _TreasuryData));
 
   @override
-  _Data get _value => super._value as _Data;
+  _TreasuryData get _value => super._value as _TreasuryData;
 
   @override
   $Res call({
     Object? milestoneId = freezed,
     Object? amount = freezed,
   }) {
-    return _then(_Data(
+    return _then(_TreasuryData(
       milestoneId: milestoneId == freezed
           ? _value.milestoneId
           : milestoneId // ignore: cast_nullable_to_non_nullable
@@ -123,13 +128,13 @@ class __$DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Data implements _Data {
-  _$_Data(
+class _$_TreasuryData implements _TreasuryData {
+  _$_TreasuryData(
       {@JsonKey(name: 'milestoneId') this.milestoneId,
       @JsonKey(name: 'amount') this.amount});
 
-  factory _$_Data.fromJson(Map<String, dynamic> json) =>
-      _$_$_DataFromJson(json);
+  factory _$_TreasuryData.fromJson(Map<String, dynamic> json) =>
+      _$_$_TreasuryDataFromJson(json);
 
   @override
   @JsonKey(name: 'milestoneId')
@@ -140,13 +145,13 @@ class _$_Data implements _Data {
 
   @override
   String toString() {
-    return 'Data(milestoneId: $milestoneId, amount: $amount)';
+    return 'TreasuryData(milestoneId: $milestoneId, amount: $amount)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Data &&
+        (other is _TreasuryData &&
             (identical(other.milestoneId, milestoneId) ||
                 const DeepCollectionEquality()
                     .equals(other.milestoneId, milestoneId)) &&
@@ -162,21 +167,22 @@ class _$_Data implements _Data {
 
   @JsonKey(ignore: true)
   @override
-  _$DataCopyWith<_Data> get copyWith =>
-      __$DataCopyWithImpl<_Data>(this, _$identity);
+  _$TreasuryDataCopyWith<_TreasuryData> get copyWith =>
+      __$TreasuryDataCopyWithImpl<_TreasuryData>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_DataToJson(this);
+    return _$_$_TreasuryDataToJson(this);
   }
 }
 
-abstract class _Data implements Data {
-  factory _Data(
+abstract class _TreasuryData implements TreasuryData {
+  factory _TreasuryData(
       {@JsonKey(name: 'milestoneId') String? milestoneId,
-      @JsonKey(name: 'amount') int? amount}) = _$_Data;
+      @JsonKey(name: 'amount') int? amount}) = _$_TreasuryData;
 
-  factory _Data.fromJson(Map<String, dynamic> json) = _$_Data.fromJson;
+  factory _TreasuryData.fromJson(Map<String, dynamic> json) =
+      _$_TreasuryData.fromJson;
 
   @override
   @JsonKey(name: 'milestoneId')
@@ -186,5 +192,6 @@ abstract class _Data implements Data {
   int? get amount => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$DataCopyWith<_Data> get copyWith => throw _privateConstructorUsedError;
+  _$TreasuryDataCopyWith<_TreasuryData> get copyWith =>
+      throw _privateConstructorUsedError;
 }

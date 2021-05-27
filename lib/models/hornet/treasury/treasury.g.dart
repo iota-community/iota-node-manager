@@ -10,7 +10,7 @@ _$_Treasury _$_$_TreasuryFromJson(Map<String, dynamic> json) {
   return _$_Treasury(
     data: json['data'] == null
         ? null
-        : Data.fromJson(json['data'] as Map<String, dynamic>),
+        : TreasuryData.fromJson(json['data'] as Map<String, dynamic>),
   );
 }
 

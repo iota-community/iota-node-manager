@@ -22,7 +22,7 @@ dependencies:
   hive_flutter: ^1.0.0
   hive_generator: ^1.1.0
   http: ^0.13.3
-  injectable: ^1.4.0
+  injectable: ^1.4.1
   intl: ^0.17.0
   json_serializable: ^4.1.2
   retrofit: ^2.0.0-beta3
@@ -39,12 +39,12 @@ dev_dependencies:
       path: generator
       ref: master
   auto_route_generator: ^2.1.0
-  bloc_test: ^8.0.0
+  bloc_test: ^8.0.1
   build_runner: null
   envify_generator: ^2.0.0
   freezed: ^0.14.2
-  injectable_generator: ^1.4.0
-  mocktail: ^0.1.2
+  injectable_generator: ^1.4.1
+  mocktail: ^0.1.3
   very_good_analysis: ^2.0.3
 
 dependency_overrides:

@@ -8,9 +8,7 @@ part of 'info.dart';
 
 _$_Info _$_$_InfoFromJson(Map<String, dynamic> json) {
   return _$_Info(
-    data: json['data'] == null
-        ? null
-        : Data.fromJson(json['data'] as Map<String, dynamic>),
+    data: InfoData.fromJson(json['data'] as Map<String, dynamic>),
   );
 }
 

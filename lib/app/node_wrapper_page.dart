@@ -80,7 +80,6 @@ class _NodeWrapperPageState extends State<NodeWrapperPage> {
             ),
             actions: [
               const _HealthIndicator(),
-              // const _SyncIndicator(),
             ],
             leading: const AutoBackButton(),
           );
@@ -157,38 +156,14 @@ class _HealthIndicator extends StatelessWidget {
             BlocProvider.of<HealthCubit>(context).health();
             return const SizedBox();
           },
-          loadInProgress: (_) => Container(
-            width: 20,
-            height: 20,
-            child: const CircularProgressIndicator(),
+          loadInProgress: (_) => const Center(
+            child: Padding(
+              padding: EdgeInsets.only(right: 10.0),
+              child: CircularProgressIndicator(),
+            ),
           ),
           loadSuccess: (value) =>
               _CircleIndicator(healthy: value.statusCode == 200),
-          loadFailure: (_) => const _CircleIndicator(healthy: false),
-        );
-      },
-    );
-  }
-}
-
-class _SyncIndicator extends StatelessWidget {
-  const _SyncIndicator({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<InfoCubit, InfoState>(
-      builder: (context, state) {
-        return state.map(
-          initial: (_) {
-            BlocProvider.of<InfoCubit>(context).info();
-            return const SizedBox();
-          },
-          loadInProgress: (_) => Container(
-            width: 20,
-            height: 20,
-            child: const CircularProgressIndicator(),
-          ),
-          loadSuccess: (value) =>
-              _CircleIndicator(healthy: value.info.data?.isHealthy ?? false),
           loadFailure: (_) => const _CircleIndicator(healthy: false),
         );
       },

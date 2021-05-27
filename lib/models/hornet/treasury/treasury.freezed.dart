@@ -20,7 +20,7 @@ Treasury _$TreasuryFromJson(Map<String, dynamic> json) {
 class _$TreasuryTearOff {
   const _$TreasuryTearOff();
 
-  _Treasury call({@JsonKey(name: 'data') Data? data}) {
+  _Treasury call({@JsonKey(name: 'data') TreasuryData? data}) {
     return _Treasury(
       data: data,
     );
@@ -37,7 +37,7 @@ const $Treasury = _$TreasuryTearOff();
 /// @nodoc
 mixin _$Treasury {
   @JsonKey(name: 'data')
-  Data? get data => throw _privateConstructorUsedError;
+  TreasuryData? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,9 +49,9 @@ mixin _$Treasury {
 abstract class $TreasuryCopyWith<$Res> {
   factory $TreasuryCopyWith(Treasury value, $Res Function(Treasury) then) =
       _$TreasuryCopyWithImpl<$Res>;
-  $Res call({@JsonKey(name: 'data') Data? data});
+  $Res call({@JsonKey(name: 'data') TreasuryData? data});
 
-  $DataCopyWith<$Res>? get data;
+  $TreasuryDataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -70,17 +70,17 @@ class _$TreasuryCopyWithImpl<$Res> implements $TreasuryCopyWith<$Res> {
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as Data?,
+              as TreasuryData?,
     ));
   }
 
   @override
-  $DataCopyWith<$Res>? get data {
+  $TreasuryDataCopyWith<$Res>? get data {
     if (_value.data == null) {
       return null;
     }
 
-    return $DataCopyWith<$Res>(_value.data!, (value) {
+    return $TreasuryDataCopyWith<$Res>(_value.data!, (value) {
       return _then(_value.copyWith(data: value));
     });
   }
@@ -91,10 +91,10 @@ abstract class _$TreasuryCopyWith<$Res> implements $TreasuryCopyWith<$Res> {
   factory _$TreasuryCopyWith(_Treasury value, $Res Function(_Treasury) then) =
       __$TreasuryCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(name: 'data') Data? data});
+  $Res call({@JsonKey(name: 'data') TreasuryData? data});
 
   @override
-  $DataCopyWith<$Res>? get data;
+  $TreasuryDataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -114,7 +114,7 @@ class __$TreasuryCopyWithImpl<$Res> extends _$TreasuryCopyWithImpl<$Res>
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as Data?,
+              as TreasuryData?,
     ));
   }
 }
@@ -129,7 +129,7 @@ class _$_Treasury implements _Treasury {
 
   @override
   @JsonKey(name: 'data')
-  final Data? data;
+  final TreasuryData? data;
 
   @override
   String toString() {
@@ -160,13 +160,13 @@ class _$_Treasury implements _Treasury {
 }
 
 abstract class _Treasury implements Treasury {
-  factory _Treasury({@JsonKey(name: 'data') Data? data}) = _$_Treasury;
+  factory _Treasury({@JsonKey(name: 'data') TreasuryData? data}) = _$_Treasury;
 
   factory _Treasury.fromJson(Map<String, dynamic> json) = _$_Treasury.fromJson;
 
   @override
   @JsonKey(name: 'data')
-  Data? get data => throw _privateConstructorUsedError;
+  TreasuryData? get data => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$TreasuryCopyWith<_Treasury> get copyWith =>

@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'data.dart';
+part of 'tips_data.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,52 +12,54 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Data _$DataFromJson(Map<String, dynamic> json) {
-  return _Data.fromJson(json);
+TipsData _$TipsDataFromJson(Map<String, dynamic> json) {
+  return _TipsData.fromJson(json);
 }
 
 /// @nodoc
-class _$DataTearOff {
-  const _$DataTearOff();
+class _$TipsDataTearOff {
+  const _$TipsDataTearOff();
 
-  _Data call({@JsonKey(name: 'tipMessageIds') List<String>? tipMessageIds}) {
-    return _Data(
+  _TipsData call(
+      {@JsonKey(name: 'tipMessageIds') List<String>? tipMessageIds}) {
+    return _TipsData(
       tipMessageIds: tipMessageIds,
     );
   }
 
-  Data fromJson(Map<String, Object> json) {
-    return Data.fromJson(json);
+  TipsData fromJson(Map<String, Object> json) {
+    return TipsData.fromJson(json);
   }
 }
 
 /// @nodoc
-const $Data = _$DataTearOff();
+const $TipsData = _$TipsDataTearOff();
 
 /// @nodoc
-mixin _$Data {
+mixin _$TipsData {
   @JsonKey(name: 'tipMessageIds')
   List<String>? get tipMessageIds => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DataCopyWith<Data> get copyWith => throw _privateConstructorUsedError;
+  $TipsDataCopyWith<TipsData> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DataCopyWith<$Res> {
-  factory $DataCopyWith(Data value, $Res Function(Data) then) =
-      _$DataCopyWithImpl<$Res>;
+abstract class $TipsDataCopyWith<$Res> {
+  factory $TipsDataCopyWith(TipsData value, $Res Function(TipsData) then) =
+      _$TipsDataCopyWithImpl<$Res>;
   $Res call({@JsonKey(name: 'tipMessageIds') List<String>? tipMessageIds});
 }
 
 /// @nodoc
-class _$DataCopyWithImpl<$Res> implements $DataCopyWith<$Res> {
-  _$DataCopyWithImpl(this._value, this._then);
+class _$TipsDataCopyWithImpl<$Res> implements $TipsDataCopyWith<$Res> {
+  _$TipsDataCopyWithImpl(this._value, this._then);
 
-  final Data _value;
+  final TipsData _value;
   // ignore: unused_field
-  final $Res Function(Data) _then;
+  final $Res Function(TipsData) _then;
 
   @override
   $Res call({
@@ -73,27 +75,27 @@ class _$DataCopyWithImpl<$Res> implements $DataCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$DataCopyWith<$Res> implements $DataCopyWith<$Res> {
-  factory _$DataCopyWith(_Data value, $Res Function(_Data) then) =
-      __$DataCopyWithImpl<$Res>;
+abstract class _$TipsDataCopyWith<$Res> implements $TipsDataCopyWith<$Res> {
+  factory _$TipsDataCopyWith(_TipsData value, $Res Function(_TipsData) then) =
+      __$TipsDataCopyWithImpl<$Res>;
   @override
   $Res call({@JsonKey(name: 'tipMessageIds') List<String>? tipMessageIds});
 }
 
 /// @nodoc
-class __$DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res>
-    implements _$DataCopyWith<$Res> {
-  __$DataCopyWithImpl(_Data _value, $Res Function(_Data) _then)
-      : super(_value, (v) => _then(v as _Data));
+class __$TipsDataCopyWithImpl<$Res> extends _$TipsDataCopyWithImpl<$Res>
+    implements _$TipsDataCopyWith<$Res> {
+  __$TipsDataCopyWithImpl(_TipsData _value, $Res Function(_TipsData) _then)
+      : super(_value, (v) => _then(v as _TipsData));
 
   @override
-  _Data get _value => super._value as _Data;
+  _TipsData get _value => super._value as _TipsData;
 
   @override
   $Res call({
     Object? tipMessageIds = freezed,
   }) {
-    return _then(_Data(
+    return _then(_TipsData(
       tipMessageIds: tipMessageIds == freezed
           ? _value.tipMessageIds
           : tipMessageIds // ignore: cast_nullable_to_non_nullable
@@ -104,11 +106,11 @@ class __$DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Data implements _Data {
-  _$_Data({@JsonKey(name: 'tipMessageIds') this.tipMessageIds});
+class _$_TipsData implements _TipsData {
+  _$_TipsData({@JsonKey(name: 'tipMessageIds') this.tipMessageIds});
 
-  factory _$_Data.fromJson(Map<String, dynamic> json) =>
-      _$_$_DataFromJson(json);
+  factory _$_TipsData.fromJson(Map<String, dynamic> json) =>
+      _$_$_TipsDataFromJson(json);
 
   @override
   @JsonKey(name: 'tipMessageIds')
@@ -116,13 +118,13 @@ class _$_Data implements _Data {
 
   @override
   String toString() {
-    return 'Data(tipMessageIds: $tipMessageIds)';
+    return 'TipsData(tipMessageIds: $tipMessageIds)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Data &&
+        (other is _TipsData &&
             (identical(other.tipMessageIds, tipMessageIds) ||
                 const DeepCollectionEquality()
                     .equals(other.tipMessageIds, tipMessageIds)));
@@ -134,25 +136,27 @@ class _$_Data implements _Data {
 
   @JsonKey(ignore: true)
   @override
-  _$DataCopyWith<_Data> get copyWith =>
-      __$DataCopyWithImpl<_Data>(this, _$identity);
+  _$TipsDataCopyWith<_TipsData> get copyWith =>
+      __$TipsDataCopyWithImpl<_TipsData>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_DataToJson(this);
+    return _$_$_TipsDataToJson(this);
   }
 }
 
-abstract class _Data implements Data {
-  factory _Data({@JsonKey(name: 'tipMessageIds') List<String>? tipMessageIds}) =
-      _$_Data;
+abstract class _TipsData implements TipsData {
+  factory _TipsData(
+          {@JsonKey(name: 'tipMessageIds') List<String>? tipMessageIds}) =
+      _$_TipsData;
 
-  factory _Data.fromJson(Map<String, dynamic> json) = _$_Data.fromJson;
+  factory _TipsData.fromJson(Map<String, dynamic> json) = _$_TipsData.fromJson;
 
   @override
   @JsonKey(name: 'tipMessageIds')
   List<String>? get tipMessageIds => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$DataCopyWith<_Data> get copyWith => throw _privateConstructorUsedError;
+  _$TipsDataCopyWith<_TipsData> get copyWith =>
+      throw _privateConstructorUsedError;
 }

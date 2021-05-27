@@ -10,7 +10,7 @@ _$_Tips _$_$_TipsFromJson(Map<String, dynamic> json) {
   return _$_Tips(
     data: json['data'] == null
         ? null
-        : Data.fromJson(json['data'] as Map<String, dynamic>),
+        : TipsData.fromJson(json['data'] as Map<String, dynamic>),
   );
 }
 

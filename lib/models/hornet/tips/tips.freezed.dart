@@ -20,7 +20,7 @@ Tips _$TipsFromJson(Map<String, dynamic> json) {
 class _$TipsTearOff {
   const _$TipsTearOff();
 
-  _Tips call({@JsonKey(name: 'data') Data? data}) {
+  _Tips call({@JsonKey(name: 'data') TipsData? data}) {
     return _Tips(
       data: data,
     );
@@ -37,7 +37,7 @@ const $Tips = _$TipsTearOff();
 /// @nodoc
 mixin _$Tips {
   @JsonKey(name: 'data')
-  Data? get data => throw _privateConstructorUsedError;
+  TipsData? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,9 +48,9 @@ mixin _$Tips {
 abstract class $TipsCopyWith<$Res> {
   factory $TipsCopyWith(Tips value, $Res Function(Tips) then) =
       _$TipsCopyWithImpl<$Res>;
-  $Res call({@JsonKey(name: 'data') Data? data});
+  $Res call({@JsonKey(name: 'data') TipsData? data});
 
-  $DataCopyWith<$Res>? get data;
+  $TipsDataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -69,17 +69,17 @@ class _$TipsCopyWithImpl<$Res> implements $TipsCopyWith<$Res> {
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as Data?,
+              as TipsData?,
     ));
   }
 
   @override
-  $DataCopyWith<$Res>? get data {
+  $TipsDataCopyWith<$Res>? get data {
     if (_value.data == null) {
       return null;
     }
 
-    return $DataCopyWith<$Res>(_value.data!, (value) {
+    return $TipsDataCopyWith<$Res>(_value.data!, (value) {
       return _then(_value.copyWith(data: value));
     });
   }
@@ -90,10 +90,10 @@ abstract class _$TipsCopyWith<$Res> implements $TipsCopyWith<$Res> {
   factory _$TipsCopyWith(_Tips value, $Res Function(_Tips) then) =
       __$TipsCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(name: 'data') Data? data});
+  $Res call({@JsonKey(name: 'data') TipsData? data});
 
   @override
-  $DataCopyWith<$Res>? get data;
+  $TipsDataCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -113,7 +113,7 @@ class __$TipsCopyWithImpl<$Res> extends _$TipsCopyWithImpl<$Res>
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as Data?,
+              as TipsData?,
     ));
   }
 }
@@ -128,7 +128,7 @@ class _$_Tips implements _Tips {
 
   @override
   @JsonKey(name: 'data')
-  final Data? data;
+  final TipsData? data;
 
   @override
   String toString() {
@@ -159,13 +159,13 @@ class _$_Tips implements _Tips {
 }
 
 abstract class _Tips implements Tips {
-  factory _Tips({@JsonKey(name: 'data') Data? data}) = _$_Tips;
+  factory _Tips({@JsonKey(name: 'data') TipsData? data}) = _$_Tips;
 
   factory _Tips.fromJson(Map<String, dynamic> json) = _$_Tips.fromJson;
 
   @override
   @JsonKey(name: 'data')
-  Data? get data => throw _privateConstructorUsedError;
+  TipsData? get data => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$TipsCopyWith<_Tips> get copyWith => throw _privateConstructorUsedError;

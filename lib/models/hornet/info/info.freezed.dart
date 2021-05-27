@@ -20,7 +20,7 @@ Info _$InfoFromJson(Map<String, dynamic> json) {
 class _$InfoTearOff {
   const _$InfoTearOff();
 
-  _Info call({@JsonKey(name: 'data') Data? data}) {
+  _Info call({@JsonKey(name: 'data') required InfoData data}) {
     return _Info(
       data: data,
     );
@@ -37,7 +37,7 @@ const $Info = _$InfoTearOff();
 /// @nodoc
 mixin _$Info {
   @JsonKey(name: 'data')
-  Data? get data => throw _privateConstructorUsedError;
+  InfoData get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,9 +48,9 @@ mixin _$Info {
 abstract class $InfoCopyWith<$Res> {
   factory $InfoCopyWith(Info value, $Res Function(Info) then) =
       _$InfoCopyWithImpl<$Res>;
-  $Res call({@JsonKey(name: 'data') Data? data});
+  $Res call({@JsonKey(name: 'data') InfoData data});
 
-  $DataCopyWith<$Res>? get data;
+  $InfoDataCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -69,17 +69,13 @@ class _$InfoCopyWithImpl<$Res> implements $InfoCopyWith<$Res> {
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as Data?,
+              as InfoData,
     ));
   }
 
   @override
-  $DataCopyWith<$Res>? get data {
-    if (_value.data == null) {
-      return null;
-    }
-
-    return $DataCopyWith<$Res>(_value.data!, (value) {
+  $InfoDataCopyWith<$Res> get data {
+    return $InfoDataCopyWith<$Res>(_value.data, (value) {
       return _then(_value.copyWith(data: value));
     });
   }
@@ -90,10 +86,10 @@ abstract class _$InfoCopyWith<$Res> implements $InfoCopyWith<$Res> {
   factory _$InfoCopyWith(_Info value, $Res Function(_Info) then) =
       __$InfoCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(name: 'data') Data? data});
+  $Res call({@JsonKey(name: 'data') InfoData data});
 
   @override
-  $DataCopyWith<$Res>? get data;
+  $InfoDataCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -113,7 +109,7 @@ class __$InfoCopyWithImpl<$Res> extends _$InfoCopyWithImpl<$Res>
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as Data?,
+              as InfoData,
     ));
   }
 }
@@ -121,14 +117,14 @@ class __$InfoCopyWithImpl<$Res> extends _$InfoCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Info implements _Info {
-  _$_Info({@JsonKey(name: 'data') this.data});
+  _$_Info({@JsonKey(name: 'data') required this.data});
 
   factory _$_Info.fromJson(Map<String, dynamic> json) =>
       _$_$_InfoFromJson(json);
 
   @override
   @JsonKey(name: 'data')
-  final Data? data;
+  final InfoData data;
 
   @override
   String toString() {
@@ -159,13 +155,13 @@ class _$_Info implements _Info {
 }
 
 abstract class _Info implements Info {
-  factory _Info({@JsonKey(name: 'data') Data? data}) = _$_Info;
+  factory _Info({@JsonKey(name: 'data') required InfoData data}) = _$_Info;
 
   factory _Info.fromJson(Map<String, dynamic> json) = _$_Info.fromJson;
 
   @override
   @JsonKey(name: 'data')
-  Data? get data => throw _privateConstructorUsedError;
+  InfoData get data => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$InfoCopyWith<_Info> get copyWith => throw _privateConstructorUsedError;
