@@ -1,6 +1,7 @@
-import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/auto_route.dart' hide AutoBackButton;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hornet_node/app/cubit/node_cubit.dart';
 import 'package:hornet_node/app/router/app_router.gr.dart';
 import 'package:hornet_node/configureDependencies.dart';
@@ -29,14 +30,15 @@ class NodeWrapperPage extends StatelessWidget {
         appBarBuilder: (context, tabsRouter) {
           return AppBar(
             title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'Node:',
-                    style: TextStyle(fontSize: 17),
-                  ),
-                ),
+                // const Padding(
+                //   padding: EdgeInsets.all(8.0),
+                //   child: Text(
+                //     'Node:',
+                //     style: TextStyle(fontSize: 17),
+                //   ),
+                // ),
                 BlocBuilder<NodeCubit, NodeState>(
                   buildWhen: (previous, current) =>
                       previous.selectedNode.uuid != current.selectedNode.uuid,
@@ -71,6 +73,40 @@ class NodeWrapperPage extends StatelessWidget {
             leading: const AutoBackButton(),
           );
         },
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).accentColor,
+                ),
+                child: SvgPicture.asset(
+                  'assets/svg/hornet_banner.svg',
+                  semanticsLabel: 'Hornet Banner',
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black,
+                  fit: BoxFit.fitHeight,
+                ),
+              ),
+              ListTile(
+                title: const Text('Manage Nodes'),
+                onTap: () {
+                  // Update the state of the app.
+                  // ...
+                },
+              ),
+              ListTile(
+                title: const Text('Item 2'),
+                onTap: () {
+                  // Update the state of the app.
+                  // ...
+                },
+              ),
+            ],
+          ),
+        ),
         routes: [
           const HomeRouter(),
           const AnalyticsRouter(),
@@ -190,5 +226,35 @@ class _CircleIndicator extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class AutoBackButton extends StatefulWidget {
+  const AutoBackButton({Key? key, this.color}) : super(key: key);
+
+  final Color? color;
+
+  @override
+  _AutoBackButtonState createState() => _AutoBackButtonState();
+}
+
+class _AutoBackButtonState extends State<AutoBackButton> {
+  @override
+  Widget build(BuildContext context) {
+    final scope = RouterScope.of(context);
+    if (scope.controller.canPopSelfOrChildren) {
+      return BackButton(
+        color: widget.color,
+        onPressed: scope.controller.popTop,
+      );
+    }
+    return IconButton(
+        icon: Icon(
+          Icons.list,
+          color: Theme.of(context).brightness == Brightness.dark
+              ? Colors.white
+              : Colors.black,
+        ),
+        onPressed: () => Scaffold.of(context).openDrawer());
   }
 }

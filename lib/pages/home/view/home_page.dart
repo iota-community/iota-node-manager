@@ -1,10 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hornet_node/models/hornet/info/info.dart';
 import 'package:hornet_node/pages/home/cubit/health_cubit.dart';
 import 'package:hornet_node/pages/home/cubit/info_cubit.dart';
-import 'dart:async';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -118,6 +119,9 @@ class _TitleCard extends StatelessWidget {
               child: SvgPicture.asset(
                 'assets/svg/hornet_banner.svg',
                 semanticsLabel: 'Hornet Banner',
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black,
                 fit: BoxFit.fitHeight,
               ),
               // child: ,
