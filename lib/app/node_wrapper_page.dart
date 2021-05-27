@@ -1,55 +1,34 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hornet_node/app/cubit/node_cubit.dart';
 import 'package:hornet_node/app/router/app_router.gr.dart';
 import 'package:hornet_node/configureDependencies.dart';
 import 'package:hornet_node/models/database/hornet_node.dart';
 import 'package:hornet_node/pages/home/cubit/health_cubit.dart';
 import 'package:hornet_node/pages/home/cubit/info_cubit.dart';
-import 'package:hornet_node/repository/node_repository.dart';
 
-class NodeWrapperPage extends StatefulWidget {
+class NodeWrapperPage extends StatelessWidget {
   const NodeWrapperPage({Key? key}) : super(key: key);
-
-  @override
-  _NodeWrapperPageState createState() => _NodeWrapperPageState();
-}
-
-class _NodeWrapperPageState extends State<NodeWrapperPage> {
-  late NodeRepository _nodeRepository;
-  late HornetNode _value;
-  List<DropdownMenuItem<HornetNode>> items = [];
-
-  @override
-  void initState() {
-    _nodeRepository = getIt<NodeRepository>();
-    var _nodes = _nodeRepository.getNodes();
-    var _selectedNode = _nodeRepository.getSelectedNode();
-
-    buildDropdownMenuItems(_nodes);
-    _value = _nodes.firstWhere(
-        (HornetNode node) => node.uuid == _selectedNode?.uuid,
-        orElse: () => _nodes[0]);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<HealthCubit>(),
+          create: (context) => getIt<NodeCubit>(),
         ),
         BlocProvider(
-          create: (context) => getIt<InfoCubit>(),
+          create: (context) => getIt<HealthCubit>()..health(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<InfoCubit>()..info(),
         ),
       ],
       child: AutoTabsScaffold(
         appBarBuilder: (context, tabsRouter) {
           return AppBar(
             title: Row(
-              // mainAxisSize: MainAxisSize.min,
-              // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Padding(
                   padding: EdgeInsets.all(8.0),
@@ -58,22 +37,30 @@ class _NodeWrapperPageState extends State<NodeWrapperPage> {
                     style: TextStyle(fontSize: 17),
                   ),
                 ),
-                DropdownButton(
-                  value: _value,
-                  items: items,
-                  underline: const SizedBox(
-                    height: 0,
-                  ),
-                  onChanged: (value) async {
-                    var selectedNode = value as HornetNode;
-                    setState(
-                      () {
-                        _value = selectedNode;
+                BlocBuilder<NodeCubit, NodeState>(
+                  buildWhen: (previous, current) =>
+                      previous.selectedNode.uuid != current.selectedNode.uuid,
+                  builder: (context, state) {
+                    return DropdownButton(
+                      value: state.selectedNode.uuid,
+                      items: buildDropdownMenuItems(state.nodes),
+                      underline: const SizedBox(
+                        height: 0,
+                      ),
+                      onChanged: (uuid) async {
+                        var selectedNodeUuid = uuid as String;
+                        var currentlySelectedNode =
+                            BlocProvider.of<NodeCubit>(context)
+                                .state
+                                .selectedNode;
+                        if (currentlySelectedNode.uuid != selectedNodeUuid) {
+                          await BlocProvider.of<NodeCubit>(context)
+                              .selectedNodeChanged(selectedNodeUuid);
+                          await BlocProvider.of<HealthCubit>(context).health();
+                          await BlocProvider.of<InfoCubit>(context).info();
+                        }
                       },
                     );
-                    await _nodeRepository.setSelectedNode(selectedNode);
-                    await BlocProvider.of<HealthCubit>(context).health();
-                    await BlocProvider.of<InfoCubit>(context).info();
                   },
                 ),
               ],
@@ -120,12 +107,13 @@ class _NodeWrapperPageState extends State<NodeWrapperPage> {
     );
   }
 
-  List<DropdownMenuItem<HornetNode>> buildDropdownMenuItems(
+  List<DropdownMenuItem<String>> buildDropdownMenuItems(
       List<HornetNode> nodes) {
+    var items = <DropdownMenuItem<String>>[];
     for (var node in nodes) {
       items.add(
         DropdownMenuItem(
-          value: node,
+          value: node.uuid,
           child: SizedBox(
             width: 150,
             child: Text(
@@ -151,20 +139,23 @@ class _HealthIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HealthCubit, HealthState>(
       builder: (context, state) {
-        return state.map(
-          initial: (_) {
-            BlocProvider.of<HealthCubit>(context).health();
-            return const SizedBox();
-          },
-          loadInProgress: (_) => const Center(
-            child: Padding(
-              padding: EdgeInsets.only(right: 10.0),
-              child: CircularProgressIndicator(),
+        return AnimatedSwitcher(
+          duration: const Duration(milliseconds: 350),
+          child: state.map(
+            initial: (_) {
+              BlocProvider.of<HealthCubit>(context).health();
+              return const SizedBox();
+            },
+            loadInProgress: (_) => const Center(
+              child: Padding(
+                padding: EdgeInsets.only(right: 10.0),
+                child: CircularProgressIndicator(),
+              ),
             ),
+            loadSuccess: (value) =>
+                _CircleIndicator(healthy: value.statusCode == 200),
+            loadFailure: (_) => const _CircleIndicator(healthy: false),
           ),
-          loadSuccess: (value) =>
-              _CircleIndicator(healthy: value.statusCode == 200),
-          loadFailure: (_) => const _CircleIndicator(healthy: false),
         );
       },
     );

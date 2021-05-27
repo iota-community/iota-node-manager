@@ -41,7 +41,7 @@ class AddNoteCubit extends Cubit<AddNoteState> {
           HornetNode(state.name.value, state.url.value, const Uuid().v1());
       await _nodeRepository.addNode(node);
       if (!_nodeRepository.isANodeSelected()) {
-        await _nodeRepository.setSelectedNode(node);
+        await _nodeRepository.setSelectedNode(node.uuid);
       }
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
     } on Exception {

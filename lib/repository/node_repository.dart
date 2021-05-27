@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 abstract class NodeRepository {
   Future<void> addNode(HornetNode node);
   Future<void> removeNode(String uuid);
-  Future<void> setSelectedNode(HornetNode node);
+  Future<void> setSelectedNode(String uuid);
 
   List<HornetNode> getNodes();
   HornetNode? getNode(String uuid);
@@ -60,7 +60,8 @@ class NodeRepositoryHiveImpl extends NodeRepository {
   }
 
   @override
-  Future<void> setSelectedNode(HornetNode node) {
+  Future<void> setSelectedNode(String uuid) {
+    var node = getNode(uuid)!;
     return _selectedNodeBox.put('selectedNode', node);
   }
 

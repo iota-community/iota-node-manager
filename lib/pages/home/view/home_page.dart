@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hornet_node/models/hornet/info/info.dart';
+import 'package:hornet_node/pages/home/cubit/health_cubit.dart';
 import 'package:hornet_node/pages/home/cubit/info_cubit.dart';
+import 'dart:async';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,33 +14,58 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late Completer<void> _refreshCompleter;
+
   @override
   void initState() {
     super.initState();
+    _refreshCompleter = Completer<void>();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<InfoCubit, InfoState>(
-      builder: (context, state) {
-        return state.maybeMap(
-          loadSuccess: (value) {
-            var info = value.info;
-            return SingleChildScrollView(
-              child: Container(
-                child: Column(
-                  children: [
-                    _TitleCard(info: info),
-                    _MilestoneCard(info: info),
-                    _MessagesCard(info: info),
-                    _PruningCard(info: info),
-                    _FeaturesCard(info: info)
-                  ],
-                ),
-              ),
-            );
+    return BlocConsumer<InfoCubit, InfoState>(
+      listener: (context, state) {
+        state.maybeMap(
+          loadSuccess: (_) {
+            _refreshCompleter.complete();
+            _refreshCompleter = Completer();
           },
-          orElse: () => const CircularProgressIndicator(),
+          orElse: () => {},
+        );
+      },
+      builder: (context, state) {
+        return AnimatedSwitcher(
+          duration: const Duration(milliseconds: 350),
+          child: state.maybeMap(
+            loadSuccess: (value) {
+              var info = value.info;
+              return RefreshIndicator(
+                onRefresh: () {
+                  BlocProvider.of<HealthCubit>(context).health();
+                  BlocProvider.of<InfoCubit>(context).info();
+                  return _refreshCompleter.future;
+                },
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: Container(
+                    child: Column(
+                      children: [
+                        _TitleCard(info: info),
+                        _MilestoneCard(info: info),
+                        _MessagesCard(info: info),
+                        _PruningCard(info: info),
+                        _FeaturesCard(info: info)
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+            loadInProgress: (_) =>
+                const Center(child: CircularProgressIndicator()),
+            orElse: () => const Center(child: CircularProgressIndicator()),
+          ),
         );
       },
     );
@@ -60,6 +87,7 @@ class _TitleCard extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Align(
                     alignment: Alignment.centerLeft,
