@@ -6,8 +6,10 @@ import 'package:hornet_node/app/cubit/node_cubit.dart';
 import 'package:hornet_node/app/router/app_router.gr.dart';
 import 'package:hornet_node/configureDependencies.dart';
 import 'package:hornet_node/models/database/hornet_node.dart';
+import 'package:hornet_node/pages/explorer/cubit/milestones_cubit.dart';
 import 'package:hornet_node/pages/home/cubit/health_cubit.dart';
 import 'package:hornet_node/pages/home/cubit/info_cubit.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class NodeWrapperPage extends StatelessWidget {
   const NodeWrapperPage({Key? key}) : super(key: key);
@@ -25,121 +27,156 @@ class NodeWrapperPage extends StatelessWidget {
         BlocProvider(
           create: (context) => getIt<InfoCubit>()..info(),
         ),
-      ],
-      child: AutoTabsScaffold(
-        appBarBuilder: (context, tabsRouter) {
-          return AppBar(
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                // const Padding(
-                //   padding: EdgeInsets.all(8.0),
-                //   child: Text(
-                //     'Node:',
-                //     style: TextStyle(fontSize: 17),
-                //   ),
-                // ),
-                BlocBuilder<NodeCubit, NodeState>(
-                  buildWhen: (previous, current) =>
-                      previous.selectedNode.uuid != current.selectedNode.uuid,
-                  builder: (context, state) {
-                    return DropdownButton(
-                      value: state.selectedNode.uuid,
-                      items: buildDropdownMenuItems(state.nodes),
-                      underline: const SizedBox(
-                        height: 0,
-                      ),
-                      onChanged: (uuid) async {
-                        var selectedNodeUuid = uuid as String;
-                        var currentlySelectedNode =
-                            BlocProvider.of<NodeCubit>(context)
-                                .state
-                                .selectedNode;
-                        if (currentlySelectedNode.uuid != selectedNodeUuid) {
-                          await BlocProvider.of<NodeCubit>(context)
-                              .selectedNodeChanged(selectedNodeUuid);
-                          await BlocProvider.of<HealthCubit>(context).health();
-                          await BlocProvider.of<InfoCubit>(context).info();
-                        }
-                      },
-                    );
-                  },
-                ),
-              ],
-            ),
-            actions: [
-              const _HealthIndicator(),
-            ],
-            leading: const AutoBackButton(),
-          );
-        },
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).accentColor,
-                ),
-                child: SvgPicture.asset(
-                  'assets/svg/hornet_banner.svg',
-                  semanticsLabel: 'Hornet Banner',
-                  color: Theme.of(context).brightness == Brightness.dark
-                      ? Colors.white
-                      : Colors.black,
-                  fit: BoxFit.fitHeight,
-                ),
-              ),
-              ListTile(
-                title: const Text('Manage Nodes'),
-                onTap: () {
-                  // Update the state of the app.
-                  // ...
-                },
-              ),
-              ListTile(
-                title: const Text('Item 2'),
-                onTap: () {
-                  // Update the state of the app.
-                  // ...
-                },
-              ),
-            ],
-          ),
+        BlocProvider(
+          create: (context) => getIt<MilestonesCubit>(),
         ),
-        routes: [
-          const HomeRouter(),
-          const AnalyticsRouter(),
-          const PeersRouter(),
-          const ExplorerRouter(),
-        ],
-        bottomNavigationBuilder: (_, tabsRouter) {
-          return BottomNavigationBar(
-            currentIndex: tabsRouter.activeIndex,
-            onTap: tabsRouter.setActiveIndex,
-            items: [
-              const BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home_outlined,
-                ),
-                label: 'Home',
-              ),
-              const BottomNavigationBarItem(
-                icon: Icon(Icons.analytics_outlined),
-                label: 'Analytics',
-              ),
-              const BottomNavigationBarItem(
-                icon: Icon(Icons.account_tree_outlined),
-                label: 'Peers',
-              ),
-              const BottomNavigationBarItem(
-                icon: Icon(Icons.explore_outlined),
-                label: 'Explorer',
-              ),
-            ],
+      ],
+      child: ResponsiveBuilder(builder: (context, sizingInformation) {
+        if (sizingInformation.deviceScreenType == DeviceScreenType.desktop) {
+          return OrientationLayoutBuilder(
+            portrait: (context) => Container(color: Colors.green),
+            landscape: (context) => Container(color: Colors.pink),
           );
-        },
-      ),
+        }
+
+        if (sizingInformation.deviceScreenType == DeviceScreenType.tablet) {
+          return OrientationLayoutBuilder(
+            portrait: (context) => Container(color: Colors.red),
+            landscape: (context) => Container(color: Colors.pink),
+          );
+        }
+
+        if (sizingInformation.deviceScreenType == DeviceScreenType.watch) {
+          return OrientationLayoutBuilder(
+            portrait: (context) => Container(color: Colors.yellow),
+            landscape: (context) => Container(color: Colors.pink),
+          );
+        }
+        return OrientationLayoutBuilder(
+          portrait: (context) => AutoTabsScaffold(
+            appBarBuilder: (context, tabsRouter) {
+              return AppBar(
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // const Padding(
+                    //   padding: EdgeInsets.all(8.0),
+                    //   child: Text(
+                    //     'Node:',
+                    //     style: TextStyle(fontSize: 17),
+                    //   ),
+                    // ),
+                    BlocBuilder<NodeCubit, NodeState>(
+                      buildWhen: (previous, current) =>
+                          previous.selectedNode.uuid !=
+                          current.selectedNode.uuid,
+                      builder: (context, state) {
+                        return DropdownButton(
+                          value: state.selectedNode.uuid,
+                          items: buildDropdownMenuItems(state.nodes),
+                          underline: const SizedBox(
+                            height: 0,
+                          ),
+                          onChanged: (uuid) async {
+                            var selectedNodeUuid = uuid as String;
+                            var currentlySelectedNode =
+                                BlocProvider.of<NodeCubit>(context)
+                                    .state
+                                    .selectedNode;
+                            if (currentlySelectedNode.uuid !=
+                                selectedNodeUuid) {
+                              await BlocProvider.of<NodeCubit>(context)
+                                  .selectedNodeChanged(selectedNodeUuid);
+                              await BlocProvider.of<HealthCubit>(context)
+                                  .health();
+                              var info =
+                                  await BlocProvider.of<InfoCubit>(context)
+                                      .info();
+                              await BlocProvider.of<MilestonesCubit>(context)
+                                  .milestones(info!.data.latestMilestoneIndex);
+                            }
+                          },
+                        );
+                      },
+                    ),
+                  ],
+                ),
+                actions: [
+                  const _HealthIndicator(),
+                ],
+                leading: const AutoBackButton(),
+              );
+            },
+            drawer: Drawer(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: <Widget>[
+                  DrawerHeader(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).accentColor,
+                    ),
+                    child: SvgPicture.asset(
+                      'assets/svg/hornet_banner.svg',
+                      semanticsLabel: 'Hornet Banner',
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.white
+                          : Colors.black,
+                      fit: BoxFit.fitHeight,
+                    ),
+                  ),
+                  ListTile(
+                    title: const Text('Manage Nodes'),
+                    onTap: () {
+                      // Update the state of the app.
+                      // ...
+                    },
+                  ),
+                  ListTile(
+                    title: const Text('Item 2'),
+                    onTap: () {
+                      // Update the state of the app.
+                      // ...
+                    },
+                  ),
+                ],
+              ),
+            ),
+            routes: [
+              const HomeRouter(),
+              const AnalyticsRouter(),
+              const PeersRouter(),
+              const ExplorerRouter(),
+            ],
+            bottomNavigationBuilder: (_, tabsRouter) {
+              return BottomNavigationBar(
+                currentIndex: tabsRouter.activeIndex,
+                onTap: tabsRouter.setActiveIndex,
+                items: [
+                  const BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.home_outlined,
+                    ),
+                    label: 'Home',
+                  ),
+                  const BottomNavigationBarItem(
+                    icon: Icon(Icons.analytics_outlined),
+                    label: 'Analytics',
+                  ),
+                  const BottomNavigationBarItem(
+                    icon: Icon(Icons.account_tree_outlined),
+                    label: 'Peers',
+                  ),
+                  const BottomNavigationBarItem(
+                    icon: Icon(Icons.explore_outlined),
+                    label: 'Explorer',
+                  ),
+                ],
+              );
+            },
+          ),
+          landscape: (context) => Container(color: Colors.pink),
+        );
+      }),
     );
   }
 

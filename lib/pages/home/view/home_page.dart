@@ -42,24 +42,28 @@ class _HomePageState extends State<HomePage> {
             loadSuccess: (value) {
               var info = value.info;
               return RefreshIndicator(
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black,
                 onRefresh: () {
                   BlocProvider.of<HealthCubit>(context).health();
                   BlocProvider.of<InfoCubit>(context).info();
                   return _refreshCompleter.future;
                 },
-                child: SingleChildScrollView(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  child: Container(
-                    child: Column(
-                      children: [
-                        _TitleCard(info: info),
-                        _MilestoneCard(info: info),
-                        _MessagesCard(info: info),
-                        _PruningCard(info: info),
-                        _FeaturesCard(info: info)
-                      ],
+                child: ListView(
+                  children: [
+                    Container(
+                      child: Column(
+                        children: [
+                          _TitleCard(info: info),
+                          _MilestoneCard(info: info),
+                          _MessagesCard(info: info),
+                          _PruningCard(info: info),
+                          _FeaturesCard(info: info)
+                        ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               );
             },
@@ -324,7 +328,6 @@ class _FeaturesCard extends StatelessWidget {
         padding: const EdgeInsets.all(15.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Features', style: Theme.of(context).textTheme.headline6),
             const SizedBox(

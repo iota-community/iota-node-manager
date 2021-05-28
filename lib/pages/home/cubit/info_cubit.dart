@@ -17,13 +17,14 @@ class InfoCubit extends Cubit<InfoState> {
   final HornetNodeRestClient _hornetNodeRestClient;
   final NodeRepository _nodeRepository;
 
-  Future<void> info() async {
+  Future<Info?> info() async {
     emit(const InfoState.loadInProgress());
     try {
       var selectedNode = _nodeRepository.getSelectedNode();
       if (selectedNode != null) {
         var response = await _hornetNodeRestClient.info(selectedNode.url);
         emit(InfoState.loadSuccess(response));
+        return response;
       }
     } on Exception catch (_) {
       emit(const InfoState.loadFailure());

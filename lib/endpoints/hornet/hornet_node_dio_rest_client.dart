@@ -1,6 +1,7 @@
 import 'package:hornet_node/endpoints/hornet/hornet_node_rest_client.dart';
 import 'package:hornet_node/models/hornet/auth/auth.dart';
 import 'package:hornet_node/models/hornet/info/info.dart';
+import 'package:hornet_node/models/hornet/milestone/milestone.dart';
 import 'package:hornet_node/models/hornet/tips/tips.dart';
 import 'package:hornet_node/models/hornet/treasury/treasury.dart';
 import 'package:injectable/injectable.dart';
@@ -36,6 +37,10 @@ abstract class HornetNodeDioRestClientImpl extends HornetNodeRestClient {
   @override
   @GET('{baseUrl}/health')
   Future<HttpResponse<void>> health(@Path() String baseUrl);
+
+  @override
+  @GET('{baseUrl}/api/v1/milestones/{index}')
+  Future<Milestone> milestone(@Path() String baseUrl, @Path() int index);
 
   // Private endpoints
   // @Header("x-csrf-token") String csrfToken
