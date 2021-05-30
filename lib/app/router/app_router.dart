@@ -5,6 +5,7 @@ import 'package:hornet_node/app/node_wrapper_page.dart';
 import 'package:hornet_node/pages/add_node/add_node.dart';
 import 'package:hornet_node/pages/analytics/analytics.dart';
 import 'package:hornet_node/pages/explorer/explorer.dart';
+import 'package:hornet_node/pages/explorer/view/milestone_detail_page.dart';
 import 'package:hornet_node/pages/home/home.dart';
 import 'package:hornet_node/pages/peers/peers.dart';
 
@@ -62,6 +63,7 @@ import 'package:hornet_node/pages/peers/peers.dart';
               path: '',
               page: ExplorerPage,
             ),
+            AutoRoute(path: 'milestone/:messageId', page: MileStoneDetailPage),
             RedirectRoute(path: '*', redirectTo: ''),
           ],
         ),

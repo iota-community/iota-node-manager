@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hornet_node/app/router/app_router.gr.dart';
 import 'package:hornet_node/configureDependencies.dart';
 import 'package:hornet_node/pages/add_node/cubit/add_node_cubit.dart';
@@ -28,17 +29,36 @@ class AddNodePage extends StatelessWidget {
             }
           },
           child: Align(
-            alignment: const Alignment(0, -1 / 3),
+            alignment: const Alignment(0, -1 / 2),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  SvgPicture.asset(
+                    'assets/svg/hornet.svg',
+                    height: 250,
+                    semanticsLabel: 'Hornet',
+                    color: Theme.of(context).brightness == Brightness.dark
+                        ? Colors.white
+                        : Colors.black,
+                    fit: BoxFit.fitHeight,
+                  ),
                   const SizedBox(height: 16.0),
+                  Text(
+                    'Add your first hornet node',
+                    style: Theme.of(context).primaryTextTheme.headline5,
+                  ),
                   _NameInput(),
                   const SizedBox(height: 8.0),
                   _UrlInput(),
                   const SizedBox(height: 8.0),
                   _SaveButton(),
+                  const SizedBox(height: 8.0),
+                  const Divider(),
+                  Text(
+                    'Or scan a QR code',
+                    style: Theme.of(context).primaryTextTheme.subtitle1,
+                  ),
                 ],
               ),
             ),
@@ -55,14 +75,17 @@ class _NameInput extends StatelessWidget {
     return BlocBuilder<AddNoteCubit, AddNoteState>(
       buildWhen: (previous, current) => previous.name != current.name,
       builder: (context, state) {
-        return TextField(
-          key: const Key('addNodeForm_nameInput_textField'),
-          onChanged: (name) => context.read<AddNoteCubit>().nameChanged(name),
-          keyboardType: TextInputType.text,
-          decoration: InputDecoration(
-            labelText: 'Name',
-            helperText: '',
-            errorText: state.name.invalid ? 'invalid name' : null,
+        return Padding(
+          padding: const EdgeInsets.only(left: 30.0, right: 30.0, top: 10),
+          child: TextField(
+            key: const Key('addNodeForm_nameInput_textField'),
+            onChanged: (name) => context.read<AddNoteCubit>().nameChanged(name),
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(
+              labelText: 'Name',
+              helperText: '',
+              errorText: state.name.invalid ? 'invalid name' : null,
+            ),
           ),
         );
       },
@@ -76,14 +99,17 @@ class _UrlInput extends StatelessWidget {
     return BlocBuilder<AddNoteCubit, AddNoteState>(
       buildWhen: (previous, current) => previous.url != current.url,
       builder: (context, state) {
-        return TextField(
-          key: const Key('addNodeForm_urlInput_textField'),
-          keyboardType: TextInputType.url,
-          onChanged: (url) => context.read<AddNoteCubit>().urlChanged(url),
-          decoration: InputDecoration(
-            labelText: 'Url',
-            helperText: '',
-            errorText: state.url.invalid ? 'invalid url' : null,
+        return Padding(
+          padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+          child: TextField(
+            key: const Key('addNodeForm_urlInput_textField'),
+            keyboardType: TextInputType.url,
+            onChanged: (url) => context.read<AddNoteCubit>().urlChanged(url),
+            decoration: InputDecoration(
+              labelText: 'Url',
+              helperText: 'Example: https://iota.node.de',
+              errorText: state.url.invalid ? 'invalid url' : null,
+            ),
           ),
         );
       },
@@ -99,18 +125,24 @@ class _SaveButton extends StatelessWidget {
       builder: (context, state) {
         return state.status.isSubmissionInProgress
             ? const CircularProgressIndicator()
-            : ElevatedButton(
-                key: const Key('addNodeForm_continue_raisedButton'),
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0),
+            : Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                child: ElevatedButton(
+                  key: const Key('addNodeForm_continue_raisedButton'),
+                  style: ElevatedButton.styleFrom(
+                    // shape: RoundedRectangleBorder(
+                    //   borderRadius: BorderRadius.circular(30.0),
+                    // ),
+                    primary: Theme.of(context).accentColor,
                   ),
-                  primary: const Color(0xFFFFD600),
+                  onPressed: state.status.isValidated
+                      ? () => context.read<AddNoteCubit>().saveNode()
+                      : null,
+                  child: const SizedBox(
+                    width: double.infinity,
+                    child: Center(child: Text('ADD')),
+                  ),
                 ),
-                onPressed: state.status.isValidated
-                    ? () => context.read<AddNoteCubit>().saveNode()
-                    : null,
-                child: const Text('SAVE'),
               );
       },
     );

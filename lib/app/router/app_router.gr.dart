@@ -10,6 +10,7 @@ import 'package:flutter/material.dart' as _i2;
 import '../../pages/add_node/add_node.dart' as _i4;
 import '../../pages/analytics/analytics.dart' as _i7;
 import '../../pages/explorer/explorer.dart' as _i9;
+import '../../pages/explorer/view/milestone_detail_page.dart' as _i10;
 import '../../pages/home/home.dart' as _i6;
 import '../../pages/peers/peers.dart' as _i8;
 import '../app_wrapper_page.dart' as _i3;
@@ -75,6 +76,16 @@ class AppRouter extends _i1.RootStackRouter {
         routeData: routeData,
         builder: (_) {
           return const _i9.ExplorerPage();
+        }),
+    MileStoneDetailRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final pathParams = data.pathParams;
+          final args = data.argsAs<MileStoneDetailRouteArgs>(
+              orElse: () => MileStoneDetailRouteArgs(
+                  messageId: pathParams.getString('messageId')));
+          return _i10.MileStoneDetailPage(
+              key: args.key, messageId: args.messageId);
         })
   };
 
@@ -100,6 +111,8 @@ class AppRouter extends _i1.RootStackRouter {
           ]),
           _i1.RouteConfig(ExplorerRouter.name, path: 'explorer', children: [
             _i1.RouteConfig(ExplorerRoute.name, path: ''),
+            _i1.RouteConfig(MileStoneDetailRoute.name,
+                path: 'milestone/:messageId'),
             _i1.RouteConfig('*#redirect',
                 path: '*', redirectTo: '', fullMatch: true)
           ])
@@ -178,4 +191,22 @@ class ExplorerRoute extends _i1.PageRouteInfo {
   const ExplorerRoute() : super(name, path: '');
 
   static const String name = 'ExplorerRoute';
+}
+
+class MileStoneDetailRoute extends _i1.PageRouteInfo<MileStoneDetailRouteArgs> {
+  MileStoneDetailRoute({_i2.Key? key, required String messageId})
+      : super(name,
+            path: 'milestone/:messageId',
+            args: MileStoneDetailRouteArgs(key: key, messageId: messageId),
+            rawPathParams: {'messageId': messageId});
+
+  static const String name = 'MileStoneDetailRoute';
+}
+
+class MileStoneDetailRouteArgs {
+  const MileStoneDetailRouteArgs({this.key, required this.messageId});
+
+  final _i2.Key? key;
+
+  final String messageId;
 }

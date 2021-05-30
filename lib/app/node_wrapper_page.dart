@@ -11,9 +11,14 @@ import 'package:hornet_node/pages/home/cubit/health_cubit.dart';
 import 'package:hornet_node/pages/home/cubit/info_cubit.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class NodeWrapperPage extends StatelessWidget {
+class NodeWrapperPage extends StatefulWidget {
   const NodeWrapperPage({Key? key}) : super(key: key);
 
+  @override
+  _NodeWrapperPageState createState() => _NodeWrapperPageState();
+}
+
+class _NodeWrapperPageState extends State<NodeWrapperPage> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -104,7 +109,13 @@ class NodeWrapperPage extends StatelessWidget {
                 actions: [
                   const _HealthIndicator(),
                 ],
-                leading: const AutoBackButton(),
+                // leading: tabsRouter.canPopSelfOrChildren
+                //     ? BackButton(
+                //         // color: widget.color,
+                //         onPressed: tabsRouter.popTop,
+                //       )
+                //     : const SizedBox(),
+                // leading: const AutoBackButton(),
               );
             },
             drawer: Drawer(
@@ -284,14 +295,16 @@ class _AutoBackButtonState extends State<AutoBackButton> {
         color: widget.color,
         onPressed: scope.controller.popTop,
       );
+    } else {
+      return const SizedBox();
     }
-    return IconButton(
-        icon: Icon(
-          Icons.list,
-          color: Theme.of(context).brightness == Brightness.dark
-              ? Colors.white
-              : Colors.black,
-        ),
-        onPressed: () => Scaffold.of(context).openDrawer());
+    //   return IconButton(
+    //       icon: Icon(
+    //         Icons.list,
+    //         color: Theme.of(context).brightness == Brightness.dark
+    //             ? Colors.white
+    //             : Colors.black,
+    //       ),
+    //       onPressed: () => Scaffold.of(context).openDrawer());
   }
 }
