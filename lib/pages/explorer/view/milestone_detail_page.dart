@@ -1,13 +1,32 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:hornet_node/configureDependencies.dart';
+import 'package:hornet_node/endpoints/hornet/hornet_node_rest_client.dart';
+import 'package:hornet_node/models/hornet/message/message.dart';
+import 'package:hornet_node/repository/node_repository.dart';
 
-class MileStoneDetailPage extends StatelessWidget {
+class MileStoneDetailPage extends StatefulWidget {
   const MileStoneDetailPage({
     Key? key,
     @PathParam('messageId') required this.messageId,
   }) : super(key: key);
 
   final String messageId;
+
+  @override
+  _MileStoneDetailPageState createState() => _MileStoneDetailPageState();
+}
+
+class _MileStoneDetailPageState extends State<MileStoneDetailPage> {
+  late final HornetNodeRestClient _hornetNodeRestClient;
+  late NodeRepository _nodeRepository;
+
+  @override
+  void initState() {
+    super.initState();
+    _hornetNodeRestClient = getIt<HornetNodeRestClient>();
+    _nodeRepository = getIt<NodeRepository>();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +77,36 @@ class MileStoneDetailPage extends StatelessWidget {
               : Colors.black,
         ),
       ),
-      body: Container(
-        child: Text(messageId),
+      body: Column(
+        children: [
+          FutureBuilder(
+            future: _hornetNodeRestClient.message(
+                _nodeRepository.getSelectedNode()!.url, widget.messageId),
+            builder: (context, AsyncSnapshot<Message> snapshot) {
+              if (snapshot.hasData) {
+                var messageData = snapshot.data!.data;
+                return Container(
+                  padding: const EdgeInsets.all(30),
+                  child: Card(
+                    child: Column(
+                      children: [
+                        const Text('Message:'),
+                        Text('Id:${widget.messageId}'),
+                        ...messageData.parentMessageIds
+                            .map((value) => Text(value)),
+                        Text('Nonce: ${messageData.nonce}'),
+                      ],
+                    ),
+                  ),
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
+          ),
+        ],
       ),
     );
   }

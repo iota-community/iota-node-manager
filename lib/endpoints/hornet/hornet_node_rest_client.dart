@@ -1,5 +1,6 @@
 import 'package:hornet_node/models/hornet/auth/auth.dart';
 import 'package:hornet_node/models/hornet/info/info.dart';
+import 'package:hornet_node/models/hornet/message/message.dart';
 import 'package:hornet_node/models/hornet/milestone/milestone.dart';
 import 'package:hornet_node/models/hornet/tips/tips.dart';
 import 'package:hornet_node/models/hornet/treasury/treasury.dart';
@@ -16,4 +17,6 @@ abstract class HornetNodeRestClient {
   Future<HttpResponse<void>> health(String baseUrl);
 
   Future<Milestone> milestone(String baseUrl, int index);
+
+  Future<Message> message(String baseUrl, String messageId);
 }
