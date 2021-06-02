@@ -28,18 +28,14 @@ class _AppWrapperPageState extends State<AppWrapperPage> {
 
   @override
   Widget build(BuildContext context) {
-    final nodesBox = Hive.box<List>(HiveBoxConstants.nodesBox);
-    final selectedNodeBox =
-        Hive.box<HornetNode>(HiveBoxConstants.selectedNodeBox);
-    final nodes = nodesBox.get('nodes', defaultValue: [])!.cast<HornetNode>();
-    final selectedNode = selectedNodeBox.get('selectedNode');
+    final nodeRepository = getIt<NodeRepository>();
+    final nodes = nodeRepository.getNodes();
+    final selectedNode = nodeRepository.getSelectedNode();
 
     if (nodes.isEmpty) {
-      print('NO NODE ADDED');
       return const AddNodePage();
     } else {
       if (selectedNode == null || selectedNode.url.isEmpty) {
-        print('NO NODE SELECTED');
         return Scaffold(
           body: Container(
             child: const Center(
@@ -48,7 +44,6 @@ class _AppWrapperPageState extends State<AppWrapperPage> {
           ),
         );
       } else {
-        print('NODE SELECTED');
         scheduleMicrotask(
             () => context.router.replace(const NodeWrapperRoute()));
         return Container();

@@ -14,7 +14,7 @@ import '../../pages/explorer/view/milestone_detail_page.dart' as _i10;
 import '../../pages/home/home.dart' as _i6;
 import '../../pages/peers/peers.dart' as _i8;
 import '../app_wrapper_page.dart' as _i3;
-import '../node_wrapper_page.dart' as _i5;
+import '../node_wrapper/node_wrapper_page.dart' as _i5;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])

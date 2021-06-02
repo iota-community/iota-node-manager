@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:hornet_node/app/themes/custom_themes.dart';
 import 'package:hornet_node/configureDependencies.dart';
 import 'package:hornet_node/endpoints/hornet/hornet_node_rest_client.dart';
 import 'package:hornet_node/models/hornet/message/message.dart';
@@ -72,9 +73,7 @@ class _MileStoneDetailPageState extends State<MileStoneDetailPage> {
           ],
         ),
         leading: AutoBackButton(
-          color: Theme.of(context).brightness == Brightness.dark
-              ? Colors.white
-              : Colors.black,
+          color: ThemeHelper.of(context).blackOrWhite,
         ),
       ),
       body: Column(

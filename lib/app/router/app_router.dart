@@ -1,7 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:hornet_node/app/app_wrapper_page.dart';
-import 'package:hornet_node/app/node_wrapper_page.dart';
+import 'package:hornet_node/app/node_wrapper/node_wrapper_page.dart';
 import 'package:hornet_node/pages/add_node/add_node.dart';
 import 'package:hornet_node/pages/analytics/analytics.dart';
 import 'package:hornet_node/pages/explorer/explorer.dart';

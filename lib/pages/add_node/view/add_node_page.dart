@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hornet_node/app/router/app_router.gr.dart';
+import 'package:hornet_node/app/themes/custom_themes.dart';
 import 'package:hornet_node/configureDependencies.dart';
 import 'package:hornet_node/pages/add_node/cubit/add_node_cubit.dart';
 import 'package:formz/formz.dart';
@@ -38,9 +39,7 @@ class AddNodePage extends StatelessWidget {
                     'assets/svg/hornet.svg',
                     height: 250,
                     semanticsLabel: 'Hornet',
-                    color: Theme.of(context).brightness == Brightness.dark
-                        ? Colors.white
-                        : Colors.black,
+                    color: ThemeHelper.of(context).blackOrWhite,
                     fit: BoxFit.fitHeight,
                   ),
                   const SizedBox(height: 16.0),
@@ -130,9 +129,6 @@ class _SaveButton extends StatelessWidget {
                 child: ElevatedButton(
                   key: const Key('addNodeForm_continue_raisedButton'),
                   style: ElevatedButton.styleFrom(
-                    // shape: RoundedRectangleBorder(
-                    //   borderRadius: BorderRadius.circular(30.0),
-                    // ),
                     primary: Theme.of(context).accentColor,
                   ),
                   onPressed: state.status.isValidated
