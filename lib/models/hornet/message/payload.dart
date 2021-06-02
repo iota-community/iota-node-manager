@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hornet_node/models/converter/seconds_since_epoch_date_time_converter.dart';
 
 part 'payload.freezed.dart';
 part 'payload.g.dart';
@@ -8,7 +9,9 @@ class Payload with _$Payload {
   factory Payload({
     @JsonKey(name: 'type') required int type,
     @JsonKey(name: 'index') required int index,
-    @JsonKey(name: 'timestamp') required int timestamp,
+    @JsonKey(name: 'timestamp')
+    @SecondsSinceEpochDateTimeConverter()
+        required DateTime timestamp,
     @JsonKey(name: 'parentMessageIds') required List<String> parentMessageIds,
     @JsonKey(name: 'inclusionMerkleProof') required String inclusionMerkleProof,
     @JsonKey(name: 'nextPoWScore') required int nextPoWScore,

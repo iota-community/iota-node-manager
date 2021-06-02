@@ -12,7 +12,9 @@ _$_MessageData _$_$_MessageDataFromJson(Map<String, dynamic> json) {
     parentMessageIds: (json['parentMessageIds'] as List<dynamic>)
         .map((e) => e as String)
         .toList(),
-    payload: Payload.fromJson(json['payload'] as Map<String, dynamic>),
+    payload: json['payload'] == null
+        ? null
+        : Payload.fromJson(json['payload'] as Map<String, dynamic>),
     nonce: json['nonce'] as String,
   );
 }

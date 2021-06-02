@@ -10,7 +10,7 @@ class MessageData with _$MessageData {
   factory MessageData({
     @JsonKey(name: 'networkId') required String networkId,
     @JsonKey(name: 'parentMessageIds') required List<String> parentMessageIds,
-    @JsonKey(name: 'payload') required Payload payload,
+    @JsonKey(name: 'payload') Payload? payload,
     @JsonKey(name: 'nonce') required String nonce,
   }) = _MessageData;
 

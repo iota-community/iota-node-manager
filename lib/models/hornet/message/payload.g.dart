@@ -10,7 +10,8 @@ _$_Payload _$_$_PayloadFromJson(Map<String, dynamic> json) {
   return _$_Payload(
     type: json['type'] as int,
     index: json['index'] as int,
-    timestamp: json['timestamp'] as int,
+    timestamp: const SecondsSinceEpochDateTimeConverter()
+        .fromJson(json['timestamp'] as int),
     parentMessageIds: (json['parentMessageIds'] as List<dynamic>)
         .map((e) => e as String)
         .toList(),
@@ -29,7 +30,8 @@ Map<String, dynamic> _$_$_PayloadToJson(_$_Payload instance) =>
     <String, dynamic>{
       'type': instance.type,
       'index': instance.index,
-      'timestamp': instance.timestamp,
+      'timestamp':
+          const SecondsSinceEpochDateTimeConverter().toJson(instance.timestamp),
       'parentMessageIds': instance.parentMessageIds,
       'inclusionMerkleProof': instance.inclusionMerkleProof,
       'nextPoWScore': instance.nextPoWScore,

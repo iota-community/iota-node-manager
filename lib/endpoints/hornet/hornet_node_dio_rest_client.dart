@@ -1,7 +1,9 @@
 import 'package:hornet_node/endpoints/hornet/hornet_node_rest_client.dart';
 import 'package:hornet_node/models/hornet/auth/auth.dart';
 import 'package:hornet_node/models/hornet/info/info.dart';
+import 'package:hornet_node/models/hornet/message/children/message_children.dart';
 import 'package:hornet_node/models/hornet/message/message.dart';
+import 'package:hornet_node/models/hornet/message/metadata/message_metadata.dart';
 import 'package:hornet_node/models/hornet/milestone/milestone.dart';
 import 'package:hornet_node/models/hornet/tips/tips.dart';
 import 'package:hornet_node/models/hornet/treasury/treasury.dart';
@@ -47,6 +49,15 @@ abstract class HornetNodeDioRestClientImpl extends HornetNodeRestClient {
   @GET('{baseUrl}/api/v1/messages/{messageId}')
   Future<Message> message(@Path() String baseUrl, @Path() String messageId);
 
+  @override
+  @GET('{baseUrl}/api/v1/messages/{messageId}/metadata')
+  Future<MessageMetadata> messageMetadata(
+      @Path() String baseUrl, @Path() String messageId);
+
+  @override
+  @GET('{baseUrl}/api/v1/messages/{messageId}/children')
+  Future<MessageChildren> messageChildren(
+      @Path() String baseUrl, @Path() String messageId);
   // Private endpoints
   // @Header("x-csrf-token") String csrfToken
 

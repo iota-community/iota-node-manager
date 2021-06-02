@@ -40,27 +40,48 @@ class _NodeWrapperPageState extends State<NodeWrapperPage> {
       child: ResponsiveBuilder(builder: (context, sizingInformation) {
         if (sizingInformation.deviceScreenType == DeviceScreenType.desktop) {
           return OrientationLayoutBuilder(
-            portrait: (context) => Container(color: Colors.green),
-            landscape: (context) => const _MobilePortraitWidget(),
+            portrait: (context) => Container(
+              color: Colors.green,
+              child: const Text('Desktop Portrait'),
+            ),
+            landscape: (context) => Container(
+              color: Colors.pink,
+              child: const Text('Desktop Landscape'),
+            ),
           );
         }
 
         if (sizingInformation.deviceScreenType == DeviceScreenType.tablet) {
           return OrientationLayoutBuilder(
-            portrait: (context) => Container(color: Colors.red),
-            landscape: (context) => Container(color: Colors.pink),
+            portrait: (context) => Container(
+              color: Colors.red,
+              child: const Text('Tablet Portrait'),
+            ),
+            landscape: (context) => Container(
+              color: Colors.pink,
+              child: const Text('Tablet Landscape'),
+            ),
           );
         }
 
         if (sizingInformation.deviceScreenType == DeviceScreenType.watch) {
           return OrientationLayoutBuilder(
-            portrait: (context) => Container(color: Colors.yellow),
-            landscape: (context) => Container(color: Colors.pink),
+            portrait: (context) => Container(
+              color: Colors.yellow,
+              child: const Text('Watch Portrait'),
+            ),
+            landscape: (context) => Container(
+              color: Colors.pink,
+              child: const Text('Watch Landscape'),
+            ),
           );
         }
         return OrientationLayoutBuilder(
           portrait: (context) => const _MobilePortraitWidget(),
-          landscape: (context) => Container(color: Colors.pink),
+          landscape: (context) => Container(
+            color: Colors.pink,
+            child: const Text('Mobile Landscape'),
+          ),
         );
       }),
     );

@@ -26,7 +26,8 @@ class _$PayloadTearOff {
       @JsonKey(name: 'index')
           required int index,
       @JsonKey(name: 'timestamp')
-          required int timestamp,
+      @SecondsSinceEpochDateTimeConverter()
+          required DateTime timestamp,
       @JsonKey(name: 'parentMessageIds')
           required List<String> parentMessageIds,
       @JsonKey(name: 'inclusionMerkleProof')
@@ -70,7 +71,8 @@ mixin _$Payload {
   @JsonKey(name: 'index')
   int get index => throw _privateConstructorUsedError;
   @JsonKey(name: 'timestamp')
-  int get timestamp => throw _privateConstructorUsedError;
+  @SecondsSinceEpochDateTimeConverter()
+  DateTime get timestamp => throw _privateConstructorUsedError;
   @JsonKey(name: 'parentMessageIds')
   List<String> get parentMessageIds => throw _privateConstructorUsedError;
   @JsonKey(name: 'inclusionMerkleProof')
@@ -101,7 +103,8 @@ abstract class $PayloadCopyWith<$Res> {
       @JsonKey(name: 'index')
           int index,
       @JsonKey(name: 'timestamp')
-          int timestamp,
+      @SecondsSinceEpochDateTimeConverter()
+          DateTime timestamp,
       @JsonKey(name: 'parentMessageIds')
           List<String> parentMessageIds,
       @JsonKey(name: 'inclusionMerkleProof')
@@ -151,7 +154,7 @@ class _$PayloadCopyWithImpl<$Res> implements $PayloadCopyWith<$Res> {
       timestamp: timestamp == freezed
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
-              as int,
+              as DateTime,
       parentMessageIds: parentMessageIds == freezed
           ? _value.parentMessageIds
           : parentMessageIds // ignore: cast_nullable_to_non_nullable
@@ -192,7 +195,8 @@ abstract class _$PayloadCopyWith<$Res> implements $PayloadCopyWith<$Res> {
       @JsonKey(name: 'index')
           int index,
       @JsonKey(name: 'timestamp')
-          int timestamp,
+      @SecondsSinceEpochDateTimeConverter()
+          DateTime timestamp,
       @JsonKey(name: 'parentMessageIds')
           List<String> parentMessageIds,
       @JsonKey(name: 'inclusionMerkleProof')
@@ -243,7 +247,7 @@ class __$PayloadCopyWithImpl<$Res> extends _$PayloadCopyWithImpl<$Res>
       timestamp: timestamp == freezed
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
-              as int,
+              as DateTime,
       parentMessageIds: parentMessageIds == freezed
           ? _value.parentMessageIds
           : parentMessageIds // ignore: cast_nullable_to_non_nullable
@@ -282,6 +286,7 @@ class _$_Payload implements _Payload {
       @JsonKey(name: 'index')
           required this.index,
       @JsonKey(name: 'timestamp')
+      @SecondsSinceEpochDateTimeConverter()
           required this.timestamp,
       @JsonKey(name: 'parentMessageIds')
           required this.parentMessageIds,
@@ -309,7 +314,8 @@ class _$_Payload implements _Payload {
   final int index;
   @override
   @JsonKey(name: 'timestamp')
-  final int timestamp;
+  @SecondsSinceEpochDateTimeConverter()
+  final DateTime timestamp;
   @override
   @JsonKey(name: 'parentMessageIds')
   final List<String> parentMessageIds;
@@ -405,7 +411,8 @@ abstract class _Payload implements Payload {
       @JsonKey(name: 'index')
           required int index,
       @JsonKey(name: 'timestamp')
-          required int timestamp,
+      @SecondsSinceEpochDateTimeConverter()
+          required DateTime timestamp,
       @JsonKey(name: 'parentMessageIds')
           required List<String> parentMessageIds,
       @JsonKey(name: 'inclusionMerkleProof')
@@ -431,7 +438,8 @@ abstract class _Payload implements Payload {
   int get index => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'timestamp')
-  int get timestamp => throw _privateConstructorUsedError;
+  @SecondsSinceEpochDateTimeConverter()
+  DateTime get timestamp => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'parentMessageIds')
   List<String> get parentMessageIds => throw _privateConstructorUsedError;
