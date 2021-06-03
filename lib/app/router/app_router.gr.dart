@@ -8,11 +8,13 @@ import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
 import '../../pages/add_node/add_node.dart' as _i4;
-import '../../pages/explorer/explorer.dart' as _i7;
-import '../../pages/explorer/view/milestone_detail_page.dart' as _i8;
-import '../../pages/home/home.dart' as _i6;
+import '../../pages/edit_node/edit_node.dart' as _i5;
+import '../../pages/explorer/explorer.dart' as _i9;
+import '../../pages/explorer/view/milestone_detail_page.dart' as _i10;
+import '../../pages/home/home.dart' as _i7;
+import '../../pages/nodes/nodes.dart' as _i8;
 import '../app_wrapper_page.dart' as _i3;
-import '../node_wrapper/node_wrapper_page.dart' as _i5;
+import '../node_wrapper/node_wrapper_page.dart' as _i6;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -30,10 +32,19 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i4.AddNodePage();
         }),
+    EditNodeRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final pathParams = data.pathParams;
+          final args = data.argsAs<EditNodeRouteArgs>(
+              orElse: () =>
+                  EditNodeRouteArgs(uuid: pathParams.getString('uuid')));
+          return _i5.EditNodePage(key: args.key, uuid: args.uuid);
+        }),
     NodeWrapperRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i5.NodeWrapperPage();
+          return const _i6.NodeWrapperPage();
         }),
     HomeRouter.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -48,12 +59,17 @@ class AppRouter extends _i1.RootStackRouter {
     HomeRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i6.HomePage();
+          return const _i7.HomePage();
+        }),
+    NodesRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i8.NodesPage();
         }),
     ExplorerRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i7.ExplorerPage();
+          return const _i9.ExplorerPage();
         }),
     MileStoneDetailRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -62,7 +78,7 @@ class AppRouter extends _i1.RootStackRouter {
           final args = data.argsAs<MileStoneDetailRouteArgs>(
               orElse: () => MileStoneDetailRouteArgs(
                   messageId: pathParams.getString('messageId')));
-          return _i8.MileStoneDetailPage(
+          return _i10.MileStoneDetailPage(
               key: args.key, messageId: args.messageId);
         })
   };
@@ -71,9 +87,11 @@ class AppRouter extends _i1.RootStackRouter {
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(AppWrapperRoute.name, path: '/'),
         _i1.RouteConfig(AddNodeRoute.name, path: '/add'),
+        _i1.RouteConfig(EditNodeRoute.name, path: '/edit/:uuid'),
         _i1.RouteConfig(NodeWrapperRoute.name, path: '/node', children: [
           _i1.RouteConfig(HomeRouter.name, path: 'home', children: [
             _i1.RouteConfig(HomeRoute.name, path: ''),
+            _i1.RouteConfig(NodesRoute.name, path: 'list'),
             _i1.RouteConfig('*#redirect',
                 path: '*', redirectTo: '', fullMatch: true)
           ]),
@@ -102,6 +120,24 @@ class AddNodeRoute extends _i1.PageRouteInfo {
   static const String name = 'AddNodeRoute';
 }
 
+class EditNodeRoute extends _i1.PageRouteInfo<EditNodeRouteArgs> {
+  EditNodeRoute({_i2.Key? key, required String uuid})
+      : super(name,
+            path: '/edit/:uuid',
+            args: EditNodeRouteArgs(key: key, uuid: uuid),
+            rawPathParams: {'uuid': uuid});
+
+  static const String name = 'EditNodeRoute';
+}
+
+class EditNodeRouteArgs {
+  const EditNodeRouteArgs({this.key, required this.uuid});
+
+  final _i2.Key? key;
+
+  final String uuid;
+}
+
 class NodeWrapperRoute extends _i1.PageRouteInfo {
   const NodeWrapperRoute({List<_i1.PageRouteInfo>? children})
       : super(name, path: '/node', initialChildren: children);
@@ -127,6 +163,12 @@ class HomeRoute extends _i1.PageRouteInfo {
   const HomeRoute() : super(name, path: '');
 
   static const String name = 'HomeRoute';
+}
+
+class NodesRoute extends _i1.PageRouteInfo {
+  const NodesRoute() : super(name, path: 'list');
+
+  static const String name = 'NodesRoute';
 }
 
 class ExplorerRoute extends _i1.PageRouteInfo {

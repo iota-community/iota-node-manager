@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hornet_node/app/router/app_router.gr.dart';
 import 'package:hornet_node/app/themes/custom_themes.dart';
 import 'package:hornet_node/utils/constants/hive_box_constants.dart';
 
@@ -27,8 +29,30 @@ class CustomDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            title: const Text('Manage Nodes'),
-            onTap: () {},
+            title: const Text('Add new node'),
+            onTap: () {
+              AutoRouter.of(context).push(const AddNodeRoute());
+            },
+          ),
+          const Divider(
+            height: 10,
+          ),
+          ListTile(
+            title: const Text('Manage nodes'),
+            onTap: () {
+              AutoRouter.of(context).push(
+                const NodeWrapperRoute(
+                  children: [
+                    HomeRouter(
+                      children: [
+                        HomeRoute(),
+                        NodesRoute(),
+                      ],
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
           const Divider(
             height: 10,
@@ -52,7 +76,7 @@ class CustomDrawer extends StatelessWidget {
                 );
               },
             ),
-          )
+          ),
         ],
       ),
     );

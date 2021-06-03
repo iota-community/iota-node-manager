@@ -9,15 +9,16 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:hive/hive.dart' as _i3;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'app/cubit/node_cubit.dart' as _i13;
+import 'app/cubit/node_cubit.dart' as _i14;
 import 'endpoints/hornet/hornet_node_dio_rest_client.dart' as _i7;
 import 'endpoints/hornet/hornet_node_rest_client.dart' as _i6;
 import 'models/database/hornet_node.dart' as _i4;
 import 'pages/add_node/cubit/add_node_cubit.dart' as _i9;
-import 'pages/explorer/cubit/milestones_cubit.dart' as _i12;
-import 'pages/home/cubit/health_cubit.dart' as _i10;
-import 'pages/home/cubit/info_cubit.dart' as _i11;
-import 'register_module.dart' as _i14;
+import 'pages/edit_node/cubit/edit_node_cubit.dart' as _i10;
+import 'pages/explorer/cubit/milestones_cubit.dart' as _i13;
+import 'pages/home/cubit/health_cubit.dart' as _i11;
+import 'pages/home/cubit/info_cubit.dart' as _i12;
+import 'register_module.dart' as _i15;
 import 'repository/node_repository.dart'
     as _i8; // ignore_for_file: unnecessary_lambdas
 
@@ -42,16 +43,18 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i3.Box<_i4.HornetNode>>(instanceName: 'selectedNode')));
   gh.factory<_i9.AddNoteCubit>(
       () => _i9.AddNoteCubit(get<_i8.NodeRepository>()));
-  gh.factory<_i10.HealthCubit>(() => _i10.HealthCubit(
+  gh.factory<_i10.EditNodeCubit>(
+      () => _i10.EditNodeCubit(get<_i8.NodeRepository>()));
+  gh.factory<_i11.HealthCubit>(() => _i11.HealthCubit(
       get<_i6.HornetNodeRestClient>(), get<_i8.NodeRepository>()));
-  gh.factory<_i11.InfoCubit>(() => _i11.InfoCubit(
+  gh.factory<_i12.InfoCubit>(() => _i12.InfoCubit(
       get<_i6.HornetNodeRestClient>(), get<_i8.NodeRepository>()));
-  gh.factory<_i12.MilestonesCubit>(() => _i12.MilestonesCubit(
+  gh.factory<_i13.MilestonesCubit>(() => _i13.MilestonesCubit(
       get<_i6.HornetNodeRestClient>(), get<_i8.NodeRepository>()));
-  gh.factory<_i13.NodeCubit>(() => _i13.NodeCubit(get<_i8.NodeRepository>()));
+  gh.factory<_i14.NodeCubit>(() => _i14.NodeCubit(get<_i8.NodeRepository>()));
   return get;
 }
 
-class _$HiveModule extends _i14.HiveModule {}
+class _$HiveModule extends _i15.HiveModule {}
 
-class _$RegisterModule extends _i14.RegisterModule {}
+class _$RegisterModule extends _i15.RegisterModule {}

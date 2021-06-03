@@ -5,18 +5,41 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hornet_node/app/router/app_router.gr.dart';
 import 'package:hornet_node/app/themes/custom_themes.dart';
 import 'package:hornet_node/configureDependencies.dart';
-import 'package:hornet_node/pages/add_node/cubit/add_node_cubit.dart';
-import 'package:formz/formz.dart';
+import 'package:hornet_node/models/database/hornet_node.dart';
+import 'package:hornet_node/pages/edit_node/cubit/edit_node_cubit.dart';
 
-class AddNodePage extends StatelessWidget {
-  const AddNodePage({Key? key}) : super(key: key);
+import 'package:formz/formz.dart';
+import 'package:hornet_node/repository/node_repository.dart';
+
+class EditNodePage extends StatefulWidget {
+  const EditNodePage({
+    Key? key,
+    @PathParam('uuid') required this.uuid,
+  }) : super(key: key);
+
+  final String uuid;
+
+  @override
+  _EditNodePageState createState() => _EditNodePageState();
+}
+
+class _EditNodePageState extends State<EditNodePage> {
+  late final HornetNode _node;
+
+  @override
+  void initState() {
+    super.initState();
+    var _nodeRepository = getIt<NodeRepository>();
+    _node = _nodeRepository.getNode(widget.uuid)!;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: BlocProvider(
-        create: (context) => getIt<AddNoteCubit>(),
-        child: BlocListener<AddNoteCubit, AddNoteState>(
+        create: (context) => getIt<EditNodeCubit>()..setInitialValues(_node),
+        child: BlocListener<EditNodeCubit, EditNodeState>(
           listenWhen: (previous, current) => previous.status != current.status,
           listener: (context, state) {
             if (state.status.isSubmissionFailure) {
@@ -44,14 +67,14 @@ class AddNodePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 16.0),
                   Text(
-                    'Add a new hornet node',
+                    'Edit your hornet node',
                     style: Theme.of(context).primaryTextTheme.headline5,
                   ),
                   _NameInput(),
                   const SizedBox(height: 8.0),
                   _UrlInput(),
                   const SizedBox(height: 8.0),
-                  _SaveButton(),
+                  _SaveButton(uuid: widget.uuid),
                   const SizedBox(height: 8.0),
                   const Divider(),
                   Text(
@@ -71,14 +94,16 @@ class AddNodePage extends StatelessWidget {
 class _NameInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AddNoteCubit, AddNoteState>(
+    return BlocBuilder<EditNodeCubit, EditNodeState>(
       buildWhen: (previous, current) => previous.name != current.name,
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.only(left: 30.0, right: 30.0, top: 10),
-          child: TextField(
+          child: TextFormField(
             key: const Key('addNodeForm_nameInput_textField'),
-            onChanged: (name) => context.read<AddNoteCubit>().nameChanged(name),
+            initialValue: state.name.value,
+            onChanged: (name) =>
+                context.read<EditNodeCubit>().nameChanged(name),
             keyboardType: TextInputType.text,
             decoration: InputDecoration(
               labelText: 'Name',
@@ -95,15 +120,16 @@ class _NameInput extends StatelessWidget {
 class _UrlInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AddNoteCubit, AddNoteState>(
+    return BlocBuilder<EditNodeCubit, EditNodeState>(
       buildWhen: (previous, current) => previous.url != current.url,
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.only(left: 30.0, right: 30.0),
-          child: TextField(
+          child: TextFormField(
             key: const Key('addNodeForm_urlInput_textField'),
             keyboardType: TextInputType.url,
-            onChanged: (url) => context.read<AddNoteCubit>().urlChanged(url),
+            initialValue: state.url.value,
+            onChanged: (url) => context.read<EditNodeCubit>().urlChanged(url),
             decoration: InputDecoration(
               labelText: 'Url',
               helperText: 'Example: https://iota.node.de',
@@ -117,9 +143,13 @@ class _UrlInput extends StatelessWidget {
 }
 
 class _SaveButton extends StatelessWidget {
+  const _SaveButton({Key? key, required this.uuid}) : super(key: key);
+
+  final String uuid;
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AddNoteCubit, AddNoteState>(
+    return BlocBuilder<EditNodeCubit, EditNodeState>(
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return state.status.isSubmissionInProgress
@@ -127,12 +157,12 @@ class _SaveButton extends StatelessWidget {
             : Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30.0),
                 child: ElevatedButton(
-                  key: const Key('addNodeForm_continue_raisedButton'),
+                  key: const Key('editNodeForm_continue_raisedButton'),
                   style: ElevatedButton.styleFrom(
                     primary: Theme.of(context).accentColor,
                   ),
                   onPressed: state.status.isValidated
-                      ? () => context.read<AddNoteCubit>().saveNode()
+                      ? () => context.read<EditNodeCubit>().saveNode(uuid)
                       : null,
                   child: const SizedBox(
                     width: double.infinity,
