@@ -11,7 +11,7 @@ class MessageData with _$MessageData {
     @JsonKey(name: 'networkId') required String networkId,
     @JsonKey(name: 'parentMessageIds') required List<String> parentMessageIds,
     @JsonKey(name: 'payload') Payload? payload,
-    @JsonKey(name: 'nonce') required String nonce,
+    @JsonKey(name: 'nonce') String? nonce,
   }) = _MessageData;
 
   factory MessageData.fromJson(Map<String, dynamic> json) =>

@@ -19,7 +19,7 @@ class InfoData with _$InfoData {
     @JsonKey(name: 'referencedRate') required double referencedRate,
     @JsonKey(name: 'latestMilestoneTimestamp')
     @SecondsSinceEpochDateTimeConverter()
-        required DateTime latestMilestoneTimestamp,
+        DateTime? latestMilestoneTimestamp,
     @JsonKey(name: 'latestMilestoneIndex') required int latestMilestoneIndex,
     @JsonKey(name: 'confirmedMilestoneIndex')
         required int confirmedMilestoneIndex,

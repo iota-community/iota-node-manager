@@ -26,7 +26,7 @@ class _$MessageMetadataDataTearOff {
       @JsonKey(name: 'parentMessageIds')
           required List<String> parentMessageIds,
       @JsonKey(name: 'isSolid')
-          required bool isSolid,
+          bool? isSolid,
       @JsonKey(name: 'shouldPromote')
           bool? shouldPromote,
       @JsonKey(name: 'shouldReattach')
@@ -34,9 +34,9 @@ class _$MessageMetadataDataTearOff {
       @JsonKey(name: 'referencedByMilestoneIndex')
           required int referencedByMilestoneIndex,
       @JsonKey(name: 'milestoneIndex')
-          required int milestoneIndex,
+          int? milestoneIndex,
       @JsonKey(name: 'ledgerInclusionState')
-          required String ledgerInclusionState}) {
+          String? ledgerInclusionState}) {
     return _MessageMetadataData(
       messageId: messageId,
       parentMessageIds: parentMessageIds,
@@ -64,7 +64,7 @@ mixin _$MessageMetadataData {
   @JsonKey(name: 'parentMessageIds')
   List<String> get parentMessageIds => throw _privateConstructorUsedError;
   @JsonKey(name: 'isSolid')
-  bool get isSolid => throw _privateConstructorUsedError;
+  bool? get isSolid => throw _privateConstructorUsedError;
   @JsonKey(name: 'shouldPromote')
   bool? get shouldPromote => throw _privateConstructorUsedError;
   @JsonKey(name: 'shouldReattach')
@@ -72,9 +72,9 @@ mixin _$MessageMetadataData {
   @JsonKey(name: 'referencedByMilestoneIndex')
   int get referencedByMilestoneIndex => throw _privateConstructorUsedError;
   @JsonKey(name: 'milestoneIndex')
-  int get milestoneIndex => throw _privateConstructorUsedError;
+  int? get milestoneIndex => throw _privateConstructorUsedError;
   @JsonKey(name: 'ledgerInclusionState')
-  String get ledgerInclusionState => throw _privateConstructorUsedError;
+  String? get ledgerInclusionState => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -93,7 +93,7 @@ abstract class $MessageMetadataDataCopyWith<$Res> {
       @JsonKey(name: 'parentMessageIds')
           List<String> parentMessageIds,
       @JsonKey(name: 'isSolid')
-          bool isSolid,
+          bool? isSolid,
       @JsonKey(name: 'shouldPromote')
           bool? shouldPromote,
       @JsonKey(name: 'shouldReattach')
@@ -101,9 +101,9 @@ abstract class $MessageMetadataDataCopyWith<$Res> {
       @JsonKey(name: 'referencedByMilestoneIndex')
           int referencedByMilestoneIndex,
       @JsonKey(name: 'milestoneIndex')
-          int milestoneIndex,
+          int? milestoneIndex,
       @JsonKey(name: 'ledgerInclusionState')
-          String ledgerInclusionState});
+          String? ledgerInclusionState});
 }
 
 /// @nodoc
@@ -138,7 +138,7 @@ class _$MessageMetadataDataCopyWithImpl<$Res>
       isSolid: isSolid == freezed
           ? _value.isSolid
           : isSolid // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       shouldPromote: shouldPromote == freezed
           ? _value.shouldPromote
           : shouldPromote // ignore: cast_nullable_to_non_nullable
@@ -154,11 +154,11 @@ class _$MessageMetadataDataCopyWithImpl<$Res>
       milestoneIndex: milestoneIndex == freezed
           ? _value.milestoneIndex
           : milestoneIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       ledgerInclusionState: ledgerInclusionState == freezed
           ? _value.ledgerInclusionState
           : ledgerInclusionState // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -176,7 +176,7 @@ abstract class _$MessageMetadataDataCopyWith<$Res>
       @JsonKey(name: 'parentMessageIds')
           List<String> parentMessageIds,
       @JsonKey(name: 'isSolid')
-          bool isSolid,
+          bool? isSolid,
       @JsonKey(name: 'shouldPromote')
           bool? shouldPromote,
       @JsonKey(name: 'shouldReattach')
@@ -184,9 +184,9 @@ abstract class _$MessageMetadataDataCopyWith<$Res>
       @JsonKey(name: 'referencedByMilestoneIndex')
           int referencedByMilestoneIndex,
       @JsonKey(name: 'milestoneIndex')
-          int milestoneIndex,
+          int? milestoneIndex,
       @JsonKey(name: 'ledgerInclusionState')
-          String ledgerInclusionState});
+          String? ledgerInclusionState});
 }
 
 /// @nodoc
@@ -223,7 +223,7 @@ class __$MessageMetadataDataCopyWithImpl<$Res>
       isSolid: isSolid == freezed
           ? _value.isSolid
           : isSolid // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       shouldPromote: shouldPromote == freezed
           ? _value.shouldPromote
           : shouldPromote // ignore: cast_nullable_to_non_nullable
@@ -239,11 +239,11 @@ class __$MessageMetadataDataCopyWithImpl<$Res>
       milestoneIndex: milestoneIndex == freezed
           ? _value.milestoneIndex
           : milestoneIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       ledgerInclusionState: ledgerInclusionState == freezed
           ? _value.ledgerInclusionState
           : ledgerInclusionState // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -257,7 +257,7 @@ class _$_MessageMetadataData implements _MessageMetadataData {
       @JsonKey(name: 'parentMessageIds')
           required this.parentMessageIds,
       @JsonKey(name: 'isSolid')
-          required this.isSolid,
+          this.isSolid,
       @JsonKey(name: 'shouldPromote')
           this.shouldPromote,
       @JsonKey(name: 'shouldReattach')
@@ -265,9 +265,9 @@ class _$_MessageMetadataData implements _MessageMetadataData {
       @JsonKey(name: 'referencedByMilestoneIndex')
           required this.referencedByMilestoneIndex,
       @JsonKey(name: 'milestoneIndex')
-          required this.milestoneIndex,
+          this.milestoneIndex,
       @JsonKey(name: 'ledgerInclusionState')
-          required this.ledgerInclusionState});
+          this.ledgerInclusionState});
 
   factory _$_MessageMetadataData.fromJson(Map<String, dynamic> json) =>
       _$_$_MessageMetadataDataFromJson(json);
@@ -280,7 +280,7 @@ class _$_MessageMetadataData implements _MessageMetadataData {
   final List<String> parentMessageIds;
   @override
   @JsonKey(name: 'isSolid')
-  final bool isSolid;
+  final bool? isSolid;
   @override
   @JsonKey(name: 'shouldPromote')
   final bool? shouldPromote;
@@ -292,10 +292,10 @@ class _$_MessageMetadataData implements _MessageMetadataData {
   final int referencedByMilestoneIndex;
   @override
   @JsonKey(name: 'milestoneIndex')
-  final int milestoneIndex;
+  final int? milestoneIndex;
   @override
   @JsonKey(name: 'ledgerInclusionState')
-  final String ledgerInclusionState;
+  final String? ledgerInclusionState;
 
   @override
   String toString() {
@@ -365,7 +365,7 @@ abstract class _MessageMetadataData implements MessageMetadataData {
       @JsonKey(name: 'parentMessageIds')
           required List<String> parentMessageIds,
       @JsonKey(name: 'isSolid')
-          required bool isSolid,
+          bool? isSolid,
       @JsonKey(name: 'shouldPromote')
           bool? shouldPromote,
       @JsonKey(name: 'shouldReattach')
@@ -373,9 +373,9 @@ abstract class _MessageMetadataData implements MessageMetadataData {
       @JsonKey(name: 'referencedByMilestoneIndex')
           required int referencedByMilestoneIndex,
       @JsonKey(name: 'milestoneIndex')
-          required int milestoneIndex,
+          int? milestoneIndex,
       @JsonKey(name: 'ledgerInclusionState')
-          required String ledgerInclusionState}) = _$_MessageMetadataData;
+          String? ledgerInclusionState}) = _$_MessageMetadataData;
 
   factory _MessageMetadataData.fromJson(Map<String, dynamic> json) =
       _$_MessageMetadataData.fromJson;
@@ -388,7 +388,7 @@ abstract class _MessageMetadataData implements MessageMetadataData {
   List<String> get parentMessageIds => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'isSolid')
-  bool get isSolid => throw _privateConstructorUsedError;
+  bool? get isSolid => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'shouldPromote')
   bool? get shouldPromote => throw _privateConstructorUsedError;
@@ -400,10 +400,10 @@ abstract class _MessageMetadataData implements MessageMetadataData {
   int get referencedByMilestoneIndex => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'milestoneIndex')
-  int get milestoneIndex => throw _privateConstructorUsedError;
+  int? get milestoneIndex => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'ledgerInclusionState')
-  String get ledgerInclusionState => throw _privateConstructorUsedError;
+  String? get ledgerInclusionState => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$MessageMetadataDataCopyWith<_MessageMetadataData> get copyWith =>

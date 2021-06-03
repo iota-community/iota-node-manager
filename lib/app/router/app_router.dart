@@ -30,30 +30,30 @@ import 'package:hornet_node/pages/peers/peers.dart';
             RedirectRoute(path: '*', redirectTo: ''),
           ],
         ),
-        AutoRoute(
-          path: 'analytics',
-          name: 'AnalyticsRouter',
-          page: EmptyRouterPage,
-          children: [
-            AutoRoute(
-              path: '',
-              page: AnalyticsPage,
-            ),
-            RedirectRoute(path: '*', redirectTo: ''),
-          ],
-        ),
-        AutoRoute(
-          path: 'peers',
-          name: 'PeersRouter',
-          page: EmptyRouterPage,
-          children: [
-            AutoRoute(
-              path: '',
-              page: PeersPage,
-            ),
-            RedirectRoute(path: '*', redirectTo: ''),
-          ],
-        ),
+        // AutoRoute(
+        //   path: 'analytics',
+        //   name: 'AnalyticsRouter',
+        //   page: EmptyRouterPage,
+        //   children: [
+        //     AutoRoute(
+        //       path: '',
+        //       page: AnalyticsPage,
+        //     ),
+        //     RedirectRoute(path: '*', redirectTo: ''),
+        //   ],
+        // ),
+        // AutoRoute(
+        //   path: 'peers',
+        //   name: 'PeersRouter',
+        //   page: EmptyRouterPage,
+        //   children: [
+        //     AutoRoute(
+        //       path: '',
+        //       page: PeersPage,
+        //     ),
+        //     RedirectRoute(path: '*', redirectTo: ''),
+        //   ],
+        // ),
         AutoRoute(
           path: 'explorer',
           name: 'ExplorerRouter',

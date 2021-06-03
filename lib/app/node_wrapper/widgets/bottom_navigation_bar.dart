@@ -19,14 +19,14 @@ class CustomBottomNavigationBar extends StatelessWidget {
           ),
           label: 'Home',
         ),
-        const BottomNavigationBarItem(
-          icon: Icon(Icons.analytics_outlined),
-          label: 'Analytics',
-        ),
-        const BottomNavigationBarItem(
-          icon: Icon(Icons.account_tree_outlined),
-          label: 'Peers',
-        ),
+        // const BottomNavigationBarItem(
+        //   icon: Icon(Icons.analytics_outlined),
+        //   label: 'Analytics',
+        // ),
+        // const BottomNavigationBarItem(
+        //   icon: Icon(Icons.account_tree_outlined),
+        //   label: 'Peers',
+        // ),
         const BottomNavigationBarItem(
           icon: Icon(Icons.explore_outlined),
           label: 'Explorer',

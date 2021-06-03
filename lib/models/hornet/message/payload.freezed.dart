@@ -24,24 +24,25 @@ class _$PayloadTearOff {
       {@JsonKey(name: 'type')
           required int type,
       @JsonKey(name: 'index')
-          required int index,
+      @IntToStringConverter()
+          required String index,
       @JsonKey(name: 'timestamp')
       @SecondsSinceEpochDateTimeConverter()
-          required DateTime timestamp,
+          DateTime? timestamp,
       @JsonKey(name: 'parentMessageIds')
-          required List<String> parentMessageIds,
+          List<String>? parentMessageIds,
       @JsonKey(name: 'inclusionMerkleProof')
-          required String inclusionMerkleProof,
+          String? inclusionMerkleProof,
       @JsonKey(name: 'nextPoWScore')
-          required int nextPoWScore,
+          int? nextPoWScore,
       @JsonKey(name: 'nextPoWScoreMilestoneIndex')
-          required int nextPoWScoreMilestoneIndex,
+          int? nextPoWScoreMilestoneIndex,
       @JsonKey(name: 'publicKeys')
-          required List<String> publicKeys,
+          List<String>? publicKeys,
       @JsonKey(name: 'receipt')
           Object? receipt,
       @JsonKey(name: 'signatures')
-          required List<String> signatures}) {
+          List<String>? signatures}) {
     return _Payload(
       type: type,
       index: index,
@@ -69,24 +70,25 @@ mixin _$Payload {
   @JsonKey(name: 'type')
   int get type => throw _privateConstructorUsedError;
   @JsonKey(name: 'index')
-  int get index => throw _privateConstructorUsedError;
+  @IntToStringConverter()
+  String get index => throw _privateConstructorUsedError;
   @JsonKey(name: 'timestamp')
   @SecondsSinceEpochDateTimeConverter()
-  DateTime get timestamp => throw _privateConstructorUsedError;
+  DateTime? get timestamp => throw _privateConstructorUsedError;
   @JsonKey(name: 'parentMessageIds')
-  List<String> get parentMessageIds => throw _privateConstructorUsedError;
+  List<String>? get parentMessageIds => throw _privateConstructorUsedError;
   @JsonKey(name: 'inclusionMerkleProof')
-  String get inclusionMerkleProof => throw _privateConstructorUsedError;
+  String? get inclusionMerkleProof => throw _privateConstructorUsedError;
   @JsonKey(name: 'nextPoWScore')
-  int get nextPoWScore => throw _privateConstructorUsedError;
+  int? get nextPoWScore => throw _privateConstructorUsedError;
   @JsonKey(name: 'nextPoWScoreMilestoneIndex')
-  int get nextPoWScoreMilestoneIndex => throw _privateConstructorUsedError;
+  int? get nextPoWScoreMilestoneIndex => throw _privateConstructorUsedError;
   @JsonKey(name: 'publicKeys')
-  List<String> get publicKeys => throw _privateConstructorUsedError;
+  List<String>? get publicKeys => throw _privateConstructorUsedError;
   @JsonKey(name: 'receipt')
   Object? get receipt => throw _privateConstructorUsedError;
   @JsonKey(name: 'signatures')
-  List<String> get signatures => throw _privateConstructorUsedError;
+  List<String>? get signatures => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -101,24 +103,25 @@ abstract class $PayloadCopyWith<$Res> {
       {@JsonKey(name: 'type')
           int type,
       @JsonKey(name: 'index')
-          int index,
+      @IntToStringConverter()
+          String index,
       @JsonKey(name: 'timestamp')
       @SecondsSinceEpochDateTimeConverter()
-          DateTime timestamp,
+          DateTime? timestamp,
       @JsonKey(name: 'parentMessageIds')
-          List<String> parentMessageIds,
+          List<String>? parentMessageIds,
       @JsonKey(name: 'inclusionMerkleProof')
-          String inclusionMerkleProof,
+          String? inclusionMerkleProof,
       @JsonKey(name: 'nextPoWScore')
-          int nextPoWScore,
+          int? nextPoWScore,
       @JsonKey(name: 'nextPoWScoreMilestoneIndex')
-          int nextPoWScoreMilestoneIndex,
+          int? nextPoWScoreMilestoneIndex,
       @JsonKey(name: 'publicKeys')
-          List<String> publicKeys,
+          List<String>? publicKeys,
       @JsonKey(name: 'receipt')
           Object? receipt,
       @JsonKey(name: 'signatures')
-          List<String> signatures});
+          List<String>? signatures});
 }
 
 /// @nodoc
@@ -150,36 +153,36 @@ class _$PayloadCopyWithImpl<$Res> implements $PayloadCopyWith<$Res> {
       index: index == freezed
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       timestamp: timestamp == freezed
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       parentMessageIds: parentMessageIds == freezed
           ? _value.parentMessageIds
           : parentMessageIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       inclusionMerkleProof: inclusionMerkleProof == freezed
           ? _value.inclusionMerkleProof
           : inclusionMerkleProof // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       nextPoWScore: nextPoWScore == freezed
           ? _value.nextPoWScore
           : nextPoWScore // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       nextPoWScoreMilestoneIndex: nextPoWScoreMilestoneIndex == freezed
           ? _value.nextPoWScoreMilestoneIndex
           : nextPoWScoreMilestoneIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       publicKeys: publicKeys == freezed
           ? _value.publicKeys
           : publicKeys // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       receipt: receipt == freezed ? _value.receipt : receipt,
       signatures: signatures == freezed
           ? _value.signatures
           : signatures // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
     ));
   }
 }
@@ -193,24 +196,25 @@ abstract class _$PayloadCopyWith<$Res> implements $PayloadCopyWith<$Res> {
       {@JsonKey(name: 'type')
           int type,
       @JsonKey(name: 'index')
-          int index,
+      @IntToStringConverter()
+          String index,
       @JsonKey(name: 'timestamp')
       @SecondsSinceEpochDateTimeConverter()
-          DateTime timestamp,
+          DateTime? timestamp,
       @JsonKey(name: 'parentMessageIds')
-          List<String> parentMessageIds,
+          List<String>? parentMessageIds,
       @JsonKey(name: 'inclusionMerkleProof')
-          String inclusionMerkleProof,
+          String? inclusionMerkleProof,
       @JsonKey(name: 'nextPoWScore')
-          int nextPoWScore,
+          int? nextPoWScore,
       @JsonKey(name: 'nextPoWScoreMilestoneIndex')
-          int nextPoWScoreMilestoneIndex,
+          int? nextPoWScoreMilestoneIndex,
       @JsonKey(name: 'publicKeys')
-          List<String> publicKeys,
+          List<String>? publicKeys,
       @JsonKey(name: 'receipt')
           Object? receipt,
       @JsonKey(name: 'signatures')
-          List<String> signatures});
+          List<String>? signatures});
 }
 
 /// @nodoc
@@ -243,36 +247,36 @@ class __$PayloadCopyWithImpl<$Res> extends _$PayloadCopyWithImpl<$Res>
       index: index == freezed
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       timestamp: timestamp == freezed
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       parentMessageIds: parentMessageIds == freezed
           ? _value.parentMessageIds
           : parentMessageIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       inclusionMerkleProof: inclusionMerkleProof == freezed
           ? _value.inclusionMerkleProof
           : inclusionMerkleProof // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       nextPoWScore: nextPoWScore == freezed
           ? _value.nextPoWScore
           : nextPoWScore // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       nextPoWScoreMilestoneIndex: nextPoWScoreMilestoneIndex == freezed
           ? _value.nextPoWScoreMilestoneIndex
           : nextPoWScoreMilestoneIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       publicKeys: publicKeys == freezed
           ? _value.publicKeys
           : publicKeys // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       receipt: receipt == freezed ? _value.receipt : receipt,
       signatures: signatures == freezed
           ? _value.signatures
           : signatures // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
     ));
   }
 }
@@ -284,24 +288,25 @@ class _$_Payload implements _Payload {
       {@JsonKey(name: 'type')
           required this.type,
       @JsonKey(name: 'index')
+      @IntToStringConverter()
           required this.index,
       @JsonKey(name: 'timestamp')
       @SecondsSinceEpochDateTimeConverter()
-          required this.timestamp,
+          this.timestamp,
       @JsonKey(name: 'parentMessageIds')
-          required this.parentMessageIds,
+          this.parentMessageIds,
       @JsonKey(name: 'inclusionMerkleProof')
-          required this.inclusionMerkleProof,
+          this.inclusionMerkleProof,
       @JsonKey(name: 'nextPoWScore')
-          required this.nextPoWScore,
+          this.nextPoWScore,
       @JsonKey(name: 'nextPoWScoreMilestoneIndex')
-          required this.nextPoWScoreMilestoneIndex,
+          this.nextPoWScoreMilestoneIndex,
       @JsonKey(name: 'publicKeys')
-          required this.publicKeys,
+          this.publicKeys,
       @JsonKey(name: 'receipt')
           this.receipt,
       @JsonKey(name: 'signatures')
-          required this.signatures});
+          this.signatures});
 
   factory _$_Payload.fromJson(Map<String, dynamic> json) =>
       _$_$_PayloadFromJson(json);
@@ -311,32 +316,33 @@ class _$_Payload implements _Payload {
   final int type;
   @override
   @JsonKey(name: 'index')
-  final int index;
+  @IntToStringConverter()
+  final String index;
   @override
   @JsonKey(name: 'timestamp')
   @SecondsSinceEpochDateTimeConverter()
-  final DateTime timestamp;
+  final DateTime? timestamp;
   @override
   @JsonKey(name: 'parentMessageIds')
-  final List<String> parentMessageIds;
+  final List<String>? parentMessageIds;
   @override
   @JsonKey(name: 'inclusionMerkleProof')
-  final String inclusionMerkleProof;
+  final String? inclusionMerkleProof;
   @override
   @JsonKey(name: 'nextPoWScore')
-  final int nextPoWScore;
+  final int? nextPoWScore;
   @override
   @JsonKey(name: 'nextPoWScoreMilestoneIndex')
-  final int nextPoWScoreMilestoneIndex;
+  final int? nextPoWScoreMilestoneIndex;
   @override
   @JsonKey(name: 'publicKeys')
-  final List<String> publicKeys;
+  final List<String>? publicKeys;
   @override
   @JsonKey(name: 'receipt')
   final Object? receipt;
   @override
   @JsonKey(name: 'signatures')
-  final List<String> signatures;
+  final List<String>? signatures;
 
   @override
   String toString() {
@@ -409,24 +415,25 @@ abstract class _Payload implements Payload {
       {@JsonKey(name: 'type')
           required int type,
       @JsonKey(name: 'index')
-          required int index,
+      @IntToStringConverter()
+          required String index,
       @JsonKey(name: 'timestamp')
       @SecondsSinceEpochDateTimeConverter()
-          required DateTime timestamp,
+          DateTime? timestamp,
       @JsonKey(name: 'parentMessageIds')
-          required List<String> parentMessageIds,
+          List<String>? parentMessageIds,
       @JsonKey(name: 'inclusionMerkleProof')
-          required String inclusionMerkleProof,
+          String? inclusionMerkleProof,
       @JsonKey(name: 'nextPoWScore')
-          required int nextPoWScore,
+          int? nextPoWScore,
       @JsonKey(name: 'nextPoWScoreMilestoneIndex')
-          required int nextPoWScoreMilestoneIndex,
+          int? nextPoWScoreMilestoneIndex,
       @JsonKey(name: 'publicKeys')
-          required List<String> publicKeys,
+          List<String>? publicKeys,
       @JsonKey(name: 'receipt')
           Object? receipt,
       @JsonKey(name: 'signatures')
-          required List<String> signatures}) = _$_Payload;
+          List<String>? signatures}) = _$_Payload;
 
   factory _Payload.fromJson(Map<String, dynamic> json) = _$_Payload.fromJson;
 
@@ -435,32 +442,33 @@ abstract class _Payload implements Payload {
   int get type => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'index')
-  int get index => throw _privateConstructorUsedError;
+  @IntToStringConverter()
+  String get index => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'timestamp')
   @SecondsSinceEpochDateTimeConverter()
-  DateTime get timestamp => throw _privateConstructorUsedError;
+  DateTime? get timestamp => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'parentMessageIds')
-  List<String> get parentMessageIds => throw _privateConstructorUsedError;
+  List<String>? get parentMessageIds => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'inclusionMerkleProof')
-  String get inclusionMerkleProof => throw _privateConstructorUsedError;
+  String? get inclusionMerkleProof => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'nextPoWScore')
-  int get nextPoWScore => throw _privateConstructorUsedError;
+  int? get nextPoWScore => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'nextPoWScoreMilestoneIndex')
-  int get nextPoWScoreMilestoneIndex => throw _privateConstructorUsedError;
+  int? get nextPoWScoreMilestoneIndex => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'publicKeys')
-  List<String> get publicKeys => throw _privateConstructorUsedError;
+  List<String>? get publicKeys => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'receipt')
   Object? get receipt => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'signatures')
-  List<String> get signatures => throw _privateConstructorUsedError;
+  List<String>? get signatures => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$PayloadCopyWith<_Payload> get copyWith =>

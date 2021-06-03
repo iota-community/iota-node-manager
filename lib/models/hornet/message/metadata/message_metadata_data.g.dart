@@ -13,12 +13,12 @@ _$_MessageMetadataData _$_$_MessageMetadataDataFromJson(
     parentMessageIds: (json['parentMessageIds'] as List<dynamic>)
         .map((e) => e as String)
         .toList(),
-    isSolid: json['isSolid'] as bool,
+    isSolid: json['isSolid'] as bool?,
     shouldPromote: json['shouldPromote'] as bool?,
     shouldReattach: json['shouldReattach'] as bool?,
     referencedByMilestoneIndex: json['referencedByMilestoneIndex'] as int,
-    milestoneIndex: json['milestoneIndex'] as int,
-    ledgerInclusionState: json['ledgerInclusionState'] as String,
+    milestoneIndex: json['milestoneIndex'] as int?,
+    ledgerInclusionState: json['ledgerInclusionState'] as String?,
   );
 }
 

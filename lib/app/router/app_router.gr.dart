@@ -8,11 +8,9 @@ import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
 import '../../pages/add_node/add_node.dart' as _i4;
-import '../../pages/analytics/analytics.dart' as _i7;
-import '../../pages/explorer/explorer.dart' as _i9;
-import '../../pages/explorer/view/milestone_detail_page.dart' as _i10;
+import '../../pages/explorer/explorer.dart' as _i7;
+import '../../pages/explorer/view/milestone_detail_page.dart' as _i8;
 import '../../pages/home/home.dart' as _i6;
-import '../../pages/peers/peers.dart' as _i8;
 import '../app_wrapper_page.dart' as _i3;
 import '../node_wrapper/node_wrapper_page.dart' as _i5;
 
@@ -42,16 +40,6 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i1.EmptyRouterPage();
         }),
-    AnalyticsRouter.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return const _i1.EmptyRouterPage();
-        }),
-    PeersRouter.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return const _i1.EmptyRouterPage();
-        }),
     ExplorerRouter.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
@@ -62,20 +50,10 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i6.HomePage();
         }),
-    AnalyticsRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return const _i7.AnalyticsPage();
-        }),
-    PeersRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return const _i8.PeersPage();
-        }),
     ExplorerRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i9.ExplorerPage();
+          return const _i7.ExplorerPage();
         }),
     MileStoneDetailRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -84,7 +62,7 @@ class AppRouter extends _i1.RootStackRouter {
           final args = data.argsAs<MileStoneDetailRouteArgs>(
               orElse: () => MileStoneDetailRouteArgs(
                   messageId: pathParams.getString('messageId')));
-          return _i10.MileStoneDetailPage(
+          return _i8.MileStoneDetailPage(
               key: args.key, messageId: args.messageId);
         })
   };
@@ -96,16 +74,6 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(NodeWrapperRoute.name, path: '/node', children: [
           _i1.RouteConfig(HomeRouter.name, path: 'home', children: [
             _i1.RouteConfig(HomeRoute.name, path: ''),
-            _i1.RouteConfig('*#redirect',
-                path: '*', redirectTo: '', fullMatch: true)
-          ]),
-          _i1.RouteConfig(AnalyticsRouter.name, path: 'analytics', children: [
-            _i1.RouteConfig(AnalyticsRoute.name, path: ''),
-            _i1.RouteConfig('*#redirect',
-                path: '*', redirectTo: '', fullMatch: true)
-          ]),
-          _i1.RouteConfig(PeersRouter.name, path: 'peers', children: [
-            _i1.RouteConfig(PeersRoute.name, path: ''),
             _i1.RouteConfig('*#redirect',
                 path: '*', redirectTo: '', fullMatch: true)
           ]),
@@ -148,20 +116,6 @@ class HomeRouter extends _i1.PageRouteInfo {
   static const String name = 'HomeRouter';
 }
 
-class AnalyticsRouter extends _i1.PageRouteInfo {
-  const AnalyticsRouter({List<_i1.PageRouteInfo>? children})
-      : super(name, path: 'analytics', initialChildren: children);
-
-  static const String name = 'AnalyticsRouter';
-}
-
-class PeersRouter extends _i1.PageRouteInfo {
-  const PeersRouter({List<_i1.PageRouteInfo>? children})
-      : super(name, path: 'peers', initialChildren: children);
-
-  static const String name = 'PeersRouter';
-}
-
 class ExplorerRouter extends _i1.PageRouteInfo {
   const ExplorerRouter({List<_i1.PageRouteInfo>? children})
       : super(name, path: 'explorer', initialChildren: children);
@@ -173,18 +127,6 @@ class HomeRoute extends _i1.PageRouteInfo {
   const HomeRoute() : super(name, path: '');
 
   static const String name = 'HomeRoute';
-}
-
-class AnalyticsRoute extends _i1.PageRouteInfo {
-  const AnalyticsRoute() : super(name, path: '');
-
-  static const String name = 'AnalyticsRoute';
-}
-
-class PeersRoute extends _i1.PageRouteInfo {
-  const PeersRoute() : super(name, path: '');
-
-  static const String name = 'PeersRoute';
 }
 
 class ExplorerRoute extends _i1.PageRouteInfo {

@@ -24,7 +24,7 @@ class _$MessageDataTearOff {
       {@JsonKey(name: 'networkId') required String networkId,
       @JsonKey(name: 'parentMessageIds') required List<String> parentMessageIds,
       @JsonKey(name: 'payload') Payload? payload,
-      @JsonKey(name: 'nonce') required String nonce}) {
+      @JsonKey(name: 'nonce') String? nonce}) {
     return _MessageData(
       networkId: networkId,
       parentMessageIds: parentMessageIds,
@@ -50,7 +50,7 @@ mixin _$MessageData {
   @JsonKey(name: 'payload')
   Payload? get payload => throw _privateConstructorUsedError;
   @JsonKey(name: 'nonce')
-  String get nonce => throw _privateConstructorUsedError;
+  String? get nonce => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -67,7 +67,7 @@ abstract class $MessageDataCopyWith<$Res> {
       {@JsonKey(name: 'networkId') String networkId,
       @JsonKey(name: 'parentMessageIds') List<String> parentMessageIds,
       @JsonKey(name: 'payload') Payload? payload,
-      @JsonKey(name: 'nonce') String nonce});
+      @JsonKey(name: 'nonce') String? nonce});
 
   $PayloadCopyWith<$Res>? get payload;
 }
@@ -103,7 +103,7 @@ class _$MessageDataCopyWithImpl<$Res> implements $MessageDataCopyWith<$Res> {
       nonce: nonce == freezed
           ? _value.nonce
           : nonce // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 
@@ -130,7 +130,7 @@ abstract class _$MessageDataCopyWith<$Res>
       {@JsonKey(name: 'networkId') String networkId,
       @JsonKey(name: 'parentMessageIds') List<String> parentMessageIds,
       @JsonKey(name: 'payload') Payload? payload,
-      @JsonKey(name: 'nonce') String nonce});
+      @JsonKey(name: 'nonce') String? nonce});
 
   @override
   $PayloadCopyWith<$Res>? get payload;
@@ -169,7 +169,7 @@ class __$MessageDataCopyWithImpl<$Res> extends _$MessageDataCopyWithImpl<$Res>
       nonce: nonce == freezed
           ? _value.nonce
           : nonce // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -181,7 +181,7 @@ class _$_MessageData implements _MessageData {
       {@JsonKey(name: 'networkId') required this.networkId,
       @JsonKey(name: 'parentMessageIds') required this.parentMessageIds,
       @JsonKey(name: 'payload') this.payload,
-      @JsonKey(name: 'nonce') required this.nonce});
+      @JsonKey(name: 'nonce') this.nonce});
 
   factory _$_MessageData.fromJson(Map<String, dynamic> json) =>
       _$_$_MessageDataFromJson(json);
@@ -197,7 +197,7 @@ class _$_MessageData implements _MessageData {
   final Payload? payload;
   @override
   @JsonKey(name: 'nonce')
-  final String nonce;
+  final String? nonce;
 
   @override
   String toString() {
@@ -245,7 +245,7 @@ abstract class _MessageData implements MessageData {
       {@JsonKey(name: 'networkId') required String networkId,
       @JsonKey(name: 'parentMessageIds') required List<String> parentMessageIds,
       @JsonKey(name: 'payload') Payload? payload,
-      @JsonKey(name: 'nonce') required String nonce}) = _$_MessageData;
+      @JsonKey(name: 'nonce') String? nonce}) = _$_MessageData;
 
   factory _MessageData.fromJson(Map<String, dynamic> json) =
       _$_MessageData.fromJson;
@@ -261,7 +261,7 @@ abstract class _MessageData implements MessageData {
   Payload? get payload => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'nonce')
-  String get nonce => throw _privateConstructorUsedError;
+  String? get nonce => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$MessageDataCopyWith<_MessageData> get copyWith =>

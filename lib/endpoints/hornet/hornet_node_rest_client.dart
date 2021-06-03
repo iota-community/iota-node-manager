@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:hornet_node/models/hornet/auth/auth.dart';
 import 'package:hornet_node/models/hornet/info/info.dart';
 import 'package:hornet_node/models/hornet/message/children/message_children.dart';
@@ -25,4 +26,6 @@ abstract class HornetNodeRestClient {
   Future<MessageMetadata> messageMetadata(String baseUrl, String messageId);
 
   Future<MessageChildren> messageChildren(String baseUrl, String messageId);
+
+  Future<dynamic> messageRaw(String baseUrl, String messageId);
 }

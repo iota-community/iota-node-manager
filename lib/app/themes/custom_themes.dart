@@ -41,7 +41,7 @@ class CustomTheme {
       brightness: Brightness.light,
       scaffoldBackgroundColor: const Color(0xfff6f9fe),
       canvasColor: const Color(0xfff6f9fe),
-      focusColor: const Color(0xFFD1D5DE),
+      focusColor: const Color(0xFF535D7E),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Color(0xffffffff),

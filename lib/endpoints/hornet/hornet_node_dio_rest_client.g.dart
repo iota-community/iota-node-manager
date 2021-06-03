@@ -146,6 +146,25 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
     return value;
   }
 
+  @override
+  Future<dynamic> messageRaw(baseUrl, messageId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+            method: 'GET',
+            headers: <String, dynamic>{
+              r'Content-Type': 'application/octet-stream'
+            },
+            extra: _extra,
+            contentType: 'application/octet-stream')
+        .compose(_dio.options, '$baseUrl/api/v1/messages/$messageId/raw',
+            queryParameters: queryParameters, data: _data)
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

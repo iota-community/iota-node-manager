@@ -104,8 +104,8 @@ class _MobilePortraitWidget extends StatelessWidget {
       drawer: const CustomDrawer(),
       routes: [
         const HomeRouter(),
-        const AnalyticsRouter(),
-        const PeersRouter(),
+        // const AnalyticsRouter(),
+        // const PeersRouter(),
         const ExplorerRouter(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {

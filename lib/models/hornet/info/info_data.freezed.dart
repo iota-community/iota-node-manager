@@ -41,7 +41,7 @@ class _$InfoDataTearOff {
           required double referencedRate,
       @JsonKey(name: 'latestMilestoneTimestamp')
       @SecondsSinceEpochDateTimeConverter()
-          required DateTime latestMilestoneTimestamp,
+          DateTime? latestMilestoneTimestamp,
       @JsonKey(name: 'latestMilestoneIndex')
           required int latestMilestoneIndex,
       @JsonKey(name: 'confirmedMilestoneIndex')
@@ -98,7 +98,7 @@ mixin _$InfoData {
   double get referencedRate => throw _privateConstructorUsedError;
   @JsonKey(name: 'latestMilestoneTimestamp')
   @SecondsSinceEpochDateTimeConverter()
-  DateTime get latestMilestoneTimestamp => throw _privateConstructorUsedError;
+  DateTime? get latestMilestoneTimestamp => throw _privateConstructorUsedError;
   @JsonKey(name: 'latestMilestoneIndex')
   int get latestMilestoneIndex => throw _privateConstructorUsedError;
   @JsonKey(name: 'confirmedMilestoneIndex')
@@ -139,7 +139,7 @@ abstract class $InfoDataCopyWith<$Res> {
           double referencedRate,
       @JsonKey(name: 'latestMilestoneTimestamp')
       @SecondsSinceEpochDateTimeConverter()
-          DateTime latestMilestoneTimestamp,
+          DateTime? latestMilestoneTimestamp,
       @JsonKey(name: 'latestMilestoneIndex')
           int latestMilestoneIndex,
       @JsonKey(name: 'confirmedMilestoneIndex')
@@ -215,7 +215,7 @@ class _$InfoDataCopyWithImpl<$Res> implements $InfoDataCopyWith<$Res> {
       latestMilestoneTimestamp: latestMilestoneTimestamp == freezed
           ? _value.latestMilestoneTimestamp
           : latestMilestoneTimestamp // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       latestMilestoneIndex: latestMilestoneIndex == freezed
           ? _value.latestMilestoneIndex
           : latestMilestoneIndex // ignore: cast_nullable_to_non_nullable
@@ -262,7 +262,7 @@ abstract class _$InfoDataCopyWith<$Res> implements $InfoDataCopyWith<$Res> {
           double referencedRate,
       @JsonKey(name: 'latestMilestoneTimestamp')
       @SecondsSinceEpochDateTimeConverter()
-          DateTime latestMilestoneTimestamp,
+          DateTime? latestMilestoneTimestamp,
       @JsonKey(name: 'latestMilestoneIndex')
           int latestMilestoneIndex,
       @JsonKey(name: 'confirmedMilestoneIndex')
@@ -339,7 +339,7 @@ class __$InfoDataCopyWithImpl<$Res> extends _$InfoDataCopyWithImpl<$Res>
       latestMilestoneTimestamp: latestMilestoneTimestamp == freezed
           ? _value.latestMilestoneTimestamp
           : latestMilestoneTimestamp // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       latestMilestoneIndex: latestMilestoneIndex == freezed
           ? _value.latestMilestoneIndex
           : latestMilestoneIndex // ignore: cast_nullable_to_non_nullable
@@ -384,7 +384,7 @@ class _$_InfoData implements _InfoData {
           required this.referencedRate,
       @JsonKey(name: 'latestMilestoneTimestamp')
       @SecondsSinceEpochDateTimeConverter()
-          required this.latestMilestoneTimestamp,
+          this.latestMilestoneTimestamp,
       @JsonKey(name: 'latestMilestoneIndex')
           required this.latestMilestoneIndex,
       @JsonKey(name: 'confirmedMilestoneIndex')
@@ -427,7 +427,7 @@ class _$_InfoData implements _InfoData {
   @override
   @JsonKey(name: 'latestMilestoneTimestamp')
   @SecondsSinceEpochDateTimeConverter()
-  final DateTime latestMilestoneTimestamp;
+  final DateTime? latestMilestoneTimestamp;
   @override
   @JsonKey(name: 'latestMilestoneIndex')
   final int latestMilestoneIndex;
@@ -548,7 +548,7 @@ abstract class _InfoData implements InfoData {
           required double referencedRate,
       @JsonKey(name: 'latestMilestoneTimestamp')
       @SecondsSinceEpochDateTimeConverter()
-          required DateTime latestMilestoneTimestamp,
+          DateTime? latestMilestoneTimestamp,
       @JsonKey(name: 'latestMilestoneIndex')
           required int latestMilestoneIndex,
       @JsonKey(name: 'confirmedMilestoneIndex')
@@ -590,7 +590,7 @@ abstract class _InfoData implements InfoData {
   @override
   @JsonKey(name: 'latestMilestoneTimestamp')
   @SecondsSinceEpochDateTimeConverter()
-  DateTime get latestMilestoneTimestamp => throw _privateConstructorUsedError;
+  DateTime? get latestMilestoneTimestamp => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'latestMilestoneIndex')
   int get latestMilestoneIndex => throw _privateConstructorUsedError;

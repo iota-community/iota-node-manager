@@ -182,7 +182,7 @@ class _MilestoneCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Latest: ${info.data.latestMilestoneTimestamp.toLocal()}',
+                    'Latest: ${info.data.latestMilestoneTimestamp?.toLocal()}',
                     style: const TextStyle(fontSize: 10),
                   ),
                 ],

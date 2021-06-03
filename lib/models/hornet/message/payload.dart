@@ -8,18 +8,18 @@ part 'payload.g.dart';
 class Payload with _$Payload {
   factory Payload({
     @JsonKey(name: 'type') required int type,
-    @JsonKey(name: 'index') required int index,
+    @JsonKey(name: 'index') @IntToStringConverter() required String index,
     @JsonKey(name: 'timestamp')
     @SecondsSinceEpochDateTimeConverter()
-        required DateTime timestamp,
-    @JsonKey(name: 'parentMessageIds') required List<String> parentMessageIds,
-    @JsonKey(name: 'inclusionMerkleProof') required String inclusionMerkleProof,
-    @JsonKey(name: 'nextPoWScore') required int nextPoWScore,
+        DateTime? timestamp,
+    @JsonKey(name: 'parentMessageIds') List<String>? parentMessageIds,
+    @JsonKey(name: 'inclusionMerkleProof') String? inclusionMerkleProof,
+    @JsonKey(name: 'nextPoWScore') int? nextPoWScore,
     @JsonKey(name: 'nextPoWScoreMilestoneIndex')
-        required int nextPoWScoreMilestoneIndex,
-    @JsonKey(name: 'publicKeys') required List<String> publicKeys,
+        int? nextPoWScoreMilestoneIndex,
+    @JsonKey(name: 'publicKeys') List<String>? publicKeys,
     @JsonKey(name: 'receipt') Object? receipt,
-    @JsonKey(name: 'signatures') required List<String> signatures,
+    @JsonKey(name: 'signatures') List<String>? signatures,
   }) = _Payload;
 
   factory Payload.fromJson(Map<String, dynamic> json) =>

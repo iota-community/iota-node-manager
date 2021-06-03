@@ -19,7 +19,7 @@ _$_InfoData _$_$_InfoDataFromJson(Map<String, dynamic> json) {
         (json['referencedMessagesPerSecond'] as num).toDouble(),
     referencedRate: (json['referencedRate'] as num).toDouble(),
     latestMilestoneTimestamp: const SecondsSinceEpochDateTimeConverter()
-        .fromJson(json['latestMilestoneTimestamp'] as int),
+        .fromJson(json['latestMilestoneTimestamp'] as int?),
     latestMilestoneIndex: json['latestMilestoneIndex'] as int,
     confirmedMilestoneIndex: json['confirmedMilestoneIndex'] as int,
     pruningIndex: json['pruningIndex'] as int,

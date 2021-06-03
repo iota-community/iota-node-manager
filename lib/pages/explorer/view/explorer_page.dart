@@ -137,7 +137,7 @@ class _MilestoneCard extends StatelessWidget {
                           'Index: ${milestone.index.toString()}',
                           style: TextStyle(
                               fontSize: 17,
-                              color: Theme.of(context).highlightColor),
+                              color: ThemeHelper.of(context).blackOrWhite),
                         ),
                         const SizedBox(
                           height: 3,
@@ -171,7 +171,7 @@ class _MilestoneCard extends StatelessWidget {
                       child: Center(
                         child: Icon(
                           Icons.arrow_forward_ios,
-                          color: Theme.of(context).highlightColor,
+                          color: Theme.of(context).focusColor,
                         ),
                       ),
                     ),

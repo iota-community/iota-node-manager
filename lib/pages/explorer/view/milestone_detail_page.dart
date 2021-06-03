@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:hornet_node/app/router/app_router.gr.dart';
 import 'package:hornet_node/app/themes/custom_themes.dart';
 import 'package:hornet_node/configureDependencies.dart';
 import 'package:hornet_node/endpoints/hornet/hornet_node_rest_client.dart';
@@ -45,42 +46,75 @@ class _MileStoneDetailPageState extends State<MileStoneDetailPage> {
           color: ThemeHelper.of(context).blackOrWhite,
         ),
       ),
-      body: FutureBuilder(
-        future: Future.wait([
-          _hornetNodeRestClient.message(selectedNode.url, widget.messageId),
-          _hornetNodeRestClient.messageChildren(
-              selectedNode.url, widget.messageId),
-          _hornetNodeRestClient.messageMetadata(
-              selectedNode.url, widget.messageId),
-        ]),
-        builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
-          if (snapshot.hasData) {
-            var messageData = (snapshot.data![0] as Message).data;
-            var childrenData = (snapshot.data![1] as MessageChildren).data;
-            var metaData = (snapshot.data![2] as MessageMetadata).data;
-            return ListView(
-              shrinkWrap: true,
-              children: [
-                _MessageWidget(
-                    messageId: widget.messageId, messageData: messageData),
-                _MilestonePayloadWidget(
-                  messageId: widget.messageId,
-                  payload: messageData.payload,
-                ),
-                _ChildMessageWidget(
-                  childrenData: childrenData,
-                ),
-                _MetadataMessageWidget(
-                  metadata: metaData,
-                )
-              ],
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
+      body: ListView(
+        shrinkWrap: true,
+        children: [
+          FutureBuilder(
+            future: _hornetNodeRestClient.message(
+                selectedNode.url, widget.messageId),
+            builder: (context, AsyncSnapshot<Message> snapshot) {
+              if (snapshot.hasData) {
+                var messageData = snapshot.data!.data;
+                return Column(
+                  children: [
+                    _MessageWidget(
+                        messageId: widget.messageId, messageData: messageData),
+                    messageData.payload?.type == 1
+                        ? _MilestonePayloadWidget(
+                            messageId: widget.messageId,
+                            payload: messageData.payload,
+                          )
+                        : const SizedBox(),
+                  ],
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
+          ),
+          FutureBuilder(
+            future: _hornetNodeRestClient.messageChildren(
+                selectedNode.url, widget.messageId),
+            builder: (context, AsyncSnapshot<MessageChildren> snapshot) {
+              if (snapshot.hasData) {
+                var childrenData = snapshot.data!.data;
+                return Column(
+                  children: [
+                    _ChildMessageWidget(
+                      childrenData: childrenData,
+                    ),
+                  ],
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
+          ),
+          FutureBuilder(
+            future: _hornetNodeRestClient.messageMetadata(
+                selectedNode.url, widget.messageId),
+            builder: (context, AsyncSnapshot<MessageMetadata> snapshot) {
+              if (snapshot.hasData) {
+                var metaData = snapshot.data!.data;
+                return Column(
+                  children: [
+                    _MetadataMessageWidget(
+                      metadata: metaData,
+                    )
+                  ],
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
+          ),
+        ],
       ),
     );
   }
@@ -99,11 +133,53 @@ class _MessageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _MessageCard(
-      title: 'Message',
+      titleWidget: Row(
+        children: [
+          const Text(
+            'Message',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          messageData.payload!.type == 1
+              ? Expanded(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 5),
+                      padding: const EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        color: Colors.green,
+                      ),
+                      child: const Text(
+                        'MILESTONE',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              : const SizedBox(),
+        ],
+      ),
       children: [
-        _ColumTitleTextWidget(
-          caption: 'Id',
-          text: messageId,
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Id',
+                style: Theme.of(context).textTheme.caption,
+              ),
+              Text(
+                messageId,
+              ),
+            ],
+          ),
         ),
         ...messageData.parentMessageIds.map(
           (value) {
@@ -128,7 +204,8 @@ class _MessageWidget extends StatelessWidget {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            // TODO Navigate to nested message page
+                            AutoRouter.of(context)
+                                .push(MileStoneDetailRoute(messageId: value));
                           }),
                   ),
                 ],
@@ -138,7 +215,7 @@ class _MessageWidget extends StatelessWidget {
         ),
         _ColumTitleTextWidget(
           caption: 'NONCE',
-          text: messageData.nonce,
+          text: messageData.nonce!,
         ),
       ],
     );
@@ -157,106 +234,105 @@ class _MilestonePayloadWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (payload != null) {
-      return _MessageCard(
-        title: 'Milestone Payload',
-        children: [
-          _ColumTitleTextWidget(
-            caption: 'Id',
-            text: payload!.index.toString(),
-          ),
-          _ColumTitleTextWidget(
-            caption: 'Date',
-            text: payload!.timestamp.toString(),
-          ),
-          ...payload!.parentMessageIds.map(
-            (value) {
-              var idx = payload!.parentMessageIds.indexOf(value) + 1;
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'PARENT MESSAGE $idx',
-                      style: Theme.of(context).textTheme.caption,
-                    ),
-                    const SizedBox(
-                      height: 2,
-                    ),
-                    RichText(
-                      text: TextSpan(
-                          text: value,
-                          style: TextStyle(
-                            color: Theme.of(context).highlightColor,
-                          ),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              // TODO Navigate to nested message page
-                            }),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-          _ColumTitleTextWidget(
-            caption: 'Inclusion merkle proof',
-            text: payload!.inclusionMerkleProof,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Public keys',
-                  style: Theme.of(context).textTheme.caption,
-                ),
-                ...payload!.publicKeys.map(
-                  (value) => Padding(
-                    padding: const EdgeInsets.only(top: 4.0),
-                    child: Text(
-                      value,
-                    ),
+    return _MessageCard(
+      title: 'Milestone Payload',
+      children: [
+        _ColumTitleTextWidget(
+          caption: 'Id',
+          text: payload!.index.toString(),
+        ),
+        _ColumTitleTextWidget(
+          caption: 'Date',
+          text: payload!.timestamp.toString(),
+        ),
+        ...payload!.parentMessageIds!.map(
+          (value) {
+            var idx = payload!.parentMessageIds!.indexOf(value) + 1;
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'PARENT MESSAGE $idx',
+                    style: Theme.of(context).textTheme.caption,
+                  ),
+                  const SizedBox(
+                    height: 2,
+                  ),
+                  RichText(
+                    text: TextSpan(
+                        text: value,
+                        style: TextStyle(
+                          color: Theme.of(context).highlightColor,
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            AutoRouter.of(context)
+                                .push(MileStoneDetailRoute(messageId: value));
+                          }),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+        _ColumTitleTextWidget(
+          caption: 'Inclusion merkle proof',
+          text: payload!.inclusionMerkleProof!,
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Public keys',
+                style: Theme.of(context).textTheme.caption,
+              ),
+              ...payload!.publicKeys!.map(
+                (value) => Padding(
+                  padding: const EdgeInsets.only(top: 4.0),
+                  child: Text(
+                    value,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Signatures',
-                  style: Theme.of(context).textTheme.caption,
-                ),
-                ...payload!.signatures.map(
-                  (value) => Padding(
-                    padding: const EdgeInsets.only(top: 4.0),
-                    child: Text(
-                      value,
-                    ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Signatures',
+                style: Theme.of(context).textTheme.caption,
+              ),
+              ...payload!.signatures!.map(
+                (value) => Padding(
+                  padding: const EdgeInsets.only(top: 4.0),
+                  child: Text(
+                    value,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      );
-    } else {
-      return const SizedBox();
-    }
+        )
+      ],
+    );
   }
 }
 
 class _MessageCard extends StatelessWidget {
-  const _MessageCard({Key? key, required this.title, required this.children})
+  const _MessageCard(
+      {Key? key, this.title, required this.children, this.titleWidget})
       : super(key: key);
 
-  final String title;
+  final String? title;
+  final Widget? titleWidget;
   final List<Widget> children;
 
   @override
@@ -270,15 +346,15 @@ class _MessageCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+                  padding: const EdgeInsets.all(8.0),
+                  child: titleWidget ??
+                      Text(
+                        title ?? '',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )),
               ...children
             ],
           ),
@@ -352,7 +428,8 @@ class _ChildMessageWidget extends StatelessWidget {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            // TODO Navigate to nested message page
+                            AutoRouter.of(context)
+                                .push(MileStoneDetailRoute(messageId: value));
                           }),
                   ),
                 ],
@@ -391,7 +468,7 @@ class _MetadataMessageWidget extends StatelessWidget {
                 'Ledger inclusion',
                 style: Theme.of(context).textTheme.caption,
               ),
-              getInclusionState(context, metadata.ledgerInclusionState),
+              getInclusionState(context, metadata.ledgerInclusionState!),
             ],
           ),
         ),
