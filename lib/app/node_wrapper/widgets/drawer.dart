@@ -5,6 +5,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hornet_node/app/router/app_router.gr.dart';
 import 'package:hornet_node/app/themes/custom_themes.dart';
+import 'package:hornet_node/pages/nodes/add_node/add_node_scaffold.dart';
 import 'package:hornet_node/utils/constants/hive_box_constants.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -31,7 +32,18 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             title: const Text('Add new node'),
             onTap: () {
-              AutoRouter.of(context).push(const AddNodeRoute());
+              AutoRouter.of(context).push(
+                const NodeWrapperRoute(
+                  children: [
+                    HomeRouter(
+                      children: [
+                        HomeRoute(),
+                        AddNodeScaffoldRoute(),
+                      ],
+                    ),
+                  ],
+                ),
+              );
             },
           ),
           const Divider(

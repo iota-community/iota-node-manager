@@ -13,53 +13,51 @@ class AddNodePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocProvider(
-        create: (context) => getIt<AddNoteCubit>(),
-        child: BlocListener<AddNoteCubit, AddNoteState>(
-          listenWhen: (previous, current) => previous.status != current.status,
-          listener: (context, state) {
-            if (state.status.isSubmissionFailure) {
-              ScaffoldMessenger.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(
-                  const SnackBar(content: Text('Failure while saving..')),
-                );
-            } else if (state.status.isSubmissionSuccess) {
-              AutoRouter.of(context).replace(const NodeWrapperRoute());
-            }
-          },
-          child: Align(
-            alignment: const Alignment(0, -1 / 2),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SvgPicture.asset(
-                    'assets/svg/hornet.svg',
-                    height: 250,
-                    semanticsLabel: 'Hornet',
-                    color: ThemeHelper.of(context).blackOrWhite,
-                    fit: BoxFit.fitHeight,
-                  ),
-                  const SizedBox(height: 16.0),
-                  Text(
-                    'Add a new hornet node',
-                    style: Theme.of(context).primaryTextTheme.headline5,
-                  ),
-                  _NameInput(),
-                  const SizedBox(height: 8.0),
-                  _UrlInput(),
-                  const SizedBox(height: 8.0),
-                  _SaveButton(),
-                  const SizedBox(height: 8.0),
-                  const Divider(),
-                  Text(
-                    'Or scan a QR code',
-                    style: Theme.of(context).primaryTextTheme.subtitle1,
-                  ),
-                ],
-              ),
+    return BlocProvider(
+      create: (context) => getIt<AddNoteCubit>(),
+      child: BlocListener<AddNoteCubit, AddNoteState>(
+        listenWhen: (previous, current) => previous.status != current.status,
+        listener: (context, state) {
+          if (state.status.isSubmissionFailure) {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                const SnackBar(content: Text('Failure while saving..')),
+              );
+          } else if (state.status.isSubmissionSuccess) {
+            AutoRouter.of(context).replace(const NodeWrapperRoute());
+          }
+        },
+        child: Align(
+          alignment: const Alignment(0, -1 / 2),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SvgPicture.asset(
+                  'assets/svg/hornet.svg',
+                  height: 250,
+                  semanticsLabel: 'Hornet',
+                  color: ThemeHelper.of(context).blackOrWhite,
+                  fit: BoxFit.fitHeight,
+                ),
+                const SizedBox(height: 16.0),
+                Text(
+                  'Add a new hornet node',
+                  style: Theme.of(context).primaryTextTheme.headline5,
+                ),
+                _NameInput(),
+                const SizedBox(height: 8.0),
+                _UrlInput(),
+                const SizedBox(height: 8.0),
+                _SaveButton(),
+                const SizedBox(height: 8.0),
+                // const Divider(),
+                // Text(
+                //   'Or scan a QR code',
+                //   style: Theme.of(context).primaryTextTheme.subtitle1,
+                // ),
+              ],
             ),
           ),
         ),
@@ -134,9 +132,15 @@ class _SaveButton extends StatelessWidget {
                   onPressed: state.status.isValidated
                       ? () => context.read<AddNoteCubit>().saveNode()
                       : null,
-                  child: const SizedBox(
+                  child: SizedBox(
                     width: double.infinity,
-                    child: Center(child: Text('ADD')),
+                    child: Center(
+                      child: Text(
+                        'ADD',
+                        style: TextStyle(
+                            color: ThemeHelper.of(context).blackOrWhite),
+                      ),
+                    ),
                   ),
                 ),
               );

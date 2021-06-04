@@ -14,10 +14,10 @@ import 'endpoints/hornet/hornet_node_dio_rest_client.dart' as _i7;
 import 'endpoints/hornet/hornet_node_rest_client.dart' as _i6;
 import 'models/database/hornet_node.dart' as _i4;
 import 'pages/add_node/cubit/add_node_cubit.dart' as _i9;
-import 'pages/edit_node/cubit/edit_node_cubit.dart' as _i10;
 import 'pages/explorer/cubit/milestones_cubit.dart' as _i13;
 import 'pages/home/cubit/health_cubit.dart' as _i11;
 import 'pages/home/cubit/info_cubit.dart' as _i12;
+import 'pages/nodes/edit_node/cubit/edit_node_cubit.dart' as _i10;
 import 'register_module.dart' as _i15;
 import 'repository/node_repository.dart'
     as _i8; // ignore_for_file: unnecessary_lambdas

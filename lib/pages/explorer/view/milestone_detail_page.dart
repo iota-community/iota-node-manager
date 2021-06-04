@@ -88,9 +88,11 @@ class _MileStoneDetailPageState extends State<MileStoneDetailPage> {
                   ],
                 );
               } else {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+                return const SizedBox();
+
+                // return const Center(
+                //   child: CircularProgressIndicator(),
+                // );
               }
             },
           ),
@@ -108,9 +110,10 @@ class _MileStoneDetailPageState extends State<MileStoneDetailPage> {
                   ],
                 );
               } else {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+                return const SizedBox();
+                // return const Center(
+                //   child: CircularProgressIndicator(),
+                // );
               }
             },
           ),

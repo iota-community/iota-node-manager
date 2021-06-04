@@ -9,6 +9,7 @@ import 'package:hornet_node/utils/constants/hive_box_constants.dart';
 import 'package:hornet_node/utils/formz/name.dart';
 import 'package:hornet_node/utils/formz/url.dart';
 import 'package:injectable/injectable.dart';
+import 'package:uuid/uuid.dart';
 
 part 'edit_node_state.dart';
 part 'edit_node_cubit.freezed.dart';
@@ -42,18 +43,24 @@ class EditNodeCubit extends Cubit<EditNodeState> {
     ));
   }
 
-  Future<void> saveNode(String uuid) async {
+  Future<void> saveNode(String? uuid) async {
     if (!state.status.isValidated) return;
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
-      var node = _nodeRepository.getNode(uuid);
-      if (node != null) {
-        node
-          ..name = state.name.value
-          ..url = state.url.value;
-        await _nodeRepository.removeNode(uuid);
-        await _nodeRepository.addNode(node);
-        emit(state.copyWith(status: FormzStatus.submissionSuccess));
+      if (uuid != null) {
+        var node = _nodeRepository.getNode(uuid);
+        if (node != null) {
+          node
+            ..name = state.name.value
+            ..url = state.url.value;
+          await _nodeRepository.removeNode(uuid);
+          await _nodeRepository.addNode(node);
+          emit(state.copyWith(status: FormzStatus.submissionSuccess));
+        } else {
+          var node =
+              HornetNode(state.name.value, state.url.value, const Uuid().v1());
+          await _nodeRepository.addNode(node);
+        }
       } else {
         emit(state.copyWith(status: FormzStatus.submissionFailure));
       }

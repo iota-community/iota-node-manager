@@ -101,12 +101,13 @@ class _MobilePortraitWidget extends StatelessWidget {
           tabsRouter: tabsRouter,
         );
       },
+      drawerEnableOpenDragGesture: false,
       drawer: const CustomDrawer(),
-      routes: [
-        const HomeRouter(),
+      routes: const [
+        HomeRouter(),
         // const AnalyticsRouter(),
         // const PeersRouter(),
-        const ExplorerRouter(),
+        ExplorerRouter(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return CustomBottomNavigationBar(

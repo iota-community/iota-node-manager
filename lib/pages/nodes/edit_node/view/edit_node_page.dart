@@ -1,14 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hornet_node/app/router/app_router.gr.dart';
-import 'package:hornet_node/app/themes/custom_themes.dart';
 import 'package:hornet_node/configureDependencies.dart';
 import 'package:hornet_node/models/database/hornet_node.dart';
-import 'package:hornet_node/pages/edit_node/cubit/edit_node_cubit.dart';
 
 import 'package:formz/formz.dart';
+import 'package:hornet_node/pages/nodes/edit_node/edit_node.dart';
 import 'package:hornet_node/repository/node_repository.dart';
 
 class EditNodePage extends StatefulWidget {
@@ -37,6 +35,7 @@ class _EditNodePageState extends State<EditNodePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
+      drawerEnableOpenDragGesture: false,
       body: BlocProvider(
         create: (context) => getIt<EditNodeCubit>()..setInitialValues(_node),
         child: BlocListener<EditNodeCubit, EditNodeState>(
@@ -52,36 +51,26 @@ class _EditNodePageState extends State<EditNodePage> {
               AutoRouter.of(context).replace(const NodeWrapperRoute());
             }
           },
-          child: Align(
-            alignment: const Alignment(0, -1 / 2),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SvgPicture.asset(
-                    'assets/svg/hornet.svg',
-                    height: 250,
-                    semanticsLabel: 'Hornet',
-                    color: ThemeHelper.of(context).blackOrWhite,
-                    fit: BoxFit.fitHeight,
-                  ),
-                  const SizedBox(height: 16.0),
-                  Text(
-                    'Edit your hornet node',
-                    style: Theme.of(context).primaryTextTheme.headline5,
-                  ),
-                  _NameInput(),
-                  const SizedBox(height: 8.0),
-                  _UrlInput(),
-                  const SizedBox(height: 8.0),
-                  _SaveButton(uuid: widget.uuid),
-                  const SizedBox(height: 8.0),
-                  const Divider(),
-                  Text(
-                    'Or scan a QR code',
-                    style: Theme.of(context).primaryTextTheme.subtitle1,
-                  ),
-                ],
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Edit your hornet node',
+                      style: Theme.of(context).primaryTextTheme.headline5,
+                    ),
+                    _NameInput(),
+                    const SizedBox(height: 8.0),
+                    _UrlInput(),
+                    const SizedBox(height: 8.0),
+                    _SaveButton(uuid: widget.uuid),
+                    const SizedBox(height: 8.0),
+                  ],
+                ),
               ),
             ),
           ),
@@ -100,7 +89,7 @@ class _NameInput extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.only(left: 30.0, right: 30.0, top: 10),
           child: TextFormField(
-            key: const Key('addNodeForm_nameInput_textField'),
+            key: const Key('editNodeForm_nameInput_textField'),
             initialValue: state.name.value,
             onChanged: (name) =>
                 context.read<EditNodeCubit>().nameChanged(name),
@@ -126,7 +115,7 @@ class _UrlInput extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.only(left: 30.0, right: 30.0),
           child: TextFormField(
-            key: const Key('addNodeForm_urlInput_textField'),
+            key: const Key('editNodeForm_urlInput_textField'),
             keyboardType: TextInputType.url,
             initialValue: state.url.value,
             onChanged: (url) => context.read<EditNodeCubit>().urlChanged(url),

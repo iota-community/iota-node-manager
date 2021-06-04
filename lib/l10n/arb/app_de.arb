@@ -1,26 +1,26 @@
 {
-    "@@locale": "en",
-    "addInitialNodeTitle": "Add a new Hornet Node",
+    "@@locale": "de",
+    "addInitialNodeTitle": "Neue Hornet Node hinzufügen",
     "@addInitialNodeTitle": {
         "description": "Text shown on the page to add a new node"
     },
     "addInitialNodeNameLabel": "Name",
     "@addInitialNodeNameLabel": {
-        "description": "Label shown on the page to add a new node name input field"
+        "description": "Label shown on the page to add a new node name input filed"
     },
     "addInitialNodeNameUrl": "Url",
     "@addInitialNodeNameUrl": {
-        "description": "Label shown on the page to add a new node url input field"
+        "description": "Label shown on the page to add a new node url input filed"
     },
-    "addInitialNodeNameUrlHelper": "Example: https://iota.node.de",
+    "addInitialNodeNameUrlHelper": "Beispiel: https://iota.node.de",
     "@addInitialNodeNameUrlHelper": {
         "description": "Helper shown on the page to add a new node url input field"
     },
-    "addInitialNodeNameUrlError": "Invalid Url",
+    "addInitialNodeNameUrlError": "Ungültige Url",
     "@addInitialNodeNameUrlError": {
         "description": "Error shown on the page to add a new node url input field if invalid"
     },
-    "addInitialNodeSaveButton": "ADD",
+    "addInitialNodeSaveButton": "HINZUFÜGEN",
     "@addInitialNodeSaveButton": {
         "description": "Name shown on the page to add a new node save button"
     }
