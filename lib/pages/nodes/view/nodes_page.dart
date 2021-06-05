@@ -50,7 +50,7 @@ class NodesPage extends StatelessWidget {
                                 ),
                                 onPressed: () => AutoRouter.of(context)
                                   ..push(
-                                    EditNodeRoute(uuid: node.uuid),
+                                    EditNodeRoute(id: node.id),
                                   ),
                                 child: Center(
                                   child: Icon(

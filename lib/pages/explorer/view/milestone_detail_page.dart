@@ -39,7 +39,7 @@ class _MileStoneDetailPageState extends State<MileStoneDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    var selectedNode = _nodeRepository.getSelectedNode()!;
+    var selectedNode = _nodeRepository.getSelectedNode();
     return Scaffold(
       appBar: AppBar(
         leading: AutoBackButton(
@@ -49,74 +49,74 @@ class _MileStoneDetailPageState extends State<MileStoneDetailPage> {
       body: ListView(
         shrinkWrap: true,
         children: [
-          FutureBuilder(
-            future: _hornetNodeRestClient.message(
-                selectedNode.url, widget.messageId),
-            builder: (context, AsyncSnapshot<Message> snapshot) {
-              if (snapshot.hasData) {
-                var messageData = snapshot.data!.data;
-                return Column(
-                  children: [
-                    _MessageWidget(
-                        messageId: widget.messageId, messageData: messageData),
-                    messageData.payload?.type == 1
-                        ? _MilestonePayloadWidget(
-                            messageId: widget.messageId,
-                            payload: messageData.payload,
-                          )
-                        : const SizedBox(),
-                  ],
-                );
-              } else {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-            },
-          ),
-          FutureBuilder(
-            future: _hornetNodeRestClient.messageChildren(
-                selectedNode.url, widget.messageId),
-            builder: (context, AsyncSnapshot<MessageChildren> snapshot) {
-              if (snapshot.hasData) {
-                var childrenData = snapshot.data!.data;
-                return Column(
-                  children: [
-                    _ChildMessageWidget(
-                      childrenData: childrenData,
-                    ),
-                  ],
-                );
-              } else {
-                return const SizedBox();
+          // FutureBuilder(
+          //   future: _hornetNodeRestClient.message(
+          //       selectedNode.url, widget.messageId),
+          //   builder: (context, AsyncSnapshot<Message> snapshot) {
+          //     if (snapshot.hasData) {
+          //       var messageData = snapshot.data!.data;
+          //       return Column(
+          //         children: [
+          //           _MessageWidget(
+          //               messageId: widget.messageId, messageData: messageData),
+          //           messageData.payload?.type == 1
+          //               ? _MilestonePayloadWidget(
+          //                   messageId: widget.messageId,
+          //                   payload: messageData.payload,
+          //                 )
+          //               : const SizedBox(),
+          //         ],
+          //       );
+          //     } else {
+          //       return const Center(
+          //         child: CircularProgressIndicator(),
+          //       );
+          //     }
+          //   },
+          // ),
+          // FutureBuilder(
+          //   future: _hornetNodeRestClient.messageChildren(
+          //       selectedNode.url, widget.messageId),
+          //   builder: (context, AsyncSnapshot<MessageChildren> snapshot) {
+          //     if (snapshot.hasData) {
+          //       var childrenData = snapshot.data!.data;
+          //       return Column(
+          //         children: [
+          //           _ChildMessageWidget(
+          //             childrenData: childrenData,
+          //           ),
+          //         ],
+          //       );
+          //     } else {
+          //       return const SizedBox();
 
-                // return const Center(
-                //   child: CircularProgressIndicator(),
-                // );
-              }
-            },
-          ),
-          FutureBuilder(
-            future: _hornetNodeRestClient.messageMetadata(
-                selectedNode.url, widget.messageId),
-            builder: (context, AsyncSnapshot<MessageMetadata> snapshot) {
-              if (snapshot.hasData) {
-                var metaData = snapshot.data!.data;
-                return Column(
-                  children: [
-                    _MetadataMessageWidget(
-                      metadata: metaData,
-                    )
-                  ],
-                );
-              } else {
-                return const SizedBox();
-                // return const Center(
-                //   child: CircularProgressIndicator(),
-                // );
-              }
-            },
-          ),
+          //       // return const Center(
+          //       //   child: CircularProgressIndicator(),
+          //       // );
+          //     }
+          //   },
+          // ),
+          // FutureBuilder(
+          //   future: _hornetNodeRestClient.messageMetadata(
+          //       selectedNode.url, widget.messageId),
+          //   builder: (context, AsyncSnapshot<MessageMetadata> snapshot) {
+          //     if (snapshot.hasData) {
+          //       var metaData = snapshot.data!.data;
+          //       return Column(
+          //         children: [
+          //           _MetadataMessageWidget(
+          //             metadata: metaData,
+          //           )
+          //         ],
+          //       );
+          //     } else {
+          //       return const SizedBox();
+          //       // return const Center(
+          //       //   child: CircularProgressIndicator(),
+          //       // );
+          //     }
+          //   },
+          // ),
         ],
       ),
     );

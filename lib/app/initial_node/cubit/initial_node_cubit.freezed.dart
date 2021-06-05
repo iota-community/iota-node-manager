@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'add_node_cubit.dart';
+part of 'initial_node_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,12 +13,12 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$AddNoteStateTearOff {
-  const _$AddNoteStateTearOff();
+class _$InitialNodeStateTearOff {
+  const _$InitialNodeStateTearOff();
 
-  _AddNoteState call(
+  _InitialNodeState call(
       {required Name name, required Url url, required FormzStatus status}) {
-    return _AddNoteState(
+    return _InitialNodeState(
       name: name,
       url: url,
       status: status,
@@ -27,34 +27,35 @@ class _$AddNoteStateTearOff {
 }
 
 /// @nodoc
-const $AddNoteState = _$AddNoteStateTearOff();
+const $InitialNodeState = _$InitialNodeStateTearOff();
 
 /// @nodoc
-mixin _$AddNoteState {
+mixin _$InitialNodeState {
   Name get name => throw _privateConstructorUsedError;
   Url get url => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $AddNoteStateCopyWith<AddNoteState> get copyWith =>
+  $InitialNodeStateCopyWith<InitialNodeState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AddNoteStateCopyWith<$Res> {
-  factory $AddNoteStateCopyWith(
-          AddNoteState value, $Res Function(AddNoteState) then) =
-      _$AddNoteStateCopyWithImpl<$Res>;
+abstract class $InitialNodeStateCopyWith<$Res> {
+  factory $InitialNodeStateCopyWith(
+          InitialNodeState value, $Res Function(InitialNodeState) then) =
+      _$InitialNodeStateCopyWithImpl<$Res>;
   $Res call({Name name, Url url, FormzStatus status});
 }
 
 /// @nodoc
-class _$AddNoteStateCopyWithImpl<$Res> implements $AddNoteStateCopyWith<$Res> {
-  _$AddNoteStateCopyWithImpl(this._value, this._then);
+class _$InitialNodeStateCopyWithImpl<$Res>
+    implements $InitialNodeStateCopyWith<$Res> {
+  _$InitialNodeStateCopyWithImpl(this._value, this._then);
 
-  final AddNoteState _value;
+  final InitialNodeState _value;
   // ignore: unused_field
-  final $Res Function(AddNoteState) _then;
+  final $Res Function(InitialNodeState) _then;
 
   @override
   $Res call({
@@ -80,24 +81,25 @@ class _$AddNoteStateCopyWithImpl<$Res> implements $AddNoteStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$AddNoteStateCopyWith<$Res>
-    implements $AddNoteStateCopyWith<$Res> {
-  factory _$AddNoteStateCopyWith(
-          _AddNoteState value, $Res Function(_AddNoteState) then) =
-      __$AddNoteStateCopyWithImpl<$Res>;
+abstract class _$InitialNodeStateCopyWith<$Res>
+    implements $InitialNodeStateCopyWith<$Res> {
+  factory _$InitialNodeStateCopyWith(
+          _InitialNodeState value, $Res Function(_InitialNodeState) then) =
+      __$InitialNodeStateCopyWithImpl<$Res>;
   @override
   $Res call({Name name, Url url, FormzStatus status});
 }
 
 /// @nodoc
-class __$AddNoteStateCopyWithImpl<$Res> extends _$AddNoteStateCopyWithImpl<$Res>
-    implements _$AddNoteStateCopyWith<$Res> {
-  __$AddNoteStateCopyWithImpl(
-      _AddNoteState _value, $Res Function(_AddNoteState) _then)
-      : super(_value, (v) => _then(v as _AddNoteState));
+class __$InitialNodeStateCopyWithImpl<$Res>
+    extends _$InitialNodeStateCopyWithImpl<$Res>
+    implements _$InitialNodeStateCopyWith<$Res> {
+  __$InitialNodeStateCopyWithImpl(
+      _InitialNodeState _value, $Res Function(_InitialNodeState) _then)
+      : super(_value, (v) => _then(v as _InitialNodeState));
 
   @override
-  _AddNoteState get _value => super._value as _AddNoteState;
+  _InitialNodeState get _value => super._value as _InitialNodeState;
 
   @override
   $Res call({
@@ -105,7 +107,7 @@ class __$AddNoteStateCopyWithImpl<$Res> extends _$AddNoteStateCopyWithImpl<$Res>
     Object? url = freezed,
     Object? status = freezed,
   }) {
-    return _then(_AddNoteState(
+    return _then(_InitialNodeState(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -124,8 +126,8 @@ class __$AddNoteStateCopyWithImpl<$Res> extends _$AddNoteStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AddNoteState implements _AddNoteState {
-  const _$_AddNoteState(
+class _$_InitialNodeState implements _InitialNodeState {
+  const _$_InitialNodeState(
       {required this.name, required this.url, required this.status});
 
   @override
@@ -137,13 +139,13 @@ class _$_AddNoteState implements _AddNoteState {
 
   @override
   String toString() {
-    return 'AddNoteState(name: $name, url: $url, status: $status)';
+    return 'InitialNodeState(name: $name, url: $url, status: $status)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AddNoteState &&
+        (other is _InitialNodeState &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.url, url) ||
@@ -161,15 +163,15 @@ class _$_AddNoteState implements _AddNoteState {
 
   @JsonKey(ignore: true)
   @override
-  _$AddNoteStateCopyWith<_AddNoteState> get copyWith =>
-      __$AddNoteStateCopyWithImpl<_AddNoteState>(this, _$identity);
+  _$InitialNodeStateCopyWith<_InitialNodeState> get copyWith =>
+      __$InitialNodeStateCopyWithImpl<_InitialNodeState>(this, _$identity);
 }
 
-abstract class _AddNoteState implements AddNoteState {
-  const factory _AddNoteState(
+abstract class _InitialNodeState implements InitialNodeState {
+  const factory _InitialNodeState(
       {required Name name,
       required Url url,
-      required FormzStatus status}) = _$_AddNoteState;
+      required FormzStatus status}) = _$_InitialNodeState;
 
   @override
   Name get name => throw _privateConstructorUsedError;
@@ -179,6 +181,6 @@ abstract class _AddNoteState implements AddNoteState {
   FormzStatus get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AddNoteStateCopyWith<_AddNoteState> get copyWith =>
+  _$InitialNodeStateCopyWith<_InitialNodeState> get copyWith =>
       throw _privateConstructorUsedError;
 }

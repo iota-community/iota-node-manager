@@ -161,7 +161,7 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
         .compose(_dio.options, '$baseUrl/api/v1/messages/$messageId/raw',
             queryParameters: queryParameters, data: _data)
         .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data!;
+    final value = _result.data;
     return value;
   }
 

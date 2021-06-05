@@ -2,21 +2,15 @@ part of 'node_cubit.dart';
 
 @freezed
 class NodeState with _$NodeState {
-  const factory NodeState({
-    required HornetNode selectedNode,
-    required List<HornetNode> nodes,
-  }) = _NodeState;
+  const factory NodeState(
+      {required Node? selectedNode,
+      required List<Node> nodes,
+      required NodeStatusEnum status}) = _NodeState;
 
   factory NodeState.initial() {
-    final nodesBox = Hive.box<List>(HiveBoxConstants.nodesBox);
-    final selectedNodeBox =
-        Hive.box<HornetNode>(HiveBoxConstants.selectedNodeBox);
-    final nodes = nodesBox.get('nodes', defaultValue: [])!.cast<HornetNode>();
-    final selectedNode = selectedNodeBox.get('selectedNode');
-
-    return NodeState(
-      selectedNode: selectedNode!,
-      nodes: nodes,
-    );
+    return const NodeState(
+        nodes: [], selectedNode: null, status: NodeStatusEnum.initial);
   }
 }
+
+enum NodeStatusEnum { initial, noNodeAdded, noNodeSelected, nodeSelected }

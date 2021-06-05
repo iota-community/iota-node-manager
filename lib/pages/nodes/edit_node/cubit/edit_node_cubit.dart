@@ -1,15 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hive/hive.dart';
-import 'package:hornet_node/configureDependencies.dart';
-import 'package:hornet_node/models/database/hornet_node.dart';
+import 'package:hornet_node/repository/moor/database.dart';
 import 'package:hornet_node/repository/node_repository.dart';
-import 'package:hornet_node/utils/constants/hive_box_constants.dart';
 import 'package:hornet_node/utils/formz/name.dart';
 import 'package:hornet_node/utils/formz/url.dart';
 import 'package:injectable/injectable.dart';
-import 'package:uuid/uuid.dart';
 
 part 'edit_node_state.dart';
 part 'edit_node_cubit.freezed.dart';
@@ -20,10 +16,13 @@ class EditNodeCubit extends Cubit<EditNodeState> {
 
   final NodeRepository _nodeRepository;
 
-  void setInitialValues(HornetNode node) {
+  void setInitialValues(Node node) {
     emit(state.copyWith(
       name: Name.dirty(value: node.name),
       url: Url.dirty(value: node.url),
+      id: node.id,
+      selected: node.selected,
+      status: Formz.validate(<FormzInput>[state.name, state.url]),
     ));
   }
 
@@ -43,29 +42,19 @@ class EditNodeCubit extends Cubit<EditNodeState> {
     ));
   }
 
-  Future<void> saveNode(String? uuid) async {
+  Future<void> saveNode(int? uuid) async {
     if (!state.status.isValidated) return;
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
-    try {
-      if (uuid != null) {
-        var node = _nodeRepository.getNode(uuid);
-        if (node != null) {
-          node
-            ..name = state.name.value
-            ..url = state.url.value;
-          await _nodeRepository.removeNode(uuid);
-          await _nodeRepository.addNode(node);
-          emit(state.copyWith(status: FormzStatus.submissionSuccess));
-        } else {
-          var node =
-              HornetNode(state.name.value, state.url.value, const Uuid().v1());
-          await _nodeRepository.addNode(node);
-        }
-      } else {
-        emit(state.copyWith(status: FormzStatus.submissionFailure));
-      }
-    } on Exception {
-      emit(state.copyWith(status: FormzStatus.submissionFailure));
+    if (state.id != null) {
+      await _nodeRepository.updateNode(Node(
+        id: state.id!,
+        name: state.name.value,
+        url: state.url.value,
+        selected: state.selected,
+      ));
+    } else {
+      await _nodeRepository.addNode(state.name.value, state.url.value,
+          selected: true);
     }
   }
 }

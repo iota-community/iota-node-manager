@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hornet_node/app/cubit/node_cubit.dart';
 import 'package:hornet_node/app/router/app_router.gr.dart';
 import 'package:hornet_node/app/node_wrapper/widgets/app_bar.dart';
 import 'package:hornet_node/app/node_wrapper/widgets/bottom_navigation_bar.dart';
@@ -24,9 +23,6 @@ class _NodeWrapperPageState extends State<NodeWrapperPage> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => getIt<NodeCubit>(),
-        ),
         BlocProvider(
           create: (context) => getIt<HealthCubit>()..health(),
         ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hornet_node/pages/add_node/view/add_node_page.dart';
+import 'package:hornet_node/app/initial_node/initial_node.dart';
 
 class AddNodeScaffoldPage extends StatelessWidget {
   const AddNodeScaffoldPage({Key? key}) : super(key: key);
@@ -8,7 +8,7 @@ class AddNodeScaffoldPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: const AddNodePage(),
+      body: const InitialNodePage(),
     );
   }
 }

@@ -12,8 +12,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
     return BottomNavigationBar(
       currentIndex: tabsRouter.activeIndex,
       onTap: tabsRouter.setActiveIndex,
-      items: [
-        const BottomNavigationBarItem(
+      items: const [
+        BottomNavigationBarItem(
           icon: Icon(
             Icons.home_outlined,
           ),
@@ -27,7 +27,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
         //   icon: Icon(Icons.account_tree_outlined),
         //   label: 'Peers',
         // ),
-        const BottomNavigationBarItem(
+        BottomNavigationBarItem(
           icon: Icon(Icons.explore_outlined),
           label: 'Explorer',
         ),

@@ -20,7 +20,7 @@ class HealthCubit extends Cubit<HealthState> {
   Future<void> health() async {
     emit(const HealthState.loadInProgress());
     try {
-      var selectedNode = _nodeRepository.getSelectedNode();
+      var selectedNode = await _nodeRepository.getSelectedNode();
       if (selectedNode != null) {
         var response = await _hornetNodeRestClient.health(selectedNode.url);
         final statusCode = response.response.statusCode;

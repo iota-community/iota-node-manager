@@ -19,7 +19,7 @@ class MilestonesCubit extends Cubit<MilestonesState> {
   Future<void> milestones(int index) async {
     emit(const MilestonesState.loadInProgress());
     try {
-      var selectedNode = _nodeRepository.getSelectedNode();
+      var selectedNode = await _nodeRepository.getSelectedNode();
       if (selectedNode != null) {
         var milestones = <Milestone>[
           await _hornetNodeRestClient.milestone(selectedNode.url, index - 1),

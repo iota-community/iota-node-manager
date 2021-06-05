@@ -1,77 +1,97 @@
-import 'package:hive/hive.dart';
-import 'package:hornet_node/models/database/hornet_node.dart';
-import 'package:hornet_node/utils/constants/hive_box_constants.dart';
+import 'package:hornet_node/repository/moor/database.dart';
 import 'package:injectable/injectable.dart';
+import 'package:moor/moor.dart';
 
 abstract class NodeRepository {
-  Future<void> addNode(HornetNode node);
-  Future<void> removeNode(String uuid);
-  Future<void> setSelectedNode(String uuid);
+  Future<Node> addNode(String name, String url, {bool selected = false});
+  Future<void> updateNode(Node node);
+  Future<void> removeNode(int id);
+  Future<void> setSelectedNode(int id);
 
-  List<HornetNode> getNodes();
-  HornetNode? getNode(String uuid);
-  HornetNode? getSelectedNode();
-  bool areNodesAvailable();
-  bool isANodeSelected();
+  Future<List<Node>> getNodes();
+  Stream<List<Node>> getNodesStream();
+  Future<Node> getNode(int id);
+  Stream<Node> getNodeStream(int id);
+  Future<Node?> getSelectedNode();
+  Stream<Node> getSelectedNodeStream();
+  Future<bool> areNodesAvailable();
+  Future<bool> isANodeSelected();
 }
 
 @Injectable(as: NodeRepository)
-class NodeRepositoryHiveImpl extends NodeRepository {
-  NodeRepositoryHiveImpl(
-    @Named(HiveBoxConstants.nodesBox) this._nodesBox,
-    @Named(HiveBoxConstants.selectedNodeBox) this._selectedNodeBox,
-  );
+class NodeRepositoryMoorImpl extends NodeRepository {
+  NodeRepositoryMoorImpl(this._database);
 
-  final Box<List> _nodesBox;
-  final Box<HornetNode> _selectedNodeBox;
+  final HornetNodeDB _database;
+  final String selectedNodeKey = 'selectedNode';
 
   @override
-  Future<void> addNode(HornetNode node) {
-    var nodes = getNodes();
-    nodes = [...nodes, node];
-    return _nodesBox.put('nodes', nodes);
+  Future<Node> addNode(String name, String url, {bool selected = false}) {
+    return _database.addNode(
+        NodesCompanion.insert(name: name, url: url, selected: Value(selected)));
   }
 
   @override
-  Future<void> removeNode(String uuid) {
-    var nodes = getNodes()
-      ..removeWhere(
-        (node) => node.uuid == uuid,
-      );
-    return _nodesBox.put('nodes', nodes);
+  Future<void> removeNode(int id) {
+    return _database.deleteNode(id);
   }
 
   @override
-  HornetNode? getNode(String uuid) {
-    var nodes = getNodes();
-    return nodes.firstWhere(
-      (node) => node.uuid == uuid,
-    );
+  Future<Node> getNode(int id) async {
+    return await _database.findNode(id);
   }
 
   @override
-  List<HornetNode> getNodes() {
-    return _nodesBox.get('nodes', defaultValue: [])!.cast<HornetNode>();
+  Future<List<Node>> getNodes() async {
+    return await _database.findAll;
   }
 
   @override
-  HornetNode? getSelectedNode() {
-    return _selectedNodeBox.get('selectedNode');
+  Future<Node?> getSelectedNode() {
+    return _database.findSelectedNode();
   }
 
   @override
-  Future<void> setSelectedNode(String uuid) {
-    var node = getNode(uuid)!;
-    return _selectedNodeBox.put('selectedNode', node);
+  Stream<Node> getSelectedNodeStream() {
+    return _database.findSelectedNodeStream();
   }
 
   @override
-  bool areNodesAvailable() {
-    return getNodes().isNotEmpty;
+  Future<void> setSelectedNode(int id) {
+    return _database.setSelectedNode(id);
   }
 
   @override
-  bool isANodeSelected() {
-    return getSelectedNode() != null;
+  Future<bool> areNodesAvailable() async {
+    if (await _database.amountOfNodes > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> isANodeSelected() async {
+    try {
+      await _database.findSelectedNode();
+      return true;
+    } on Exception catch (_) {
+      return false;
+    }
+  }
+
+  @override
+  Future<void> updateNode(Node node) {
+    return _database.updateNode(node);
+  }
+
+  @override
+  Stream<Node> getNodeStream(int id) {
+    return _database.findNodeStream(id);
+  }
+
+  @override
+  Stream<List<Node>> getNodesStream() {
+    return _database.findAllStream;
   }
 }

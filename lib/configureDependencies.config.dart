@@ -8,24 +8,26 @@ import 'package:dio/dio.dart' as _i5;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:hive/hive.dart' as _i3;
 import 'package:injectable/injectable.dart' as _i2;
+import 'package:shared_preferences/shared_preferences.dart' as _i10;
 
-import 'app/cubit/node_cubit.dart' as _i14;
-import 'endpoints/hornet/hornet_node_dio_rest_client.dart' as _i7;
-import 'endpoints/hornet/hornet_node_rest_client.dart' as _i6;
+import 'app/cubit/node_cubit.dart' as _i16;
+import 'app/initial_node/cubit/initial_node_cubit.dart' as _i14;
+import 'endpoints/hornet/hornet_node_dio_rest_client.dart' as _i8;
+import 'endpoints/hornet/hornet_node_rest_client.dart' as _i7;
 import 'models/database/hornet_node.dart' as _i4;
-import 'pages/add_node/cubit/add_node_cubit.dart' as _i9;
-import 'pages/explorer/cubit/milestones_cubit.dart' as _i13;
-import 'pages/home/cubit/health_cubit.dart' as _i11;
-import 'pages/home/cubit/info_cubit.dart' as _i12;
-import 'pages/nodes/edit_node/cubit/edit_node_cubit.dart' as _i10;
-import 'register_module.dart' as _i15;
+import 'pages/explorer/cubit/milestones_cubit.dart' as _i15;
+import 'pages/home/cubit/health_cubit.dart' as _i12;
+import 'pages/home/cubit/info_cubit.dart' as _i13;
+import 'pages/nodes/edit_node/cubit/edit_node_cubit.dart' as _i11;
+import 'register_module.dart' as _i17;
+import 'repository/moor/database.dart' as _i6;
 import 'repository/node_repository.dart'
-    as _i8; // ignore_for_file: unnecessary_lambdas
+    as _i9; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
-_i1.GetIt $initGetIt(_i1.GetIt get,
-    {String? environment, _i2.EnvironmentFilter? environmentFilter}) {
+Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
+    {String? environment, _i2.EnvironmentFilter? environmentFilter}) async {
   final gh = _i2.GetItHelper(get, environment, environmentFilter);
   final hiveModule = _$HiveModule();
   final registerModule = _$RegisterModule();
@@ -36,25 +38,27 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i3.Box<dynamic>>(() => hiveModule.darkModeBox,
       instanceName: 'darkMode');
   gh.lazySingleton<_i5.Dio>(() => registerModule.dio());
-  gh.lazySingleton<_i6.HornetNodeRestClient>(
-      () => _i7.HornetNodeDioRestClientImpl(get<_i5.Dio>()));
-  gh.factory<_i8.NodeRepository>(() => _i8.NodeRepositoryHiveImpl(
-      get<_i3.Box<List<dynamic>>>(instanceName: 'nodes'),
-      get<_i3.Box<_i4.HornetNode>>(instanceName: 'selectedNode')));
-  gh.factory<_i9.AddNoteCubit>(
-      () => _i9.AddNoteCubit(get<_i8.NodeRepository>()));
-  gh.factory<_i10.EditNodeCubit>(
-      () => _i10.EditNodeCubit(get<_i8.NodeRepository>()));
-  gh.factory<_i11.HealthCubit>(() => _i11.HealthCubit(
-      get<_i6.HornetNodeRestClient>(), get<_i8.NodeRepository>()));
-  gh.factory<_i12.InfoCubit>(() => _i12.InfoCubit(
-      get<_i6.HornetNodeRestClient>(), get<_i8.NodeRepository>()));
-  gh.factory<_i13.MilestonesCubit>(() => _i13.MilestonesCubit(
-      get<_i6.HornetNodeRestClient>(), get<_i8.NodeRepository>()));
-  gh.factory<_i14.NodeCubit>(() => _i14.NodeCubit(get<_i8.NodeRepository>()));
+  gh.lazySingleton<_i6.HornetNodeDB>(() => registerModule.database);
+  gh.lazySingleton<_i7.HornetNodeRestClient>(
+      () => _i8.HornetNodeDioRestClientImpl(get<_i5.Dio>()));
+  gh.factory<_i9.NodeRepository>(
+      () => _i9.NodeRepositoryMoorImpl(get<_i6.HornetNodeDB>()));
+  await gh.factoryAsync<_i10.SharedPreferences>(() => registerModule.prefs,
+      preResolve: true);
+  gh.factory<_i11.EditNodeCubit>(
+      () => _i11.EditNodeCubit(get<_i9.NodeRepository>()));
+  gh.factory<_i12.HealthCubit>(() => _i12.HealthCubit(
+      get<_i7.HornetNodeRestClient>(), get<_i9.NodeRepository>()));
+  gh.factory<_i13.InfoCubit>(() => _i13.InfoCubit(
+      get<_i7.HornetNodeRestClient>(), get<_i9.NodeRepository>()));
+  gh.factory<_i14.InitialNodeCubit>(
+      () => _i14.InitialNodeCubit(get<_i9.NodeRepository>()));
+  gh.factory<_i15.MilestonesCubit>(() => _i15.MilestonesCubit(
+      get<_i7.HornetNodeRestClient>(), get<_i9.NodeRepository>()));
+  gh.factory<_i16.NodeCubit>(() => _i16.NodeCubit(get<_i9.NodeRepository>()));
   return get;
 }
 
-class _$HiveModule extends _i15.HiveModule {}
+class _$HiveModule extends _i17.HiveModule {}
 
-class _$RegisterModule extends _i15.RegisterModule {}
+class _$RegisterModule extends _i17.RegisterModule {}

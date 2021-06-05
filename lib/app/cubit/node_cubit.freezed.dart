@@ -17,10 +17,13 @@ class _$NodeStateTearOff {
   const _$NodeStateTearOff();
 
   _NodeState call(
-      {required HornetNode selectedNode, required List<HornetNode> nodes}) {
+      {required Node? selectedNode,
+      required List<Node> nodes,
+      required NodeStatusEnum status}) {
     return _NodeState(
       selectedNode: selectedNode,
       nodes: nodes,
+      status: status,
     );
   }
 }
@@ -30,8 +33,9 @@ const $NodeState = _$NodeStateTearOff();
 
 /// @nodoc
 mixin _$NodeState {
-  HornetNode get selectedNode => throw _privateConstructorUsedError;
-  List<HornetNode> get nodes => throw _privateConstructorUsedError;
+  Node? get selectedNode => throw _privateConstructorUsedError;
+  List<Node> get nodes => throw _privateConstructorUsedError;
+  NodeStatusEnum get status => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NodeStateCopyWith<NodeState> get copyWith =>
@@ -42,7 +46,7 @@ mixin _$NodeState {
 abstract class $NodeStateCopyWith<$Res> {
   factory $NodeStateCopyWith(NodeState value, $Res Function(NodeState) then) =
       _$NodeStateCopyWithImpl<$Res>;
-  $Res call({HornetNode selectedNode, List<HornetNode> nodes});
+  $Res call({Node? selectedNode, List<Node> nodes, NodeStatusEnum status});
 }
 
 /// @nodoc
@@ -57,16 +61,21 @@ class _$NodeStateCopyWithImpl<$Res> implements $NodeStateCopyWith<$Res> {
   $Res call({
     Object? selectedNode = freezed,
     Object? nodes = freezed,
+    Object? status = freezed,
   }) {
     return _then(_value.copyWith(
       selectedNode: selectedNode == freezed
           ? _value.selectedNode
           : selectedNode // ignore: cast_nullable_to_non_nullable
-              as HornetNode,
+              as Node?,
       nodes: nodes == freezed
           ? _value.nodes
           : nodes // ignore: cast_nullable_to_non_nullable
-              as List<HornetNode>,
+              as List<Node>,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as NodeStatusEnum,
     ));
   }
 }
@@ -77,7 +86,7 @@ abstract class _$NodeStateCopyWith<$Res> implements $NodeStateCopyWith<$Res> {
           _NodeState value, $Res Function(_NodeState) then) =
       __$NodeStateCopyWithImpl<$Res>;
   @override
-  $Res call({HornetNode selectedNode, List<HornetNode> nodes});
+  $Res call({Node? selectedNode, List<Node> nodes, NodeStatusEnum status});
 }
 
 /// @nodoc
@@ -93,16 +102,21 @@ class __$NodeStateCopyWithImpl<$Res> extends _$NodeStateCopyWithImpl<$Res>
   $Res call({
     Object? selectedNode = freezed,
     Object? nodes = freezed,
+    Object? status = freezed,
   }) {
     return _then(_NodeState(
       selectedNode: selectedNode == freezed
           ? _value.selectedNode
           : selectedNode // ignore: cast_nullable_to_non_nullable
-              as HornetNode,
+              as Node?,
       nodes: nodes == freezed
           ? _value.nodes
           : nodes // ignore: cast_nullable_to_non_nullable
-              as List<HornetNode>,
+              as List<Node>,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as NodeStatusEnum,
     ));
   }
 }
@@ -110,16 +124,19 @@ class __$NodeStateCopyWithImpl<$Res> extends _$NodeStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_NodeState implements _NodeState {
-  const _$_NodeState({required this.selectedNode, required this.nodes});
+  const _$_NodeState(
+      {required this.selectedNode, required this.nodes, required this.status});
 
   @override
-  final HornetNode selectedNode;
+  final Node? selectedNode;
   @override
-  final List<HornetNode> nodes;
+  final List<Node> nodes;
+  @override
+  final NodeStatusEnum status;
 
   @override
   String toString() {
-    return 'NodeState(selectedNode: $selectedNode, nodes: $nodes)';
+    return 'NodeState(selectedNode: $selectedNode, nodes: $nodes, status: $status)';
   }
 
   @override
@@ -130,14 +147,17 @@ class _$_NodeState implements _NodeState {
                 const DeepCollectionEquality()
                     .equals(other.selectedNode, selectedNode)) &&
             (identical(other.nodes, nodes) ||
-                const DeepCollectionEquality().equals(other.nodes, nodes)));
+                const DeepCollectionEquality().equals(other.nodes, nodes)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(selectedNode) ^
-      const DeepCollectionEquality().hash(nodes);
+      const DeepCollectionEquality().hash(nodes) ^
+      const DeepCollectionEquality().hash(status);
 
   @JsonKey(ignore: true)
   @override
@@ -147,13 +167,16 @@ class _$_NodeState implements _NodeState {
 
 abstract class _NodeState implements NodeState {
   const factory _NodeState(
-      {required HornetNode selectedNode,
-      required List<HornetNode> nodes}) = _$_NodeState;
+      {required Node? selectedNode,
+      required List<Node> nodes,
+      required NodeStatusEnum status}) = _$_NodeState;
 
   @override
-  HornetNode get selectedNode => throw _privateConstructorUsedError;
+  Node? get selectedNode => throw _privateConstructorUsedError;
   @override
-  List<HornetNode> get nodes => throw _privateConstructorUsedError;
+  List<Node> get nodes => throw _privateConstructorUsedError;
+  @override
+  NodeStatusEnum get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$NodeStateCopyWith<_NodeState> get copyWith =>

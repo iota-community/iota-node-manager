@@ -1,19 +1,19 @@
 import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hornet_node/models/database/hornet_node.dart';
 import 'package:hornet_node/repository/node_repository.dart';
 import 'package:hornet_node/utils/formz/name.dart';
 import 'package:hornet_node/utils/formz/url.dart';
 import 'package:injectable/injectable.dart';
-import 'package:uuid/uuid.dart';
 
-part 'add_node_state.dart';
-part 'add_node_cubit.freezed.dart';
+part 'initial_node_state.dart';
+part 'initial_node_cubit.freezed.dart';
 
 @injectable
-class AddNoteCubit extends Cubit<AddNoteState> {
-  AddNoteCubit(this._nodeRepository) : super(AddNoteState.initial());
+class InitialNodeCubit extends Cubit<InitialNodeState> {
+  InitialNodeCubit(
+    this._nodeRepository,
+  ) : super(InitialNodeState.initial());
 
   final NodeRepository _nodeRepository;
 
@@ -37,12 +37,11 @@ class AddNoteCubit extends Cubit<AddNoteState> {
     if (!state.status.isValidated) return;
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
-      var node =
-          HornetNode(state.name.value, state.url.value, const Uuid().v1());
-      await _nodeRepository.addNode(node);
-      if (!_nodeRepository.isANodeSelected()) {
-        await _nodeRepository.setSelectedNode(node.uuid);
-      }
+      var node = await _nodeRepository.addNode(
+        state.name.value,
+        state.url.value,
+      );
+      await _nodeRepository.setSelectedNode(node.id);
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
     } on Exception {
       emit(state.copyWith(status: FormzStatus.submissionFailure));
