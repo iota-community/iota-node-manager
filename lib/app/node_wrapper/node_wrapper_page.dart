@@ -5,7 +5,7 @@ import 'package:hornet_node/app/router/app_router.gr.dart';
 import 'package:hornet_node/app/node_wrapper/widgets/app_bar.dart';
 import 'package:hornet_node/app/node_wrapper/widgets/bottom_navigation_bar.dart';
 import 'package:hornet_node/app/node_wrapper/widgets/drawer.dart';
-import 'package:hornet_node/configureDependencies.dart';
+import 'package:hornet_node/configure_dependencies.dart';
 import 'package:hornet_node/pages/explorer/cubit/milestones_cubit.dart';
 import 'package:hornet_node/pages/home/cubit/health_cubit.dart';
 import 'package:hornet_node/pages/home/cubit/info_cubit.dart';

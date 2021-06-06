@@ -1,4 +1,3 @@
-import 'package:flutter/services.dart';
 import 'package:hornet_node/endpoints/hornet/hornet_node_rest_client.dart';
 import 'package:hornet_node/models/hornet/auth/auth.dart';
 import 'package:hornet_node/models/hornet/info/info.dart';

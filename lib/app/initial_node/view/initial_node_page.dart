@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hornet_node/app/cubit/node_cubit.dart';
 import 'package:hornet_node/app/initial_node/cubit/initial_node_cubit.dart';
 import 'package:hornet_node/app/themes/custom_themes.dart';
-import 'package:hornet_node/configureDependencies.dart';
+import 'package:hornet_node/configure_dependencies.dart';
 import 'package:formz/formz.dart';
 
 class InitialNodePage extends StatelessWidget {

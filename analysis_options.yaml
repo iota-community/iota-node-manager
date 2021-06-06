@@ -6,4 +6,4 @@ analyzer:
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
-    - "**/configureDependencies.config.dart"
+    - "lib/configure_dependencies.config.dart"

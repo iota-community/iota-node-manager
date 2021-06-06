@@ -5,8 +5,6 @@ class PeersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Text('Peers'),
-    );
+    return const Text('Peers');
   }
 }

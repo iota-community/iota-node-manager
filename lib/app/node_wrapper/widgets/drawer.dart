@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:hornet_node/app/app_wrapper_page.dart';
 import 'package:hornet_node/app/router/app_router.gr.dart';
 import 'package:hornet_node/app/themes/custom_themes.dart';
 import 'package:hornet_node/utils/constants/hive_box_constants.dart';
@@ -44,7 +43,7 @@ class CustomDrawer extends StatelessWidget {
             title: const Text('Manage nodes'),
             onTap: () {
               AutoRouter.of(context).push(
-                NodesRoute(),
+                const NodesRoute(),
               );
             },
           ),

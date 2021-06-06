@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hornet_node/configureDependencies.dart';
+import 'package:hornet_node/configure_dependencies.dart';
 import 'package:formz/formz.dart';
 import 'package:hornet_node/pages/nodes/edit_node/edit_node.dart';
 import 'package:hornet_node/repository/moor/database.dart';

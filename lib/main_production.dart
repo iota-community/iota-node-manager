@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:bloc/bloc.dart';
 import 'package:hornet_node/app/app.dart';
 import 'package:hornet_node/app/app_bloc_observer.dart';
-import 'package:hornet_node/configureDependencies.dart';
+import 'package:hornet_node/configure_dependencies.dart';
 import 'package:hornet_node/main_common.dart';
 
 void main() async {

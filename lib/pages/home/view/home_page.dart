@@ -51,16 +51,14 @@ class _HomePageState extends State<HomePage> {
                 },
                 child: ListView(
                   children: [
-                    Container(
-                      child: Column(
-                        children: [
-                          _TitleCard(info: info),
-                          _MilestoneCard(info: info),
-                          _MessagesCard(info: info),
-                          _PruningCard(info: info),
-                          _FeaturesCard(info: info)
-                        ],
-                      ),
+                    Column(
+                      children: [
+                        _TitleCard(info: info),
+                        _MilestoneCard(info: info),
+                        _MessagesCard(info: info),
+                        _PruningCard(info: info),
+                        _FeaturesCard(info: info)
+                      ],
                     ),
                   ],
                 ),
@@ -243,7 +241,8 @@ class _MessagesCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Referenced rate: ${info.data.referencedRate.toStringAsFixed(2)}%',
+                    '''Referenced rate:
+                    ${info.data.referencedRate.toStringAsFixed(2)}%''',
                     style: const TextStyle(fontSize: 10),
                   ),
                 ],
@@ -404,7 +403,7 @@ class _HomeCardWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
-        child: Container(
+        child: SizedBox(
           width: width * 0.9,
           height: height,
           child: child,
