@@ -541,8 +541,7 @@ class _MetadataMessageWidget extends StatelessWidget {
               width: 5,
             ),
             const Expanded(
-              child: Text('''The message is referenced by a milestone,
-                  the transaction is included in the ledger.'''),
+              child: Text('''The message is referenced by a milestone, the transaction is included in the ledger.'''),
             )
           ],
         );
@@ -567,8 +566,7 @@ class _MetadataMessageWidget extends StatelessWidget {
               width: 5,
             ),
             const Expanded(
-              child: Text('''The message has a conflict and will not 
-                  be included in the ledger.'''),
+              child: Text('''The message has a conflict and will not be included in the ledger.'''),
             )
           ],
         );
@@ -593,8 +591,7 @@ class _MetadataMessageWidget extends StatelessWidget {
               width: 20,
             ),
             const Expanded(
-              child: Text('''The message is referenced by a milestone, 
-                  the data is included in the ledger, but there is no value transfer.'''),
+              child: Text('''The message is referenced by a milestone, the data is included in the ledger, but there is no value transfer.'''),
             )
           ],
         );

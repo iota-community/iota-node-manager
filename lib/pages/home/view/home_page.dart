@@ -241,8 +241,7 @@ class _MessagesCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '''Referenced rate:
-                    ${info.data.referencedRate.toStringAsFixed(2)}%''',
+                    '''Referenced rate: ${info.data.referencedRate.toStringAsFixed(2)}%''',
                     style: const TextStyle(fontSize: 10),
                   ),
                 ],
