@@ -1,0 +1,7 @@
+flutter_icons:
+  image_path: 'assets/icon/icon_int.png'
+  adaptive_icon_background: 'assets/icon/hornet_icon_background_int.png'
+  adaptive_icon_foreground: 'assets/icon/hornet_icon_foreground.png'
+  android: true
+  ios: true
+  remove_alpha_ios: true

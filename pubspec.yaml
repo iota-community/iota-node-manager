@@ -33,11 +33,11 @@ dependencies:
   responsive_builder: ^0.4.1
   responsive_framework: ^0.1.0
   retrofit: ^2.0.0-beta3
+  rx_shared_preferences: ^2.1.0
   shared_preferences: ^2.0.6
   sqlite3_flutter_libs: ^0.5.0
-  uuid: ^3.0.4
   streaming_shared_preferences: ^2.0.0
-  rx_shared_preferences: ^2.1.0
+  uuid: ^3.0.4
 
 dev_dependencies:
   flutter_test:
@@ -51,8 +51,9 @@ dev_dependencies:
   bloc_test: ^8.0.1
   build_runner: null
   envify_generator: ^2.0.0
-  freezed: ^0.14.2
+  flutter_launcher_icons: ^0.9.0
   flutter_native_splash: ^1.1.8+4
+  freezed: ^0.14.2
   injectable_generator: ^1.4.1
   mocktail: ^0.1.4
   moor_generator: ^4.3.1
@@ -72,9 +73,6 @@ flutter:
     - assets/svg/
 
 flutter_native_splash:
-
-  # This package generates native code to customize Flutter's default white native splash screen
-  # with background color and splash image.
   # Customize the parameters below, and run the following command in the terminal:
   # flutter pub run flutter_native_splash:create
   # To restore Flutter's default white splash screen, run the following command in the terminal:
