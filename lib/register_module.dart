@@ -4,7 +4,9 @@ import 'package:hornet_node/repository/moor/database.dart';
 import 'package:hornet_node/utils/constants/hive_box_constants.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dio/dio.dart';
+import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
 @module
 abstract class RegisterModule {
@@ -12,10 +14,10 @@ abstract class RegisterModule {
   Dio dio() => Dio();
 
   @lazySingleton
-  HornetNodeDB get database => HornetNodeDB();
+  RxSharedPreferences get prefs => RxSharedPreferences.getInstance();
 
-  @preResolve
-  Future<SharedPreferences> get prefs => SharedPreferences.getInstance();
+  @lazySingleton
+  HornetNodeDB get database => HornetNodeDB();
 }
 
 @module

@@ -1,6 +1,7 @@
 import 'package:hornet_node/repository/moor/database.dart';
 import 'package:injectable/injectable.dart';
 import 'package:moor/moor.dart';
+import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 abstract class NodeRepository {
   Future<Node> addNode(String name, String url, {bool selected = false});
@@ -20,10 +21,11 @@ abstract class NodeRepository {
 
 @Injectable(as: NodeRepository)
 class NodeRepositoryMoorImpl extends NodeRepository {
-  NodeRepositoryMoorImpl(this._database);
+  NodeRepositoryMoorImpl(this._database, this._prefs);
 
   final HornetNodeDB _database;
   final String selectedNodeKey = 'selectedNode';
+  final RxSharedPreferences _prefs;
 
   @override
   Future<Node> addNode(String name, String url, {bool selected = false}) {
@@ -47,18 +49,26 @@ class NodeRepositoryMoorImpl extends NodeRepository {
   }
 
   @override
-  Future<Node?> getSelectedNode() {
-    return _database.findSelectedNode();
+  Future<Node?> getSelectedNode() async {
+    var id = await _prefs.getInt(selectedNodeKey);
+    if (id != null) {
+      return _database.findNode(id);
+    } else {
+      return null;
+    }
   }
 
   @override
   Stream<Node> getSelectedNodeStream() {
-    return _database.findSelectedNodeStream();
+    return _prefs
+        .getIntStream(selectedNodeKey)
+        .asyncMap((id) => _database.findNode(id!));
   }
 
   @override
   Future<void> setSelectedNode(int id) {
-    return _database.setSelectedNode(id);
+    return _prefs.setInt(selectedNodeKey, id);
+    // return _database.setSelectedNode(id);
   }
 
   @override
@@ -72,12 +82,17 @@ class NodeRepositoryMoorImpl extends NodeRepository {
 
   @override
   Future<bool> isANodeSelected() async {
-    try {
-      await _database.findSelectedNode();
+    if (await _prefs.getInt(selectedNodeKey) != null) {
       return true;
-    } on Exception catch (_) {
+    } else {
       return false;
     }
+    // try {
+    //   await _database.findSelectedNode();
+    //   return true;
+    // } on Exception catch (_) {
+    //   return false;
+    // }
   }
 
   @override

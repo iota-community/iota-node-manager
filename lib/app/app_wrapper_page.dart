@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hornet_node/app/cubit/node_cubit.dart';
 import 'package:hornet_node/app/initial_node/initial_node.dart';
 import 'package:hornet_node/app/node_wrapper/node_wrapper_page.dart';
+import 'package:hornet_node/pages/nodes/nodes.dart';
 
 class AppWrapperPage extends StatelessWidget {
   const AppWrapperPage({Key? key}) : super(key: key);
@@ -16,11 +17,7 @@ class AppWrapperPage extends StatelessWidget {
         } else if (state.status == NodeStatusEnum.noNodeAdded) {
           return const InitialNodePage();
         } else if (state.status == NodeStatusEnum.noNodeSelected) {
-          return const Scaffold(
-            body: Center(
-              child: Text('No Node Selected'),
-            ),
-          );
+          return const NodesPage();
         } else {
           context.read<NodeCubit>().initState();
           return const Center(

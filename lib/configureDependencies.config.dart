@@ -8,7 +8,7 @@ import 'package:dio/dio.dart' as _i5;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:hive/hive.dart' as _i3;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:shared_preferences/shared_preferences.dart' as _i10;
+import 'package:rx_shared_preferences/rx_shared_preferences.dart' as _i9;
 
 import 'app/cubit/node_cubit.dart' as _i16;
 import 'app/initial_node/cubit/initial_node_cubit.dart' as _i14;
@@ -22,12 +22,12 @@ import 'pages/nodes/edit_node/cubit/edit_node_cubit.dart' as _i11;
 import 'register_module.dart' as _i17;
 import 'repository/moor/database.dart' as _i6;
 import 'repository/node_repository.dart'
-    as _i9; // ignore_for_file: unnecessary_lambdas
+    as _i10; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
-Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
-    {String? environment, _i2.EnvironmentFilter? environmentFilter}) async {
+_i1.GetIt $initGetIt(_i1.GetIt get,
+    {String? environment, _i2.EnvironmentFilter? environmentFilter}) {
   final gh = _i2.GetItHelper(get, environment, environmentFilter);
   final hiveModule = _$HiveModule();
   final registerModule = _$RegisterModule();
@@ -41,21 +41,20 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i6.HornetNodeDB>(() => registerModule.database);
   gh.lazySingleton<_i7.HornetNodeRestClient>(
       () => _i8.HornetNodeDioRestClientImpl(get<_i5.Dio>()));
-  gh.factory<_i9.NodeRepository>(
-      () => _i9.NodeRepositoryMoorImpl(get<_i6.HornetNodeDB>()));
-  await gh.factoryAsync<_i10.SharedPreferences>(() => registerModule.prefs,
-      preResolve: true);
+  gh.lazySingleton<_i9.RxSharedPreferences>(() => registerModule.prefs);
+  gh.factory<_i10.NodeRepository>(() => _i10.NodeRepositoryMoorImpl(
+      get<_i6.HornetNodeDB>(), get<_i9.RxSharedPreferences>()));
   gh.factory<_i11.EditNodeCubit>(
-      () => _i11.EditNodeCubit(get<_i9.NodeRepository>()));
+      () => _i11.EditNodeCubit(get<_i10.NodeRepository>()));
   gh.factory<_i12.HealthCubit>(() => _i12.HealthCubit(
-      get<_i7.HornetNodeRestClient>(), get<_i9.NodeRepository>()));
+      get<_i7.HornetNodeRestClient>(), get<_i10.NodeRepository>()));
   gh.factory<_i13.InfoCubit>(() => _i13.InfoCubit(
-      get<_i7.HornetNodeRestClient>(), get<_i9.NodeRepository>()));
+      get<_i7.HornetNodeRestClient>(), get<_i10.NodeRepository>()));
   gh.factory<_i14.InitialNodeCubit>(
-      () => _i14.InitialNodeCubit(get<_i9.NodeRepository>()));
+      () => _i14.InitialNodeCubit(get<_i10.NodeRepository>()));
   gh.factory<_i15.MilestonesCubit>(() => _i15.MilestonesCubit(
-      get<_i7.HornetNodeRestClient>(), get<_i9.NodeRepository>()));
-  gh.factory<_i16.NodeCubit>(() => _i16.NodeCubit(get<_i9.NodeRepository>()));
+      get<_i7.HornetNodeRestClient>(), get<_i10.NodeRepository>()));
+  gh.factory<_i16.NodeCubit>(() => _i16.NodeCubit(get<_i10.NodeRepository>()));
   return get;
 }
 

@@ -28,7 +28,6 @@ class NodeCubit extends Cubit<NodeState> {
     } else {
       status = NodeStatusEnum.nodeSelected;
     }
-    print(await _nodeRepository.getNodes());
     emit(state.copyWith(
       selectedNode: await _nodeRepository.getSelectedNode(),
       nodes: await _nodeRepository.getNodes(),
@@ -40,7 +39,6 @@ class NodeCubit extends Cubit<NodeState> {
 
   void subscribeToNodes() {
     _nodeStream = _nodeRepository.getNodesStream().listen((nodes) {
-      print('Nodes: ----$nodes------');
       emit(state.copyWith(
         nodes: nodes,
       ));

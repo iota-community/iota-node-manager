@@ -10,7 +10,6 @@ import 'package:hornet_node/main_common.dart';
 
 void main() async {
   await mainCommon();
-  WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies('prod');
 
   Bloc.observer = AppBlocObserver();
