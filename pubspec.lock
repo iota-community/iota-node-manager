@@ -286,13 +286,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "7.0.1"
-  flutter_hooks:
-    dependency: "direct main"
-    description:
-      name: flutter_hooks
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.17.0"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -740,7 +733,7 @@ packages:
     source: hosted
     version: "0.1.0"
   shared_preferences:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: shared_preferences
       url: "https://pub.dartlang.org"
@@ -888,13 +881,6 @@ packages:
     dependency: transitive
     description:
       name: stream_transform
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
-  streaming_shared_preferences:
-    dependency: "direct main"
-    description:
-      name: streaming_shared_preferences
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"

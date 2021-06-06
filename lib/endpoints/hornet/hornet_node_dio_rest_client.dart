@@ -1,5 +1,4 @@
 import 'package:hornet_node/endpoints/hornet/hornet_node_rest_client.dart';
-import 'package:hornet_node/models/hornet/auth/auth.dart';
 import 'package:hornet_node/models/hornet/info/info.dart';
 import 'package:hornet_node/models/hornet/message/children/message_children.dart';
 import 'package:hornet_node/models/hornet/message/message.dart';
@@ -18,12 +17,6 @@ part 'hornet_node_dio_rest_client.g.dart';
 abstract class HornetNodeDioRestClientImpl extends HornetNodeRestClient {
   @factoryMethod
   factory HornetNodeDioRestClientImpl(Dio dio) = _HornetNodeDioRestClientImpl;
-
-  @override
-  @POST('{baseUrl}/auth')
-  Future<void> login(@Path() String baseUrl, @Body() Auth auth);
-
-  // Public endpoints
 
   @override
   @GET('{baseUrl}/api/v1/info')
@@ -64,8 +57,7 @@ abstract class HornetNodeDioRestClientImpl extends HornetNodeRestClient {
   @Headers(<String, dynamic>{
     'Content-Type': 'application/octet-stream',
   })
-  Future<dynamic> messageRaw(@Path() String baseUrl, @Path() String messageId);
-
-  // Private endpoints
-  // @Header("x-csrf-token") String csrfToken
+  @DioResponseType(ResponseType.bytes)
+  Future<List<int>> messageRaw(
+      @Path() String baseUrl, @Path() String messageId);
 }

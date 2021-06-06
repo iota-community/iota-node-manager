@@ -9,7 +9,6 @@ import 'package:hornet_node/models/hornet/treasury/treasury.dart';
 import 'package:retrofit/retrofit.dart';
 
 abstract class HornetNodeRestClient {
-  Future<void> login(String baseUrl, Auth auth);
   Future<Info> info(String baseUrl);
 
   Future<Tips> tips(String baseUrl);
@@ -26,5 +25,5 @@ abstract class HornetNodeRestClient {
 
   Future<MessageChildren> messageChildren(String baseUrl, String messageId);
 
-  Future<dynamic> messageRaw(String baseUrl, String messageId);
+  Future<List<int>> messageRaw(String baseUrl, String messageId);
 }

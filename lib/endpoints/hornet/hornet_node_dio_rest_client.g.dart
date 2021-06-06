@@ -14,20 +14,6 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
   String? baseUrl;
 
   @override
-  Future<void> login(baseUrl, auth) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(auth.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(
-        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-            .compose(_dio.options, '$baseUrl/auth',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    return null;
-  }
-
-  @override
   Future<Info> info(baseUrl) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -147,21 +133,23 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
   }
 
   @override
-  Future<dynamic> messageRaw(baseUrl, messageId) async {
+  Future<List<int>> messageRaw(baseUrl, messageId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
-            method: 'GET',
-            headers: <String, dynamic>{
-              r'Content-Type': 'application/octet-stream'
-            },
-            extra: _extra,
-            contentType: 'application/octet-stream')
-        .compose(_dio.options, '$baseUrl/api/v1/messages/$messageId/raw',
-            queryParameters: queryParameters, data: _data)
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data;
+    final _result = await _dio.fetch<List<dynamic>>(_setStreamType<List<int>>(
+        Options(
+                method: 'GET',
+                headers: <String, dynamic>{
+                  r'Content-Type': 'application/octet-stream'
+                },
+                extra: _extra,
+                contentType: 'application/octet-stream',
+                responseType: ResponseType.bytes)
+            .compose(_dio.options, '$baseUrl/api/v1/messages/$messageId/raw',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!.cast<int>();
     return value;
   }
 
