@@ -11,12 +11,7 @@ class Node extends DataClass implements Insertable<Node> {
   final int id;
   final String name;
   final String url;
-  final bool selected;
-  Node(
-      {required this.id,
-      required this.name,
-      required this.url,
-      required this.selected});
+  Node({required this.id, required this.name, required this.url});
   factory Node.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String? prefix}) {
     final effectivePrefix = prefix ?? '';
@@ -27,8 +22,6 @@ class Node extends DataClass implements Insertable<Node> {
           .mapFromDatabaseResponse(data['${effectivePrefix}name'])!,
       url: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}url'])!,
-      selected: const BoolType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}selected'])!,
     );
   }
   @override
@@ -37,7 +30,6 @@ class Node extends DataClass implements Insertable<Node> {
     map['id'] = Variable<int>(id);
     map['name'] = Variable<String>(name);
     map['url'] = Variable<String>(url);
-    map['selected'] = Variable<bool>(selected);
     return map;
   }
 
@@ -46,7 +38,6 @@ class Node extends DataClass implements Insertable<Node> {
       id: Value(id),
       name: Value(name),
       url: Value(url),
-      selected: Value(selected),
     );
   }
 
@@ -57,7 +48,6 @@ class Node extends DataClass implements Insertable<Node> {
       id: serializer.fromJson<int>(json['id']),
       name: serializer.fromJson<String>(json['name']),
       url: serializer.fromJson<String>(json['url']),
-      selected: serializer.fromJson<bool>(json['selected']),
     );
   }
   @override
@@ -67,82 +57,69 @@ class Node extends DataClass implements Insertable<Node> {
       'id': serializer.toJson<int>(id),
       'name': serializer.toJson<String>(name),
       'url': serializer.toJson<String>(url),
-      'selected': serializer.toJson<bool>(selected),
     };
   }
 
-  Node copyWith({int? id, String? name, String? url, bool? selected}) => Node(
+  Node copyWith({int? id, String? name, String? url}) => Node(
         id: id ?? this.id,
         name: name ?? this.name,
         url: url ?? this.url,
-        selected: selected ?? this.selected,
       );
   @override
   String toString() {
     return (StringBuffer('Node(')
           ..write('id: $id, ')
           ..write('name: $name, ')
-          ..write('url: $url, ')
-          ..write('selected: $selected')
+          ..write('url: $url')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => $mrjf($mrjc(id.hashCode,
-      $mrjc(name.hashCode, $mrjc(url.hashCode, selected.hashCode))));
+  int get hashCode =>
+      $mrjf($mrjc(id.hashCode, $mrjc(name.hashCode, url.hashCode)));
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is Node &&
           other.id == this.id &&
           other.name == this.name &&
-          other.url == this.url &&
-          other.selected == this.selected);
+          other.url == this.url);
 }
 
 class NodesCompanion extends UpdateCompanion<Node> {
   final Value<int> id;
   final Value<String> name;
   final Value<String> url;
-  final Value<bool> selected;
   const NodesCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
     this.url = const Value.absent(),
-    this.selected = const Value.absent(),
   });
   NodesCompanion.insert({
     this.id = const Value.absent(),
     required String name,
     required String url,
-    this.selected = const Value.absent(),
   })  : name = Value(name),
         url = Value(url);
   static Insertable<Node> custom({
     Expression<int>? id,
     Expression<String>? name,
     Expression<String>? url,
-    Expression<bool>? selected,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (name != null) 'name': name,
       if (url != null) 'url': url,
-      if (selected != null) 'selected': selected,
     });
   }
 
   NodesCompanion copyWith(
-      {Value<int>? id,
-      Value<String>? name,
-      Value<String>? url,
-      Value<bool>? selected}) {
+      {Value<int>? id, Value<String>? name, Value<String>? url}) {
     return NodesCompanion(
       id: id ?? this.id,
       name: name ?? this.name,
       url: url ?? this.url,
-      selected: selected ?? this.selected,
     );
   }
 
@@ -158,9 +135,6 @@ class NodesCompanion extends UpdateCompanion<Node> {
     if (url.present) {
       map['url'] = Variable<String>(url.value);
     }
-    if (selected.present) {
-      map['selected'] = Variable<bool>(selected.value);
-    }
     return map;
   }
 
@@ -169,8 +143,7 @@ class NodesCompanion extends UpdateCompanion<Node> {
     return (StringBuffer('NodesCompanion(')
           ..write('id: $id, ')
           ..write('name: $name, ')
-          ..write('url: $url, ')
-          ..write('selected: $selected')
+          ..write('url: $url')
           ..write(')'))
         .toString();
   }
@@ -207,16 +180,8 @@ class $NodesTable extends Nodes with TableInfo<$NodesTable, Node> {
     );
   }
 
-  final VerificationMeta _selectedMeta = const VerificationMeta('selected');
   @override
-  late final GeneratedBoolColumn selected = _constructSelected();
-  GeneratedBoolColumn _constructSelected() {
-    return GeneratedBoolColumn('selected', $tableName, false,
-        defaultValue: const Constant(false));
-  }
-
-  @override
-  List<GeneratedColumn> get $columns => [id, name, url, selected];
+  List<GeneratedColumn> get $columns => [id, name, url];
   @override
   $NodesTable get asDslTable => this;
   @override
@@ -242,10 +207,6 @@ class $NodesTable extends Nodes with TableInfo<$NodesTable, Node> {
           _urlMeta, url.isAcceptableOrUnknown(data['url']!, _urlMeta));
     } else if (isInserting) {
       context.missing(_urlMeta);
-    }
-    if (data.containsKey('selected')) {
-      context.handle(_selectedMeta,
-          selected.isAcceptableOrUnknown(data['selected']!, _selectedMeta));
     }
     return context;
   }

@@ -52,6 +52,7 @@ dev_dependencies:
   build_runner: null
   envify_generator: ^2.0.0
   freezed: ^0.14.2
+  flutter_native_splash: ^1.1.8+4
   injectable_generator: ^1.4.1
   mocktail: ^0.1.4
   moor_generator: ^4.3.1
@@ -69,3 +70,16 @@ flutter:
   generate: true
   assets:
     - assets/svg/
+
+flutter_native_splash:
+
+  # This package generates native code to customize Flutter's default white native splash screen
+  # with background color and splash image.
+  # Customize the parameters below, and run the following command in the terminal:
+  # flutter pub run flutter_native_splash:create
+  # To restore Flutter's default white splash screen, run the following command in the terminal:
+  # flutter pub run flutter_native_splash:remove
+  color: "#ffffff"
+  image: assets/splash/light-splash.png
+  color_dark: "#222a3d"
+  image_dark: assets/splash/dark-splash.png

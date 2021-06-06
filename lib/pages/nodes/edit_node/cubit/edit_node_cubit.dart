@@ -21,7 +21,6 @@ class EditNodeCubit extends Cubit<EditNodeState> {
       name: Name.dirty(value: node.name),
       url: Url.dirty(value: node.url),
       id: node.id,
-      selected: node.selected,
       status: Formz.validate(<FormzInput>[state.name, state.url]),
     ));
   }
@@ -50,7 +49,6 @@ class EditNodeCubit extends Cubit<EditNodeState> {
         id: state.id!,
         name: state.name.value,
         url: state.url.value,
-        selected: state.selected,
       ));
     } else {
       await _nodeRepository.addNode(state.name.value, state.url.value,

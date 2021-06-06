@@ -1,6 +1,5 @@
 import 'package:hornet_node/repository/moor/database.dart';
 import 'package:injectable/injectable.dart';
-import 'package:moor/moor.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 abstract class NodeRepository {
@@ -28,9 +27,13 @@ class NodeRepositoryMoorImpl extends NodeRepository {
   final RxSharedPreferences _prefs;
 
   @override
-  Future<Node> addNode(String name, String url, {bool selected = false}) {
-    return _database.addNode(
-        NodesCompanion.insert(name: name, url: url, selected: Value(selected)));
+  Future<Node> addNode(String name, String url, {bool selected = false}) async {
+    var node =
+        await _database.addNode(NodesCompanion.insert(name: name, url: url));
+    if (selected) {
+      await _prefs.setInt(selectedNodeKey, node.id);
+    }
+    return node;
   }
 
   @override
@@ -87,12 +90,6 @@ class NodeRepositoryMoorImpl extends NodeRepository {
     } else {
       return false;
     }
-    // try {
-    //   await _database.findSelectedNode();
-    //   return true;
-    // } on Exception catch (_) {
-    //   return false;
-    // }
   }
 
   @override

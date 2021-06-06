@@ -42,30 +42,8 @@ class HornetNodeDB extends _$HornetNodeDB {
     return (select(nodes)..where((t) => t.id.equals(id))).getSingle();
   }
 
-  Stream<Node> findSelectedNodeStream() {
-    return (select(nodes)..where((t) => t.selected.equals(true))).watchSingle();
-  }
-
-  Future<Node?> findSelectedNode() {
-    return (select(nodes)..where((t) => t.selected.equals(true)))
-        .getSingleOrNull();
-  }
-
   Future updateNode(Node entry) {
     return update(nodes).replace(entry);
-  }
-
-  Future setSelectedNode(int id) async {
-    await (update(nodes)..where((t) => t.selected.equals(true))).write(
-      const NodesCompanion(
-        selected: Value(false),
-      ),
-    );
-    return (update(nodes)..where((t) => t.id.equals(id))).write(
-      const NodesCompanion(
-        selected: Value(true),
-      ),
-    );
   }
 
   Future deleteNode(int id) {
