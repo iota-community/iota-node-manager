@@ -49,7 +49,7 @@ class _EditNodePageState extends State<EditNodePage> {
           child: widget.id != null
               ? StreamBuilder(
                   stream: _nodeRepository.getNodeStream(widget.id!),
-                  builder: (context, AsyncSnapshot<Node> snapshot) {
+                  builder: (context, AsyncSnapshot<Node?> snapshot) {
                     if (snapshot.hasData) {
                       context
                           .read<EditNodeCubit>()

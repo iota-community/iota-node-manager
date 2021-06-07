@@ -34,12 +34,12 @@ class HornetNodeDB extends _$HornetNodeDB {
 
   Stream<List<Node>> get findAllStream => select(nodes).watch();
 
-  Stream<Node> findNodeStream(int id) {
-    return (select(nodes)..where((t) => t.id.equals(id))).watchSingle();
+  Stream<Node?> findNodeStream(int id) {
+    return (select(nodes)..where((t) => t.id.equals(id))).watchSingleOrNull();
   }
 
-  Future<Node> findNode(int id) {
-    return (select(nodes)..where((t) => t.id.equals(id))).getSingle();
+  Future<Node?> findNode(int? id) {
+    return (select(nodes)..where((t) => t.id.equals(id))).getSingleOrNull();
   }
 
   Future updateNode(Node entry) {

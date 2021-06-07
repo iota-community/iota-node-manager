@@ -15,7 +15,7 @@ class NodeCubit extends Cubit<NodeState> {
 
   final NodeRepository _nodeRepository;
   late StreamSubscription<List<Node>> _nodeStream;
-  late StreamSubscription<Node> _selectedNodeStream;
+  late StreamSubscription<Node?> _selectedNodeStream;
 
   Future<void> initState() async {
     var selectedNode = await _nodeRepository.getSelectedNode();

@@ -10,10 +10,10 @@ abstract class NodeRepository {
 
   Future<List<Node>> getNodes();
   Stream<List<Node>> getNodesStream();
-  Future<Node> getNode(int id);
-  Stream<Node> getNodeStream(int id);
+  Future<Node?> getNode(int id);
+  Stream<Node?> getNodeStream(int id);
   Future<Node?> getSelectedNode();
-  Stream<Node> getSelectedNodeStream();
+  Stream<Node?> getSelectedNodeStream();
   Future<bool> areNodesAvailable();
   Future<bool> isANodeSelected();
 }
@@ -42,7 +42,7 @@ class NodeRepositoryMoorImpl extends NodeRepository {
   }
 
   @override
-  Future<Node> getNode(int id) async {
+  Future<Node?> getNode(int id) async {
     return await _database.findNode(id);
   }
 
@@ -62,16 +62,13 @@ class NodeRepositoryMoorImpl extends NodeRepository {
   }
 
   @override
-  Stream<Node> getSelectedNodeStream() {
-    return _prefs
-        .getIntStream(selectedNodeKey)
-        .asyncMap((id) => _database.findNode(id!));
+  Stream<Node?> getSelectedNodeStream() {
+    return _prefs.getIntStream(selectedNodeKey).asyncMap(_database.findNode);
   }
 
   @override
   Future<void> setSelectedNode(int id) {
     return _prefs.setInt(selectedNodeKey, id);
-    // return _database.setSelectedNode(id);
   }
 
   @override
@@ -98,7 +95,7 @@ class NodeRepositoryMoorImpl extends NodeRepository {
   }
 
   @override
-  Stream<Node> getNodeStream(int id) {
+  Stream<Node?> getNodeStream(int id) {
     return _database.findNodeStream(id);
   }
 
