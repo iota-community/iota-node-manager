@@ -22,44 +22,67 @@ class NodeOverviewPage extends StatelessWidget {
                   itemCount: state.nodes.length,
                   itemBuilder: (context, index) {
                     var node = state.nodes[index];
-                    return Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(node.name,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .subtitle1),
-                                  Text(node.url,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1),
-                                ],
-                              ),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: Theme.of(context).accentColor,
+                    return Dismissible(
+                      key: Key(node.id.toString()),
+                      direction: DismissDirection.endToStart,
+                      onDismissed: (direction) async {
+                        await context.read<NodeCubit>().nodeRemoved(node);
+                        ScaffoldMessenger.of(context)
+                          ..hideCurrentSnackBar()
+                          ..showSnackBar(SnackBar(
+                              content: Text('${node.name} dismissed')));
+                      },
+                      background: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Container(
+                          alignment: Alignment.centerRight,
+                          padding: const EdgeInsets.only(right: 20.0),
+                          color: Colors.red,
+                          child: const Icon(
+                            Icons.delete,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(node.name,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .subtitle1),
+                                    Text(node.url,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1),
+                                  ],
                                 ),
-                                onPressed: () => AutoRouter.of(context)
-                                  ..push(
-                                    EditNodeRoute(id: node.id),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Theme.of(context).accentColor,
                                   ),
-                                child: Center(
-                                  child: Icon(
-                                    Icons.edit,
-                                    color: Theme.of(context).focusColor,
+                                  onPressed: () => AutoRouter.of(context)
+                                    ..push(
+                                      EditNodeRoute(id: node.id),
+                                    ),
+                                  child: Center(
+                                    child: Icon(
+                                      Icons.edit,
+                                      color: Theme.of(context).focusColor,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),

@@ -6,7 +6,7 @@ abstract class NodeRepository {
   Future<Node> addNode(String name, String url, {bool selected = false});
   Future<void> updateNode(Node node);
   Future<void> removeNode(int id);
-  Future<void> setSelectedNode(int id);
+  Future<void> setSelectedNode(int? id);
 
   Future<List<Node>> getNodes();
   Stream<List<Node>> getNodesStream();
@@ -67,7 +67,7 @@ class NodeRepositoryMoorImpl extends NodeRepository {
   }
 
   @override
-  Future<void> setSelectedNode(int id) {
+  Future<void> setSelectedNode(int? id) {
     return _prefs.setInt(selectedNodeKey, id);
   }
 

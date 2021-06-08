@@ -72,16 +72,24 @@ class NodeCubit extends Cubit<NodeState> {
   }
 
   Future<void> nodeRemoved(Node node) async {
-    await _nodeRepository.removeNode(node.id);
+    var selectedNode = await _nodeRepository.getSelectedNode();
     var nodes = await _nodeRepository.getNodes();
-    if (nodes.isNotEmpty) {
-      emit(
-        state.copyWith(nodes: nodes),
-      );
-    } else {
-      emit(
-        state.copyWith(nodes: nodes, status: NodeStatusEnum.noNodeAdded),
-      );
+
+    if (selectedNode?.id == node.id) {
+      selectedNode = nodes.firstWhereOrNull((element) => element.id != node.id);
+      if (selectedNode != null) {
+        await _nodeRepository.setSelectedNode(selectedNode.id);
+        await _nodeRepository.removeNode(node.id);
+        emit(
+          state.copyWith(nodes: nodes, selectedNode: selectedNode),
+        );
+      } else {
+        await _nodeRepository.setSelectedNode(null);
+        await _nodeRepository.removeNode(node.id);
+        emit(
+          state.copyWith(nodes: nodes, status: NodeStatusEnum.noNodeAdded),
+        );
+      }
     }
   }
 

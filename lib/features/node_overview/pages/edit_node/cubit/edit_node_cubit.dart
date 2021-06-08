@@ -54,5 +54,6 @@ class EditNodeCubit extends Cubit<EditNodeState> {
       await _nodeRepository.addNode(state.name.value, state.url.value,
           selected: true);
     }
+    emit(state.copyWith(status: FormzStatus.submissionSuccess));
   }
 }

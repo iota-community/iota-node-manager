@@ -49,6 +49,15 @@ class _EditNodePageState extends State<EditNodePage> {
                 );
             } else if (state.status.isSubmissionSuccess) {
               AutoRouter.of(context).pop();
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(
+                      duration: const Duration(seconds: 2),
+                      content: Text(widget.id != null
+                          ? 'Successfully updated'
+                          : 'Successfully added')),
+                );
             }
           },
           child: widget.id != null
@@ -83,7 +92,9 @@ class _EditNodePageState extends State<EditNodePage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'Edit your hornet node',
+                widget.id != null
+                    ? 'Edit your hornet node'
+                    : 'Add a new hornet node',
                 style: Theme.of(context).primaryTextTheme.headline5,
               ),
               _NameInput(),

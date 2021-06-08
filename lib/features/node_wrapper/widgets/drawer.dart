@@ -34,6 +34,7 @@ class CustomDrawer extends StatelessWidget {
               AutoRouter.of(context).push(
                 EditNodeRoute(),
               );
+              Scaffold.of(context).openEndDrawer();
             },
           ),
           const Divider(
@@ -45,6 +46,7 @@ class CustomDrawer extends StatelessWidget {
               AutoRouter.of(context).push(
                 const NodeOverviewRoute(),
               );
+              Scaffold.of(context).openEndDrawer();
             },
           ),
           const Divider(
