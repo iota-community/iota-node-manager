@@ -7,7 +7,7 @@
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hornet_node/app/app.dart';
-// import 'package:hornet_node/pages/counter/counter.dart';
+// import 'package:hornet_node/features/counter/counter.dart';
 
 void main() {
   group('App', () {

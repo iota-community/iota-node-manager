@@ -1,11 +1,11 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:hornet_node/app/app_wrapper_page.dart';
-import 'package:hornet_node/pages/explorer/explorer.dart';
-import 'package:hornet_node/pages/explorer/view/milestone_detail_page.dart';
-import 'package:hornet_node/pages/home/home.dart';
-import 'package:hornet_node/pages/nodes/edit_node/edit_node.dart';
-import 'package:hornet_node/pages/nodes/nodes.dart';
+import 'package:hornet_node/features/node_overview/node_overview.dart';
+import 'package:hornet_node/features/node_overview/pages/edit_node/edit_node.dart';
+import 'package:hornet_node/features/node_wrapper/pages/explorer/explorer.dart';
+import 'package:hornet_node/features/node_wrapper/pages/explorer/pages/message_page.dart';
+import 'package:hornet_node/features/node_wrapper/pages/home/home.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -59,7 +59,7 @@ import 'package:hornet_node/pages/nodes/nodes.dart';
               path: '',
               page: ExplorerPage,
             ),
-            AutoRoute(path: 'milestone/:messageId', page: MileStoneDetailPage),
+            AutoRoute(path: 'milestone/:messageId', page: MessagePage),
             RedirectRoute(path: '*', redirectTo: ''),
           ],
         ),
@@ -70,7 +70,7 @@ import 'package:hornet_node/pages/nodes/nodes.dart';
     AutoRoute(path: '/add', page: EditNodePage, name: 'AddNodeRoute'),
     AutoRoute(
       path: '/list',
-      page: NodesPage,
+      page: NodeOverviewPage,
     ),
     RedirectRoute(path: '*', redirectTo: '/'),
   ],

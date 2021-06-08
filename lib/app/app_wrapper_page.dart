@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hornet_node/app/cubit/node_cubit.dart';
-import 'package:hornet_node/app/initial_node/initial_node.dart';
-import 'package:hornet_node/app/node_wrapper/node_wrapper_page.dart';
-import 'package:hornet_node/pages/nodes/nodes.dart';
+import 'package:hornet_node/app/cubits/node_cubit/node_cubit.dart';
+import 'package:hornet_node/features/initial_node/initial_node.dart';
+import 'package:hornet_node/features/node_overview/node_overview.dart';
+import 'package:hornet_node/features/node_wrapper/node_wrapper_page.dart';
 
 class AppWrapperPage extends StatelessWidget {
   const AppWrapperPage({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class AppWrapperPage extends StatelessWidget {
         } else if (state.status == NodeStatusEnum.noNodeAdded) {
           return const InitialNodePage();
         } else if (state.status == NodeStatusEnum.noNodeSelected) {
-          return const NodesPage();
+          return const NodeOverviewPage();
         } else {
           context.read<NodeCubit>().initState();
           return const Center(

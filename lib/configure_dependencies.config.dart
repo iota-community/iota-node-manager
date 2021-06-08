@@ -10,14 +10,16 @@ import 'package:hive/hive.dart' as _i3;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:rx_shared_preferences/rx_shared_preferences.dart' as _i8;
 
-import 'app/cubit/node_cubit.dart' as _i15;
-import 'app/initial_node/cubit/initial_node_cubit.dart' as _i13;
+import 'app/cubits/node_cubit/node_cubit.dart' as _i15;
 import 'endpoints/hornet/hornet_node_dio_rest_client.dart' as _i7;
 import 'endpoints/hornet/hornet_node_rest_client.dart' as _i6;
-import 'pages/explorer/cubit/milestones_cubit.dart' as _i14;
-import 'pages/home/cubit/health_cubit.dart' as _i11;
-import 'pages/home/cubit/info_cubit.dart' as _i12;
-import 'pages/nodes/edit_node/cubit/edit_node_cubit.dart' as _i10;
+import 'features/initial_node/cubit/initial_node_cubit.dart' as _i13;
+import 'features/node_overview/pages/edit_node/cubit/edit_node_cubit.dart'
+    as _i10;
+import 'features/node_wrapper/cubits/health_cubit/health_cubit.dart' as _i11;
+import 'features/node_wrapper/cubits/info_cubit/info_cubit.dart' as _i12;
+import 'features/node_wrapper/cubits/milestones_cubit/milestones_cubit.dart'
+    as _i14;
 import 'register_module.dart' as _i16;
 import 'repository/moor/database.dart' as _i5;
 import 'repository/node_repository.dart'

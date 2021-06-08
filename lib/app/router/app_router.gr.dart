@@ -7,11 +7,12 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import '../../pages/explorer/explorer.dart' as _i7;
-import '../../pages/explorer/view/milestone_detail_page.dart' as _i8;
-import '../../pages/home/home.dart' as _i6;
-import '../../pages/nodes/edit_node/edit_node.dart' as _i4;
-import '../../pages/nodes/nodes.dart' as _i5;
+import '../../features/node_overview/node_overview.dart' as _i5;
+import '../../features/node_overview/pages/edit_node/edit_node.dart' as _i4;
+import '../../features/node_wrapper/pages/explorer/explorer.dart' as _i7;
+import '../../features/node_wrapper/pages/explorer/pages/message_page.dart'
+    as _i8;
+import '../../features/node_wrapper/pages/home/home.dart' as _i6;
 import '../app_wrapper_page.dart' as _i3;
 
 class AppRouter extends _i1.RootStackRouter {
@@ -41,10 +42,10 @@ class AppRouter extends _i1.RootStackRouter {
               orElse: () => AddNodeRouteArgs(id: pathParams.optInt('id')));
           return _i4.EditNodePage(key: args.key, id: args.id);
         }),
-    NodesRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+    NodeOverviewRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i5.NodesPage();
+          return const _i5.NodeOverviewPage();
         }),
     HomeRouter.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -66,15 +67,14 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i7.ExplorerPage();
         }),
-    MileStoneDetailRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+    MessageRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
           final pathParams = data.pathParams;
-          final args = data.argsAs<MileStoneDetailRouteArgs>(
-              orElse: () => MileStoneDetailRouteArgs(
+          final args = data.argsAs<MessageRouteArgs>(
+              orElse: () => MessageRouteArgs(
                   messageId: pathParams.getString('messageId')));
-          return _i8.MileStoneDetailPage(
-              key: args.key, messageId: args.messageId);
+          return _i8.MessagePage(key: args.key, messageId: args.messageId);
         })
   };
 
@@ -88,8 +88,7 @@ class AppRouter extends _i1.RootStackRouter {
           ]),
           _i1.RouteConfig(ExplorerRouter.name, path: 'explorer', children: [
             _i1.RouteConfig(ExplorerRoute.name, path: ''),
-            _i1.RouteConfig(MileStoneDetailRoute.name,
-                path: 'milestone/:messageId'),
+            _i1.RouteConfig(MessageRoute.name, path: 'milestone/:messageId'),
             _i1.RouteConfig('*#redirect',
                 path: '*', redirectTo: '', fullMatch: true)
           ]),
@@ -98,7 +97,7 @@ class AppRouter extends _i1.RootStackRouter {
         ]),
         _i1.RouteConfig(EditNodeRoute.name, path: '/edit/:uuid'),
         _i1.RouteConfig(AddNodeRoute.name, path: '/add'),
-        _i1.RouteConfig(NodesRoute.name, path: '/list'),
+        _i1.RouteConfig(NodeOverviewRoute.name, path: '/list'),
         _i1.RouteConfig('*#redirect',
             path: '*', redirectTo: '/', fullMatch: true)
       ];
@@ -144,10 +143,10 @@ class AddNodeRouteArgs {
   final int? id;
 }
 
-class NodesRoute extends _i1.PageRouteInfo {
-  const NodesRoute() : super(name, path: '/list');
+class NodeOverviewRoute extends _i1.PageRouteInfo {
+  const NodeOverviewRoute() : super(name, path: '/list');
 
-  static const String name = 'NodesRoute';
+  static const String name = 'NodeOverviewRoute';
 }
 
 class HomeRouter extends _i1.PageRouteInfo {
@@ -176,18 +175,18 @@ class ExplorerRoute extends _i1.PageRouteInfo {
   static const String name = 'ExplorerRoute';
 }
 
-class MileStoneDetailRoute extends _i1.PageRouteInfo<MileStoneDetailRouteArgs> {
-  MileStoneDetailRoute({_i2.Key? key, required String messageId})
+class MessageRoute extends _i1.PageRouteInfo<MessageRouteArgs> {
+  MessageRoute({_i2.Key? key, required String messageId})
       : super(name,
             path: 'milestone/:messageId',
-            args: MileStoneDetailRouteArgs(key: key, messageId: messageId),
+            args: MessageRouteArgs(key: key, messageId: messageId),
             rawPathParams: {'messageId': messageId});
 
-  static const String name = 'MileStoneDetailRoute';
+  static const String name = 'MessageRoute';
 }
 
-class MileStoneDetailRouteArgs {
-  const MileStoneDetailRouteArgs({this.key, required this.messageId});
+class MessageRouteArgs {
+  const MessageRouteArgs({this.key, required this.messageId});
 
   final _i2.Key? key;
 
