@@ -7,6 +7,10 @@ import 'package:formz/formz.dart';
 import 'package:hornet_node/features/initial_node/initial_node.dart';
 import 'package:hornet_node/app/cubits/node_cubit/node_cubit.dart';
 
+part '../widgets/save_button.dart';
+part '../widgets/url_input.dart';
+part '../widgets/name_input.dart';
+
 class InitialNodePage extends StatelessWidget {
   const InitialNodePage({Key? key}) : super(key: key);
 
@@ -64,91 +68,6 @@ class InitialNodePage extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _NameInput extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<InitialNodeCubit, InitialNodeState>(
-      buildWhen: (previous, current) => previous.name != current.name,
-      builder: (context, state) {
-        return Padding(
-          padding: const EdgeInsets.only(left: 30.0, right: 30.0, top: 10),
-          child: TextField(
-            key: const Key('addNodeForm_nameInput_textField'),
-            onChanged: (name) =>
-                context.read<InitialNodeCubit>().nameChanged(name),
-            keyboardType: TextInputType.text,
-            decoration: InputDecoration(
-              labelText: 'Name',
-              helperText: '',
-              errorText: state.name.invalid ? 'invalid name' : null,
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class _UrlInput extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<InitialNodeCubit, InitialNodeState>(
-      buildWhen: (previous, current) => previous.url != current.url,
-      builder: (context, state) {
-        return Padding(
-          padding: const EdgeInsets.only(left: 30.0, right: 30.0),
-          child: TextField(
-            key: const Key('addNodeForm_urlInput_textField'),
-            keyboardType: TextInputType.url,
-            onChanged: (url) =>
-                context.read<InitialNodeCubit>().urlChanged(url),
-            decoration: InputDecoration(
-              labelText: 'Url',
-              helperText: 'Example: https://iota.node.de',
-              errorText: state.url.invalid ? 'invalid url' : null,
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class _SaveButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<InitialNodeCubit, InitialNodeState>(
-      buildWhen: (previous, current) => previous.status != current.status,
-      builder: (context, state) {
-        return state.status.isSubmissionInProgress
-            ? const CircularProgressIndicator()
-            : Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                child: ElevatedButton(
-                  key: const Key('addNodeForm_continue_raisedButton'),
-                  style: ElevatedButton.styleFrom(
-                    primary: Theme.of(context).accentColor,
-                  ),
-                  onPressed: state.status.isValidated
-                      ? () => context.read<InitialNodeCubit>().saveNode()
-                      : null,
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: Center(
-                      child: Text(
-                        'ADD',
-                        style: TextStyle(
-                            color: ThemeHelper.of(context).blackOrWhite),
-                      ),
-                    ),
-                  ),
-                ),
-              );
-      },
     );
   }
 }

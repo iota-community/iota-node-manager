@@ -1,15 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:hornet_node/features/node_wrapper/pages/home/widgets/card_widget.dart';
-import 'package:hornet_node/models/hornet/info/info.dart';
+part of '../view/home_page.dart';
 
-class PruningCard extends StatelessWidget {
-  const PruningCard({Key? key, required this.info}) : super(key: key);
+class _PruningCard extends StatelessWidget {
+  const _PruningCard({Key? key, required this.info}) : super(key: key);
 
   final Info info;
 
   @override
   Widget build(BuildContext context) {
-    return HomeCardWidget(
+    return _HomeCardWidget(
       height: 100.0,
       child: Padding(
         padding: const EdgeInsets.all(15.0),

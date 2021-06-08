@@ -4,7 +4,7 @@ import 'package:hornet_node/app/app_wrapper_page.dart';
 import 'package:hornet_node/features/node_overview/node_overview.dart';
 import 'package:hornet_node/features/node_overview/pages/edit_node/edit_node.dart';
 import 'package:hornet_node/features/node_wrapper/pages/explorer/explorer.dart';
-import 'package:hornet_node/features/node_wrapper/pages/explorer/pages/message_page.dart';
+import 'package:hornet_node/features/node_wrapper/pages/explorer/pages/message/message_page.dart';
 import 'package:hornet_node/features/node_wrapper/pages/home/home.dart';
 
 @MaterialAutoRouter(

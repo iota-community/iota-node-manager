@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+part of '../view/home_page.dart';
 
-class HomeCardWidget extends StatelessWidget {
-  const HomeCardWidget({
+class _HomeCardWidget extends StatelessWidget {
+  const _HomeCardWidget({
     Key? key,
     required this.child,
     this.height,

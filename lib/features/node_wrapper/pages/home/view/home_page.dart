@@ -5,11 +5,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hornet_node/app/themes/custom_themes.dart';
 import 'package:hornet_node/features/node_wrapper/cubits/health_cubit/health_cubit.dart';
 import 'package:hornet_node/features/node_wrapper/cubits/info_cubit/info_cubit.dart';
-import 'package:hornet_node/features/node_wrapper/pages/home/widgets/features_card.dart';
-import 'package:hornet_node/features/node_wrapper/pages/home/widgets/messages_card.dart';
-import 'package:hornet_node/features/node_wrapper/pages/home/widgets/milestones_card.dart';
-import 'package:hornet_node/features/node_wrapper/pages/home/widgets/pruning_card.dart';
-import 'package:hornet_node/features/node_wrapper/pages/home/widgets/title_card.dart';
+import 'package:hornet_node/models/hornet/info/info.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+part '../widgets/features_card.dart';
+part '../widgets/messages_card.dart';
+part '../widgets/milestones_card.dart';
+part '../widgets/pruning_card.dart';
+part '../widgets/title_card.dart';
+part '../widgets/card_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -56,11 +60,11 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Column(
                       children: [
-                        TitleCard(info: info),
-                        MilestoneCard(info: info),
-                        MessagesCard(info: info),
-                        PruningCard(info: info),
-                        FeaturesCard(info: info)
+                        _TitleCard(info: info),
+                        _MilestoneCard(info: info),
+                        _MessagesCard(info: info),
+                        _PruningCard(info: info),
+                        _FeaturesCard(info: info)
                       ],
                     ),
                   ],

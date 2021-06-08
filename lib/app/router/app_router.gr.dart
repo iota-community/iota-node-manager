@@ -10,7 +10,7 @@ import 'package:flutter/material.dart' as _i2;
 import '../../features/node_overview/node_overview.dart' as _i5;
 import '../../features/node_overview/pages/edit_node/edit_node.dart' as _i4;
 import '../../features/node_wrapper/pages/explorer/explorer.dart' as _i7;
-import '../../features/node_wrapper/pages/explorer/pages/message_page.dart'
+import '../../features/node_wrapper/pages/explorer/pages/message/message_page.dart'
     as _i8;
 import '../../features/node_wrapper/pages/home/home.dart' as _i6;
 import '../app_wrapper_page.dart' as _i3;
