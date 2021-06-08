@@ -26,7 +26,7 @@ class NodeOverviewPage extends StatelessWidget {
                       key: Key(node.id.toString()),
                       direction: DismissDirection.endToStart,
                       onDismissed: (direction) async {
-                        await context.read<NodeCubit>().nodeRemoved(node);
+                        await context.read<NodeCubit>().nodeRemoved(node.id);
                         ScaffoldMessenger.of(context)
                           ..hideCurrentSnackBar()
                           ..showSnackBar(SnackBar(

@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hornet_node/app/cubits/node_cubit/node_cubit.dart';
+import 'package:hornet_node/app/themes/custom_themes.dart';
 import 'package:hornet_node/configure_dependencies.dart';
 import 'package:formz/formz.dart';
 import 'package:hornet_node/repository/moor/database.dart';
@@ -101,7 +103,7 @@ class _EditNodePageState extends State<EditNodePage> {
               const SizedBox(height: 8.0),
               _UrlInput(),
               const SizedBox(height: 8.0),
-              _SaveButton(id: widget.id),
+              _Buttons(id: widget.id),
               const SizedBox(height: 8.0),
             ],
           ),
