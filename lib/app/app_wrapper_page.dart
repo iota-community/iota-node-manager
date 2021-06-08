@@ -1,53 +1,29 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:hornet_node/app/router/app_router.gr.dart';
-import 'package:hornet_node/l10n/l10n.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hornet_node/app/cubits/node_cubit/node_cubit.dart';
+import 'package:hornet_node/features/initial_node/initial_node.dart';
+import 'package:hornet_node/features/node_overview/node_overview.dart';
+import 'package:hornet_node/features/node_wrapper/node_wrapper_page.dart';
 
 class AppWrapperPage extends StatelessWidget {
   const AppWrapperPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
-
-    return AutoTabsScaffold(
-      appBarBuilder: (context, tabsRouter) {
-        return AppBar(
-          title: Text(context.topRoute.name),
-          leading: const AutoBackButton(),
-        );
-      },
-      routes: [
-        const HomeRouter(),
-        const AnalyticsRouter(),
-        const PeersRouter(),
-        const ExplorerRouter(),
-      ],
-      bottomNavigationBuilder: (_, tabsRouter) {
-        return BottomNavigationBar(
-          currentIndex: tabsRouter.activeIndex,
-          onTap: tabsRouter.setActiveIndex,
-          items: [
-            const BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home_outlined,
-              ),
-              label: 'Home',
-            ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.analytics_outlined),
-              label: 'Analytics',
-            ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.account_tree_outlined),
-              label: 'Peers',
-            ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.explore_outlined),
-              label: 'Explorer',
-            ),
-          ],
-        );
+    return BlocBuilder<NodeCubit, NodeState>(
+      builder: (context, state) {
+        if (state.status == NodeStatusEnum.nodeSelected) {
+          return const NodeWrapperPage();
+        } else if (state.status == NodeStatusEnum.noNodeAdded) {
+          return const InitialNodePage();
+        } else if (state.status == NodeStatusEnum.noNodeSelected) {
+          return const NodeOverviewPage();
+        } else {
+          context.read<NodeCubit>().initState();
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
       },
     );
   }

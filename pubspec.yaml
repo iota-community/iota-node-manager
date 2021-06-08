@@ -1,5 +1,5 @@
 name: hornet_node
-description: A new Flutter project.
+description: Hornet Node Manager
 version: 1.0.0+1
 publish_to: none
 
@@ -14,29 +14,47 @@ dependencies:
   auto_route: ^2.2.0
   bloc: ^7.0.0
   envify: ^2.0.0
-  flutter_bloc: ^7.0.0
+  flutter_bloc: ^7.0.1
+  flutter_svg: ^0.22.0
+  formz: ^0.4.0
   freezed_annotation: ^0.14.2
+  get_it: ^7.1.3
   hive: ^2.0.4
   hive_flutter: ^1.0.0
+  hive_generator: ^1.1.0
+  http: ^0.13.3
+  injectable: ^1.4.1
   intl: ^0.17.0
-  json_serializable: ^4.1.2
-  retrofit: ^2.0.0-beta1
+  json_serializable: ^4.1.3
+  moor: ^4.3.2
+  path: ^1.8.0
+  path_provider: ^2.0.2
+  responsive_builder: ^0.4.1
+  responsive_framework: ^0.1.0
+  retrofit: ^2.0.0-beta3
+  rx_shared_preferences: ^2.1.0
+  sqlite3_flutter_libs: ^0.5.0
+  uuid: ^3.0.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  auto_route_generator: ^2.1.0
-  bloc_test: ^8.0.0
-  build_runner:
-  envify_generator: ^2.0.0
-  freezed: ^0.14.2
-  mocktail: ^0.1.2
   retrofit_generator:
     git:
       url: https://github.com/trevorwang/retrofit.dart.git
       path: generator
       ref: master
-  very_good_analysis: ^2.0.3
+  auto_route_generator: ^2.1.0
+  bloc_test: ^8.0.1
+  build_runner: null
+  envify_generator: ^2.0.0
+  flutter_launcher_icons: ^0.9.0
+  flutter_native_splash: ^1.1.8+4
+  freezed: ^0.14.2
+  injectable_generator: ^1.4.1
+  mocktail: ^0.1.4
+  moor_generator: ^4.3.1
+  very_good_analysis: ^2.1.1
 
 dependency_overrides:
   retrofit:
@@ -48,3 +66,15 @@ dependency_overrides:
 flutter:
   uses-material-design: true
   generate: true
+  assets:
+    - assets/svg/
+
+flutter_native_splash:
+  # Customize the parameters below, and run the following command in the terminal:
+  # flutter pub run flutter_native_splash:create
+  # To restore Flutter's default white splash screen, run the following command in the terminal:
+  # flutter pub run flutter_native_splash:remove
+  color: "#ffffff"
+  image: assets/splash/light-splash.png
+  color_dark: "#222a3d"
+  image_dark: assets/splash/dark-splash.png
