@@ -90,7 +90,7 @@ class _MessagePageState extends State<MessagePage> {
                   FutureBuilder(
                     future: _hornetNodeRestClient.messageChildren(
                         selectedNode.url,
-                        selectedNode.jwtToken!,
+                        'Bearer ${selectedNode.jwtToken!}',
                         widget.messageId),
                     builder:
                         (context, AsyncSnapshot<MessageChildren> snapshot) {
@@ -111,7 +111,7 @@ class _MessagePageState extends State<MessagePage> {
                   FutureBuilder(
                     future: _hornetNodeRestClient.messageMetadata(
                         selectedNode.url,
-                        selectedNode.jwtToken!,
+                        'Bearer ${selectedNode.jwtToken!}',
                         widget.messageId),
                     builder:
                         (context, AsyncSnapshot<MessageMetadata> snapshot) {
