@@ -10,6 +10,7 @@ import 'package:hornet_node/app/cubits/node_cubit/node_cubit.dart';
 part '../widgets/save_button.dart';
 part '../widgets/url_input.dart';
 part '../widgets/name_input.dart';
+part '../widgets/jwt_input.dart';
 
 class InitialNodePage extends StatelessWidget {
   const InitialNodePage({Key? key}) : super(key: key);
@@ -54,6 +55,8 @@ class InitialNodePage extends StatelessWidget {
                   _NameInput(),
                   const SizedBox(height: 8.0),
                   _UrlInput(),
+                  const SizedBox(height: 8.0),
+                  _JwtInput(),
                   const SizedBox(height: 8.0),
                   _SaveButton(),
                   const SizedBox(height: 8.0),

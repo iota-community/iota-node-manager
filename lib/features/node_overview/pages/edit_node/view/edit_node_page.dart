@@ -13,6 +13,7 @@ import '../edit_node.dart';
 part '../widgets/save_button.dart';
 part '../widgets/url_input.dart';
 part '../widgets/name_input.dart';
+part '../widgets/jwt_input.dart';
 
 class EditNodePage extends StatefulWidget {
   const EditNodePage({
@@ -102,6 +103,8 @@ class _EditNodePageState extends State<EditNodePage> {
               _NameInput(),
               const SizedBox(height: 8.0),
               _UrlInput(),
+              const SizedBox(height: 8.0),
+              _JwtInput(),
               const SizedBox(height: 8.0),
               _Buttons(id: widget.id),
               const SizedBox(height: 8.0),

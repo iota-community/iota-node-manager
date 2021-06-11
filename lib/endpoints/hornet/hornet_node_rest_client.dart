@@ -8,21 +8,24 @@ import 'package:hornet_node/models/hornet/treasury/treasury.dart';
 import 'package:retrofit/retrofit.dart';
 
 abstract class HornetNodeRestClient {
-  Future<Info> info(String baseUrl);
+  Future<Info> info(String baseUrl, String jwtToken);
 
-  Future<Tips> tips(String baseUrl);
+  Future<Tips> tips(String baseUrl, String jwtToken);
 
-  Future<Treasury> treasury(String baseUrl);
+  Future<Treasury> treasury(String baseUrl, String jwtToken);
 
-  Future<HttpResponse<void>> health(String baseUrl);
+  Future<HttpResponse<void>> health(String baseUrl, String jwtToken);
 
-  Future<Milestone> milestone(String baseUrl, int index);
+  Future<Milestone> milestone(String baseUrl, String jwtToken, int index);
 
-  Future<Message> message(String baseUrl, String messageId);
+  Future<Message> message(String baseUrl, String jwtToken, String messageId);
 
-  Future<MessageMetadata> messageMetadata(String baseUrl, String messageId);
+  Future<MessageMetadata> messageMetadata(
+      String baseUrl, String jwtToken, String messageId);
 
-  Future<MessageChildren> messageChildren(String baseUrl, String messageId);
+  Future<MessageChildren> messageChildren(
+      String baseUrl, String jwtToken, String messageId);
 
-  Future<List<int>> messageRaw(String baseUrl, String messageId);
+  Future<List<int>> messageRaw(
+      String baseUrl, String jwtToken, String messageId);
 }

@@ -20,44 +20,51 @@ abstract class HornetNodeDioRestClientImpl extends HornetNodeRestClient {
 
   @override
   @GET('{baseUrl}/api/v1/info')
-  Future<Info> info(@Path() String baseUrl);
+  Future<Info> info(
+      @Path() String baseUrl, @Header('Authorization') String jwtToken);
 
   @override
   @GET('{baseUrl}/api/v1/tips')
-  Future<Tips> tips(@Path() String baseUrl);
+  Future<Tips> tips(
+      @Path() String baseUrl, @Header('Authorization') String jwtToken);
 
   @override
   @GET('{baseUrl}/api/v1/treasury')
-  Future<Treasury> treasury(@Path() String baseUrl);
+  Future<Treasury> treasury(
+      @Path() String baseUrl, @Header('Authorization') String jwtToken);
 
   @override
   @GET('{baseUrl}/health')
-  Future<HttpResponse<void>> health(@Path() String baseUrl);
+  Future<HttpResponse<void>> health(
+      @Path() String baseUrl, @Header('Authorization') String jwtToken);
 
   @override
   @GET('{baseUrl}/api/v1/milestones/{index}')
-  Future<Milestone> milestone(@Path() String baseUrl, @Path() int index);
+  Future<Milestone> milestone(@Path() String baseUrl,
+      @Header('Authorization') String jwtToken, @Path() int index);
 
   @override
   @GET('{baseUrl}/api/v1/messages/{messageId}')
-  Future<Message> message(@Path() String baseUrl, @Path() String messageId);
+  Future<Message> message(@Path() String baseUrl,
+      @Header('Authorization') String jwtToken, @Path() String messageId);
 
   @override
   @GET('{baseUrl}/api/v1/messages/{messageId}/metadata')
-  Future<MessageMetadata> messageMetadata(
-      @Path() String baseUrl, @Path() String messageId);
+  Future<MessageMetadata> messageMetadata(@Path() String baseUrl,
+      @Path() String jwtToken, @Path() String messageId);
 
   @override
   @GET('{baseUrl}/api/v1/messages/{messageId}/children')
-  Future<MessageChildren> messageChildren(
-      @Path() String baseUrl, @Path() String messageId);
+  Future<MessageChildren> messageChildren(@Path() String baseUrl,
+      @Path() String jwtToken, @Path() String messageId);
 
   @override
   @GET('{baseUrl}/api/v1/messages/{messageId}/raw')
   @Headers(<String, dynamic>{
     'Content-Type': 'application/octet-stream',
+    'Authorization': '{jwtToken}'
   })
   @DioResponseType(ResponseType.bytes)
-  Future<List<int>> messageRaw(
-      @Path() String baseUrl, @Path() String messageId);
+  Future<List<int>> messageRaw(@Path() String baseUrl,
+      @Header('Authorization') String jwtToken, @Path() String messageId);
 }

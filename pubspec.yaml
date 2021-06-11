@@ -45,7 +45,7 @@ dev_dependencies:
       path: generator
       ref: master
   auto_route_generator: ^2.1.0
-  bloc_test: ^8.0.1
+  bloc_test: ^8.0.2
   build_runner: null
   envify_generator: ^2.0.0
   flutter_launcher_icons: ^0.9.0
@@ -54,6 +54,7 @@ dev_dependencies:
   injectable_generator: ^1.4.1
   mocktail: ^0.1.4
   moor_generator: ^4.3.1
+  remove_from_coverage: ^2.0.0
   very_good_analysis: ^2.1.1
 
 dependency_overrides:

@@ -3,6 +3,7 @@ import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hornet_node/repository/moor/database.dart';
 import 'package:hornet_node/repository/node_repository.dart';
+import 'package:hornet_node/utils/formz/jwt.dart';
 import 'package:hornet_node/utils/formz/name.dart';
 import 'package:hornet_node/utils/formz/url.dart';
 import 'package:injectable/injectable.dart';
@@ -20,8 +21,9 @@ class EditNodeCubit extends Cubit<EditNodeState> {
     emit(state.copyWith(
       name: Name.dirty(value: node.name),
       url: Url.dirty(value: node.url),
+      jwt: Jwt.dirty(value: node.jwtToken ?? ''),
       id: node.id,
-      status: Formz.validate(<FormzInput>[state.name, state.url]),
+      status: Formz.validate(<FormzInput>[state.name, state.jwt, state.url]),
     ));
   }
 
@@ -29,7 +31,15 @@ class EditNodeCubit extends Cubit<EditNodeState> {
     final name = Name.dirty(value: value);
     emit(state.copyWith(
       name: Name.dirty(value: value),
-      status: Formz.validate(<FormzInput>[name, state.url]),
+      status: Formz.validate(<FormzInput>[name, state.jwt, state.url]),
+    ));
+  }
+
+  void jwtChanged(String value) {
+    final jwt = Jwt.dirty(value: value);
+    emit(state.copyWith(
+      jwt: Jwt.dirty(value: value),
+      status: Formz.validate(<FormzInput>[jwt, state.name, state.url]),
     ));
   }
 
@@ -37,7 +47,7 @@ class EditNodeCubit extends Cubit<EditNodeState> {
     final url = Url.dirty(value: value);
     emit(state.copyWith(
       url: Url.dirty(value: value),
-      status: Formz.validate(<FormzInput>[state.name, url]),
+      status: Formz.validate(<FormzInput>[state.name, state.jwt, url]),
     ));
   }
 
@@ -49,9 +59,11 @@ class EditNodeCubit extends Cubit<EditNodeState> {
         id: state.id!,
         name: state.name.value,
         url: state.url.value,
+        jwtToken: state.jwt.value,
       ));
     } else {
-      await _nodeRepository.addNode(state.name.value, state.url.value,
+      await _nodeRepository.addNode(
+          state.name.value, state.url.value, state.jwt.value,
           selected: true);
     }
     emit(state.copyWith(status: FormzStatus.submissionSuccess));

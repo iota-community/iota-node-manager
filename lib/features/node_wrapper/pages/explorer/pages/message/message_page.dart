@@ -62,8 +62,8 @@ class _MessagePageState extends State<MessagePage> {
                 shrinkWrap: true,
                 children: [
                   FutureBuilder(
-                    future: _hornetNodeRestClient.message(
-                        selectedNode.url, widget.messageId),
+                    future: _hornetNodeRestClient.message(selectedNode.url,
+                        'Bearer ${selectedNode.jwtToken!}', widget.messageId),
                     builder: (context, AsyncSnapshot<Message> snapshot) {
                       if (snapshot.hasData) {
                         var messageData = snapshot.data!.data;
@@ -89,7 +89,9 @@ class _MessagePageState extends State<MessagePage> {
                   ),
                   FutureBuilder(
                     future: _hornetNodeRestClient.messageChildren(
-                        selectedNode.url, widget.messageId),
+                        selectedNode.url,
+                        selectedNode.jwtToken!,
+                        widget.messageId),
                     builder:
                         (context, AsyncSnapshot<MessageChildren> snapshot) {
                       if (snapshot.hasData) {
@@ -108,7 +110,9 @@ class _MessagePageState extends State<MessagePage> {
                   ),
                   FutureBuilder(
                     future: _hornetNodeRestClient.messageMetadata(
-                        selectedNode.url, widget.messageId),
+                        selectedNode.url,
+                        selectedNode.jwtToken!,
+                        widget.messageId),
                     builder:
                         (context, AsyncSnapshot<MessageMetadata> snapshot) {
                       if (snapshot.hasData) {

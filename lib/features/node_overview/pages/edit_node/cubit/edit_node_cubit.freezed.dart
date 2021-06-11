@@ -19,12 +19,14 @@ class _$EditNodeStateTearOff {
   _EditNodeState call(
       {required Name name,
       required Url url,
+      required Jwt jwt,
       required FormzStatus status,
       required int? id,
       required bool selected}) {
     return _EditNodeState(
       name: name,
       url: url,
+      jwt: jwt,
       status: status,
       id: id,
       selected: selected,
@@ -39,6 +41,7 @@ const $EditNodeState = _$EditNodeStateTearOff();
 mixin _$EditNodeState {
   Name get name => throw _privateConstructorUsedError;
   Url get url => throw _privateConstructorUsedError;
+  Jwt get jwt => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
   int? get id => throw _privateConstructorUsedError;
   bool get selected => throw _privateConstructorUsedError;
@@ -53,7 +56,13 @@ abstract class $EditNodeStateCopyWith<$Res> {
   factory $EditNodeStateCopyWith(
           EditNodeState value, $Res Function(EditNodeState) then) =
       _$EditNodeStateCopyWithImpl<$Res>;
-  $Res call({Name name, Url url, FormzStatus status, int? id, bool selected});
+  $Res call(
+      {Name name,
+      Url url,
+      Jwt jwt,
+      FormzStatus status,
+      int? id,
+      bool selected});
 }
 
 /// @nodoc
@@ -69,6 +78,7 @@ class _$EditNodeStateCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? url = freezed,
+    Object? jwt = freezed,
     Object? status = freezed,
     Object? id = freezed,
     Object? selected = freezed,
@@ -82,6 +92,10 @@ class _$EditNodeStateCopyWithImpl<$Res>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as Url,
+      jwt: jwt == freezed
+          ? _value.jwt
+          : jwt // ignore: cast_nullable_to_non_nullable
+              as Jwt,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -105,7 +119,13 @@ abstract class _$EditNodeStateCopyWith<$Res>
           _EditNodeState value, $Res Function(_EditNodeState) then) =
       __$EditNodeStateCopyWithImpl<$Res>;
   @override
-  $Res call({Name name, Url url, FormzStatus status, int? id, bool selected});
+  $Res call(
+      {Name name,
+      Url url,
+      Jwt jwt,
+      FormzStatus status,
+      int? id,
+      bool selected});
 }
 
 /// @nodoc
@@ -123,6 +143,7 @@ class __$EditNodeStateCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? url = freezed,
+    Object? jwt = freezed,
     Object? status = freezed,
     Object? id = freezed,
     Object? selected = freezed,
@@ -136,6 +157,10 @@ class __$EditNodeStateCopyWithImpl<$Res>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as Url,
+      jwt: jwt == freezed
+          ? _value.jwt
+          : jwt // ignore: cast_nullable_to_non_nullable
+              as Jwt,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -158,6 +183,7 @@ class _$_EditNodeState implements _EditNodeState {
   const _$_EditNodeState(
       {required this.name,
       required this.url,
+      required this.jwt,
       required this.status,
       required this.id,
       required this.selected});
@@ -167,6 +193,8 @@ class _$_EditNodeState implements _EditNodeState {
   @override
   final Url url;
   @override
+  final Jwt jwt;
+  @override
   final FormzStatus status;
   @override
   final int? id;
@@ -175,7 +203,7 @@ class _$_EditNodeState implements _EditNodeState {
 
   @override
   String toString() {
-    return 'EditNodeState(name: $name, url: $url, status: $status, id: $id, selected: $selected)';
+    return 'EditNodeState(name: $name, url: $url, jwt: $jwt, status: $status, id: $id, selected: $selected)';
   }
 
   @override
@@ -186,6 +214,8 @@ class _$_EditNodeState implements _EditNodeState {
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.url, url) ||
                 const DeepCollectionEquality().equals(other.url, url)) &&
+            (identical(other.jwt, jwt) ||
+                const DeepCollectionEquality().equals(other.jwt, jwt)) &&
             (identical(other.status, status) ||
                 const DeepCollectionEquality().equals(other.status, status)) &&
             (identical(other.id, id) ||
@@ -200,6 +230,7 @@ class _$_EditNodeState implements _EditNodeState {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(url) ^
+      const DeepCollectionEquality().hash(jwt) ^
       const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(selected);
@@ -214,6 +245,7 @@ abstract class _EditNodeState implements EditNodeState {
   const factory _EditNodeState(
       {required Name name,
       required Url url,
+      required Jwt jwt,
       required FormzStatus status,
       required int? id,
       required bool selected}) = _$_EditNodeState;
@@ -222,6 +254,8 @@ abstract class _EditNodeState implements EditNodeState {
   Name get name => throw _privateConstructorUsedError;
   @override
   Url get url => throw _privateConstructorUsedError;
+  @override
+  Jwt get jwt => throw _privateConstructorUsedError;
   @override
   FormzStatus get status => throw _privateConstructorUsedError;
   @override

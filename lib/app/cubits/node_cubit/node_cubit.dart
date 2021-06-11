@@ -33,11 +33,11 @@ class NodeCubit extends Cubit<NodeState> {
       nodes: await _nodeRepository.getNodes(),
       status: status,
     ));
-    subscribeToNodes();
-    subscribeToSelectedNode();
+    _subscribeToNodes();
+    _subscribeToSelectedNode();
   }
 
-  void subscribeToNodes() {
+  void _subscribeToNodes() {
     _nodeStream = _nodeRepository.getNodesStream().listen((nodes) {
       emit(state.copyWith(
         nodes: nodes,
@@ -45,7 +45,7 @@ class NodeCubit extends Cubit<NodeState> {
     });
   }
 
-  void subscribeToSelectedNode() {
+  void _subscribeToSelectedNode() {
     _selectedNodeStream =
         _nodeRepository.getSelectedNodeStream().listen((node) {
       emit(state.copyWith(
@@ -62,7 +62,8 @@ class NodeCubit extends Cubit<NodeState> {
   }
 
   Future<void> nodeAdded(Node node) async {
-    var result = await _nodeRepository.addNode(node.name, node.url);
+    var result =
+        await _nodeRepository.addNode(node.name, node.url, node.jwtToken!);
     await _nodeRepository.setSelectedNode(result.id);
     emit(
       state.copyWith(
