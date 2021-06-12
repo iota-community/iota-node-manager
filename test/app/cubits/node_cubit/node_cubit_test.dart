@@ -16,8 +16,8 @@ void main() {
     _nodeRepository = MockNodeRepository();
   });
 
-  var dummyNode = Node(id: 1, name: 'name', url: 'url');
-  var secondDummyNode = Node(id: 2, name: 'name', url: 'url');
+  var dummyNode = Node(id: 1, name: 'name', url: 'url', jwtToken: '');
+  var secondDummyNode = Node(id: 2, name: 'name', url: 'url', jwtToken: '');
 
   NodeRepository fakeReturnValuesForHappyFlow(NodeRepository _nodeRepository) {
     when(() => _nodeRepository.getSelectedNode())

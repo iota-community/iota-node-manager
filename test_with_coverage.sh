@@ -27,7 +27,7 @@ run_tests() {
     if [[ -f "pubspec.yaml" ]]; then
         rm -f coverage/lcov.info
         rm -f coverage/lcov-final.info
-        flutter test --coverage
+        flutter test --no-pub --coverage --test-randomize-ordering-seed random
     else
         printf "\n${red}Error: this is not a Flutter project${none}"
         exit 1
@@ -50,6 +50,10 @@ exclude_files() {
     if [[ -f "coverage/lcov.info" ]]; then
         flutter pub run remove_from_coverage -f coverage/lcov.info -r '.freezed.dart$'
         flutter pub run remove_from_coverage -f coverage/lcov.info -r '.g.dart$'
+        flutter pub run remove_from_coverage -f coverage/lcov.info -r '.gr.dart$'
+        flutter pub run remove_from_coverage -f coverage/lcov.info -r 'models+.*\.dart+'
+        flutter pub run remove_from_coverage -f coverage/lcov.info -r 'moor+.*\.dart+'
+        flutter pub run remove_from_coverage -f coverage/lcov.info -r '(configure_dependencies|register_module)+.*\.dart+'
     else
         printf "\n${red}Error: no coverage info was generated${none}"
         exit 1

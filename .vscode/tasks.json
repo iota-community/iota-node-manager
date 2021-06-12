@@ -1,0 +1,53 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run tests with coverage",
+      "command": "./test_with_coverage.sh",
+      "type": "shell",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Flutter Build Runner",
+      "command": "flutter pub run build_runner build",
+      "type": "shell",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Flutter Build Runner with Delete",
+      "command": "flutter pub run build_runner build --delete-conflicting-outputs",
+      "type": "shell",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Flutter Build Runner with Watch",
+      "command": "flutter pub run build_runner watch",
+      "type": "shell",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build Android Release APK",
+      "command": "flutter build apk --flavor production --target lib/main_production.dart --release",
+      "type": "shell",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build Android Release Appbundle",
+      "command": "flutter build appbundle --flavor production --target lib/main_production.dart --release",
+      "type": "shell",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build iOS Release",
+      "command": "flutter build ios --flavor production --target lib/main_production.dart --release",
+      "type": "shell",
+      "problemMatcher": []
+    },
+    {
+      "label": "Flutter clean",
+      "command": "flutter clean",
+      "type": "shell",
+      "problemMatcher": []
+    }
+  ]
+}
