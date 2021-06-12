@@ -19,7 +19,7 @@ abstract class RegisterModule {
 
 @module
 abstract class HiveModule {
-  @Named(HiveBoxConstants.darkModeBox)
+  @Named(HiveBoxConstants.appBox)
   @lazySingleton
-  Box get darkModeBox => Hive.box(HiveBoxConstants.darkModeBox);
+  Box get darkModeBox => Hive.box(HiveBoxConstants.appBox);
 }

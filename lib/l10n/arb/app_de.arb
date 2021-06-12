@@ -8,20 +8,36 @@
     "@addInitialNodeNameLabel": {
         "description": "Label shown on the page to add a new node name input filed"
     },
-    "addInitialNodeNameUrl": "Url",
-    "@addInitialNodeNameUrl": {
+    "addInitialNodeNameError": "Ungültiger Name",
+    "@addInitialNodeNameError": {
+        "description": "Error shown on the page to add a new node name input field if invalid"
+    },
+    "addInitialNodeUrlLabel": "Url",
+    "@addInitialNodeUrlLabel": {
         "description": "Label shown on the page to add a new node url input filed"
     },
-    "addInitialNodeNameUrlHelper": "Beispiel: https://iota.node.de",
-    "@addInitialNodeNameUrlHelper": {
+    "addInitialNodeUrlHelper": "Beispiel: https://iota.node.de",
+    "@addInitialNodeUrlHelper": {
         "description": "Helper shown on the page to add a new node url input field"
     },
-    "addInitialNodeNameUrlError": "Ungültige Url",
-    "@addInitialNodeNameUrlError": {
+    "addInitialNodeUrlError": "Ungültige Url",
+    "@addInitialNodeUrlError": {
         "description": "Error shown on the page to add a new node url input field if invalid"
+    },
+    "addInitialNodeJwtLabel": "JWT Token",
+    "@addInitialNodeNamesUrl": {
+        "description": "Label shown on the page to add a new node url input filed"
+    },
+    "addInitialNodeJwtError": "Ungültiger JWT-Token",
+    "@addInitialNodeJwtError": {
+        "description": "Error shown on the page to add a new node jwt input field if invalid"
     },
     "addInitialNodeSaveButton": "HINZUFÜGEN",
     "@addInitialNodeSaveButton": {
         "description": "Name shown on the page to add a new node save button"
+    },
+    "addInitialNodeSaveError": "Fehler beim speichern aufgetreten..",
+    "@addInitialNodeSaveError": {
+        "description": "Failure snackbar text if saving fails"
     }
 }
