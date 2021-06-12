@@ -51,18 +51,17 @@ abstract class HornetNodeDioRestClientImpl extends HornetNodeRestClient {
   @override
   @GET('{baseUrl}/api/v1/messages/{messageId}/metadata')
   Future<MessageMetadata> messageMetadata(@Path() String baseUrl,
-      @Path() String jwtToken, @Path() String messageId);
+      @Header('Authorization') String jwtToken, @Path() String messageId);
 
   @override
   @GET('{baseUrl}/api/v1/messages/{messageId}/children')
   Future<MessageChildren> messageChildren(@Path() String baseUrl,
-      @Path() String jwtToken, @Path() String messageId);
+      @Header('Authorization') String jwtToken, @Path() String messageId);
 
   @override
   @GET('{baseUrl}/api/v1/messages/{messageId}/raw')
   @Headers(<String, dynamic>{
     'Content-Type': 'application/octet-stream',
-    'Authorization': '{jwtToken}'
   })
   @DioResponseType(ResponseType.bytes)
   Future<List<int>> messageRaw(@Path() String baseUrl,

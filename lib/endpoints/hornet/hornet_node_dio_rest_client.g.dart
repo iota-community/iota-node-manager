@@ -122,7 +122,9 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<MessageMetadata>(Options(
-                method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+                method: 'GET',
+                headers: <String, dynamic>{r'Authorization': jwtToken},
+                extra: _extra)
             .compose(
                 _dio.options, '$baseUrl/api/v1/messages/$messageId/metadata',
                 queryParameters: queryParameters, data: _data)
@@ -138,7 +140,9 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<MessageChildren>(Options(
-                method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+                method: 'GET',
+                headers: <String, dynamic>{r'Authorization': jwtToken},
+                extra: _extra)
             .compose(
                 _dio.options, '$baseUrl/api/v1/messages/$messageId/children',
                 queryParameters: queryParameters, data: _data)
