@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
+import 'package:hornet_node/configure_dependencies.dart';
 import 'package:hornet_node/utils/constants/hive_box_constants.dart';
 import 'package:injectable/injectable.dart';
 
@@ -21,6 +21,7 @@ class AppCubit extends Cubit<AppState> {
   // }
 
   Future<void> themeChanged() async {
+    await appBox.put(HiveBoxConstants.darkModeKey, !state.darkTheme);
     emit(
       state.copyWith(darkTheme: !state.darkTheme),
     );

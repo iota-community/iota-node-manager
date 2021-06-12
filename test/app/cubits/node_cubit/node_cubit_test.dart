@@ -3,11 +3,10 @@ import 'dart:async';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:hornet_node/app/cubits/node_cubit/node_cubit.dart';
-import 'package:hornet_node/repository/moor/database.dart';
 import 'package:hornet_node/repository/node_repository.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockNodeRepository extends Mock implements NodeRepository {}
+import '../../../helpers/helpers.dart';
 
 void main() {
   late NodeRepository _nodeRepository;
@@ -16,17 +15,16 @@ void main() {
     _nodeRepository = MockNodeRepository();
   });
 
-  var dummyNode = Node(id: 1, name: 'name', url: 'url', jwtToken: '');
-  var secondDummyNode = Node(id: 2, name: 'name', url: 'url', jwtToken: '');
+  var secondNode =
+      node.copyWith(id: 2, name: 'Second', url: 'https//second.test.com');
 
   NodeRepository fakeReturnValuesForHappyFlow(NodeRepository _nodeRepository) {
-    when(() => _nodeRepository.getSelectedNode())
-        .thenAnswer((_) async => dummyNode);
-    when(() => _nodeRepository.getNodes()).thenAnswer((_) async => [dummyNode]);
+    when(() => _nodeRepository.getSelectedNode()).thenAnswer((_) async => node);
+    when(() => _nodeRepository.getNodes()).thenAnswer((_) async => [node]);
     when(() => _nodeRepository.getNodesStream())
-        .thenAnswer((_) => Stream.value([dummyNode]));
+        .thenAnswer((_) => Stream.value([node]));
     when(() => _nodeRepository.getSelectedNodeStream())
-        .thenAnswer((_) => Stream.value(dummyNode));
+        .thenAnswer((_) => Stream.value(node));
     return _nodeRepository;
   }
 
@@ -49,8 +47,8 @@ void main() {
         act: (cubit) => cubit.initState(),
         expect: () {
           var expectedNodeState = NodeState(
-            nodes: [dummyNode],
-            selectedNode: dummyNode,
+            nodes: [node],
+            selectedNode: node,
             status: NodeStatusEnum.nodeSelected,
           );
 
@@ -64,9 +62,9 @@ void main() {
           when(() => _nodeRepository.getSelectedNode())
               .thenAnswer((_) async => null);
           when(() => _nodeRepository.getNodes())
-              .thenAnswer((_) async => [dummyNode]);
+              .thenAnswer((_) async => [node]);
           when(() => _nodeRepository.getNodesStream())
-              .thenAnswer((_) => Stream.value([dummyNode]));
+              .thenAnswer((_) => Stream.value([node]));
           when(() => _nodeRepository.getSelectedNodeStream())
               .thenAnswer((_) => Stream.value(null));
           return NodeCubit(_nodeRepository);
@@ -74,7 +72,7 @@ void main() {
         act: (cubit) => cubit.initState(),
         expect: () {
           var expectedNodeState = NodeState(
-            nodes: [dummyNode],
+            nodes: [node],
             selectedNode: null,
             status: NodeStatusEnum.noNodeSelected,
           );
@@ -114,16 +112,16 @@ void main() {
         build: () {
           _nodeRepository = fakeReturnValuesForHappyFlow(_nodeRepository);
           when(() => _nodeRepository.setSelectedNode(any()))
-              .thenAnswer((_) async => dummyNode);
+              .thenAnswer((_) async => node);
           when(() => _nodeRepository.getSelectedNode())
-              .thenAnswer((_) async => dummyNode);
+              .thenAnswer((_) async => node);
           return NodeCubit(_nodeRepository);
         },
         act: (cubit) => cubit
           ..initState()
-          ..selectedNodeChanged(dummyNode.id),
+          ..selectedNodeChanged(node.id),
         verify: (_) {
-          verify(() => _nodeRepository.setSelectedNode(dummyNode.id)).called(1);
+          verify(() => _nodeRepository.setSelectedNode(node.id)).called(1);
         },
       );
     });
@@ -133,20 +131,21 @@ void main() {
         'adds a new node to the list',
         build: () {
           _nodeRepository = fakeReturnValuesForHappyFlow(_nodeRepository);
-          when(() => _nodeRepository.addNode(
-                  dummyNode.name, dummyNode.url, dummyNode.jwtToken!))
-              .thenAnswer((_) async => dummyNode);
-          when(() => _nodeRepository.setSelectedNode(dummyNode.id))
+          when(() =>
+                  _nodeRepository.addNode(node.name, node.url, node.jwtToken!))
+              .thenAnswer((_) async => node);
+          when(() => _nodeRepository.setSelectedNode(node.id))
               .thenAnswer((_) async => {});
           return NodeCubit(_nodeRepository);
         },
         act: (cubit) => cubit
           ..initState()
-          ..nodeAdded(dummyNode),
+          ..nodeAdded(node),
         verify: (_) {
-          verify(() => _nodeRepository.addNode(
-              dummyNode.name, dummyNode.url, dummyNode.jwtToken!)).called(1);
-          verify(() => _nodeRepository.setSelectedNode(dummyNode.id)).called(1);
+          verify(() =>
+                  _nodeRepository.addNode(node.name, node.url, node.jwtToken!))
+              .called(1);
+          verify(() => _nodeRepository.setSelectedNode(node.id)).called(1);
         },
       );
     });
@@ -158,15 +157,15 @@ void main() {
           _nodeRepository = fakeReturnValuesForHappyFlow(_nodeRepository);
           when(() => _nodeRepository.setSelectedNode(any()))
               .thenAnswer((_) async => {});
-          when(() => _nodeRepository.removeNode(dummyNode.id))
+          when(() => _nodeRepository.removeNode(node.id))
               .thenAnswer((_) async => {});
           return NodeCubit(_nodeRepository);
         },
         act: (cubit) => cubit
           ..initState()
-          ..nodeRemoved(dummyNode.id),
+          ..nodeRemoved(node.id),
         verify: (_) {
-          verify(() => _nodeRepository.removeNode(dummyNode.id)).called(1);
+          verify(() => _nodeRepository.removeNode(node.id)).called(1);
           verify(() => _nodeRepository.setSelectedNode(null)).called(1);
         },
       );
@@ -175,25 +174,25 @@ void main() {
         'removes the currently selected node and selects a new one',
         build: () {
           when(() => _nodeRepository.getSelectedNode())
-              .thenAnswer((_) async => dummyNode);
+              .thenAnswer((_) async => node);
           when(() => _nodeRepository.getNodes())
-              .thenAnswer((_) async => [dummyNode, secondDummyNode]);
+              .thenAnswer((_) async => [node, secondNode]);
           when(() => _nodeRepository.getNodesStream())
-              .thenAnswer((_) => Stream.value([dummyNode, secondDummyNode]));
+              .thenAnswer((_) => Stream.value([node, secondNode]));
           when(() => _nodeRepository.getSelectedNodeStream())
-              .thenAnswer((_) => Stream.value(dummyNode));
-          when(() => _nodeRepository.setSelectedNode(secondDummyNode.id))
+              .thenAnswer((_) => Stream.value(node));
+          when(() => _nodeRepository.setSelectedNode(secondNode.id))
               .thenAnswer((_) async => {});
-          when(() => _nodeRepository.removeNode(dummyNode.id))
+          when(() => _nodeRepository.removeNode(node.id))
               .thenAnswer((_) async => {});
           return NodeCubit(_nodeRepository);
         },
         act: (cubit) => cubit
           ..initState()
-          ..nodeRemoved(dummyNode.id),
+          ..nodeRemoved(node.id),
         verify: (_) {
-          verify(() => _nodeRepository.removeNode(dummyNode.id)).called(1);
-          verify(() => _nodeRepository.setSelectedNode(secondDummyNode.id))
+          verify(() => _nodeRepository.removeNode(node.id)).called(1);
+          verify(() => _nodeRepository.setSelectedNode(secondNode.id))
               .called(1);
         },
       );
@@ -216,8 +215,8 @@ void main() {
             status: NodeStatusEnum.noNodeAdded,
           );
           var expectedNodeState = NodeState(
-            nodes: [dummyNode],
-            selectedNode: dummyNode,
+            nodes: [node],
+            selectedNode: node,
             status: NodeStatusEnum.nodeSelected,
           );
 

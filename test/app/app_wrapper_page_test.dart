@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bloc_test/bloc_test.dart';
 import 'package:hornet_node/app/app_wrapper_page.dart';
 import 'package:hornet_node/app/cubits/node_cubit/node_cubit.dart';
 import 'package:hornet_node/configure_dependencies.dart';
@@ -12,15 +11,6 @@ import 'package:hornet_node/repository/moor/database.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../helpers/helpers.dart';
-
-class MockNodeCubit extends MockCubit<NodeState> implements NodeCubit {}
-
-class MockInitialNodeCubit extends MockCubit<InitialNodeState>
-    implements InitialNodeCubit {}
-
-class FakeNodeCubitState extends Fake implements NodeState {}
-
-class FakeInitialNodeCubitState extends Fake implements InitialNodeState {}
 
 void main() {
   setUpAll(() {
@@ -75,6 +65,8 @@ void main() {
         ),
       );
       expect(find.byType(InitialNodePage), findsOneWidget);
+      getIt.unregister<InitialNodeCubit>();
+
     });
 
     testWidgets('renders NodeOverviewPage', (tester) async {

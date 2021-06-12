@@ -8,9 +8,11 @@ abstract class AppState with _$AppState {
   }) = _AppState;
 
   factory AppState.initial() {
-    var appBox = Hive.box(HiveBoxConstants.appBox);
-    var darkmode = appBox.get('darkMode', defaultValue: false);
-    var languageIndex = appBox.get('language', defaultValue: 0);
+    var appBox = getIt<Box>(instanceName: HiveBoxConstants.appBox);
+    var darkmode =
+        appBox.get(HiveBoxConstants.darkModeKey, defaultValue: false);
+    var languageIndex =
+        appBox.get(HiveBoxConstants.languageKey, defaultValue: 0);
     return AppState(
       selectedLanguage: Languages.languages[languageIndex],
       darkTheme: darkmode ? true : false,
@@ -29,8 +31,6 @@ class LanguageEntity {
 }
 
 class Languages {
-  const Languages._();
-
   static const languages = [
     LanguageEntity(code: 'en', value: 'English'),
     LanguageEntity(code: 'de', value: 'Deutsch'),

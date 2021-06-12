@@ -30,7 +30,9 @@ class InitialNodePage extends StatelessWidget {
               ScaffoldMessenger.of(context)
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
-                  SnackBar(content: Text(l10n.addInitialNodeSaveError)),
+                  SnackBar(
+                      key: const Key('saveFailureSnackbar'),
+                      content: Text(l10n.addInitialNodeSaveError)),
                 );
             } else if (state.status.isSubmissionSuccess) {
               BlocProvider.of<NodeCubit>(context)
