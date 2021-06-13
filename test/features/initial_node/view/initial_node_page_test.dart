@@ -80,5 +80,57 @@ void main() {
           .called(1);
       getIt..unregister<InitialNodeCubit>()..unregister<NodeCubit>();
     });
+
+    testWidgets(
+        'Calls cubit method nameChanged when values are entered to nameInput',
+        (tester) async {
+      when(() => initialNodeCubit.nameChanged(node.name)).thenReturn(null);
+      when(() => initialNodeCubit.urlChanged(node.url)).thenReturn(null);
+      when(() => initialNodeCubit.jwtChanged(node.jwtToken!)).thenReturn(null);
+      when(() => initialNodeCubit.saveNode()).thenAnswer((_) async => {});
+      var formValidatedState =
+          InitialNodeState.initial().copyWith(status: FormzStatus.valid);
+      whenListen<InitialNodeState>(
+        initialNodeCubit,
+        Stream.fromIterable(
+          [formValidatedState],
+        ),
+        initialState: InitialNodeState.initial(),
+      );
+      getIt.registerSingleton<InitialNodeCubit>(initialNodeCubit);
+      await tester.pumpApp(
+        BlocProvider.value(
+          value: initialNodeCubit,
+          child: const InitialNodePage(),
+        ),
+      );
+      var name = node.name;
+      var nameInput = find.byKey(const Key('addNodeForm_nameInput_textField'));
+      expect(nameInput, findsOneWidget);
+      await tester.enterText(nameInput, name);
+      expect(find.text(name), findsOneWidget);
+      verify(() => initialNodeCubit.nameChanged(any())).called(1);
+
+      var url = node.url;
+      var urlInput = find.byKey(const Key('addNodeForm_urlInput_textField'));
+      expect(urlInput, findsOneWidget);
+      await tester.enterText(urlInput, url);
+      expect(find.text(url), findsOneWidget);
+      verify(() => initialNodeCubit.urlChanged(any())).called(1);
+
+      var jwt = node.jwtToken!;
+      var jwtInput = find.byKey(const Key('addNodeForm_JwtInput_textField'));
+      expect(jwtInput, findsOneWidget);
+      await tester.enterText(jwtInput, jwt);
+      expect(find.text(jwt), findsOneWidget);
+      verify(() => initialNodeCubit.jwtChanged(node.jwtToken!)).called(1);
+
+      var saveButton =
+          find.byKey(const Key('addNodeForm_continue_raisedButton'));
+      expect(saveButton, findsOneWidget);
+      await tester.tap(saveButton);
+      verify(() => initialNodeCubit.saveNode()).called(1);
+      getIt.unregister<InitialNodeCubit>();
+    });
   });
 }

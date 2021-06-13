@@ -21,7 +21,7 @@ class InitialNodeCubit extends Cubit<InitialNodeState> {
   void nameChanged(String value) {
     final name = Name.dirty(value: value);
     emit(state.copyWith(
-      name: Name.dirty(value: value),
+      name: name,
       status: Formz.validate(<FormzInput>[name, state.jwt, state.url]),
     ));
   }
@@ -29,7 +29,7 @@ class InitialNodeCubit extends Cubit<InitialNodeState> {
   void jwtChanged(String value) {
     final jwt = Jwt.dirty(value: value);
     emit(state.copyWith(
-      jwt: Jwt.dirty(value: value),
+      jwt: jwt,
       status: Formz.validate(<FormzInput>[jwt, state.name, state.url]),
     ));
   }
@@ -37,7 +37,7 @@ class InitialNodeCubit extends Cubit<InitialNodeState> {
   void urlChanged(String value) {
     final url = Url.dirty(value: value);
     emit(state.copyWith(
-      url: Url.dirty(value: value),
+      url: url,
       status: Formz.validate(<FormzInput>[state.name, state.jwt, url]),
     ));
   }

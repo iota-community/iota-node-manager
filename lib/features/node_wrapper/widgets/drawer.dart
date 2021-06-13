@@ -2,12 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hornet_node/app/cubits/app_cubit/app_cubit.dart';
 import 'package:hornet_node/app/router/app_router.gr.dart';
 import 'package:hornet_node/app/themes/custom_themes.dart';
-import 'package:hornet_node/utils/constants/hive_box_constants.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
