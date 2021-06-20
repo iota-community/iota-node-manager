@@ -15,23 +15,13 @@ part '../widgets/url_input.dart';
 part '../widgets/name_input.dart';
 part '../widgets/jwt_input.dart';
 
-class EditNodePage extends StatefulWidget {
+class EditNodePage extends StatelessWidget {
   const EditNodePage({
     Key? key,
     @PathParam('id') this.id,
   }) : super(key: key);
 
   final int? id;
-
-  @override
-  _EditNodePageState createState() => _EditNodePageState();
-}
-
-class _EditNodePageState extends State<EditNodePage> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +38,9 @@ class _EditNodePageState extends State<EditNodePage> {
               ScaffoldMessenger.of(context)
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
-                  const SnackBar(content: Text('Failure while saving..')),
+                  const SnackBar(
+                      key: Key('editNode_saveFailure_snackbar'),
+                      content: Text('Failure while saving..')),
                 );
             } else if (state.status.isSubmissionSuccess) {
               AutoRouter.of(context).pop();
@@ -56,16 +48,17 @@ class _EditNodePageState extends State<EditNodePage> {
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
                   SnackBar(
+                      key: const Key('editNode_saveSuccess_snackbar'),
                       duration: const Duration(seconds: 2),
-                      content: Text(widget.id != null
+                      content: Text(id != null
                           ? 'Successfully updated'
                           : 'Successfully added')),
                 );
             }
           },
-          child: widget.id != null
+          child: id != null
               ? StreamBuilder(
-                  stream: _nodeRepository.getNodeStream(widget.id!),
+                  stream: _nodeRepository.getNodeStream(id!),
                   builder: (context, AsyncSnapshot<Node?> snapshot) {
                     if (snapshot.hasData) {
                       context
@@ -95,9 +88,7 @@ class _EditNodePageState extends State<EditNodePage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                widget.id != null
-                    ? 'Edit your hornet node'
-                    : 'Add a new hornet node',
+                id != null ? 'Edit your hornet node' : 'Add a new hornet node',
                 style: Theme.of(context).primaryTextTheme.headline5,
               ),
               _NameInput(),
@@ -106,7 +97,7 @@ class _EditNodePageState extends State<EditNodePage> {
               const SizedBox(height: 8.0),
               _JwtInput(),
               const SizedBox(height: 8.0),
-              _Buttons(id: widget.id),
+              _Buttons(id: id),
               const SizedBox(height: 8.0),
             ],
           ),
