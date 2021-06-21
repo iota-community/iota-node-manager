@@ -173,6 +173,75 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
     return value;
   }
 
+  @override
+  Future<Peers> peers(baseUrl, jwtToken) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<Peers>(Options(
+                method: 'GET',
+                headers: <String, dynamic>{r'Authorization': jwtToken},
+                extra: _extra)
+            .compose(_dio.options, '$baseUrl/api/v1/peers',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = Peers.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<Peer> peer(baseUrl, jwtToken, peerId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<Peer>(
+        Options(
+                method: 'GET',
+                headers: <String, dynamic>{r'Authorization': jwtToken},
+                extra: _extra)
+            .compose(_dio.options, '$baseUrl/api/v1/peers/$peerId',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = Peer.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<MessageChildren> addPeer(baseUrl, jwtToken, body) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(body.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<MessageChildren>(Options(
+                method: 'POST',
+                headers: <String, dynamic>{r'Authorization': jwtToken},
+                extra: _extra)
+            .compose(_dio.options, '$baseUrl/api/v1/peers',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = MessageChildren.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<MessageChildren> removePeer(baseUrl, jwtToken, peerId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<MessageChildren>(Options(
+                method: 'DELETE',
+                headers: <String, dynamic>{r'Authorization': jwtToken},
+                extra: _extra)
+            .compose(_dio.options, '$baseUrl/api/v1/peers/$peerId',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = MessageChildren.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

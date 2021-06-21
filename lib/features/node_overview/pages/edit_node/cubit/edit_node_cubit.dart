@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hornet_node/features/node_wrapper/cubits/peers_cubit/peers_cubit.dart';
 import 'package:hornet_node/repository/moor/database.dart';
 import 'package:hornet_node/repository/node_repository.dart';
 import 'package:hornet_node/utils/formz/jwt.dart';
@@ -13,9 +14,11 @@ part 'edit_node_cubit.freezed.dart';
 
 @injectable
 class EditNodeCubit extends Cubit<EditNodeState> {
-  EditNodeCubit(this._nodeRepository) : super(EditNodeState.initial());
+  EditNodeCubit(this._nodeRepository, this._peersCubit)
+      : super(EditNodeState.initial());
 
   final NodeRepository _nodeRepository;
+  final PeersCubit _peersCubit;
 
   void setInitialValues(Node node) {
     emit(state.copyWith(
@@ -55,12 +58,18 @@ class EditNodeCubit extends Cubit<EditNodeState> {
     if (!state.status.isValidated) return;
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     if (state.id != null) {
+      var selectedNode = await _nodeRepository.getSelectedNode();
+
       await _nodeRepository.updateNode(Node(
         id: state.id!,
         name: state.name.value,
         url: state.url.value,
         jwtToken: state.jwt.value,
       ));
+      if (selectedNode?.id == state.id) {
+        await _nodeRepository.setSelectedNode(state.id);
+        await _peersCubit.peers();
+      }
     } else {
       await _nodeRepository.addNode(
           state.name.value, state.url.value, state.jwt.value,

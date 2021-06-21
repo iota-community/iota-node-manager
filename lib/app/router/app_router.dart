@@ -6,6 +6,7 @@ import 'package:hornet_node/features/node_overview/pages/edit_node/edit_node.dar
 import 'package:hornet_node/features/node_wrapper/pages/explorer/explorer.dart';
 import 'package:hornet_node/features/node_wrapper/pages/explorer/pages/message/message_page.dart';
 import 'package:hornet_node/features/node_wrapper/pages/home/home.dart';
+import 'package:hornet_node/features/node_wrapper/pages/peers/peers.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -38,18 +39,7 @@ import 'package:hornet_node/features/node_wrapper/pages/home/home.dart';
         //     RedirectRoute(path: '*', redirectTo: ''),
         //   ],
         // ),
-        // AutoRoute(
-        //   path: 'peers',
-        //   name: 'PeersRouter',
-        //   page: EmptyRouterPage,
-        //   children: [
-        //     AutoRoute(
-        //       path: '',
-        //       page: PeersPage,
-        //     ),
-        //     RedirectRoute(path: '*', redirectTo: ''),
-        //   ],
-        // ),
+
         AutoRoute(
           path: 'explorer',
           name: 'ExplorerRouter',
@@ -60,6 +50,18 @@ import 'package:hornet_node/features/node_wrapper/pages/home/home.dart';
               page: ExplorerPage,
             ),
             AutoRoute(path: 'milestone/:messageId', page: MessagePage),
+            RedirectRoute(path: '*', redirectTo: ''),
+          ],
+        ),
+        AutoRoute(
+          path: 'peers',
+          name: 'PeersRouter',
+          page: EmptyRouterPage,
+          children: [
+            AutoRoute(
+              path: '',
+              page: PeersPage,
+            ),
             RedirectRoute(path: '*', redirectTo: ''),
           ],
         ),

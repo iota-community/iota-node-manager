@@ -23,7 +23,7 @@ class InfoCubit extends Cubit<InfoState> {
       var selectedNode = await _nodeRepository.getSelectedNode();
       if (selectedNode != null) {
         var response = await _hornetNodeRestClient.info(
-            selectedNode.url, 'Bearer ${selectedNode.jwtToken!}');
+            selectedNode.url, 'Bearer ${selectedNode.jwtToken ?? ''}');
         emit(InfoState.loadSuccess(response));
         return response;
       }

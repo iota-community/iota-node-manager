@@ -13,6 +13,7 @@ import '../../features/node_wrapper/pages/explorer/explorer.dart' as _i7;
 import '../../features/node_wrapper/pages/explorer/pages/message/message_page.dart'
     as _i8;
 import '../../features/node_wrapper/pages/home/home.dart' as _i6;
+import '../../features/node_wrapper/pages/peers/peers.dart' as _i9;
 import '../app_wrapper_page.dart' as _i3;
 
 class AppRouter extends _i1.RootStackRouter {
@@ -57,6 +58,11 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i1.EmptyRouterPage();
         }),
+    PeersRouter.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i1.EmptyRouterPage();
+        }),
     HomeRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
@@ -75,6 +81,11 @@ class AppRouter extends _i1.RootStackRouter {
               orElse: () => MessageRouteArgs(
                   messageId: pathParams.getString('messageId')));
           return _i8.MessagePage(key: args.key, messageId: args.messageId);
+        }),
+    PeersRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i9.PeersPage();
         })
   };
 
@@ -89,6 +100,11 @@ class AppRouter extends _i1.RootStackRouter {
           _i1.RouteConfig(ExplorerRouter.name, path: 'explorer', children: [
             _i1.RouteConfig(ExplorerRoute.name, path: ''),
             _i1.RouteConfig(MessageRoute.name, path: 'milestone/:messageId'),
+            _i1.RouteConfig('*#redirect',
+                path: '*', redirectTo: '', fullMatch: true)
+          ]),
+          _i1.RouteConfig(PeersRouter.name, path: 'peers', children: [
+            _i1.RouteConfig(PeersRoute.name, path: ''),
             _i1.RouteConfig('*#redirect',
                 path: '*', redirectTo: '', fullMatch: true)
           ]),
@@ -163,6 +179,13 @@ class ExplorerRouter extends _i1.PageRouteInfo {
   static const String name = 'ExplorerRouter';
 }
 
+class PeersRouter extends _i1.PageRouteInfo {
+  const PeersRouter({List<_i1.PageRouteInfo>? children})
+      : super(name, path: 'peers', initialChildren: children);
+
+  static const String name = 'PeersRouter';
+}
+
 class HomeRoute extends _i1.PageRouteInfo {
   const HomeRoute() : super(name, path: '');
 
@@ -191,4 +214,10 @@ class MessageRouteArgs {
   final _i2.Key? key;
 
   final String messageId;
+}
+
+class PeersRoute extends _i1.PageRouteInfo {
+  const PeersRoute() : super(name, path: '');
+
+  static const String name = 'PeersRoute';
 }

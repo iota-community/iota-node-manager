@@ -12,7 +12,7 @@ class Jwt extends FormzInput<String, JwtValidationError> {
     final _urlRegExp =
         RegExp(r'^([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_\-\+\/=]*)');
     if (value.isEmpty) {
-      return JwtValidationError.empty;
+      return null;
     } else if (!_urlRegExp.hasMatch(value)) {
       return JwtValidationError.wrongFormat;
     } else {
