@@ -14,6 +14,7 @@ import 'package:hornet_node/models/hornet/message/children/message_children_data
 import 'package:hornet_node/models/hornet/message/message_data.dart';
 import 'package:hornet_node/models/hornet/message/metadata/message_metadata_data.dart';
 import 'package:hornet_node/models/hornet/message/payload.dart';
+import 'package:hornet_node/utils/widgets/hornet_card.dart';
 
 part 'widgets/child_message_widget.dart';
 part 'widgets/column_tile_text_widget.dart';

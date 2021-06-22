@@ -85,4 +85,6 @@ class ThemeHelperMethods {
   bool get _isDarkMode => brightness == Brightness.dark;
 
   Color get blackOrWhite => _isDarkMode ? Colors.white : Colors.black;
+
+  Color get whiteOrBlack => _isDarkMode ? Colors.black : Colors.white;
 }

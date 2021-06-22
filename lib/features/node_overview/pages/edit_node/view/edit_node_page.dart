@@ -7,6 +7,7 @@ import 'package:hornet_node/configure_dependencies.dart';
 import 'package:formz/formz.dart';
 import 'package:hornet_node/repository/moor/database.dart';
 import 'package:hornet_node/repository/node_repository.dart';
+import 'package:hornet_node/l10n/l10n.dart';
 
 import '../edit_node.dart';
 
@@ -94,7 +95,11 @@ class EditNodePage extends StatelessWidget {
               _NameInput(),
               const SizedBox(height: 8.0),
               _UrlInput(),
-              const SizedBox(height: 8.0),
+              const SizedBox(height: 20.0),
+              Text(
+                'Optional',
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
               _JwtInput(),
               const SizedBox(height: 8.0),
               _Buttons(id: id),
