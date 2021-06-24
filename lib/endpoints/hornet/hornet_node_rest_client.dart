@@ -39,6 +39,5 @@ abstract class HornetNodeRestClient {
   Future<MessageChildren> addPeer(
       String baseUrl, String jwtToken, AddPeerBody body);
 
-  Future<MessageChildren> removePeer(
-      String baseUrl, String jwtToken, String peerId);
+  Future removePeer(String baseUrl, String jwtToken, String peerId);
 }

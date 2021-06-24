@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hornet_node/endpoints/hornet/hornet_node_rest_client.dart';
@@ -33,5 +35,14 @@ class PeersCubit extends Cubit<PeersState> {
     } on Exception catch (_) {
       emit(const PeersState.loadFailure());
     }
+  }
+
+  Future peerRemoved(String peerId) async {
+    var selectedNode = await _nodeRepository.getSelectedNode();
+    await _hornetNodeRestClient.removePeer(
+        selectedNode!.url, 'Bearer ${selectedNode.jwtToken ?? ''}', peerId);
+    var response = await _hornetNodeRestClient.peers(
+        selectedNode.url, 'Bearer ${selectedNode.jwtToken ?? ''}');
+    emit(PeersState.loadSuccess(response));
   }
 }

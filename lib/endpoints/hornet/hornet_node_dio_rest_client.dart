@@ -87,6 +87,6 @@ abstract class HornetNodeDioRestClientImpl extends HornetNodeRestClient {
 
   @override
   @DELETE('{baseUrl}/api/v1/peers/{peerId}')
-  Future<MessageChildren> removePeer(@Path() String baseUrl,
+  Future removePeer(@Path() String baseUrl,
       @Header('Authorization') String jwtToken, @Path() String peerId);
 }

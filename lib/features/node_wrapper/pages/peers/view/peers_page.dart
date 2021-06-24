@@ -134,7 +134,7 @@ class _PeersPageState extends State<PeersPage> {
                                                   primary: Theme.of(context)
                                                       .primaryColor,
                                                 ),
-                                                onPressed: null,
+                                                onPressed: () {},
                                                 child: SizedBox(
                                                   width: 70,
                                                   child: Center(
@@ -157,7 +157,7 @@ class _PeersPageState extends State<PeersPage> {
                                                   primary: Theme.of(context)
                                                       .primaryColor,
                                                 ),
-                                                onPressed: null,
+                                                onPressed: () {},
                                                 child: SizedBox(
                                                   width: 70,
                                                   child: Center(
@@ -180,16 +180,16 @@ class _PeersPageState extends State<PeersPage> {
                                                   primary: const Color.fromARGB(
                                                       160, 220, 53, 69),
                                                 ),
-                                                onPressed: () {},
-                                                child: SizedBox(
+                                                onPressed: () => context
+                                                    .read<PeersCubit>()
+                                                    .peerRemoved(peer.id),
+                                                child: const SizedBox(
                                                   width: 70,
                                                   child: Center(
                                                       child: Text(
                                                     'Delete',
                                                     style: TextStyle(
-                                                        color: ThemeHelper.of(
-                                                                context)
-                                                            .blackOrWhite),
+                                                        color: Colors.white),
                                                   )),
                                                 ),
                                               ),
