@@ -16,7 +16,12 @@ class NodeOverviewPage extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: BlocBuilder<NodeCubit, NodeState>(
+            child: BlocConsumer<NodeCubit, NodeState>(
+              listener: (context, state) {
+                if (state.status == NodeStatusEnum.noNodeAdded) {
+                  AutoRouter.of(context).popUntilRoot();
+                }
+              },
               builder: (context, state) {
                 return ListView.builder(
                   itemCount: state.nodes.length,

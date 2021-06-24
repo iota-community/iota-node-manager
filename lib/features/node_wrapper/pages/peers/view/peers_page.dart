@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hornet_node/app/cubits/node_cubit/node_cubit.dart';
 import 'package:hornet_node/app/themes/custom_themes.dart';
 import 'package:hornet_node/configure_dependencies.dart';
 import 'package:hornet_node/features/node_wrapper/cubits/peers_cubit/peers_cubit.dart';
@@ -137,7 +136,7 @@ class _PeersPageState extends State<PeersPage> {
                                                 ),
                                                 onPressed: null,
                                                 child: SizedBox(
-                                                  width: 50,
+                                                  width: 70,
                                                   child: Center(
                                                       child: Text(
                                                     'Edit',
@@ -160,7 +159,7 @@ class _PeersPageState extends State<PeersPage> {
                                                 ),
                                                 onPressed: null,
                                                 child: SizedBox(
-                                                  width: 50,
+                                                  width: 70,
                                                   child: Center(
                                                       child: Text(
                                                     'Details',
@@ -181,9 +180,9 @@ class _PeersPageState extends State<PeersPage> {
                                                   primary: const Color.fromARGB(
                                                       160, 220, 53, 69),
                                                 ),
-                                                onPressed: () => {},
+                                                onPressed: () {},
                                                 child: SizedBox(
-                                                  width: 50,
+                                                  width: 70,
                                                   child: Center(
                                                       child: Text(
                                                     'Delete',
