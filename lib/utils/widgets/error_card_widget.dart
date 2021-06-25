@@ -3,43 +3,46 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class ErrorCardWidget extends StatefulWidget {
-  const ErrorCardWidget({Key? key}) : super(key: key);
-
+  const ErrorCardWidget({Key? key, this.child}) : super(key: key);
+  final Widget? child;
   @override
   _ErrorCardWidgetState createState() => _ErrorCardWidgetState();
 }
 
 class _ErrorCardWidgetState extends State<ErrorCardWidget> {
-  late Completer<void> _refreshCompleter;
-
   @override
   void initState() {
     super.initState();
-    _refreshCompleter = Completer<void>();
   }
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: () {
-        return _refreshCompleter.future;
-      },
-      child: ListView(
-        children: [
-          Column(
-            children: const [
-              Icon(
-                Icons.error,
-                color: Colors.red,
+    return ListView(
+      children: [
+        Column(
+          children: [
+            const Icon(
+              Icons.error,
+              color: Colors.red,
+              size: 120,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: const [
+                  Text('An error occured...'),
+                  Text('Please check your internet connection and try again.'),
+                ],
               ),
-              Padding(
-                padding: EdgeInsets.all(20),
-                child: Text('An error occured. Please refresh to try again.'),
-              )
-            ],
-          ),
-        ],
-      ),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 50.0, vertical: 10),
+              child: widget.child ?? const SizedBox(),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

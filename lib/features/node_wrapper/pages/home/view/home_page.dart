@@ -74,7 +74,28 @@ class _HomePageState extends State<HomePage> {
             },
             loadInProgress: (_) =>
                 const Center(child: CircularProgressIndicator()),
-            orElse: () => const ErrorCardWidget(),
+            orElse: () => ErrorCardWidget(
+              child: ElevatedButton(
+                key: const Key('addNodeForm_continue_raisedButton'),
+                style: ElevatedButton.styleFrom(
+                  primary: Theme.of(context).accentColor,
+                ),
+                onPressed: () {
+                  BlocProvider.of<HealthCubit>(context).health();
+                  BlocProvider.of<InfoCubit>(context).info();
+                },
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Center(
+                    child: Text(
+                      'Reload',
+                      style: TextStyle(
+                          color: ThemeHelper.of(context).blackOrWhite),
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ),
         );
       },

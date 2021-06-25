@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hornet_node/app/cubits/node_cubit/node_cubit.dart';
 import 'package:hornet_node/app/themes/custom_themes.dart';
 import 'package:hornet_node/configure_dependencies.dart';
@@ -89,7 +88,28 @@ class _PeerDetailPageState extends State<PeerDetailPage> {
                   },
                   loadInProgress: (_) =>
                       const Center(child: CircularProgressIndicator()),
-                  orElse: () => const ErrorCardWidget(),
+                  orElse: () => ErrorCardWidget(
+                    child: ElevatedButton(
+                      key: const Key('addNodeForm_continue_raisedButton'),
+                      style: ElevatedButton.styleFrom(
+                        primary: Theme.of(context).accentColor,
+                      ),
+                      onPressed: () {
+                        BlocProvider.of<DetailPeerCubit>(context)
+                            .peer(widget.peerId);
+                      },
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: Center(
+                          child: Text(
+                            'Reload',
+                            style: TextStyle(
+                                color: ThemeHelper.of(context).blackOrWhite),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               );
             },

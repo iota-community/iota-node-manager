@@ -30,22 +30,23 @@ class _ExplorerPageState extends State<ExplorerPage> {
   Widget build(BuildContext context) {
     return BlocBuilder<InfoCubit, InfoState>(
       builder: (context, state) {
-        return state.maybeMap(loadSuccess: (value) {
-          var info = value.info.data;
-          return BlocConsumer<MilestonesCubit, MilestonesState>(
-            listener: (context, state) {
-              state.maybeMap(
-                loadSuccess: (_) {
-                  _refreshCompleter.complete();
-                  _refreshCompleter = Completer();
-                },
-                orElse: () => {},
-              );
-            },
-            builder: (context, state) {
-              return AnimatedSwitcher(
-                duration: const Duration(milliseconds: 350),
-                child: state.maybeMap(
+        return state.maybeMap(
+          loadSuccess: (value) {
+            var info = value.info.data;
+            return BlocConsumer<MilestonesCubit, MilestonesState>(
+              listener: (context, state) {
+                state.maybeMap(
+                  loadSuccess: (_) {
+                    _refreshCompleter.complete();
+                    _refreshCompleter = Completer();
+                  },
+                  orElse: () => {},
+                );
+              },
+              builder: (context, state) {
+                return AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 350),
+                  child: state.maybeMap(
                     loadSuccess: (value) {
                       var milestones = value.milestones;
                       return Column(
@@ -91,17 +92,61 @@ class _ExplorerPageState extends State<ExplorerPage> {
                       );
                     },
                     loadInProgress: (_) => const Center(
-                          child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(),
+                    ),
+                    orElse: () => ErrorCardWidget(
+                      child: ElevatedButton(
+                        key: const Key('addNodeForm_continue_raisedButton'),
+                        style: ElevatedButton.styleFrom(
+                          primary: Theme.of(context).accentColor,
                         ),
-                    orElse: () => const ErrorCardWidget()),
-              );
-            },
-          );
-        }, orElse: () {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        });
+                        onPressed: () =>
+                            BlocProvider.of<MilestonesCubit>(context)
+                                .milestones(info.latestMilestoneIndex),
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: Center(
+                            child: Text(
+                              'Reload',
+                              style: TextStyle(
+                                  color: ThemeHelper.of(context).blackOrWhite),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            );
+          },
+          loadInProgress: (_) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          },
+          orElse: () => ErrorCardWidget(
+            child: ElevatedButton(
+              key: const Key('addNodeForm_continue_raisedButton'),
+              style: ElevatedButton.styleFrom(
+                primary: Theme.of(context).accentColor,
+              ),
+              onPressed: () {
+                BlocProvider.of<InfoCubit>(context).info();
+              },
+              child: SizedBox(
+                width: double.infinity,
+                child: Center(
+                  child: Text(
+                    'Reload',
+                    style:
+                        TextStyle(color: ThemeHelper.of(context).blackOrWhite),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
       },
     );
   }

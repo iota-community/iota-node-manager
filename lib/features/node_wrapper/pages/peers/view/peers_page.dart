@@ -228,7 +228,28 @@ class _PeersPageState extends State<PeersPage> {
                   loadInProgress: (_) => const Center(
                         child: CircularProgressIndicator(),
                       ),
-                  orElse: () => const ErrorCardWidget()),
+                  orElse: () => ErrorCardWidget(
+                        child: ElevatedButton(
+                          key: const Key('addNodeForm_continue_raisedButton'),
+                          style: ElevatedButton.styleFrom(
+                            primary: Theme.of(context).accentColor,
+                          ),
+                          onPressed: () {
+                            BlocProvider.of<PeersCubit>(context).peers();
+                          },
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: Center(
+                              child: Text(
+                                'Reload',
+                                style: TextStyle(
+                                    color:
+                                        ThemeHelper.of(context).blackOrWhite),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )),
             );
           },
         );
