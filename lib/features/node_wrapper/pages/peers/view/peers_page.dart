@@ -120,6 +120,9 @@ class _PeersPageState extends State<PeersPage> {
                                           peer.id,
                                           style: const TextStyle(fontSize: 10),
                                         ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
                                         Text(peer.multiAddresses.first),
                                         const SizedBox(
                                           height: 10,
@@ -159,7 +162,10 @@ class _PeersPageState extends State<PeersPage> {
                                                 primary: Theme.of(context)
                                                     .accentColor,
                                               ),
-                                              onPressed: () {},
+                                              onPressed: () =>
+                                                  AutoRouter.of(context).push(
+                                                      PeerDetailRoute(
+                                                          peerId: peer.id)),
                                               child: SizedBox(
                                                 width: 70,
                                                 child: Center(

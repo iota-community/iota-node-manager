@@ -7,7 +7,7 @@ class _FeaturesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _HomeCardWidget(
+    return HomeCardWidget(
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(

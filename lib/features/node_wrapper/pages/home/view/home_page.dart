@@ -7,13 +7,13 @@ import 'package:hornet_node/features/node_wrapper/cubits/health_cubit/health_cub
 import 'package:hornet_node/features/node_wrapper/cubits/info_cubit/info_cubit.dart';
 import 'package:hornet_node/models/hornet/info/info.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hornet_node/utils/widgets/home_card_widget.dart';
 
 part '../widgets/features_card.dart';
 part '../widgets/messages_card.dart';
 part '../widgets/milestones_card.dart';
 part '../widgets/pruning_card.dart';
 part '../widgets/title_card.dart';
-part '../widgets/card_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
