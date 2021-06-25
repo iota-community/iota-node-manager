@@ -5,7 +5,7 @@ import 'package:hornet_node/models/hornet/message/message.dart';
 import 'package:hornet_node/models/hornet/message/metadata/message_metadata.dart';
 import 'package:hornet_node/models/hornet/milestone/milestone.dart';
 import 'package:hornet_node/models/hornet/peers/add_peer/add_peer_body.dart';
-import 'package:hornet_node/models/hornet/peers/peer.dart';
+import 'package:hornet_node/models/hornet/peers/peer_detail.dart';
 import 'package:hornet_node/models/hornet/peers/peers.dart';
 import 'package:hornet_node/models/hornet/tips/tips.dart';
 import 'package:hornet_node/models/hornet/treasury/treasury.dart';
@@ -77,12 +77,12 @@ abstract class HornetNodeDioRestClientImpl extends HornetNodeRestClient {
 
   @override
   @GET('{baseUrl}/api/v1/peers/{peerId}')
-  Future<Peer> peer(@Path() String baseUrl,
+  Future<PeerDetail> peer(@Path() String baseUrl,
       @Header('Authorization') String jwtToken, @Path() String peerId);
 
   @override
   @POST('{baseUrl}/api/v1/peers')
-  Future<MessageChildren> addPeer(@Path() String baseUrl,
+  Future addPeer(@Path() String baseUrl,
       @Header('Authorization') String jwtToken, @Body() AddPeerBody body);
 
   @override

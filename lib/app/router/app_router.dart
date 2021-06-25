@@ -6,6 +6,7 @@ import 'package:hornet_node/features/node_overview/pages/edit_node/edit_node.dar
 import 'package:hornet_node/features/node_wrapper/pages/explorer/explorer.dart';
 import 'package:hornet_node/features/node_wrapper/pages/explorer/pages/message/message_page.dart';
 import 'package:hornet_node/features/node_wrapper/pages/home/home.dart';
+import 'package:hornet_node/features/node_wrapper/pages/peers/pages/edit_peer/edit_peer.dart';
 import 'package:hornet_node/features/node_wrapper/pages/peers/peers.dart';
 
 @MaterialAutoRouter(
@@ -61,6 +62,10 @@ import 'package:hornet_node/features/node_wrapper/pages/peers/peers.dart';
             AutoRoute(
               path: '',
               page: PeersPage,
+            ),
+            AutoRoute(
+              path: 'edit',
+              page: EditPeerPage,
             ),
             RedirectRoute(path: '*', redirectTo: ''),
           ],

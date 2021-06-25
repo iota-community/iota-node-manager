@@ -13,6 +13,8 @@ import '../../features/node_wrapper/pages/explorer/explorer.dart' as _i7;
 import '../../features/node_wrapper/pages/explorer/pages/message/message_page.dart'
     as _i8;
 import '../../features/node_wrapper/pages/home/home.dart' as _i6;
+import '../../features/node_wrapper/pages/peers/pages/edit_peer/edit_peer.dart'
+    as _i10;
 import '../../features/node_wrapper/pages/peers/peers.dart' as _i9;
 import '../app_wrapper_page.dart' as _i3;
 
@@ -86,6 +88,14 @@ class AppRouter extends _i1.RootStackRouter {
         routeData: routeData,
         builder: (_) {
           return const _i9.PeersPage();
+        }),
+    EditPeerRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final pathParams = data.pathParams;
+          final args = data.argsAs<EditPeerRouteArgs>(
+              orElse: () => EditPeerRouteArgs(id: pathParams.getString('id')));
+          return _i10.EditPeerPage(key: args.key, id: args.id);
         })
   };
 
@@ -105,6 +115,7 @@ class AppRouter extends _i1.RootStackRouter {
           ]),
           _i1.RouteConfig(PeersRouter.name, path: 'peers', children: [
             _i1.RouteConfig(PeersRoute.name, path: ''),
+            _i1.RouteConfig(EditPeerRoute.name, path: 'edit'),
             _i1.RouteConfig('*#redirect',
                 path: '*', redirectTo: '', fullMatch: true)
           ]),
@@ -220,4 +231,19 @@ class PeersRoute extends _i1.PageRouteInfo {
   const PeersRoute() : super(name, path: '');
 
   static const String name = 'PeersRoute';
+}
+
+class EditPeerRoute extends _i1.PageRouteInfo<EditPeerRouteArgs> {
+  EditPeerRoute({_i2.Key? key, required String id})
+      : super(name, path: 'edit', args: EditPeerRouteArgs(key: key, id: id));
+
+  static const String name = 'EditPeerRoute';
+}
+
+class EditPeerRouteArgs {
+  const EditPeerRouteArgs({this.key, required this.id});
+
+  final _i2.Key? key;
+
+  final String id;
 }

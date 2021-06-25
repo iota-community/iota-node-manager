@@ -5,8 +5,6 @@ import 'package:hornet_node/app/cubits/node_cubit/node_cubit.dart';
 import 'package:hornet_node/app/themes/custom_themes.dart';
 import 'package:hornet_node/configure_dependencies.dart';
 import 'package:formz/formz.dart';
-import 'package:hornet_node/repository/moor/database.dart';
-import 'package:hornet_node/repository/node_repository.dart';
 import 'package:hornet_node/l10n/l10n.dart';
 
 import '../edit_node.dart';
@@ -26,7 +24,6 @@ class EditNodePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _nodeRepository = getIt<NodeRepository>();
     return Scaffold(
       appBar: AppBar(),
       drawerEnableOpenDragGesture: false,
@@ -58,19 +55,14 @@ class EditNodePage extends StatelessWidget {
             }
           },
           child: id != null
-              ? StreamBuilder(
-                  stream: _nodeRepository.getNodeStream(id!),
-                  builder: (context, AsyncSnapshot<Node?> snapshot) {
-                    if (snapshot.hasData) {
-                      context
-                          .read<EditNodeCubit>()
-                          .setInitialValues(snapshot.data!);
-                      return buildPage(context);
-                    } else {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
+              ? BlocBuilder<NodeCubit, NodeState>(
+                  buildWhen: (previous, current) =>
+                      previous.selectedNode != current.selectedNode,
+                  builder: (context, state) {
+                    context
+                        .read<EditNodeCubit>()
+                        .setInitialValues(state.selectedNode!);
+                    return buildPage(context);
                   },
                 )
               : buildPage(context),
