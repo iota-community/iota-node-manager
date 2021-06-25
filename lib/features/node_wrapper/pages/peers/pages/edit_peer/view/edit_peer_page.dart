@@ -18,83 +18,91 @@ class EditPeerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _hornetNodeRestClient = getIt<HornetNodeRestClient>();
-    return Scaffold(
-      appBar: AppBar(),
-      drawerEnableOpenDragGesture: false,
-      body: BlocProvider(
-        create: (context) => getIt<EditPeerCubit>(),
-        child: BlocListener<EditPeerCubit, EditPeerState>(
-          listenWhen: (previous, current) => previous.status != current.status,
-          listener: (context, state) {
-            if (state.status.isSubmissionFailure) {
-              ScaffoldMessenger.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(
-                  const SnackBar(
-                      key: Key('editNode_saveFailure_snackbar'),
-                      content: Text('Failure while saving..')),
-                );
-            } else if (state.status.isSubmissionSuccess) {
-              AutoRouter.of(context).pop();
-              ScaffoldMessenger.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(const SnackBar(
-                  key: Key('editNode_saveSuccess_snackbar'),
-                  duration: Duration(seconds: 2),
-                  content: Text('Successfully updated'),
-                ));
-            }
-          },
-          child: BlocBuilder<NodeCubit, NodeState>(
-            buildWhen: (p, c) => p.selectedNode != c.selectedNode,
-            builder: (context, state) {
-              var node = state.selectedNode!;
-              return FutureBuilder<PeerDetail>(
-                future: _hornetNodeRestClient.peer(
-                  node.url,
-                  'Bearer ${node.jwtToken ?? ''}',
-                  id,
-                ),
-                builder: (context, AsyncSnapshot<PeerDetail> snapshot) {
-                  if (snapshot.hasData) {
-                    var peer = snapshot.data!.data;
-                    context.read<EditPeerCubit>().setInitialValues(
-                        peer.id, peer.multiAddresses.first, peer.alias ?? '');
-                    return Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Align(
-                        alignment: Alignment.topCenter,
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                'Update your peer',
-                                style: Theme.of(context)
-                                    .primaryTextTheme
-                                    .headline5,
-                              ),
-                              const PeerIdWidget(),
-                              const SizedBox(height: 8.0),
-                              const PeerAliasWidget(),
-                              const SizedBox(height: 20.0),
-                              const PeerAddressWidget(),
-                              const SizedBox(height: 8.0),
-                              ButtonsWidget(id: id),
-                              const SizedBox(height: 8.0),
-                            ],
+    return BlocListener<NodeCubit, NodeState>(
+      listenWhen: (previous, current) =>
+          previous.selectedNode != current.selectedNode,
+      listener: (context, state) {
+        AutoRouter.of(context).pop();
+      },
+      child: Scaffold(
+        appBar: AppBar(),
+        drawerEnableOpenDragGesture: false,
+        body: BlocProvider(
+          create: (context) => getIt<EditPeerCubit>(),
+          child: BlocListener<EditPeerCubit, EditPeerState>(
+            listenWhen: (previous, current) =>
+                previous.status != current.status,
+            listener: (context, state) {
+              if (state.status.isSubmissionFailure) {
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    const SnackBar(
+                        key: Key('editNode_saveFailure_snackbar'),
+                        content: Text('Failure while saving..')),
+                  );
+              } else if (state.status.isSubmissionSuccess) {
+                AutoRouter.of(context).pop();
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(const SnackBar(
+                    key: Key('editNode_saveSuccess_snackbar'),
+                    duration: Duration(seconds: 2),
+                    content: Text('Successfully updated'),
+                  ));
+              }
+            },
+            child: BlocBuilder<NodeCubit, NodeState>(
+              buildWhen: (p, c) => p.selectedNode != c.selectedNode,
+              builder: (context, state) {
+                var node = state.selectedNode!;
+                return FutureBuilder<PeerDetail>(
+                  future: _hornetNodeRestClient.peer(
+                    node.url,
+                    'Bearer ${node.jwtToken ?? ''}',
+                    id,
+                  ),
+                  builder: (context, AsyncSnapshot<PeerDetail> snapshot) {
+                    if (snapshot.hasData) {
+                      var peer = snapshot.data!.data;
+                      context.read<EditPeerCubit>().setInitialValues(
+                          peer.id, peer.multiAddresses.first, peer.alias ?? '');
+                      return Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Align(
+                          alignment: Alignment.topCenter,
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  'Update your peer',
+                                  style: Theme.of(context)
+                                      .primaryTextTheme
+                                      .headline5,
+                                ),
+                                const PeerIdWidget(),
+                                const SizedBox(height: 8.0),
+                                const PeerAliasWidget(),
+                                const SizedBox(height: 20.0),
+                                const PeerAddressWidget(),
+                                const SizedBox(height: 8.0),
+                                ButtonsWidget(id: id),
+                                const SizedBox(height: 8.0),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  } else {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                },
-              );
-            },
+                      );
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  },
+                );
+              },
+            ),
           ),
         ),
       ),

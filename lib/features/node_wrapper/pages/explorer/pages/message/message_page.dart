@@ -46,7 +46,20 @@ class _MessagePageState extends State<MessagePage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NodeCubit, NodeState>(
+    return BlocConsumer<NodeCubit, NodeState>(
+      listenWhen: (previous, current) =>
+          previous.selectedNode != current.selectedNode,
+      listener: (context, state) {
+        AutoRouter.of(context).popUntil((route) {
+          if (route.settings is AutoRoutePage) {
+            var name = (route.settings as AutoRoutePage).routeData.name;
+            return name == ExplorerRoute.name;
+          }
+          return false;
+        });
+      },
+      buildWhen: (previous, current) =>
+          previous.selectedNode != current.selectedNode,
       builder: (context, state) {
         var selectedNode = state.selectedNode;
 

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hornet_node/app/cubits/node_cubit/node_cubit.dart';
 import 'package:hornet_node/app/themes/custom_themes.dart';
 import 'package:hornet_node/configure_dependencies.dart';
@@ -179,49 +180,24 @@ class MilestoneWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var heartbeat = peer.gossip?.heartbeat;
     return HomeCardWidget(
       height: 100.0,
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Row(
           children: [
-            Expanded(
-              child: Container(
-                height: 60,
-                width: 60,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    color: const Color(0xff16e1d5)),
-                child: const Icon(
-                  Icons.flag,
-                  color: Color(0xFF078C83),
-                  size: 50,
-                ),
-              ),
-            ),
+            const HomeCardIconWidget(
+                backgroundColor: Color(0xff16e1d5),
+                iconColor: Color(0xFF078C83),
+                icon: Icons.flag),
             const SizedBox(
               width: 20,
             ),
-            Expanded(
-              flex: 2,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'SMI / LMI',
-                    style: Theme.of(context).textTheme.caption,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5.0),
-                    child: Text(
-                      '${peer.gossip?.heartbeat.solidMilestoneIndex ?? '-'} / ${peer.gossip?.heartbeat.latestMilestoneIndex ?? '-'}',
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                  ),
-                ],
-              ),
-            )
+            _MetricsTextItemWidget(
+                label: 'SMI / LMI',
+                value:
+                    '${heartbeat?.solidMilestoneIndex ?? '-'} / ${heartbeat?.latestMilestoneIndex ?? '-'}'),
           ],
         ),
       ),
@@ -242,44 +218,48 @@ class PruningCard extends StatelessWidget {
         padding: const EdgeInsets.all(15.0),
         child: Row(
           children: [
-            Expanded(
-              child: Container(
-                height: 60,
-                width: 60,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    color: const Color(0xFFFF9F7A)),
-                child: const Icon(
-                  Icons.delete_forever,
-                  color: Color(0xFFFE672C),
-                  size: 50,
-                ),
-              ),
+            const HomeCardIconWidget(
+              backgroundColor: Color(0xFFFF9F7A),
+              iconColor: Color(0xFFFE672C),
+              icon: Icons.delete_forever,
             ),
             const SizedBox(
               width: 20,
             ),
-            Expanded(
-              flex: 2,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'PRUNING INDEX',
-                    style: Theme.of(context).textTheme.caption,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5.0),
-                    child: Text(
-                      '${peer.gossip?.heartbeat.prunedMilestoneIndex ?? '-'}',
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                  ),
-                ],
-              ),
-            )
+            _MetricsTextItemWidget(
+                label: 'PRUNING INDEX',
+                value: '${peer.gossip?.heartbeat.prunedMilestoneIndex ?? '-'}'),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class HomeCardIconWidget extends StatelessWidget {
+  const HomeCardIconWidget({
+    Key? key,
+    required this.iconColor,
+    required this.backgroundColor,
+    required this.icon,
+  }) : super(key: key);
+
+  final Color iconColor;
+  final Color backgroundColor;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        height: 60,
+        width: 60,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.0), color: backgroundColor),
+        child: Icon(
+          icon,
+          color: iconColor,
+          size: 50,
         ),
       ),
     );
@@ -296,51 +276,61 @@ class SyncedPeersWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var heartbeat = peer.gossip?.heartbeat;
     return HomeCardWidget(
       height: 100.0,
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Row(
           children: [
-            Expanded(
-              child: Container(
-                height: 60,
-                width: 60,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    color: const Color(0xFF92CAFC)),
-                child: const Icon(
-                  Icons.account_tree_outlined,
-                  color: Color(0xFF1071C6),
-                  size: 50,
-                ),
-              ),
-            ),
+            const HomeCardIconWidget(
+                backgroundColor: Color(0xFF92CAFC),
+                iconColor: Color(0xFF1071C6),
+                icon: Icons.account_tree_outlined),
             const SizedBox(
               width: 20,
             ),
-            Expanded(
-              flex: 2,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Synced Peers',
-                    style: Theme.of(context).textTheme.caption,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5.0),
-                    child: Text(
-                      '${peer.gossip?.heartbeat.syncedNeighbors ?? '-'} / ${peer.gossip?.heartbeat.connectedNeighbors ?? '-'}',
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                  ),
-                ],
-              ),
-            )
+            _MetricsTextItemWidget(
+                label: 'SYNCED PEERS',
+                value:
+                    '${heartbeat?.syncedNeighbors ?? '-'} / ${heartbeat?.connectedNeighbors ?? '-'}')
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _MetricsTextItemWidget extends StatelessWidget {
+  const _MetricsTextItemWidget({
+    Key? key,
+    required this.label,
+    required this.value,
+  }) : super(key: key);
+
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: 2,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            label,
+            style: Theme.of(context).textTheme.caption,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 5.0),
+            child: Text(
+              value,
+              style: Theme.of(context).textTheme.headline6,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -374,204 +364,55 @@ class MetricsWidget extends StatelessWidget {
             ),
             Row(
               children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Known messages',
-                          style: Theme.of(context).textTheme.caption,
-                        ),
-                        Text(
-                            peer.gossip?.metrics.knownMessages.toString() ??
-                                '-',
-                            style: Theme.of(context).textTheme.headline6),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'New messages',
-                          style: Theme.of(context).textTheme.caption,
-                        ),
-                        Text(peer.gossip?.metrics.newMessages.toString() ?? '-',
-                            style: Theme.of(context).textTheme.headline6),
-                      ],
-                    ),
-                  ),
-                )
+                _MetricRowItem(
+                    label: 'Known messages',
+                    value: peer.gossip?.metrics.knownMessages.toString()),
+                _MetricRowItem(
+                    label: 'New messages',
+                    value: peer.gossip?.metrics.newMessages.toString()),
               ],
             ),
             Row(
               children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Received messages',
-                          style: Theme.of(context).textTheme.caption,
-                        ),
-                        Text(
-                            peer.gossip?.metrics.receivedMessages.toString() ??
-                                '-',
-                            style: Theme.of(context).textTheme.headline6),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Sent messages',
-                          style: Theme.of(context).textTheme.caption,
-                        ),
-                        Text(
-                            peer.gossip?.metrics.sentMessages.toString() ?? '-',
-                            style: Theme.of(context).textTheme.headline6),
-                      ],
-                    ),
-                  ),
-                )
+                _MetricRowItem(
+                    label: 'Received messages',
+                    value: peer.gossip?.metrics.receivedMessages.toString()),
+                _MetricRowItem(
+                    label: 'Sent messages',
+                    value: peer.gossip?.metrics.sentMessages.toString()),
               ],
             ),
             Row(
               children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Received message requests',
-                          style: Theme.of(context).textTheme.caption,
-                        ),
-                        Text(
-                            peer.gossip?.metrics.receivedMessageRequests
-                                    .toString() ??
-                                '-',
-                            style: Theme.of(context).textTheme.headline6),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Sent message requests',
-                          style: Theme.of(context).textTheme.caption,
-                        ),
-                        Text(
-                            peer.gossip?.metrics.sentMessageRequests
-                                    .toString() ??
-                                '-',
-                            style: Theme.of(context).textTheme.headline6),
-                      ],
-                    ),
-                  ),
-                )
+                _MetricRowItem(
+                    label: 'Received message requests',
+                    value: peer.gossip?.metrics.receivedMessageRequests
+                        .toString()),
+                _MetricRowItem(
+                    label: 'Sent message requests',
+                    value: peer.gossip?.metrics.sentMessageRequests.toString()),
               ],
             ),
             Row(
               children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Received heartbeats',
-                          style: Theme.of(context).textTheme.caption,
-                        ),
-                        Text(
-                            peer.gossip?.metrics.receivedHeartbeats
-                                    .toString() ??
-                                '-',
-                            style: Theme.of(context).textTheme.headline6),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Sent heartbeats',
-                          style: Theme.of(context).textTheme.caption,
-                        ),
-                        Text(
-                            peer.gossip?.metrics.sentHeartbeats.toString() ??
-                                '-',
-                            style: Theme.of(context).textTheme.headline6),
-                      ],
-                    ),
-                  ),
-                )
+                _MetricRowItem(
+                    label: 'Received heartbeats',
+                    value: peer.gossip?.metrics.receivedHeartbeats.toString()),
+                _MetricRowItem(
+                    label: 'Sent heartbeats',
+                    value: peer.gossip?.metrics.sentHeartbeats.toString()),
               ],
             ),
             Row(
               children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Received milestone requests',
-                          style: Theme.of(context).textTheme.caption,
-                        ),
-                        Text(
-                            peer.gossip?.metrics.receivedMilestoneRequests
-                                    .toString() ??
-                                '-',
-                            style: Theme.of(context).textTheme.headline6),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Sent milestone requests',
-                          style: Theme.of(context).textTheme.caption,
-                        ),
-                        Text(
-                            peer.gossip?.metrics.sentMilestoneRequests
-                                    .toString() ??
-                                '-',
-                            style: Theme.of(context).textTheme.headline6),
-                      ],
-                    ),
-                  ),
-                )
+                _MetricRowItem(
+                    label: 'Received milestone requests',
+                    value: peer.gossip?.metrics.receivedMilestoneRequests
+                        .toString()),
+                _MetricRowItem(
+                    label: 'Sent milestone requests',
+                    value:
+                        peer.gossip?.metrics.sentMilestoneRequests.toString()),
               ],
             ),
             Padding(
@@ -588,6 +429,36 @@ class MetricsWidget extends StatelessWidget {
                 ],
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _MetricRowItem extends StatelessWidget {
+  const _MetricRowItem({
+    Key? key,
+    required this.label,
+    required this.value,
+  }) : super(key: key);
+
+  final String label;
+  final String? value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.all(14),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              label,
+              style: Theme.of(context).textTheme.caption,
+            ),
+            Text(value ?? '-', style: Theme.of(context).textTheme.headline6),
           ],
         ),
       ),
