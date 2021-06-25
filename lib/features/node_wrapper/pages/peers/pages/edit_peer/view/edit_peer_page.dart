@@ -9,6 +9,7 @@ import 'package:hornet_node/features/node_wrapper/cubits/peers_cubit/peers_cubit
 import 'package:hornet_node/features/node_wrapper/pages/peers/pages/edit_peer/cubit/edit_peer_cubit.dart';
 import 'package:hornet_node/models/hornet/peers/peer_detail.dart';
 import 'package:formz/formz.dart';
+import 'package:hornet_node/utils/widgets/error_card_widget.dart';
 
 class EditPeerPage extends StatelessWidget {
   const EditPeerPage({Key? key, @PathParam('id') required this.id})
@@ -94,6 +95,8 @@ class EditPeerPage extends StatelessWidget {
                           ),
                         ),
                       );
+                    } else if (snapshot.hasError) {
+                      return const ErrorCardWidget();
                     } else {
                       return const Center(
                         child: CircularProgressIndicator(),

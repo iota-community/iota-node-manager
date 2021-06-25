@@ -14,6 +14,7 @@ import 'package:hornet_node/models/hornet/message/children/message_children_data
 import 'package:hornet_node/models/hornet/message/message_data.dart';
 import 'package:hornet_node/models/hornet/message/metadata/message_metadata_data.dart';
 import 'package:hornet_node/models/hornet/message/payload.dart';
+import 'package:hornet_node/utils/widgets/error_card_widget.dart';
 import 'package:hornet_node/utils/widgets/hornet_card.dart';
 
 part 'widgets/child_message_widget.dart';
@@ -94,6 +95,8 @@ class _MessagePageState extends State<MessagePage> {
                               : const SizedBox(),
                         ],
                       );
+                    } else if (snapshot.hasError) {
+                      return const ErrorCardWidget();
                     } else {
                       return const Center(
                         child: CircularProgressIndicator(),
@@ -116,6 +119,8 @@ class _MessagePageState extends State<MessagePage> {
                           ),
                         ],
                       );
+                    } else if (snapshot.hasError) {
+                      return const ErrorCardWidget();
                     } else {
                       return const SizedBox();
                     }
@@ -136,6 +141,8 @@ class _MessagePageState extends State<MessagePage> {
                           )
                         ],
                       );
+                    } else if (snapshot.hasError) {
+                      return const ErrorCardWidget();
                     } else {
                       return const SizedBox();
                     }

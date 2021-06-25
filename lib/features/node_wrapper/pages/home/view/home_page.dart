@@ -7,6 +7,7 @@ import 'package:hornet_node/features/node_wrapper/cubits/health_cubit/health_cub
 import 'package:hornet_node/features/node_wrapper/cubits/info_cubit/info_cubit.dart';
 import 'package:hornet_node/models/hornet/info/info.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hornet_node/utils/widgets/error_card_widget.dart';
 import 'package:hornet_node/utils/widgets/home_card_widget.dart';
 
 part '../widgets/features_card.dart';
@@ -73,7 +74,7 @@ class _HomePageState extends State<HomePage> {
             },
             loadInProgress: (_) =>
                 const Center(child: CircularProgressIndicator()),
-            orElse: () => const Center(child: CircularProgressIndicator()),
+            orElse: () => const ErrorCardWidget(),
           ),
         );
       },

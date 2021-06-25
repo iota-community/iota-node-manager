@@ -8,6 +8,7 @@ import 'package:hornet_node/app/themes/custom_themes.dart';
 import 'package:hornet_node/features/node_wrapper/cubits/info_cubit/info_cubit.dart';
 import 'package:hornet_node/features/node_wrapper/cubits/milestones_cubit/milestones_cubit.dart';
 import 'package:hornet_node/models/hornet/milestone/milestone_data.dart';
+import 'package:hornet_node/utils/widgets/error_card_widget.dart';
 
 class ExplorerPage extends StatefulWidget {
   const ExplorerPage({Key? key}) : super(key: key);
@@ -45,54 +46,54 @@ class _ExplorerPageState extends State<ExplorerPage> {
               return AnimatedSwitcher(
                 duration: const Duration(milliseconds: 350),
                 child: state.maybeMap(
-                  loadSuccess: (value) {
-                    var milestones = value.milestones;
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 25.0, vertical: 10),
-                          child: Text(
-                            'LATEST MILESTONES',
-                            style: TextStyle(
-                              fontSize: 18,
+                    loadSuccess: (value) {
+                      var milestones = value.milestones;
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 25.0, vertical: 10),
+                            child: Text(
+                              'LATEST MILESTONES',
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          child: RefreshIndicator(
-                            color: ThemeHelper.of(context).blackOrWhite,
-                            onRefresh: () {
-                              BlocProvider.of<MilestonesCubit>(context)
-                                  .milestones(info.latestMilestoneIndex);
-                              return _refreshCompleter.future;
-                            },
-                            child: ListView.builder(
-                              itemCount: milestones.length,
-                              itemBuilder: (context, index) {
-                                var milestone = milestones[index].data;
-                                return _MilestoneCard(
-                                  milestone: milestone,
-                                );
+                          Expanded(
+                            child: RefreshIndicator(
+                              color: ThemeHelper.of(context).blackOrWhite,
+                              onRefresh: () {
+                                BlocProvider.of<MilestonesCubit>(context)
+                                    .milestones(info.latestMilestoneIndex);
+                                return _refreshCompleter.future;
                               },
+                              child: ListView.builder(
+                                itemCount: milestones.length,
+                                itemBuilder: (context, index) {
+                                  var milestone = milestones[index].data;
+                                  return _MilestoneCard(
+                                    milestone: milestone,
+                                  );
+                                },
+                              ),
                             ),
                           ),
+                        ],
+                      );
+                    },
+                    initial: (_) {
+                      BlocProvider.of<MilestonesCubit>(context)
+                          .milestones(info.latestMilestoneIndex);
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    },
+                    loadInProgress: (_) => const Center(
+                          child: CircularProgressIndicator(),
                         ),
-                      ],
-                    );
-                  },
-                  initial: (_) {
-                    BlocProvider.of<MilestonesCubit>(context)
-                        .milestones(info.latestMilestoneIndex);
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  },
-                  orElse: () => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
+                    orElse: () => const ErrorCardWidget()),
               );
             },
           );

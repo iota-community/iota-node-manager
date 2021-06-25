@@ -12,6 +12,7 @@ import 'package:hornet_node/features/node_wrapper/pages/peers/pages/detail_peer/
 import 'package:hornet_node/features/node_wrapper/widgets/circle_indicator.dart';
 import 'package:hornet_node/models/hornet/peers/peer.dart';
 import 'package:hornet_node/repository/node_repository.dart';
+import 'package:hornet_node/utils/widgets/error_card_widget.dart';
 import 'package:hornet_node/utils/widgets/home_card_widget.dart';
 
 class PeerDetailPage extends StatefulWidget {
@@ -88,8 +89,7 @@ class _PeerDetailPageState extends State<PeerDetailPage> {
                   },
                   loadInProgress: (_) =>
                       const Center(child: CircularProgressIndicator()),
-                  orElse: () =>
-                      const Center(child: CircularProgressIndicator()),
+                  orElse: () => const ErrorCardWidget(),
                 ),
               );
             },
