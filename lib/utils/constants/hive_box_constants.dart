@@ -1,3 +1,5 @@
 class HiveBoxConstants {
-  static const darkModeBox = 'darkMode';
+  static const appBox = 'appBox';
+  static const darkModeKey = 'darkMode';
+  static const languageKey = 'language';
 }

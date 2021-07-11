@@ -17,10 +17,14 @@ class _$InitialNodeStateTearOff {
   const _$InitialNodeStateTearOff();
 
   _InitialNodeState call(
-      {required Name name, required Url url, required FormzStatus status}) {
+      {required Name name,
+      required Url url,
+      required Jwt jwt,
+      required FormzStatus status}) {
     return _InitialNodeState(
       name: name,
       url: url,
+      jwt: jwt,
       status: status,
     );
   }
@@ -33,6 +37,7 @@ const $InitialNodeState = _$InitialNodeStateTearOff();
 mixin _$InitialNodeState {
   Name get name => throw _privateConstructorUsedError;
   Url get url => throw _privateConstructorUsedError;
+  Jwt get jwt => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -45,7 +50,7 @@ abstract class $InitialNodeStateCopyWith<$Res> {
   factory $InitialNodeStateCopyWith(
           InitialNodeState value, $Res Function(InitialNodeState) then) =
       _$InitialNodeStateCopyWithImpl<$Res>;
-  $Res call({Name name, Url url, FormzStatus status});
+  $Res call({Name name, Url url, Jwt jwt, FormzStatus status});
 }
 
 /// @nodoc
@@ -61,6 +66,7 @@ class _$InitialNodeStateCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? url = freezed,
+    Object? jwt = freezed,
     Object? status = freezed,
   }) {
     return _then(_value.copyWith(
@@ -72,6 +78,10 @@ class _$InitialNodeStateCopyWithImpl<$Res>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as Url,
+      jwt: jwt == freezed
+          ? _value.jwt
+          : jwt // ignore: cast_nullable_to_non_nullable
+              as Jwt,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -87,7 +97,7 @@ abstract class _$InitialNodeStateCopyWith<$Res>
           _InitialNodeState value, $Res Function(_InitialNodeState) then) =
       __$InitialNodeStateCopyWithImpl<$Res>;
   @override
-  $Res call({Name name, Url url, FormzStatus status});
+  $Res call({Name name, Url url, Jwt jwt, FormzStatus status});
 }
 
 /// @nodoc
@@ -105,6 +115,7 @@ class __$InitialNodeStateCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? url = freezed,
+    Object? jwt = freezed,
     Object? status = freezed,
   }) {
     return _then(_InitialNodeState(
@@ -116,6 +127,10 @@ class __$InitialNodeStateCopyWithImpl<$Res>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as Url,
+      jwt: jwt == freezed
+          ? _value.jwt
+          : jwt // ignore: cast_nullable_to_non_nullable
+              as Jwt,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -128,18 +143,23 @@ class __$InitialNodeStateCopyWithImpl<$Res>
 
 class _$_InitialNodeState implements _InitialNodeState {
   const _$_InitialNodeState(
-      {required this.name, required this.url, required this.status});
+      {required this.name,
+      required this.url,
+      required this.jwt,
+      required this.status});
 
   @override
   final Name name;
   @override
   final Url url;
   @override
+  final Jwt jwt;
+  @override
   final FormzStatus status;
 
   @override
   String toString() {
-    return 'InitialNodeState(name: $name, url: $url, status: $status)';
+    return 'InitialNodeState(name: $name, url: $url, jwt: $jwt, status: $status)';
   }
 
   @override
@@ -150,6 +170,8 @@ class _$_InitialNodeState implements _InitialNodeState {
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.url, url) ||
                 const DeepCollectionEquality().equals(other.url, url)) &&
+            (identical(other.jwt, jwt) ||
+                const DeepCollectionEquality().equals(other.jwt, jwt)) &&
             (identical(other.status, status) ||
                 const DeepCollectionEquality().equals(other.status, status)));
   }
@@ -159,6 +181,7 @@ class _$_InitialNodeState implements _InitialNodeState {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(url) ^
+      const DeepCollectionEquality().hash(jwt) ^
       const DeepCollectionEquality().hash(status);
 
   @JsonKey(ignore: true)
@@ -171,12 +194,15 @@ abstract class _InitialNodeState implements InitialNodeState {
   const factory _InitialNodeState(
       {required Name name,
       required Url url,
+      required Jwt jwt,
       required FormzStatus status}) = _$_InitialNodeState;
 
   @override
   Name get name => throw _privateConstructorUsedError;
   @override
   Url get url => throw _privateConstructorUsedError;
+  @override
+  Jwt get jwt => throw _privateConstructorUsedError;
   @override
   FormzStatus get status => throw _privateConstructorUsedError;
   @override

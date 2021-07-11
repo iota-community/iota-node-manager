@@ -7,13 +7,14 @@ import 'package:hornet_node/features/node_wrapper/cubits/health_cubit/health_cub
 import 'package:hornet_node/features/node_wrapper/cubits/info_cubit/info_cubit.dart';
 import 'package:hornet_node/models/hornet/info/info.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hornet_node/utils/widgets/error_card_widget.dart';
+import 'package:hornet_node/utils/widgets/home_card_widget.dart';
 
 part '../widgets/features_card.dart';
 part '../widgets/messages_card.dart';
 part '../widgets/milestones_card.dart';
 part '../widgets/pruning_card.dart';
 part '../widgets/title_card.dart';
-part '../widgets/card_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -73,7 +74,28 @@ class _HomePageState extends State<HomePage> {
             },
             loadInProgress: (_) =>
                 const Center(child: CircularProgressIndicator()),
-            orElse: () => const Center(child: CircularProgressIndicator()),
+            orElse: () => ErrorCardWidget(
+              child: ElevatedButton(
+                key: const Key('addNodeForm_continue_raisedButton'),
+                style: ElevatedButton.styleFrom(
+                  primary: Theme.of(context).accentColor,
+                ),
+                onPressed: () {
+                  BlocProvider.of<HealthCubit>(context).health();
+                  BlocProvider.of<InfoCubit>(context).info();
+                },
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Center(
+                    child: Text(
+                      'Reload',
+                      style: TextStyle(
+                          color: ThemeHelper.of(context).blackOrWhite),
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ),
         );
       },

@@ -11,7 +11,9 @@ class Node extends DataClass implements Insertable<Node> {
   final int id;
   final String name;
   final String url;
-  Node({required this.id, required this.name, required this.url});
+  final String? jwtToken;
+  Node(
+      {required this.id, required this.name, required this.url, this.jwtToken});
   factory Node.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String? prefix}) {
     final effectivePrefix = prefix ?? '';
@@ -22,6 +24,8 @@ class Node extends DataClass implements Insertable<Node> {
           .mapFromDatabaseResponse(data['${effectivePrefix}name'])!,
       url: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}url'])!,
+      jwtToken: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}jwt_token']),
     );
   }
   @override
@@ -30,6 +34,9 @@ class Node extends DataClass implements Insertable<Node> {
     map['id'] = Variable<int>(id);
     map['name'] = Variable<String>(name);
     map['url'] = Variable<String>(url);
+    if (!nullToAbsent || jwtToken != null) {
+      map['jwt_token'] = Variable<String?>(jwtToken);
+    }
     return map;
   }
 
@@ -38,6 +45,9 @@ class Node extends DataClass implements Insertable<Node> {
       id: Value(id),
       name: Value(name),
       url: Value(url),
+      jwtToken: jwtToken == null && nullToAbsent
+          ? const Value.absent()
+          : Value(jwtToken),
     );
   }
 
@@ -48,6 +58,7 @@ class Node extends DataClass implements Insertable<Node> {
       id: serializer.fromJson<int>(json['id']),
       name: serializer.fromJson<String>(json['name']),
       url: serializer.fromJson<String>(json['url']),
+      jwtToken: serializer.fromJson<String?>(json['jwtToken']),
     );
   }
   @override
@@ -57,69 +68,82 @@ class Node extends DataClass implements Insertable<Node> {
       'id': serializer.toJson<int>(id),
       'name': serializer.toJson<String>(name),
       'url': serializer.toJson<String>(url),
+      'jwtToken': serializer.toJson<String?>(jwtToken),
     };
   }
 
-  Node copyWith({int? id, String? name, String? url}) => Node(
+  Node copyWith({int? id, String? name, String? url, String? jwtToken}) => Node(
         id: id ?? this.id,
         name: name ?? this.name,
         url: url ?? this.url,
+        jwtToken: jwtToken ?? this.jwtToken,
       );
   @override
   String toString() {
     return (StringBuffer('Node(')
           ..write('id: $id, ')
           ..write('name: $name, ')
-          ..write('url: $url')
+          ..write('url: $url, ')
+          ..write('jwtToken: $jwtToken')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode =>
-      $mrjf($mrjc(id.hashCode, $mrjc(name.hashCode, url.hashCode)));
+  int get hashCode => $mrjf($mrjc(id.hashCode,
+      $mrjc(name.hashCode, $mrjc(url.hashCode, jwtToken.hashCode))));
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is Node &&
           other.id == this.id &&
           other.name == this.name &&
-          other.url == this.url);
+          other.url == this.url &&
+          other.jwtToken == this.jwtToken);
 }
 
 class NodesCompanion extends UpdateCompanion<Node> {
   final Value<int> id;
   final Value<String> name;
   final Value<String> url;
+  final Value<String?> jwtToken;
   const NodesCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
     this.url = const Value.absent(),
+    this.jwtToken = const Value.absent(),
   });
   NodesCompanion.insert({
     this.id = const Value.absent(),
     required String name,
     required String url,
+    this.jwtToken = const Value.absent(),
   })  : name = Value(name),
         url = Value(url);
   static Insertable<Node> custom({
     Expression<int>? id,
     Expression<String>? name,
     Expression<String>? url,
+    Expression<String?>? jwtToken,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (name != null) 'name': name,
       if (url != null) 'url': url,
+      if (jwtToken != null) 'jwt_token': jwtToken,
     });
   }
 
   NodesCompanion copyWith(
-      {Value<int>? id, Value<String>? name, Value<String>? url}) {
+      {Value<int>? id,
+      Value<String>? name,
+      Value<String>? url,
+      Value<String?>? jwtToken}) {
     return NodesCompanion(
       id: id ?? this.id,
       name: name ?? this.name,
       url: url ?? this.url,
+      jwtToken: jwtToken ?? this.jwtToken,
     );
   }
 
@@ -135,6 +159,9 @@ class NodesCompanion extends UpdateCompanion<Node> {
     if (url.present) {
       map['url'] = Variable<String>(url.value);
     }
+    if (jwtToken.present) {
+      map['jwt_token'] = Variable<String?>(jwtToken.value);
+    }
     return map;
   }
 
@@ -143,7 +170,8 @@ class NodesCompanion extends UpdateCompanion<Node> {
     return (StringBuffer('NodesCompanion(')
           ..write('id: $id, ')
           ..write('name: $name, ')
-          ..write('url: $url')
+          ..write('url: $url, ')
+          ..write('jwtToken: $jwtToken')
           ..write(')'))
         .toString();
   }
@@ -180,8 +208,19 @@ class $NodesTable extends Nodes with TableInfo<$NodesTable, Node> {
     );
   }
 
+  final VerificationMeta _jwtTokenMeta = const VerificationMeta('jwtToken');
   @override
-  List<GeneratedColumn> get $columns => [id, name, url];
+  late final GeneratedTextColumn jwtToken = _constructJwtToken();
+  GeneratedTextColumn _constructJwtToken() {
+    return GeneratedTextColumn(
+      'jwt_token',
+      $tableName,
+      true,
+    );
+  }
+
+  @override
+  List<GeneratedColumn> get $columns => [id, name, url, jwtToken];
   @override
   $NodesTable get asDslTable => this;
   @override
@@ -207,6 +246,10 @@ class $NodesTable extends Nodes with TableInfo<$NodesTable, Node> {
           _urlMeta, url.isAcceptableOrUnknown(data['url']!, _urlMeta));
     } else if (isInserting) {
       context.missing(_urlMeta);
+    }
+    if (data.containsKey('jwt_token')) {
+      context.handle(_jwtTokenMeta,
+          jwtToken.isAcceptableOrUnknown(data['jwt_token']!, _jwtTokenMeta));
     }
     return context;
   }

@@ -22,7 +22,8 @@ class HealthCubit extends Cubit<HealthState> {
     try {
       var selectedNode = await _nodeRepository.getSelectedNode();
       if (selectedNode != null) {
-        var response = await _hornetNodeRestClient.health(selectedNode.url);
+        var response = await _hornetNodeRestClient.health(
+            selectedNode.url, 'Bearer ${selectedNode.jwtToken ?? ''}');
         final statusCode = response.response.statusCode;
         emit(HealthState.loadSuccess(statusCode));
       }

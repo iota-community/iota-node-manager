@@ -6,16 +6,20 @@ import 'package:hornet_node/configure_dependencies.dart';
 import 'package:formz/formz.dart';
 import 'package:hornet_node/features/initial_node/initial_node.dart';
 import 'package:hornet_node/app/cubits/node_cubit/node_cubit.dart';
+import 'package:hornet_node/l10n/l10n.dart';
 
 part '../widgets/save_button.dart';
 part '../widgets/url_input.dart';
 part '../widgets/name_input.dart';
+part '../widgets/jwt_input.dart';
 
 class InitialNodePage extends StatelessWidget {
   const InitialNodePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return Scaffold(
       body: BlocProvider(
         create: (context) => getIt<InitialNodeCubit>(),
@@ -26,7 +30,9 @@ class InitialNodePage extends StatelessWidget {
               ScaffoldMessenger.of(context)
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
-                  const SnackBar(content: Text('Failure while saving..')),
+                  SnackBar(
+                      key: const Key('saveFailureSnackbar'),
+                      content: Text(l10n.addInitialNodeSaveError)),
                 );
             } else if (state.status.isSubmissionSuccess) {
               BlocProvider.of<NodeCubit>(context)
@@ -48,12 +54,18 @@ class InitialNodePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 16.0),
                   Text(
-                    'Add a new hornet node',
+                    l10n.addInitialNodeTitle,
                     style: Theme.of(context).primaryTextTheme.headline5,
                   ),
                   _NameInput(),
                   const SizedBox(height: 8.0),
                   _UrlInput(),
+                  const SizedBox(height: 8.0),
+                  Text(
+                    'Optional',
+                    style: Theme.of(context).textTheme.subtitle1,
+                  ),
+                  _JwtInput(),
                   const SizedBox(height: 8.0),
                   _SaveButton(),
                   const SizedBox(height: 8.0),

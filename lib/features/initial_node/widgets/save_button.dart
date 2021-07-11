@@ -3,6 +3,8 @@ part of '../view/initial_node_page.dart';
 class _SaveButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return BlocBuilder<InitialNodeCubit, InitialNodeState>(
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
@@ -22,7 +24,7 @@ class _SaveButton extends StatelessWidget {
                     width: double.infinity,
                     child: Center(
                       child: Text(
-                        'ADD',
+                        l10n.addInitialNodeSaveButton,
                         style: TextStyle(
                             color: ThemeHelper.of(context).blackOrWhite),
                       ),

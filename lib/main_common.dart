@@ -8,5 +8,5 @@ Future<void> mainCommon() async {
 
   await Hive.initFlutter();
 
-  await Hive.openBox(HiveBoxConstants.darkModeBox);
+  await Hive.openBox(HiveBoxConstants.appBox);
 }
