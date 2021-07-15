@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.pochert.hornetNode">
    <application
-        android:label="Hornet Node"
+        android:label="Hornet Node Manager"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
