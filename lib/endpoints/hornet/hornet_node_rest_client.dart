@@ -4,7 +4,7 @@ import 'package:hornet_node/models/hornet/message/message.dart';
 import 'package:hornet_node/models/hornet/message/metadata/message_metadata.dart';
 import 'package:hornet_node/models/hornet/milestone/milestone.dart';
 import 'package:hornet_node/models/hornet/peers/add_peer/add_peer_body.dart';
-import 'package:hornet_node/models/hornet/peers/peer.dart';
+import 'package:hornet_node/models/hornet/peers/peer_detail.dart';
 import 'package:hornet_node/models/hornet/peers/peers.dart';
 import 'package:hornet_node/models/hornet/tips/tips.dart';
 import 'package:hornet_node/models/hornet/treasury/treasury.dart';
@@ -34,11 +34,9 @@ abstract class HornetNodeRestClient {
 
   Future<Peers> peers(String baseUrl, String jwtToken);
 
-  Future<Peer> peer(String baseUrl, String jwtToken, String peerId);
+  Future<PeerDetail> peer(String baseUrl, String jwtToken, String peerId);
 
-  Future<MessageChildren> addPeer(
-      String baseUrl, String jwtToken, AddPeerBody body);
+  Future addPeer(String baseUrl, String jwtToken, AddPeerBody body);
 
-  Future<MessageChildren> removePeer(
-      String baseUrl, String jwtToken, String peerId);
+  Future removePeer(String baseUrl, String jwtToken, String peerId);
 }

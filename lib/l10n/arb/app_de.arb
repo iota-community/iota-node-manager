@@ -24,7 +24,7 @@
     "@addInitialNodeUrlError": {
         "description": "Error shown on the page to add a new node url input field if invalid"
     },
-    "addInitialNodeJwtLabel": "JWT Token",
+    "addInitialNodeJwtLabel": "JWT Token (Ermöglicht die Verwaltung von Peers)",
     "@addInitialNodeNamesUrl": {
         "description": "Label shown on the page to add a new node url input filed"
     },

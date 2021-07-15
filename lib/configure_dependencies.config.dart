@@ -11,18 +11,22 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:rx_shared_preferences/rx_shared_preferences.dart' as _i8;
 
 import 'app/cubits/app_cubit/app_cubit.dart' as _i9;
-import 'app/cubits/node_cubit/node_cubit.dart' as _i17;
+import 'app/cubits/node_cubit/node_cubit.dart' as _i19;
 import 'endpoints/hornet/hornet_node_dio_rest_client.dart' as _i7;
 import 'endpoints/hornet/hornet_node_rest_client.dart' as _i6;
-import 'features/initial_node/cubit/initial_node_cubit.dart' as _i15;
+import 'features/initial_node/cubit/initial_node_cubit.dart' as _i17;
 import 'features/node_overview/pages/edit_node/cubit/edit_node_cubit.dart'
-    as _i12;
-import 'features/node_wrapper/cubits/health_cubit/health_cubit.dart' as _i13;
-import 'features/node_wrapper/cubits/info_cubit/info_cubit.dart' as _i14;
+    as _i13;
+import 'features/node_wrapper/cubits/health_cubit/health_cubit.dart' as _i15;
+import 'features/node_wrapper/cubits/info_cubit/info_cubit.dart' as _i16;
 import 'features/node_wrapper/cubits/milestones_cubit/milestones_cubit.dart'
-    as _i16;
+    as _i18;
 import 'features/node_wrapper/cubits/peers_cubit/peers_cubit.dart' as _i11;
-import 'register_module.dart' as _i18;
+import 'features/node_wrapper/pages/peers/pages/detail_peer/cubit/detail_peer_cubit/detail_peer_cubit.dart'
+    as _i12;
+import 'features/node_wrapper/pages/peers/pages/edit_peer/cubit/edit_peer_cubit.dart'
+    as _i14;
+import 'register_module.dart' as _i20;
 import 'repository/moor/database.dart' as _i5;
 import 'repository/node_repository.dart'
     as _i10; // ignore_for_file: unnecessary_lambdas
@@ -47,20 +51,24 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i5.HornetNodeDB>(), get<_i8.RxSharedPreferences>()));
   gh.factory<_i11.PeersCubit>(() => _i11.PeersCubit(
       get<_i6.HornetNodeRestClient>(), get<_i10.NodeRepository>()));
-  gh.factory<_i12.EditNodeCubit>(() =>
-      _i12.EditNodeCubit(get<_i10.NodeRepository>(), get<_i11.PeersCubit>()));
-  gh.factory<_i13.HealthCubit>(() => _i13.HealthCubit(
+  gh.factory<_i12.DetailPeerCubit>(() => _i12.DetailPeerCubit(
       get<_i6.HornetNodeRestClient>(), get<_i10.NodeRepository>()));
-  gh.factory<_i14.InfoCubit>(() => _i14.InfoCubit(
+  gh.factory<_i13.EditNodeCubit>(() =>
+      _i13.EditNodeCubit(get<_i10.NodeRepository>(), get<_i11.PeersCubit>()));
+  gh.factory<_i14.EditPeerCubit>(() => _i14.EditPeerCubit(
+      get<_i10.NodeRepository>(), get<_i6.HornetNodeRestClient>()));
+  gh.factory<_i15.HealthCubit>(() => _i15.HealthCubit(
       get<_i6.HornetNodeRestClient>(), get<_i10.NodeRepository>()));
-  gh.factory<_i15.InitialNodeCubit>(
-      () => _i15.InitialNodeCubit(get<_i10.NodeRepository>()));
-  gh.factory<_i16.MilestonesCubit>(() => _i16.MilestonesCubit(
+  gh.factory<_i16.InfoCubit>(() => _i16.InfoCubit(
       get<_i6.HornetNodeRestClient>(), get<_i10.NodeRepository>()));
-  gh.factory<_i17.NodeCubit>(() => _i17.NodeCubit(get<_i10.NodeRepository>()));
+  gh.factory<_i17.InitialNodeCubit>(
+      () => _i17.InitialNodeCubit(get<_i10.NodeRepository>()));
+  gh.factory<_i18.MilestonesCubit>(() => _i18.MilestonesCubit(
+      get<_i6.HornetNodeRestClient>(), get<_i10.NodeRepository>()));
+  gh.factory<_i19.NodeCubit>(() => _i19.NodeCubit(get<_i10.NodeRepository>()));
   return get;
 }
 
-class _$HiveModule extends _i18.HiveModule {}
+class _$HiveModule extends _i20.HiveModule {}
 
-class _$RegisterModule extends _i18.RegisterModule {}
+class _$RegisterModule extends _i20.RegisterModule {}

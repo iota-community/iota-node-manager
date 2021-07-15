@@ -1,4 +1,4 @@
-package com.example.hornetNode
+package de.pochert.hornetNode
 
 import io.flutter.embedding.android.FlutterActivity
 

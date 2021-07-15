@@ -61,6 +61,10 @@ class InitialNodePage extends StatelessWidget {
                   const SizedBox(height: 8.0),
                   _UrlInput(),
                   const SizedBox(height: 8.0),
+                  Text(
+                    'Optional',
+                    style: Theme.of(context).textTheme.subtitle1,
+                  ),
                   _JwtInput(),
                   const SizedBox(height: 8.0),
                   _SaveButton(),
