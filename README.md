@@ -8,6 +8,17 @@ A mobile app running on Android and iOS to manage multiple Hornet Nodes on the g
 
 ---
 
+## Generate a JWT Token
+It depends on how you installed the node.
+a. APT:  run the following command
+./hornet tool jwt-api
+b. Nuriel Playbook: https://github.com/nuriel77/hornet-playbook#get-jwt-token
+
+Unfortunately this requires you to temporary shutdown the node before generating it.
+
+
+---
+
 ## Open TODOs
 - Improve test coverage
 - Add improved documentation
