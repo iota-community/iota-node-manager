@@ -16,6 +16,8 @@ import 'package:hornet_node/models/hornet/message/metadata/message_metadata_data
 import 'package:hornet_node/models/hornet/message/payload.dart';
 import 'package:hornet_node/utils/widgets/error_card_widget.dart';
 import 'package:hornet_node/utils/widgets/hornet_card.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:dio/dio.dart';
 
 part 'widgets/child_message_widget.dart';
 part 'widgets/column_tile_text_widget.dart';
@@ -96,6 +98,11 @@ class _MessagePageState extends State<MessagePage> {
                         ],
                       );
                     } else if (snapshot.hasError) {
+                      var error = snapshot.error as DioError;
+                      Sentry.captureException(
+                        error,
+                        stackTrace: error.stackTrace,
+                      );
                       return const ErrorCardWidget();
                     } else {
                       return const Center(
@@ -120,6 +127,11 @@ class _MessagePageState extends State<MessagePage> {
                         ],
                       );
                     } else if (snapshot.hasError) {
+                      var error = snapshot.error as DioError;
+                      Sentry.captureException(
+                        error,
+                        stackTrace: error.stackTrace,
+                      );
                       return const ErrorCardWidget();
                     } else {
                       return const SizedBox();
@@ -142,6 +154,11 @@ class _MessagePageState extends State<MessagePage> {
                         ],
                       );
                     } else if (snapshot.hasError) {
+                      var error = snapshot.error as DioError;
+                      Sentry.captureException(
+                        error,
+                        stackTrace: error.stackTrace,
+                      );
                       return const ErrorCardWidget();
                     } else {
                       return const SizedBox();

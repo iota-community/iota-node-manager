@@ -4,6 +4,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hornet_node/endpoints/hornet/hornet_node_rest_client.dart';
 import 'package:hornet_node/repository/node_repository.dart';
 import 'package:injectable/injectable.dart';
+import 'package:dio/dio.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 part 'health_cubit.freezed.dart';
 
@@ -27,7 +29,11 @@ class HealthCubit extends Cubit<HealthState> {
         final statusCode = response.response.statusCode;
         emit(HealthState.loadSuccess(statusCode));
       }
-    } on Exception catch (_) {
+    } on DioError catch (e) {
+      await Sentry.captureException(
+        e,
+        stackTrace: e.stackTrace,
+      );
       emit(const HealthState.loadFailure());
     }
   }

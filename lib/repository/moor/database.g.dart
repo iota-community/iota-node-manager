@@ -182,51 +182,32 @@ class $NodesTable extends Nodes with TableInfo<$NodesTable, Node> {
   final String? _alias;
   $NodesTable(this._db, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
-  @override
-  late final GeneratedIntColumn id = _constructId();
-  GeneratedIntColumn _constructId() {
-    return GeneratedIntColumn('id', $tableName, false,
-        hasAutoIncrement: true, declaredAsPrimaryKey: true);
-  }
-
+  late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
+      'id', aliasedName, false,
+      typeName: 'INTEGER',
+      requiredDuringInsert: false,
+      defaultConstraints: 'PRIMARY KEY AUTOINCREMENT');
   final VerificationMeta _nameMeta = const VerificationMeta('name');
-  @override
-  late final GeneratedTextColumn name = _constructName();
-  GeneratedTextColumn _constructName() {
-    return GeneratedTextColumn('name', $tableName, false,
-        minTextLength: 1, maxTextLength: 64);
-  }
-
+  late final GeneratedColumn<String?> name = GeneratedColumn<String?>(
+      'name', aliasedName, false,
+      additionalChecks:
+          GeneratedColumn.checkTextLength(minTextLength: 1, maxTextLength: 64),
+      typeName: 'TEXT',
+      requiredDuringInsert: true);
   final VerificationMeta _urlMeta = const VerificationMeta('url');
-  @override
-  late final GeneratedTextColumn url = _constructUrl();
-  GeneratedTextColumn _constructUrl() {
-    return GeneratedTextColumn(
-      'url',
-      $tableName,
-      false,
-    );
-  }
-
+  late final GeneratedColumn<String?> url = GeneratedColumn<String?>(
+      'url', aliasedName, false,
+      typeName: 'TEXT', requiredDuringInsert: true);
   final VerificationMeta _jwtTokenMeta = const VerificationMeta('jwtToken');
-  @override
-  late final GeneratedTextColumn jwtToken = _constructJwtToken();
-  GeneratedTextColumn _constructJwtToken() {
-    return GeneratedTextColumn(
-      'jwt_token',
-      $tableName,
-      true,
-    );
-  }
-
+  late final GeneratedColumn<String?> jwtToken = GeneratedColumn<String?>(
+      'jwt_token', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [id, name, url, jwtToken];
   @override
-  $NodesTable get asDslTable => this;
+  String get aliasedName => _alias ?? 'nodes';
   @override
-  String get $tableName => _alias ?? 'nodes';
-  @override
-  final String actualTableName = 'nodes';
+  String get actualTableName => 'nodes';
   @override
   VerificationContext validateIntegrity(Insertable<Node> instance,
       {bool isInserting = false}) {

@@ -4,6 +4,8 @@ import 'package:hornet_node/endpoints/hornet/hornet_node_rest_client.dart';
 import 'package:hornet_node/models/hornet/milestone/milestone.dart';
 import 'package:hornet_node/repository/node_repository.dart';
 import 'package:injectable/injectable.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:dio/dio.dart';
 
 part 'milestones_state.dart';
 part 'milestones_cubit.freezed.dart';
@@ -46,7 +48,11 @@ class MilestonesCubit extends Cubit<MilestonesState> {
 
         emit(MilestonesState.loadSuccess(milestones));
       }
-    } on Exception catch (_) {
+    } on DioError catch (e) {
+      await Sentry.captureException(
+        e,
+        stackTrace: e.stackTrace,
+      );
       emit(const MilestonesState.loadFailure());
     }
   }

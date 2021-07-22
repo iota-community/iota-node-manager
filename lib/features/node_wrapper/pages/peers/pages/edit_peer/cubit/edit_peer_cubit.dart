@@ -9,7 +9,8 @@ import 'package:hornet_node/models/hornet/peers/add_peer/add_peer_body.dart';
 import 'package:hornet_node/repository/moor/database.dart';
 import 'package:hornet_node/repository/node_repository.dart';
 import 'package:injectable/injectable.dart';
-
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:dio/dio.dart';
 part 'edit_peer_state.dart';
 part 'edit_peer_cubit.freezed.dart';
 
@@ -72,14 +73,28 @@ class EditPeerCubit extends Cubit<EditPeerState> {
   }
 
   Future _removePeer(Node selectedNode, String peerId) async {
-    await _hornetNodeRestClient.removePeer(
-        selectedNode.url, 'Bearer ${selectedNode.jwtToken ?? ''}', peerId);
+    try {
+      await _hornetNodeRestClient.removePeer(
+          selectedNode.url, 'Bearer ${selectedNode.jwtToken ?? ''}', peerId);
+    } on DioError catch (e) {
+      await Sentry.captureException(
+        e,
+        stackTrace: e.stackTrace,
+      );
+    }
   }
 
   Future _addPeer(Node selectedNode, String? name, String address) async {
-    await _hornetNodeRestClient.addPeer(
-        selectedNode.url,
-        'Bearer ${selectedNode.jwtToken ?? ''}',
-        AddPeerBody(multiAddress: address, alias: name ?? ''));
+    try {
+      await _hornetNodeRestClient.addPeer(
+          selectedNode.url,
+          'Bearer ${selectedNode.jwtToken ?? ''}',
+          AddPeerBody(multiAddress: address, alias: name ?? ''));
+    } on DioError catch (e) {
+      await Sentry.captureException(
+        e,
+        stackTrace: e.stackTrace,
+      );
+    }
   }
 }

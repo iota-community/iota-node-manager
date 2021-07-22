@@ -4,6 +4,8 @@ import 'package:hornet_node/endpoints/hornet/hornet_node_rest_client.dart';
 import 'package:hornet_node/models/hornet/info/info.dart';
 import 'package:hornet_node/repository/node_repository.dart';
 import 'package:injectable/injectable.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:dio/dio.dart';
 
 part 'info_cubit.freezed.dart';
 
@@ -27,7 +29,11 @@ class InfoCubit extends Cubit<InfoState> {
         emit(InfoState.loadSuccess(response));
         return response;
       }
-    } on Exception catch (_) {
+    } on DioError catch (e) {
+      await Sentry.captureException(
+        e,
+        stackTrace: e.stackTrace,
+      );
       emit(const InfoState.loadFailure());
     }
   }
