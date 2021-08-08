@@ -115,17 +115,5 @@ class PeersCubit extends Cubit<PeersState> {
   Future<Peers> _loadPeers(Node selectedNode) async {
     return await _hornetNodeRestClient.peers(
         selectedNode.url, 'Bearer ${selectedNode.jwtToken ?? ''}');
-    //     .catchError((Object obj) async {
-    //   switch (obj.runtimeType) {
-    //     case DioError:
-    //       final error = (obj as DioError);
-    //       await Sentry.captureException(
-    //         error,
-    //         stackTrace: error.stackTrace,
-    //       );
-    //       throw error;
-    //     default:
-    //   }
-    // });
   }
 }
