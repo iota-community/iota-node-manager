@@ -30,8 +30,10 @@ class _$InfoStateTearOff {
     );
   }
 
-  _LoadFailure loadFailure() {
-    return const _LoadFailure();
+  _LoadFailure loadFailure(FailureStatusEnum failure) {
+    return _LoadFailure(
+      failure,
+    );
   }
 }
 
@@ -45,7 +47,7 @@ mixin _$InfoState {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function(Info info) loadSuccess,
-    required TResult Function() loadFailure,
+    required TResult Function(FailureStatusEnum failure) loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,7 +55,7 @@ mixin _$InfoState {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function(Info info)? loadSuccess,
-    TResult Function()? loadFailure,
+    TResult Function(FailureStatusEnum failure)? loadFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -131,7 +133,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function(Info info) loadSuccess,
-    required TResult Function() loadFailure,
+    required TResult Function(FailureStatusEnum failure) loadFailure,
   }) {
     return initial();
   }
@@ -142,7 +144,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function(Info info)? loadSuccess,
-    TResult Function()? loadFailure,
+    TResult Function(FailureStatusEnum failure)? loadFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -224,7 +226,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function(Info info) loadSuccess,
-    required TResult Function() loadFailure,
+    required TResult Function(FailureStatusEnum failure) loadFailure,
   }) {
     return loadInProgress();
   }
@@ -235,7 +237,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function(Info info)? loadSuccess,
-    TResult Function()? loadFailure,
+    TResult Function(FailureStatusEnum failure)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -351,7 +353,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function(Info info) loadSuccess,
-    required TResult Function() loadFailure,
+    required TResult Function(FailureStatusEnum failure) loadFailure,
   }) {
     return loadSuccess(info);
   }
@@ -362,7 +364,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function(Info info)? loadSuccess,
-    TResult Function()? loadFailure,
+    TResult Function(FailureStatusEnum failure)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -412,6 +414,7 @@ abstract class _$LoadFailureCopyWith<$Res> {
   factory _$LoadFailureCopyWith(
           _LoadFailure value, $Res Function(_LoadFailure) then) =
       __$LoadFailureCopyWithImpl<$Res>;
+  $Res call({FailureStatusEnum failure});
 }
 
 /// @nodoc
@@ -423,25 +426,49 @@ class __$LoadFailureCopyWithImpl<$Res> extends _$InfoStateCopyWithImpl<$Res>
 
   @override
   _LoadFailure get _value => super._value as _LoadFailure;
+
+  @override
+  $Res call({
+    Object? failure = freezed,
+  }) {
+    return _then(_LoadFailure(
+      failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as FailureStatusEnum,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_LoadFailure implements _LoadFailure {
-  const _$_LoadFailure();
+  const _$_LoadFailure(this.failure);
+
+  @override
+  final FailureStatusEnum failure;
 
   @override
   String toString() {
-    return 'InfoState.loadFailure()';
+    return 'InfoState.loadFailure(failure: $failure)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _LoadFailure);
+    return identical(this, other) ||
+        (other is _LoadFailure &&
+            (identical(other.failure, failure) ||
+                const DeepCollectionEquality().equals(other.failure, failure)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
+
+  @JsonKey(ignore: true)
+  @override
+  _$LoadFailureCopyWith<_LoadFailure> get copyWith =>
+      __$LoadFailureCopyWithImpl<_LoadFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -449,9 +476,9 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function(Info info) loadSuccess,
-    required TResult Function() loadFailure,
+    required TResult Function(FailureStatusEnum failure) loadFailure,
   }) {
-    return loadFailure();
+    return loadFailure(failure);
   }
 
   @override
@@ -460,11 +487,11 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function(Info info)? loadSuccess,
-    TResult Function()? loadFailure,
+    TResult Function(FailureStatusEnum failure)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
-      return loadFailure();
+      return loadFailure(failure);
     }
     return orElse();
   }
@@ -497,5 +524,10 @@ class _$_LoadFailure implements _LoadFailure {
 }
 
 abstract class _LoadFailure implements InfoState {
-  const factory _LoadFailure() = _$_LoadFailure;
+  const factory _LoadFailure(FailureStatusEnum failure) = _$_LoadFailure;
+
+  FailureStatusEnum get failure => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$LoadFailureCopyWith<_LoadFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }

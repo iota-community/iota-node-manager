@@ -1,10 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hornet_node/endpoints/hornet/hornet_node_rest_client.dart';
+import 'package:hornet_node/features/node_wrapper/cubits/peers_cubit/peers_cubit.dart';
 import 'package:hornet_node/models/hornet/peers/peer_detail.dart';
 import 'package:hornet_node/repository/node_repository.dart';
+import 'package:hornet_node/utils/error/dio_helpers.dart';
 import 'package:injectable/injectable.dart';
-
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:dio/dio.dart';
 part 'detail_peer_cubit.freezed.dart';
 
 part 'detail_peer_state.dart';
@@ -27,8 +30,13 @@ class DetailPeerCubit extends Cubit<DetailPeerState> {
         emit(DetailPeerState.loadSuccess(response));
         return response;
       }
-    } on Exception catch (_) {
-      emit(const DetailPeerState.loadFailure());
+    } on DioError catch (e) {
+      await Sentry.captureException(
+        e,
+        stackTrace: e.stackTrace,
+      );
+      var failureCode = retrieveFailureCode(e);
+      emit(DetailPeerState.loadFailure(failureCode));
     }
   }
 }

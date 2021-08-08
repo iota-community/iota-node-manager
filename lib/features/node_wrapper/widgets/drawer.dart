@@ -5,6 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hornet_node/app/cubits/app_cubit/app_cubit.dart';
 import 'package:hornet_node/app/router/app_router.gr.dart';
 import 'package:hornet_node/app/themes/custom_themes.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
@@ -67,6 +69,17 @@ class CustomDrawer extends StatelessWidget {
                 );
               },
             ),
+          ),
+          ListTile(
+            title: const Text('Help'),
+            onTap: () async {
+              var _url =
+                  'https://github.com/pauli2406/iota_hornet_mobile_app#hornet-node-mobile-app';
+              await canLaunch(_url)
+                  ? await launch(_url)
+                  : await Sentry.captureMessage('Could not open help Url');
+              Scaffold.of(context).openEndDrawer();
+            },
           ),
         ],
       ),

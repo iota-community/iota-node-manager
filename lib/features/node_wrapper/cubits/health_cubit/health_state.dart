@@ -5,5 +5,6 @@ class HealthState with _$HealthState {
   const factory HealthState.initial() = _Initial;
   const factory HealthState.loadInProgress() = _LoadInProgress;
   const factory HealthState.loadSuccess(int? statusCode) = _LoadSuccess;
-  const factory HealthState.loadFailure() = _LoadFailure;
+  const factory HealthState.loadFailure(FailureStatusEnum failure) =
+      _LoadFailure;
 }

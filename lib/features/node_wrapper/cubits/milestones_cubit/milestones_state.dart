@@ -6,5 +6,6 @@ class MilestonesState with _$MilestonesState {
   const factory MilestonesState.loadInProgress() = _LoadInProgress;
   const factory MilestonesState.loadSuccess(List<Milestone> milestones) =
       _LoadSuccess;
-  const factory MilestonesState.loadFailure() = _LoadFailure;
+  const factory MilestonesState.loadFailure(FailureStatusEnum failure) =
+      _LoadFailure;
 }

@@ -7,4 +7,5 @@ part 'env.g.dart';
 abstract class Env {
   static const String title = _Env.title;
   static const String environment = _Env.environment;
+  static const String sentryDns = _Env.sentryDns;
 }
