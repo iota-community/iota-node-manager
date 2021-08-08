@@ -88,27 +88,33 @@ class _PeerDetailPageState extends State<PeerDetailPage> {
                   },
                   loadInProgress: (_) =>
                       const Center(child: CircularProgressIndicator()),
-                  orElse: () => ErrorCardWidget(
-                    child: ElevatedButton(
-                      key: const Key('addNodeForm_continue_raisedButton'),
-                      style: ElevatedButton.styleFrom(
-                        primary: Theme.of(context).accentColor,
-                      ),
-                      onPressed: () {
-                        BlocProvider.of<DetailPeerCubit>(context)
-                            .peer(widget.peerId);
-                      },
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: Center(
-                          child: Text(
-                            'Reload',
-                            style: TextStyle(
-                                color: ThemeHelper.of(context).blackOrWhite),
+                  loadFailure: (error) {
+                    return ErrorCardWidget(
+                      errorCode: error.failure,
+                      child: ElevatedButton(
+                        key: const Key('addNodeForm_continue_raisedButton'),
+                        style: ElevatedButton.styleFrom(
+                          primary: Theme.of(context).accentColor,
+                        ),
+                        onPressed: () {
+                          BlocProvider.of<DetailPeerCubit>(context)
+                              .peer(widget.peerId);
+                        },
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: Center(
+                            child: Text(
+                              'Reload',
+                              style: TextStyle(
+                                  color: ThemeHelper.of(context).blackOrWhite),
+                            ),
                           ),
                         ),
                       ),
-                    ),
+                    );
+                  },
+                  orElse: () => const Center(
+                    child: CircularProgressIndicator(),
                   ),
                 ),
               );

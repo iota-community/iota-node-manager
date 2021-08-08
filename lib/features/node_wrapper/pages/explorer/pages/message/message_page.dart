@@ -14,6 +14,7 @@ import 'package:hornet_node/models/hornet/message/children/message_children_data
 import 'package:hornet_node/models/hornet/message/message_data.dart';
 import 'package:hornet_node/models/hornet/message/metadata/message_metadata_data.dart';
 import 'package:hornet_node/models/hornet/message/payload.dart';
+import 'package:hornet_node/utils/error/dio_helpers.dart';
 import 'package:hornet_node/utils/widgets/error_card_widget.dart';
 import 'package:hornet_node/utils/widgets/hornet_card.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -103,7 +104,8 @@ class _MessagePageState extends State<MessagePage> {
                         error,
                         stackTrace: error.stackTrace,
                       );
-                      return const ErrorCardWidget();
+                      return ErrorCardWidget(
+                          errorCode: retrieveFailureCode(error));
                     } else {
                       return const Center(
                         child: CircularProgressIndicator(),
@@ -132,7 +134,10 @@ class _MessagePageState extends State<MessagePage> {
                         error,
                         stackTrace: error.stackTrace,
                       );
-                      return const ErrorCardWidget();
+
+                      return ErrorCardWidget(
+                        errorCode: retrieveFailureCode(error),
+                      );
                     } else {
                       return const SizedBox();
                     }
@@ -159,7 +164,11 @@ class _MessagePageState extends State<MessagePage> {
                         error,
                         stackTrace: error.stackTrace,
                       );
-                      return const ErrorCardWidget();
+                      var failureCode = retrieveFailureCode(error);
+
+                      return ErrorCardWidget(
+                        errorCode: failureCode,
+                      );
                     } else {
                       return const SizedBox();
                     }

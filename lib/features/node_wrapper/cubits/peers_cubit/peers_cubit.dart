@@ -5,12 +5,22 @@ import 'package:hornet_node/models/hornet/peers/add_peer/add_peer_body.dart';
 import 'package:hornet_node/models/hornet/peers/peers.dart';
 import 'package:hornet_node/repository/moor/database.dart';
 import 'package:hornet_node/repository/node_repository.dart';
+import 'package:hornet_node/utils/error/dio_helpers.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:dio/dio.dart';
 
 part 'peers_state.dart';
 part 'peers_cubit.freezed.dart';
+
+enum FailureStatusEnum {
+  nodeNotAvailable,
+  unauthorized,
+  milestoneNotFound,
+  untrustedCertificate,
+  invalidNodeUrl,
+  other
+}
 
 @injectable
 class PeersCubit extends Cubit<PeersState> {
@@ -37,7 +47,8 @@ class PeersCubit extends Cubit<PeersState> {
         e,
         stackTrace: e.stackTrace,
       );
-      emit(const PeersState.loadFailure());
+      var failureCode = retrieveFailureCode(e);
+      emit(PeersState.loadFailure(failureCode));
     }
   }
 
@@ -102,19 +113,19 @@ class PeersCubit extends Cubit<PeersState> {
   }
 
   Future<Peers> _loadPeers(Node selectedNode) async {
-    return await _hornetNodeRestClient
-        .peers(selectedNode.url, 'Bearer ${selectedNode.jwtToken ?? ''}')
-        .catchError((Object obj) async {
-      switch (obj.runtimeType) {
-        case DioError:
-          final error = (obj as DioError);
-          await Sentry.captureException(
-            error,
-            stackTrace: error.stackTrace,
-          );
-          break;
-        default:
-      }
-    });
+    return await _hornetNodeRestClient.peers(
+        selectedNode.url, 'Bearer ${selectedNode.jwtToken ?? ''}');
+    //     .catchError((Object obj) async {
+    //   switch (obj.runtimeType) {
+    //     case DioError:
+    //       final error = (obj as DioError);
+    //       await Sentry.captureException(
+    //         error,
+    //         stackTrace: error.stackTrace,
+    //       );
+    //       throw error;
+    //     default:
+    //   }
+    // });
   }
 }

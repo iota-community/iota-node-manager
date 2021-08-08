@@ -2,7 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hornet_node/endpoints/hornet/hornet_node_rest_client.dart';
+import 'package:hornet_node/features/node_wrapper/cubits/peers_cubit/peers_cubit.dart';
 import 'package:hornet_node/repository/node_repository.dart';
+import 'package:hornet_node/utils/error/dio_helpers.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dio/dio.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -34,7 +36,9 @@ class HealthCubit extends Cubit<HealthState> {
         e,
         stackTrace: e.stackTrace,
       );
-      emit(const HealthState.loadFailure());
+      var failureCode = retrieveFailureCode(e);
+
+      emit(HealthState.loadFailure(failureCode));
     }
   }
 }

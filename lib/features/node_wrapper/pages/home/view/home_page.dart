@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
       builder: (context, state) {
         return AnimatedSwitcher(
           duration: const Duration(milliseconds: 350),
-          child: state.maybeMap(
+          child: state.map(
             loadSuccess: (value) {
               var info = value.info;
               return RefreshIndicator(
@@ -74,27 +74,33 @@ class _HomePageState extends State<HomePage> {
             },
             loadInProgress: (_) =>
                 const Center(child: CircularProgressIndicator()),
-            orElse: () => ErrorCardWidget(
-              child: ElevatedButton(
-                key: const Key('addNodeForm_continue_raisedButton'),
-                style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).accentColor,
-                ),
-                onPressed: () {
-                  BlocProvider.of<HealthCubit>(context).health();
-                  BlocProvider.of<InfoCubit>(context).info();
-                },
-                child: SizedBox(
-                  width: double.infinity,
-                  child: Center(
-                    child: Text(
-                      'Reload',
-                      style: TextStyle(
-                          color: ThemeHelper.of(context).blackOrWhite),
+            loadFailure: (error) {
+              return ErrorCardWidget(
+                errorCode: error.failure,
+                child: ElevatedButton(
+                  key: const Key('addNodeForm_continue_raisedButton'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).accentColor,
+                  ),
+                  onPressed: () {
+                    BlocProvider.of<HealthCubit>(context).health();
+                    BlocProvider.of<InfoCubit>(context).info();
+                  },
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Center(
+                      child: Text(
+                        'Reload',
+                        style: TextStyle(
+                            color: ThemeHelper.of(context).blackOrWhite),
+                      ),
                     ),
                   ),
                 ),
-              ),
+              );
+            },
+            initial: (_) => const Center(
+              child: CircularProgressIndicator(),
             ),
           ),
         );

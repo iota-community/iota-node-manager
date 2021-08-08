@@ -9,6 +9,7 @@ import 'package:hornet_node/features/node_wrapper/cubits/peers_cubit/peers_cubit
 import 'package:hornet_node/features/node_wrapper/pages/peers/pages/edit_peer/cubit/edit_peer_cubit.dart';
 import 'package:hornet_node/models/hornet/peers/peer_detail.dart';
 import 'package:formz/formz.dart';
+import 'package:hornet_node/utils/error/dio_helpers.dart';
 import 'package:hornet_node/utils/widgets/error_card_widget.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:dio/dio.dart';
@@ -103,7 +104,9 @@ class EditPeerPage extends StatelessWidget {
                         error,
                         stackTrace: error.stackTrace,
                       );
-                      return const ErrorCardWidget();
+                      return ErrorCardWidget(
+                        errorCode: retrieveFailureCode(error),
+                      );
                     } else {
                       return const Center(
                         child: CircularProgressIndicator(),
