@@ -39,7 +39,7 @@
     },
     {
       "label": "Build iOS Release",
-      "command": "flutter build ios --flavor production --target lib/main_production.dart --release",
+      "command": "flutter build ipa --flavor production --target lib/main_production.dart --release",
       "type": "shell",
       "problemMatcher": []
     },
