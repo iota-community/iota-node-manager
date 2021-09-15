@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hornet_node/app/themes/custom_themes.dart';
 import 'package:hornet_node/features/node_wrapper/cubits/health_cubit/health_cubit.dart';
 import 'package:hornet_node/features/node_wrapper/cubits/info_cubit/info_cubit.dart';
+import 'package:hornet_node/main_common.dart';
 import 'package:hornet_node/models/hornet/info/info.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hornet_node/utils/widgets/error_card_widget.dart';
@@ -65,7 +66,7 @@ class _HomePageState extends State<HomePage> {
                         _MilestoneCard(info: info),
                         _MessagesCard(info: info),
                         _PruningCard(info: info),
-                        _FeaturesCard(info: info)
+                        _FeaturesCard(info: info),
                       ],
                     ),
                   ],

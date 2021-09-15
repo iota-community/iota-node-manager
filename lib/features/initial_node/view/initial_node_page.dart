@@ -7,6 +7,7 @@ import 'package:formz/formz.dart';
 import 'package:hornet_node/features/initial_node/initial_node.dart';
 import 'package:hornet_node/app/cubits/node_cubit/node_cubit.dart';
 import 'package:hornet_node/l10n/l10n.dart';
+import 'package:hornet_node/main_common.dart';
 
 part '../widgets/save_button.dart';
 part '../widgets/url_input.dart';

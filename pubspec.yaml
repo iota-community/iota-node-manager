@@ -1,20 +1,22 @@
 name: hornet_node
 description: Hornet Node Manager
-version: 1.0.2+5
+version: 1.1.2+1
 publish_to: none
 
 environment:
   sdk: ">=2.12.0-0 <3.0.0"
 
 dependencies:
-  flutter:
-    sdk: flutter
-  flutter_localizations:
-    sdk: flutter
   auto_route: ^2.2.0
+  background_fetch: ^1.0.1
   bloc: ^7.0.0
   envify: ^2.0.0
+  flutter:
+    sdk: flutter
   flutter_bloc: ^7.1.0
+  flutter_local_notifications: ^8.2.0
+  flutter_localizations:
+    sdk: flutter
   flutter_svg: ^0.22.0
   formz: ^0.4.0
   freezed_annotation: ^0.14.2
@@ -35,18 +37,18 @@ dependencies:
   rx_shared_preferences: ^2.1.0
   sentry_flutter: ^5.1.0
   sqlite3_flutter_libs: ^0.5.0
-  uuid: ^3.0.4
   url_launcher: ^6.0.9
+  uuid: ^3.0.4
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
   auto_route_generator: ^2.1.0
   bloc_test: ^8.1.0
   build_runner: null
   envify_generator: ^2.0.0
   flutter_launcher_icons: ^0.9.0
   flutter_native_splash: ^1.1.8+4
+  flutter_test:
+    sdk: flutter
   freezed: ^0.14.2
   injectable_generator: ^1.4.1
   mocktail: ^0.1.4
