@@ -91,6 +91,8 @@ class NodeCubit extends Cubit<NodeState> {
           state.copyWith(nodes: nodes, status: NodeStatusEnum.noNodeAdded),
         );
       }
+    } else {
+      await _nodeRepository.removeNode(id);
     }
   }
 

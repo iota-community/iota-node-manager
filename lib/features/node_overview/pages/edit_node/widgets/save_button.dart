@@ -22,7 +22,9 @@ class _Buttons extends StatelessWidget {
                         primary: Theme.of(context).primaryColor,
                       ),
                       onPressed: state.status.isValidated
-                          ? () => context.read<EditNodeCubit>().saveNode(id)
+                          ? () {
+                              context.read<EditNodeCubit>().saveNode(id);
+                            }
                           : null,
                       child: SizedBox(
                         width: 50,
@@ -45,8 +47,10 @@ class _Buttons extends StatelessWidget {
                             style: ElevatedButton.styleFrom(
                               primary: Colors.red,
                             ),
-                            onPressed: () =>
-                                context.read<NodeCubit>().nodeRemoved(id!),
+                            onPressed: () {
+                              context.read<NodeCubit>().nodeRemoved(id!);
+                              context.popRoute();
+                            },
                             child: const SizedBox(
                               child: Center(
                                   child: Icon(

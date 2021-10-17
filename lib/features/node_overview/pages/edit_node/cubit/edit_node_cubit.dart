@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hornet_node/features/node_wrapper/cubits/health_cubit/health_cubit.dart';
 import 'package:hornet_node/features/node_wrapper/cubits/peers_cubit/peers_cubit.dart';
 import 'package:hornet_node/repository/moor/database.dart';
 import 'package:hornet_node/repository/node_repository.dart';
@@ -14,11 +15,12 @@ part 'edit_node_cubit.freezed.dart';
 
 @injectable
 class EditNodeCubit extends Cubit<EditNodeState> {
-  EditNodeCubit(this._nodeRepository, this._peersCubit)
+  EditNodeCubit(this._nodeRepository, this._peersCubit, this._healthCubit)
       : super(EditNodeState.initial());
 
   final NodeRepository _nodeRepository;
   final PeersCubit _peersCubit;
+  final HealthCubit _healthCubit;
 
   void setInitialValues(Node node) {
     emit(state.copyWith(
@@ -72,9 +74,9 @@ class EditNodeCubit extends Cubit<EditNodeState> {
       }
     } else {
       await _nodeRepository.addNode(
-          state.name.value, state.url.value, state.jwt.value,
-          selected: true);
+          state.name.value, state.url.value, state.jwt.value);
     }
+    await _healthCubit.health();
     emit(state.copyWith(status: FormzStatus.submissionSuccess));
   }
 }
