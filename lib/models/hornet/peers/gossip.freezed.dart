@@ -30,7 +30,7 @@ class _$GossipTearOff {
     );
   }
 
-  Gossip fromJson(Map<String, Object> json) {
+  Gossip fromJson(Map<String, Object?> json) {
     return Gossip.fromJson(json);
   }
 }
@@ -169,19 +169,15 @@ class _$_Gossip implements _Gossip {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Gossip &&
+        (other.runtimeType == runtimeType &&
+            other is _Gossip &&
             (identical(other.heartbeat, heartbeat) ||
-                const DeepCollectionEquality()
-                    .equals(other.heartbeat, heartbeat)) &&
-            (identical(other.metrics, metrics) ||
-                const DeepCollectionEquality().equals(other.metrics, metrics)));
+                other.heartbeat == heartbeat) &&
+            (identical(other.metrics, metrics) || other.metrics == metrics));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(heartbeat) ^
-      const DeepCollectionEquality().hash(metrics);
+  int get hashCode => Object.hash(runtimeType, heartbeat, metrics);
 
   @JsonKey(ignore: true)
   @override
@@ -203,10 +199,10 @@ abstract class _Gossip implements Gossip {
 
   @override
   @JsonKey(name: 'heartbeat')
-  Heartbeat get heartbeat => throw _privateConstructorUsedError;
+  Heartbeat get heartbeat;
   @override
   @JsonKey(name: 'metrics')
-  Metrics get metrics => throw _privateConstructorUsedError;
+  Metrics get metrics;
   @override
   @JsonKey(ignore: true)
   _$GossipCopyWith<_Gossip> get copyWith => throw _privateConstructorUsedError;

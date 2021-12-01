@@ -28,7 +28,7 @@ class _$TipsDataTearOff {
     );
   }
 
-  TipsData fromJson(Map<String, Object> json) {
+  TipsData fromJson(Map<String, Object?> json) {
     return TipsData.fromJson(json);
   }
 }
@@ -125,15 +125,15 @@ class _$_TipsData implements _TipsData {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _TipsData &&
-            (identical(other.tipMessageIds, tipMessageIds) ||
-                const DeepCollectionEquality()
-                    .equals(other.tipMessageIds, tipMessageIds)));
+        (other.runtimeType == runtimeType &&
+            other is _TipsData &&
+            const DeepCollectionEquality()
+                .equals(other.tipMessageIds, tipMessageIds));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(tipMessageIds);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(tipMessageIds));
 
   @JsonKey(ignore: true)
   @override
@@ -155,7 +155,7 @@ abstract class _TipsData implements TipsData {
 
   @override
   @JsonKey(name: 'tipMessageIds')
-  List<String>? get tipMessageIds => throw _privateConstructorUsedError;
+  List<String>? get tipMessageIds;
   @override
   @JsonKey(ignore: true)
   _$TipsDataCopyWith<_TipsData> get copyWith =>

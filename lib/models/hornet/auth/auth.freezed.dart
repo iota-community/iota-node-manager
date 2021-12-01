@@ -30,7 +30,7 @@ class _$AuthTearOff {
     );
   }
 
-  Auth fromJson(Map<String, Object> json) {
+  Auth fromJson(Map<String, Object?> json) {
     return Auth.fromJson(json);
   }
 }
@@ -146,19 +146,15 @@ class _$_Auth implements _Auth {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Auth &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)) &&
+        (other.runtimeType == runtimeType &&
+            other is _Auth &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.password, password) ||
-                const DeepCollectionEquality()
-                    .equals(other.password, password)));
+                other.password == password));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(password);
+  int get hashCode => Object.hash(runtimeType, user, password);
 
   @JsonKey(ignore: true)
   @override
@@ -180,10 +176,10 @@ abstract class _Auth implements Auth {
 
   @override
   @JsonKey(name: 'user')
-  String? get user => throw _privateConstructorUsedError;
+  String? get user;
   @override
   @JsonKey(name: 'password')
-  String? get password => throw _privateConstructorUsedError;
+  String? get password;
   @override
   @JsonKey(ignore: true)
   _$AuthCopyWith<_Auth> get copyWith => throw _privateConstructorUsedError;

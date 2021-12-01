@@ -166,24 +166,16 @@ class _$_InitialNodeState implements _InitialNodeState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _InitialNodeState &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)) &&
-            (identical(other.jwt, jwt) ||
-                const DeepCollectionEquality().equals(other.jwt, jwt)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)));
+        (other.runtimeType == runtimeType &&
+            other is _InitialNodeState &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.jwt, jwt) || other.jwt == jwt) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(url) ^
-      const DeepCollectionEquality().hash(jwt) ^
-      const DeepCollectionEquality().hash(status);
+  int get hashCode => Object.hash(runtimeType, name, url, jwt, status);
 
   @JsonKey(ignore: true)
   @override
@@ -199,13 +191,13 @@ abstract class _InitialNodeState implements InitialNodeState {
       required FormzStatus status}) = _$_InitialNodeState;
 
   @override
-  Name get name => throw _privateConstructorUsedError;
+  Name get name;
   @override
-  Url get url => throw _privateConstructorUsedError;
+  Url get url;
   @override
-  Jwt get jwt => throw _privateConstructorUsedError;
+  Jwt get jwt;
   @override
-  FormzStatus get status => throw _privateConstructorUsedError;
+  FormzStatus get status;
   @override
   @JsonKey(ignore: true)
   _$InitialNodeStateCopyWith<_InitialNodeState> get copyWith =>

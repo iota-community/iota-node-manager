@@ -38,7 +38,7 @@ class _$MessageChildrenDataTearOff {
     );
   }
 
-  MessageChildrenData fromJson(Map<String, Object> json) {
+  MessageChildrenData fromJson(Map<String, Object?> json) {
     return MessageChildrenData.fromJson(json);
   }
 }
@@ -198,27 +198,20 @@ class _$_MessageChildrenData implements _MessageChildrenData {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _MessageChildrenData &&
+        (other.runtimeType == runtimeType &&
+            other is _MessageChildrenData &&
             (identical(other.messageId, messageId) ||
-                const DeepCollectionEquality()
-                    .equals(other.messageId, messageId)) &&
+                other.messageId == messageId) &&
             (identical(other.maxResults, maxResults) ||
-                const DeepCollectionEquality()
-                    .equals(other.maxResults, maxResults)) &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.childrenMessageIds, childrenMessageIds) ||
-                const DeepCollectionEquality()
-                    .equals(other.childrenMessageIds, childrenMessageIds)));
+                other.maxResults == maxResults) &&
+            (identical(other.count, count) || other.count == count) &&
+            const DeepCollectionEquality()
+                .equals(other.childrenMessageIds, childrenMessageIds));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(messageId) ^
-      const DeepCollectionEquality().hash(maxResults) ^
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(childrenMessageIds);
+  int get hashCode => Object.hash(runtimeType, messageId, maxResults, count,
+      const DeepCollectionEquality().hash(childrenMessageIds));
 
   @JsonKey(ignore: true)
   @override
@@ -248,16 +241,16 @@ abstract class _MessageChildrenData implements MessageChildrenData {
 
   @override
   @JsonKey(name: 'messageId')
-  String get messageId => throw _privateConstructorUsedError;
+  String get messageId;
   @override
   @JsonKey(name: 'maxResults')
-  int get maxResults => throw _privateConstructorUsedError;
+  int get maxResults;
   @override
   @JsonKey(name: 'count')
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
   @JsonKey(name: 'childrenMessageIds')
-  List<String> get childrenMessageIds => throw _privateConstructorUsedError;
+  List<String> get childrenMessageIds;
   @override
   @JsonKey(ignore: true)
   _$MessageChildrenDataCopyWith<_MessageChildrenData> get copyWith =>

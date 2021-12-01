@@ -31,7 +31,7 @@ class NodeRepositoryMoorImpl extends NodeRepository {
   @override
   Future<Node> addNode(String name, String url, String jwt,
       {bool selected = false}) async {
-    var node = await _database.addNode(
+    final node = await _database.addNode(
         NodesCompanion.insert(name: name, url: url, jwtToken: Value(jwt)));
     if (selected) {
       await _prefs.setInt(selectedNodeKey, node.id);
@@ -46,17 +46,17 @@ class NodeRepositoryMoorImpl extends NodeRepository {
 
   @override
   Future<Node?> getNode(int id) async {
-    return await _database.findNode(id);
+    return _database.findNode(id);
   }
 
   @override
   Future<List<Node>> getNodes() async {
-    return await _database.findAll;
+    return _database.findAll;
   }
 
   @override
   Future<Node?> getSelectedNode() async {
-    var id = await _prefs.getInt(selectedNodeKey);
+    final id = await _prefs.getInt(selectedNodeKey);
     if (id != null) {
       return _database.findNode(id);
     } else {

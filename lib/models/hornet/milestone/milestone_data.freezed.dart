@@ -32,7 +32,7 @@ class _$MilestoneDataTearOff {
     );
   }
 
-  MilestoneData fromJson(Map<String, Object> json) {
+  MilestoneData fromJson(Map<String, Object?> json) {
     return MilestoneData.fromJson(json);
   }
 }
@@ -174,23 +174,17 @@ class _$_MilestoneData implements _MilestoneData {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _MilestoneData &&
-            (identical(other.index, index) ||
-                const DeepCollectionEquality().equals(other.index, index)) &&
+        (other.runtimeType == runtimeType &&
+            other is _MilestoneData &&
+            (identical(other.index, index) || other.index == index) &&
             (identical(other.messageId, messageId) ||
-                const DeepCollectionEquality()
-                    .equals(other.messageId, messageId)) &&
+                other.messageId == messageId) &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.timestamp, timestamp)));
+                other.timestamp == timestamp));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(index) ^
-      const DeepCollectionEquality().hash(messageId) ^
-      const DeepCollectionEquality().hash(timestamp);
+  int get hashCode => Object.hash(runtimeType, index, messageId, timestamp);
 
   @JsonKey(ignore: true)
   @override
@@ -214,13 +208,13 @@ abstract class _MilestoneData implements MilestoneData {
 
   @override
   @JsonKey(name: 'index')
-  int get index => throw _privateConstructorUsedError;
+  int get index;
   @override
   @JsonKey(name: 'messageId')
-  String get messageId => throw _privateConstructorUsedError;
+  String get messageId;
   @override
   @JsonKey(name: 'timestamp')
-  int get timestamp => throw _privateConstructorUsedError;
+  int get timestamp;
   @override
   @JsonKey(ignore: true)
   _$MilestoneDataCopyWith<_MilestoneData> get copyWith =>

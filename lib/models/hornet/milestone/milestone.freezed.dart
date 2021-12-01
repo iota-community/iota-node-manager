@@ -27,7 +27,7 @@ class _$MilestoneTearOff {
     );
   }
 
-  Milestone fromJson(Map<String, Object> json) {
+  Milestone fromJson(Map<String, Object?> json) {
     return Milestone.fromJson(json);
   }
 }
@@ -137,14 +137,13 @@ class _$_Milestone implements _Milestone {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Milestone &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
+        (other.runtimeType == runtimeType &&
+            other is _Milestone &&
+            (identical(other.data, data) || other.data == data));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+  int get hashCode => Object.hash(runtimeType, data);
 
   @JsonKey(ignore: true)
   @override
@@ -166,7 +165,7 @@ abstract class _Milestone implements Milestone {
 
   @override
   @JsonKey(name: 'data')
-  MilestoneData get data => throw _privateConstructorUsedError;
+  MilestoneData get data;
   @override
   @JsonKey(ignore: true)
   _$MilestoneCopyWith<_Milestone> get copyWith =>

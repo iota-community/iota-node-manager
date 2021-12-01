@@ -168,25 +168,16 @@ class _$_EditPeerState implements _EditPeerState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _EditPeerState &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality()
-                    .equals(other.address, address)) &&
-            (identical(other.alias, alias) ||
-                const DeepCollectionEquality().equals(other.alias, alias)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)));
+        (other.runtimeType == runtimeType &&
+            other is _EditPeerState &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.alias, alias) || other.alias == alias) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(alias) ^
-      const DeepCollectionEquality().hash(status);
+  int get hashCode => Object.hash(runtimeType, id, address, alias, status);
 
   @JsonKey(ignore: true)
   @override
@@ -202,13 +193,13 @@ abstract class _EditPeerState implements EditPeerState {
       required FormzStatus status}) = _$_EditPeerState;
 
   @override
-  PeerId get id => throw _privateConstructorUsedError;
+  PeerId get id;
   @override
-  PeerAddress get address => throw _privateConstructorUsedError;
+  PeerAddress get address;
   @override
-  PeerAlias get alias => throw _privateConstructorUsedError;
+  PeerAlias get alias;
   @override
-  FormzStatus get status => throw _privateConstructorUsedError;
+  FormzStatus get status;
   @override
   @JsonKey(ignore: true)
   _$EditPeerStateCopyWith<_EditPeerState> get copyWith =>

@@ -125,20 +125,16 @@ class _$_AppState implements _AppState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AppState &&
+        (other.runtimeType == runtimeType &&
+            other is _AppState &&
             (identical(other.selectedLanguage, selectedLanguage) ||
-                const DeepCollectionEquality()
-                    .equals(other.selectedLanguage, selectedLanguage)) &&
+                other.selectedLanguage == selectedLanguage) &&
             (identical(other.darkTheme, darkTheme) ||
-                const DeepCollectionEquality()
-                    .equals(other.darkTheme, darkTheme)));
+                other.darkTheme == darkTheme));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(selectedLanguage) ^
-      const DeepCollectionEquality().hash(darkTheme);
+  int get hashCode => Object.hash(runtimeType, selectedLanguage, darkTheme);
 
   @JsonKey(ignore: true)
   @override
@@ -152,9 +148,9 @@ abstract class _AppState implements AppState {
       required bool darkTheme}) = _$_AppState;
 
   @override
-  LanguageEntity get selectedLanguage => throw _privateConstructorUsedError;
+  LanguageEntity get selectedLanguage;
   @override
-  bool get darkTheme => throw _privateConstructorUsedError;
+  bool get darkTheme;
   @override
   @JsonKey(ignore: true)
   _$AppStateCopyWith<_AppState> get copyWith =>

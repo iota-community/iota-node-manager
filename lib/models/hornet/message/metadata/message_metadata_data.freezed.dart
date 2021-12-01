@@ -50,7 +50,7 @@ class _$MessageMetadataDataTearOff {
     );
   }
 
-  MessageMetadataData fromJson(Map<String, Object> json) {
+  MessageMetadataData fromJson(Map<String, Object?> json) {
     return MessageMetadataData.fromJson(json);
   }
 }
@@ -306,46 +306,38 @@ class _$_MessageMetadataData implements _MessageMetadataData {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _MessageMetadataData &&
+        (other.runtimeType == runtimeType &&
+            other is _MessageMetadataData &&
             (identical(other.messageId, messageId) ||
-                const DeepCollectionEquality()
-                    .equals(other.messageId, messageId)) &&
-            (identical(other.parentMessageIds, parentMessageIds) ||
-                const DeepCollectionEquality()
-                    .equals(other.parentMessageIds, parentMessageIds)) &&
-            (identical(other.isSolid, isSolid) ||
-                const DeepCollectionEquality()
-                    .equals(other.isSolid, isSolid)) &&
+                other.messageId == messageId) &&
+            const DeepCollectionEquality()
+                .equals(other.parentMessageIds, parentMessageIds) &&
+            (identical(other.isSolid, isSolid) || other.isSolid == isSolid) &&
             (identical(other.shouldPromote, shouldPromote) ||
-                const DeepCollectionEquality()
-                    .equals(other.shouldPromote, shouldPromote)) &&
+                other.shouldPromote == shouldPromote) &&
             (identical(other.shouldReattach, shouldReattach) ||
-                const DeepCollectionEquality()
-                    .equals(other.shouldReattach, shouldReattach)) &&
+                other.shouldReattach == shouldReattach) &&
             (identical(other.referencedByMilestoneIndex,
                     referencedByMilestoneIndex) ||
-                const DeepCollectionEquality().equals(
-                    other.referencedByMilestoneIndex,
-                    referencedByMilestoneIndex)) &&
+                other.referencedByMilestoneIndex ==
+                    referencedByMilestoneIndex) &&
             (identical(other.milestoneIndex, milestoneIndex) ||
-                const DeepCollectionEquality()
-                    .equals(other.milestoneIndex, milestoneIndex)) &&
+                other.milestoneIndex == milestoneIndex) &&
             (identical(other.ledgerInclusionState, ledgerInclusionState) ||
-                const DeepCollectionEquality()
-                    .equals(other.ledgerInclusionState, ledgerInclusionState)));
+                other.ledgerInclusionState == ledgerInclusionState));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(messageId) ^
-      const DeepCollectionEquality().hash(parentMessageIds) ^
-      const DeepCollectionEquality().hash(isSolid) ^
-      const DeepCollectionEquality().hash(shouldPromote) ^
-      const DeepCollectionEquality().hash(shouldReattach) ^
-      const DeepCollectionEquality().hash(referencedByMilestoneIndex) ^
-      const DeepCollectionEquality().hash(milestoneIndex) ^
-      const DeepCollectionEquality().hash(ledgerInclusionState);
+  int get hashCode => Object.hash(
+      runtimeType,
+      messageId,
+      const DeepCollectionEquality().hash(parentMessageIds),
+      isSolid,
+      shouldPromote,
+      shouldReattach,
+      referencedByMilestoneIndex,
+      milestoneIndex,
+      ledgerInclusionState);
 
   @JsonKey(ignore: true)
   @override
@@ -383,28 +375,28 @@ abstract class _MessageMetadataData implements MessageMetadataData {
 
   @override
   @JsonKey(name: 'messageId')
-  String get messageId => throw _privateConstructorUsedError;
+  String get messageId;
   @override
   @JsonKey(name: 'parentMessageIds')
-  List<String> get parentMessageIds => throw _privateConstructorUsedError;
+  List<String> get parentMessageIds;
   @override
   @JsonKey(name: 'isSolid')
-  bool? get isSolid => throw _privateConstructorUsedError;
+  bool? get isSolid;
   @override
   @JsonKey(name: 'shouldPromote')
-  bool? get shouldPromote => throw _privateConstructorUsedError;
+  bool? get shouldPromote;
   @override
   @JsonKey(name: 'shouldReattach')
-  bool? get shouldReattach => throw _privateConstructorUsedError;
+  bool? get shouldReattach;
   @override
   @JsonKey(name: 'referencedByMilestoneIndex')
-  int get referencedByMilestoneIndex => throw _privateConstructorUsedError;
+  int get referencedByMilestoneIndex;
   @override
   @JsonKey(name: 'milestoneIndex')
-  int? get milestoneIndex => throw _privateConstructorUsedError;
+  int? get milestoneIndex;
   @override
   @JsonKey(name: 'ledgerInclusionState')
-  String? get ledgerInclusionState => throw _privateConstructorUsedError;
+  String? get ledgerInclusionState;
   @override
   @JsonKey(ignore: true)
   _$MessageMetadataDataCopyWith<_MessageMetadataData> get copyWith =>

@@ -210,31 +210,20 @@ class _$_EditNodeState implements _EditNodeState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _EditNodeState &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)) &&
-            (identical(other.jwt, jwt) ||
-                const DeepCollectionEquality().equals(other.jwt, jwt)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
+        (other.runtimeType == runtimeType &&
+            other is _EditNodeState &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.jwt, jwt) || other.jwt == jwt) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.selected, selected) ||
-                const DeepCollectionEquality()
-                    .equals(other.selected, selected)));
+                other.selected == selected));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(url) ^
-      const DeepCollectionEquality().hash(jwt) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(selected);
+      Object.hash(runtimeType, name, url, jwt, status, id, selected);
 
   @JsonKey(ignore: true)
   @override
@@ -252,17 +241,17 @@ abstract class _EditNodeState implements EditNodeState {
       required bool selected}) = _$_EditNodeState;
 
   @override
-  Name get name => throw _privateConstructorUsedError;
+  Name get name;
   @override
-  Url get url => throw _privateConstructorUsedError;
+  Url get url;
   @override
-  Jwt get jwt => throw _privateConstructorUsedError;
+  Jwt get jwt;
   @override
-  FormzStatus get status => throw _privateConstructorUsedError;
+  FormzStatus get status;
   @override
-  int? get id => throw _privateConstructorUsedError;
+  int? get id;
   @override
-  bool get selected => throw _privateConstructorUsedError;
+  bool get selected;
   @override
   @JsonKey(ignore: true)
   _$EditNodeStateCopyWith<_EditNodeState> get copyWith =>

@@ -5,9 +5,8 @@ import 'package:hornet_node/app/cubits/node_cubit/node_cubit.dart';
 import 'package:hornet_node/features/node_wrapper/cubits/health_cubit/health_cubit.dart';
 import 'package:hornet_node/features/node_wrapper/cubits/info_cubit/info_cubit.dart';
 import 'package:hornet_node/features/node_wrapper/cubits/milestones_cubit/milestones_cubit.dart';
+import 'package:hornet_node/features/node_wrapper/widgets/health_indicator.dart';
 import 'package:hornet_node/repository/moor/database.dart';
-
-import 'health_indicator.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({Key? key, required this.tabsRouter}) : super(key: key);
@@ -47,14 +46,14 @@ class CustomAppBar extends StatelessWidget {
                   height: 0,
                 ),
                 onChanged: (id) async {
-                  var selectedNodeUuid = int.parse(id as String);
-                  var currentlySelectedNode =
+                  final selectedNodeUuid = int.parse(id as String);
+                  final currentlySelectedNode =
                       BlocProvider.of<NodeCubit>(context).state.selectedNode;
                   if (currentlySelectedNode?.id != selectedNodeUuid) {
                     await BlocProvider.of<NodeCubit>(context)
                         .selectedNodeChanged(selectedNodeUuid);
                     await BlocProvider.of<HealthCubit>(context).health();
-                    var info = await BlocProvider.of<InfoCubit>(context).info();
+                    final info = await BlocProvider.of<InfoCubit>(context).info();
                     await BlocProvider.of<MilestonesCubit>(context)
                         .milestones(info!.data.latestMilestoneIndex);
                   }
@@ -71,8 +70,8 @@ class CustomAppBar extends StatelessWidget {
   }
 
   List<DropdownMenuItem<String>> buildDropdownMenuItems(List<Node> nodes) {
-    var items = <DropdownMenuItem<String>>[];
-    for (var node in nodes) {
+    final items = <DropdownMenuItem<String>>[];
+    for (final node in nodes) {
       items.add(
         DropdownMenuItem(
           value: node.id.toString(),

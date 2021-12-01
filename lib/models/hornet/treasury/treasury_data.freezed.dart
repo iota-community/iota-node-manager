@@ -30,7 +30,7 @@ class _$TreasuryDataTearOff {
     );
   }
 
-  TreasuryData fromJson(Map<String, Object> json) {
+  TreasuryData fromJson(Map<String, Object?> json) {
     return TreasuryData.fromJson(json);
   }
 }
@@ -152,19 +152,15 @@ class _$_TreasuryData implements _TreasuryData {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _TreasuryData &&
+        (other.runtimeType == runtimeType &&
+            other is _TreasuryData &&
             (identical(other.milestoneId, milestoneId) ||
-                const DeepCollectionEquality()
-                    .equals(other.milestoneId, milestoneId)) &&
-            (identical(other.amount, amount) ||
-                const DeepCollectionEquality().equals(other.amount, amount)));
+                other.milestoneId == milestoneId) &&
+            (identical(other.amount, amount) || other.amount == amount));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(milestoneId) ^
-      const DeepCollectionEquality().hash(amount);
+  int get hashCode => Object.hash(runtimeType, milestoneId, amount);
 
   @JsonKey(ignore: true)
   @override
@@ -187,10 +183,10 @@ abstract class _TreasuryData implements TreasuryData {
 
   @override
   @JsonKey(name: 'milestoneId')
-  String? get milestoneId => throw _privateConstructorUsedError;
+  String? get milestoneId;
   @override
   @JsonKey(name: 'amount')
-  int? get amount => throw _privateConstructorUsedError;
+  int? get amount;
   @override
   @JsonKey(ignore: true)
   _$TreasuryDataCopyWith<_TreasuryData> get copyWith =>

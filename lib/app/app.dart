@@ -11,6 +11,7 @@ import 'package:hornet_node/configure_dependencies.dart';
 import 'package:hornet_node/l10n/l10n.dart';
 import 'package:hornet_node/utils/constants/hive_box_constants.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
@@ -24,9 +25,12 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: Hive.box(HiveBoxConstants.appBox).listenable(),
-      builder: (BuildContext context, Box box, Widget? child) {
+    final _prefs = RxSharedPreferences.getInstance();
+
+    return StreamBuilder(
+      initialData: false,
+      stream: _prefs.getBoolStream(HiveBoxConstants.darkModeKey),
+      builder: (BuildContext context, AsyncSnapshot<bool?> snapshot) {
         return MultiBlocProvider(
           providers: [
             BlocProvider(

@@ -28,7 +28,7 @@ class _$MessageChildrenTearOff {
     );
   }
 
-  MessageChildren fromJson(Map<String, Object> json) {
+  MessageChildren fromJson(Map<String, Object?> json) {
     return MessageChildren.fromJson(json);
   }
 }
@@ -143,14 +143,13 @@ class _$_MessageChildren implements _MessageChildren {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _MessageChildren &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
+        (other.runtimeType == runtimeType &&
+            other is _MessageChildren &&
+            (identical(other.data, data) || other.data == data));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+  int get hashCode => Object.hash(runtimeType, data);
 
   @JsonKey(ignore: true)
   @override
@@ -173,7 +172,7 @@ abstract class _MessageChildren implements MessageChildren {
 
   @override
   @JsonKey(name: 'data')
-  MessageChildrenData get data => throw _privateConstructorUsedError;
+  MessageChildrenData get data;
   @override
   @JsonKey(ignore: true)
   _$MessageChildrenCopyWith<_MessageChildren> get copyWith =>

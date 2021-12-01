@@ -22,7 +22,7 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<Info>(
         Options(method: 'GET', headers: _headers, extra: _extra)
-            .compose(_dio.options, '$baseUrl/api/v1/info',
+            .compose(_dio.options, '${baseUrl}/api/v1/info',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = Info.fromJson(_result.data!);
@@ -38,7 +38,7 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<Tips>(
         Options(method: 'GET', headers: _headers, extra: _extra)
-            .compose(_dio.options, '$baseUrl/api/v1/tips',
+            .compose(_dio.options, '${baseUrl}/api/v1/tips',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = Tips.fromJson(_result.data!);
@@ -55,7 +55,7 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<Treasury>(
             Options(method: 'GET', headers: _headers, extra: _extra)
-                .compose(_dio.options, '$baseUrl/api/v1/treasury',
+                .compose(_dio.options, '${baseUrl}/api/v1/treasury',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = Treasury.fromJson(_result.data!);
@@ -71,7 +71,7 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<void>(_setStreamType<HttpResponse<void>>(
         Options(method: 'GET', headers: _headers, extra: _extra)
-            .compose(_dio.options, '$baseUrl/health',
+            .compose(_dio.options, '${baseUrl}/health',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final httpResponse = HttpResponse(null, _result);
@@ -88,7 +88,7 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<Milestone>(
             Options(method: 'GET', headers: _headers, extra: _extra)
-                .compose(_dio.options, '$baseUrl/api/v1/milestones/$index',
+                .compose(_dio.options, '${baseUrl}/api/v1/milestones/${index}',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = Milestone.fromJson(_result.data!);
@@ -105,7 +105,8 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<Message>(
             Options(method: 'GET', headers: _headers, extra: _extra)
-                .compose(_dio.options, '$baseUrl/api/v1/messages/$messageId',
+                .compose(
+                    _dio.options, '${baseUrl}/api/v1/messages/${messageId}',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = Message.fromJson(_result.data!);
@@ -120,12 +121,12 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<MessageMetadata>(Options(
-                method: 'GET', headers: _headers, extra: _extra)
-            .compose(
-                _dio.options, '$baseUrl/api/v1/messages/$messageId/metadata',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+        _setStreamType<MessageMetadata>(
+            Options(method: 'GET', headers: _headers, extra: _extra)
+                .compose(_dio.options,
+                    '${baseUrl}/api/v1/messages/${messageId}/metadata',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = MessageMetadata.fromJson(_result.data!);
     return value;
   }
@@ -138,12 +139,12 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<MessageChildren>(Options(
-                method: 'GET', headers: _headers, extra: _extra)
-            .compose(
-                _dio.options, '$baseUrl/api/v1/messages/$messageId/children',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+        _setStreamType<MessageChildren>(
+            Options(method: 'GET', headers: _headers, extra: _extra)
+                .compose(_dio.options,
+                    '${baseUrl}/api/v1/messages/${messageId}/children',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = MessageChildren.fromJson(_result.data!);
     return value;
   }
@@ -165,7 +166,8 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
                 extra: _extra,
                 contentType: 'application/octet-stream',
                 responseType: ResponseType.bytes)
-            .compose(_dio.options, '$baseUrl/api/v1/messages/$messageId/raw',
+            .compose(
+                _dio.options, '${baseUrl}/api/v1/messages/${messageId}/raw',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = _result.data!.cast<int>();
@@ -182,7 +184,7 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<Peers>(
             Options(method: 'GET', headers: _headers, extra: _extra)
-                .compose(_dio.options, '$baseUrl/api/v1/peers',
+                .compose(_dio.options, '${baseUrl}/api/v1/peers',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = Peers.fromJson(_result.data!);
@@ -199,7 +201,7 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<PeerDetail>(
             Options(method: 'GET', headers: _headers, extra: _extra)
-                .compose(_dio.options, '$baseUrl/api/v1/peers/$peerId',
+                .compose(_dio.options, '${baseUrl}/api/v1/peers/${peerId}',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = PeerDetail.fromJson(_result.data!);
@@ -216,7 +218,7 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
     _data.addAll(body.toJson());
     final _result = await _dio.fetch(_setStreamType<dynamic>(
         Options(method: 'POST', headers: _headers, extra: _extra)
-            .compose(_dio.options, '$baseUrl/api/v1/peers',
+            .compose(_dio.options, '${baseUrl}/api/v1/peers',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = _result.data;
@@ -232,7 +234,7 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch(_setStreamType<dynamic>(
         Options(method: 'DELETE', headers: _headers, extra: _extra)
-            .compose(_dio.options, '$baseUrl/api/v1/peers/$peerId',
+            .compose(_dio.options, '${baseUrl}/api/v1/peers/${peerId}',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = _result.data;

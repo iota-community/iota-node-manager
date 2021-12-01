@@ -31,14 +31,14 @@ class AppRouter extends _i4.RootStackRouter {
   @override
   final Map<String, _i4.PageFactory> pagesMap = {
     AppWrapperRoute.name: (routeData) {
-      return _i4.MaterialPageX<dynamic>(
+      return _i4.MaterialPageX<_i4.CupertinoRoute<dynamic>>(
           routeData: routeData, child: const _i1.AppWrapperPage());
     },
     EditNodeRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<EditNodeRouteArgs>(
           orElse: () => EditNodeRouteArgs(id: pathParams.optInt('id')));
-      return _i4.MaterialPageX<dynamic>(
+      return _i4.MaterialPageX<_i4.CupertinoRoute<dynamic>>(
           routeData: routeData,
           child: _i2.EditNodePage(key: args.key, id: args.id));
     },
@@ -46,32 +46,32 @@ class AppRouter extends _i4.RootStackRouter {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<AddNodeRouteArgs>(
           orElse: () => AddNodeRouteArgs(id: pathParams.optInt('id')));
-      return _i4.MaterialPageX<dynamic>(
+      return _i4.MaterialPageX<_i4.CupertinoRoute<dynamic>>(
           routeData: routeData,
           child: _i2.EditNodePage(key: args.key, id: args.id));
     },
     NodeOverviewRoute.name: (routeData) {
-      return _i4.MaterialPageX<dynamic>(
+      return _i4.MaterialPageX<_i4.CupertinoRoute<dynamic>>(
           routeData: routeData, child: const _i3.NodeOverviewPage());
     },
     HomeRouter.name: (routeData) {
-      return _i4.MaterialPageX<dynamic>(
+      return _i4.MaterialPageX<_i4.CupertinoRoute<dynamic>>(
           routeData: routeData, child: const _i4.EmptyRouterPage());
     },
     ExplorerRouter.name: (routeData) {
-      return _i4.MaterialPageX<dynamic>(
+      return _i4.MaterialPageX<_i4.CupertinoRoute<dynamic>>(
           routeData: routeData, child: const _i4.EmptyRouterPage());
     },
     PeersRouter.name: (routeData) {
-      return _i4.MaterialPageX<dynamic>(
+      return _i4.MaterialPageX<_i4.CupertinoRoute<dynamic>>(
           routeData: routeData, child: const _i4.EmptyRouterPage());
     },
     HomeRoute.name: (routeData) {
-      return _i4.MaterialPageX<dynamic>(
+      return _i4.MaterialPageX<_i4.CupertinoRoute<dynamic>>(
           routeData: routeData, child: const _i5.HomePage());
     },
     ExplorerRoute.name: (routeData) {
-      return _i4.MaterialPageX<dynamic>(
+      return _i4.MaterialPageX<_i4.CupertinoRoute<dynamic>>(
           routeData: routeData, child: const _i6.ExplorerPage());
     },
     MessageRoute.name: (routeData) {
@@ -79,19 +79,19 @@ class AppRouter extends _i4.RootStackRouter {
       final args = routeData.argsAs<MessageRouteArgs>(
           orElse: () =>
               MessageRouteArgs(messageId: pathParams.getString('messageId')));
-      return _i4.MaterialPageX<dynamic>(
+      return _i4.MaterialPageX<_i4.CupertinoRoute<dynamic>>(
           routeData: routeData,
           child: _i7.MessagePage(key: args.key, messageId: args.messageId));
     },
     PeersRoute.name: (routeData) {
-      return _i4.MaterialPageX<dynamic>(
+      return _i4.MaterialPageX<_i4.CupertinoRoute<dynamic>>(
           routeData: routeData, child: const _i8.PeersPage());
     },
     EditPeerRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<EditPeerRouteArgs>(
           orElse: () => EditPeerRouteArgs(id: pathParams.getString('id')));
-      return _i4.MaterialPageX<dynamic>(
+      return _i4.MaterialPageX<_i4.CupertinoRoute<dynamic>>(
           routeData: routeData,
           child: _i9.EditPeerPage(key: args.key, id: args.id));
     },
@@ -100,7 +100,7 @@ class AppRouter extends _i4.RootStackRouter {
       final args = routeData.argsAs<PeerDetailRouteArgs>(
           orElse: () =>
               PeerDetailRouteArgs(peerId: pathParams.getString('peerId')));
-      return _i4.MaterialPageX<dynamic>(
+      return _i4.MaterialPageX<_i4.CupertinoRoute<dynamic>>(
           routeData: routeData,
           child: _i10.PeerDetailPage(key: args.key, peerId: args.peerId));
     }

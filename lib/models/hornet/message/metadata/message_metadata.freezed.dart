@@ -28,7 +28,7 @@ class _$MessageMetadataTearOff {
     );
   }
 
-  MessageMetadata fromJson(Map<String, Object> json) {
+  MessageMetadata fromJson(Map<String, Object?> json) {
     return MessageMetadata.fromJson(json);
   }
 }
@@ -143,14 +143,13 @@ class _$_MessageMetadata implements _MessageMetadata {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _MessageMetadata &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
+        (other.runtimeType == runtimeType &&
+            other is _MessageMetadata &&
+            (identical(other.data, data) || other.data == data));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+  int get hashCode => Object.hash(runtimeType, data);
 
   @JsonKey(ignore: true)
   @override
@@ -173,7 +172,7 @@ abstract class _MessageMetadata implements MessageMetadata {
 
   @override
   @JsonKey(name: 'data')
-  MessageMetadataData get data => throw _privateConstructorUsedError;
+  MessageMetadataData get data;
   @override
   @JsonKey(ignore: true)
   _$MessageMetadataCopyWith<_MessageMetadata> get copyWith =>

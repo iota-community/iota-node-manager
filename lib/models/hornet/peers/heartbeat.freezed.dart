@@ -36,7 +36,7 @@ class _$HeartbeatTearOff {
     );
   }
 
-  Heartbeat fromJson(Map<String, Object> json) {
+  Heartbeat fromJson(Map<String, Object?> json) {
     return Heartbeat.fromJson(json);
   }
 }
@@ -209,32 +209,28 @@ class _$_Heartbeat implements _Heartbeat {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Heartbeat &&
+        (other.runtimeType == runtimeType &&
+            other is _Heartbeat &&
             (identical(other.solidMilestoneIndex, solidMilestoneIndex) ||
-                const DeepCollectionEquality()
-                    .equals(other.solidMilestoneIndex, solidMilestoneIndex)) &&
+                other.solidMilestoneIndex == solidMilestoneIndex) &&
             (identical(other.prunedMilestoneIndex, prunedMilestoneIndex) ||
-                const DeepCollectionEquality().equals(
-                    other.prunedMilestoneIndex, prunedMilestoneIndex)) &&
+                other.prunedMilestoneIndex == prunedMilestoneIndex) &&
             (identical(other.latestMilestoneIndex, latestMilestoneIndex) ||
-                const DeepCollectionEquality().equals(
-                    other.latestMilestoneIndex, latestMilestoneIndex)) &&
+                other.latestMilestoneIndex == latestMilestoneIndex) &&
             (identical(other.connectedNeighbors, connectedNeighbors) ||
-                const DeepCollectionEquality()
-                    .equals(other.connectedNeighbors, connectedNeighbors)) &&
+                other.connectedNeighbors == connectedNeighbors) &&
             (identical(other.syncedNeighbors, syncedNeighbors) ||
-                const DeepCollectionEquality()
-                    .equals(other.syncedNeighbors, syncedNeighbors)));
+                other.syncedNeighbors == syncedNeighbors));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(solidMilestoneIndex) ^
-      const DeepCollectionEquality().hash(prunedMilestoneIndex) ^
-      const DeepCollectionEquality().hash(latestMilestoneIndex) ^
-      const DeepCollectionEquality().hash(connectedNeighbors) ^
-      const DeepCollectionEquality().hash(syncedNeighbors);
+  int get hashCode => Object.hash(
+      runtimeType,
+      solidMilestoneIndex,
+      prunedMilestoneIndex,
+      latestMilestoneIndex,
+      connectedNeighbors,
+      syncedNeighbors);
 
   @JsonKey(ignore: true)
   @override
@@ -265,19 +261,19 @@ abstract class _Heartbeat implements Heartbeat {
 
   @override
   @JsonKey(name: 'solidMilestoneIndex')
-  int get solidMilestoneIndex => throw _privateConstructorUsedError;
+  int get solidMilestoneIndex;
   @override
   @JsonKey(name: 'prunedMilestoneIndex')
-  int get prunedMilestoneIndex => throw _privateConstructorUsedError;
+  int get prunedMilestoneIndex;
   @override
   @JsonKey(name: 'latestMilestoneIndex')
-  int get latestMilestoneIndex => throw _privateConstructorUsedError;
+  int get latestMilestoneIndex;
   @override
   @JsonKey(name: 'connectedNeighbors')
-  int get connectedNeighbors => throw _privateConstructorUsedError;
+  int get connectedNeighbors;
   @override
   @JsonKey(name: 'syncedNeighbors')
-  int get syncedNeighbors => throw _privateConstructorUsedError;
+  int get syncedNeighbors;
   @override
   @JsonKey(ignore: true)
   _$HeartbeatCopyWith<_Heartbeat> get copyWith =>

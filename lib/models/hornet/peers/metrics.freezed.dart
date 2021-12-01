@@ -59,7 +59,7 @@ class _$MetricsTearOff {
     );
   }
 
-  Metrics fromJson(Map<String, Object> json) {
+  Metrics fromJson(Map<String, Object?> json) {
     return Metrics.fromJson(json);
   }
 }
@@ -349,59 +349,48 @@ class _$_Metrics implements _Metrics {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Metrics &&
+        (other.runtimeType == runtimeType &&
+            other is _Metrics &&
             (identical(other.newMessages, newMessages) ||
-                const DeepCollectionEquality()
-                    .equals(other.newMessages, newMessages)) &&
+                other.newMessages == newMessages) &&
             (identical(other.knownMessages, knownMessages) ||
-                const DeepCollectionEquality()
-                    .equals(other.knownMessages, knownMessages)) &&
+                other.knownMessages == knownMessages) &&
             (identical(other.receivedMessages, receivedMessages) ||
-                const DeepCollectionEquality()
-                    .equals(other.receivedMessages, receivedMessages)) &&
+                other.receivedMessages == receivedMessages) &&
             (identical(
                     other.receivedMessageRequests, receivedMessageRequests) ||
-                const DeepCollectionEquality().equals(
-                    other.receivedMessageRequests, receivedMessageRequests)) &&
+                other.receivedMessageRequests == receivedMessageRequests) &&
             (identical(other.receivedMilestoneRequests,
                     receivedMilestoneRequests) ||
-                const DeepCollectionEquality().equals(
-                    other.receivedMilestoneRequests,
-                    receivedMilestoneRequests)) &&
+                other.receivedMilestoneRequests == receivedMilestoneRequests) &&
             (identical(other.receivedHeartbeats, receivedHeartbeats) ||
-                const DeepCollectionEquality()
-                    .equals(other.receivedHeartbeats, receivedHeartbeats)) &&
+                other.receivedHeartbeats == receivedHeartbeats) &&
             (identical(other.sentMessages, sentMessages) ||
-                const DeepCollectionEquality()
-                    .equals(other.sentMessages, sentMessages)) &&
+                other.sentMessages == sentMessages) &&
             (identical(other.sentMessageRequests, sentMessageRequests) ||
-                const DeepCollectionEquality()
-                    .equals(other.sentMessageRequests, sentMessageRequests)) &&
+                other.sentMessageRequests == sentMessageRequests) &&
             (identical(other.sentMilestoneRequests, sentMilestoneRequests) ||
-                const DeepCollectionEquality().equals(
-                    other.sentMilestoneRequests, sentMilestoneRequests)) &&
+                other.sentMilestoneRequests == sentMilestoneRequests) &&
             (identical(other.sentHeartbeats, sentHeartbeats) ||
-                const DeepCollectionEquality()
-                    .equals(other.sentHeartbeats, sentHeartbeats)) &&
+                other.sentHeartbeats == sentHeartbeats) &&
             (identical(other.droppedPackets, droppedPackets) ||
-                const DeepCollectionEquality()
-                    .equals(other.droppedPackets, droppedPackets)));
+                other.droppedPackets == droppedPackets));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(newMessages) ^
-      const DeepCollectionEquality().hash(knownMessages) ^
-      const DeepCollectionEquality().hash(receivedMessages) ^
-      const DeepCollectionEquality().hash(receivedMessageRequests) ^
-      const DeepCollectionEquality().hash(receivedMilestoneRequests) ^
-      const DeepCollectionEquality().hash(receivedHeartbeats) ^
-      const DeepCollectionEquality().hash(sentMessages) ^
-      const DeepCollectionEquality().hash(sentMessageRequests) ^
-      const DeepCollectionEquality().hash(sentMilestoneRequests) ^
-      const DeepCollectionEquality().hash(sentHeartbeats) ^
-      const DeepCollectionEquality().hash(droppedPackets);
+  int get hashCode => Object.hash(
+      runtimeType,
+      newMessages,
+      knownMessages,
+      receivedMessages,
+      receivedMessageRequests,
+      receivedMilestoneRequests,
+      receivedHeartbeats,
+      sentMessages,
+      sentMessageRequests,
+      sentMilestoneRequests,
+      sentHeartbeats,
+      droppedPackets);
 
   @JsonKey(ignore: true)
   @override
@@ -443,37 +432,37 @@ abstract class _Metrics implements Metrics {
 
   @override
   @JsonKey(name: 'newMessages')
-  int get newMessages => throw _privateConstructorUsedError;
+  int get newMessages;
   @override
   @JsonKey(name: 'knownMessages')
-  int get knownMessages => throw _privateConstructorUsedError;
+  int get knownMessages;
   @override
   @JsonKey(name: 'receivedMessages')
-  int get receivedMessages => throw _privateConstructorUsedError;
+  int get receivedMessages;
   @override
   @JsonKey(name: 'receivedMessageRequests')
-  int get receivedMessageRequests => throw _privateConstructorUsedError;
+  int get receivedMessageRequests;
   @override
   @JsonKey(name: 'receivedMilestoneRequests')
-  int get receivedMilestoneRequests => throw _privateConstructorUsedError;
+  int get receivedMilestoneRequests;
   @override
   @JsonKey(name: 'receivedHeartbeats')
-  int get receivedHeartbeats => throw _privateConstructorUsedError;
+  int get receivedHeartbeats;
   @override
   @JsonKey(name: 'sentMessages')
-  int get sentMessages => throw _privateConstructorUsedError;
+  int get sentMessages;
   @override
   @JsonKey(name: 'sentMessageRequests')
-  int get sentMessageRequests => throw _privateConstructorUsedError;
+  int get sentMessageRequests;
   @override
   @JsonKey(name: 'sentMilestoneRequests')
-  int get sentMilestoneRequests => throw _privateConstructorUsedError;
+  int get sentMilestoneRequests;
   @override
   @JsonKey(name: 'sentHeartbeats')
-  int get sentHeartbeats => throw _privateConstructorUsedError;
+  int get sentHeartbeats;
   @override
   @JsonKey(name: 'droppedPackets')
-  int get droppedPackets => throw _privateConstructorUsedError;
+  int get droppedPackets;
   @override
   @JsonKey(ignore: true)
   _$MetricsCopyWith<_Metrics> get copyWith =>

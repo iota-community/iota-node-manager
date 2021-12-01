@@ -27,7 +27,7 @@ class _$InfoTearOff {
     );
   }
 
-  Info fromJson(Map<String, Object> json) {
+  Info fromJson(Map<String, Object?> json) {
     return Info.fromJson(json);
   }
 }
@@ -134,14 +134,13 @@ class _$_Info implements _Info {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Info &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
+        (other.runtimeType == runtimeType &&
+            other is _Info &&
+            (identical(other.data, data) || other.data == data));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+  int get hashCode => Object.hash(runtimeType, data);
 
   @JsonKey(ignore: true)
   @override
@@ -161,7 +160,7 @@ abstract class _Info implements Info {
 
   @override
   @JsonKey(name: 'data')
-  InfoData get data => throw _privateConstructorUsedError;
+  InfoData get data;
   @override
   @JsonKey(ignore: true)
   _$InfoCopyWith<_Info> get copyWith => throw _privateConstructorUsedError;

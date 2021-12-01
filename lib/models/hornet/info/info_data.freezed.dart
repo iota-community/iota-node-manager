@@ -69,7 +69,7 @@ class _$InfoDataTearOff {
     );
   }
 
-  InfoData fromJson(Map<String, Object> json) {
+  InfoData fromJson(Map<String, Object?> json) {
     return InfoData.fromJson(json);
   }
 }
@@ -450,71 +450,56 @@ class _$_InfoData implements _InfoData {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _InfoData &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.version, version) ||
-                const DeepCollectionEquality()
-                    .equals(other.version, version)) &&
+        (other.runtimeType == runtimeType &&
+            other is _InfoData &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.version, version) || other.version == version) &&
             (identical(other.isHealthy, isHealthy) ||
-                const DeepCollectionEquality()
-                    .equals(other.isHealthy, isHealthy)) &&
+                other.isHealthy == isHealthy) &&
             (identical(other.networkId, networkId) ||
-                const DeepCollectionEquality()
-                    .equals(other.networkId, networkId)) &&
+                other.networkId == networkId) &&
             (identical(other.bech32Hrp, bech32Hrp) ||
-                const DeepCollectionEquality()
-                    .equals(other.bech32Hrp, bech32Hrp)) &&
+                other.bech32Hrp == bech32Hrp) &&
             (identical(other.minPoWScore, minPoWScore) ||
-                const DeepCollectionEquality()
-                    .equals(other.minPoWScore, minPoWScore)) &&
+                other.minPoWScore == minPoWScore) &&
             (identical(other.messagesPerSecond, messagesPerSecond) ||
-                const DeepCollectionEquality()
-                    .equals(other.messagesPerSecond, messagesPerSecond)) &&
+                other.messagesPerSecond == messagesPerSecond) &&
             (identical(other.referencedMessagesPerSecond,
                     referencedMessagesPerSecond) ||
-                const DeepCollectionEquality().equals(
-                    other.referencedMessagesPerSecond,
-                    referencedMessagesPerSecond)) &&
+                other.referencedMessagesPerSecond ==
+                    referencedMessagesPerSecond) &&
             (identical(other.referencedRate, referencedRate) ||
-                const DeepCollectionEquality()
-                    .equals(other.referencedRate, referencedRate)) &&
+                other.referencedRate == referencedRate) &&
             (identical(
                     other.latestMilestoneTimestamp, latestMilestoneTimestamp) ||
-                const DeepCollectionEquality().equals(
-                    other.latestMilestoneTimestamp,
-                    latestMilestoneTimestamp)) &&
+                other.latestMilestoneTimestamp == latestMilestoneTimestamp) &&
             (identical(other.latestMilestoneIndex, latestMilestoneIndex) ||
-                const DeepCollectionEquality().equals(
-                    other.latestMilestoneIndex, latestMilestoneIndex)) &&
-            (identical(other.confirmedMilestoneIndex, confirmedMilestoneIndex) ||
-                const DeepCollectionEquality().equals(
-                    other.confirmedMilestoneIndex, confirmedMilestoneIndex)) &&
+                other.latestMilestoneIndex == latestMilestoneIndex) &&
+            (identical(
+                    other.confirmedMilestoneIndex, confirmedMilestoneIndex) ||
+                other.confirmedMilestoneIndex == confirmedMilestoneIndex) &&
             (identical(other.pruningIndex, pruningIndex) ||
-                const DeepCollectionEquality()
-                    .equals(other.pruningIndex, pruningIndex)) &&
-            (identical(other.features, features) ||
-                const DeepCollectionEquality()
-                    .equals(other.features, features)));
+                other.pruningIndex == pruningIndex) &&
+            const DeepCollectionEquality().equals(other.features, features));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(version) ^
-      const DeepCollectionEquality().hash(isHealthy) ^
-      const DeepCollectionEquality().hash(networkId) ^
-      const DeepCollectionEquality().hash(bech32Hrp) ^
-      const DeepCollectionEquality().hash(minPoWScore) ^
-      const DeepCollectionEquality().hash(messagesPerSecond) ^
-      const DeepCollectionEquality().hash(referencedMessagesPerSecond) ^
-      const DeepCollectionEquality().hash(referencedRate) ^
-      const DeepCollectionEquality().hash(latestMilestoneTimestamp) ^
-      const DeepCollectionEquality().hash(latestMilestoneIndex) ^
-      const DeepCollectionEquality().hash(confirmedMilestoneIndex) ^
-      const DeepCollectionEquality().hash(pruningIndex) ^
-      const DeepCollectionEquality().hash(features);
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      version,
+      isHealthy,
+      networkId,
+      bech32Hrp,
+      minPoWScore,
+      messagesPerSecond,
+      referencedMessagesPerSecond,
+      referencedRate,
+      latestMilestoneTimestamp,
+      latestMilestoneIndex,
+      confirmedMilestoneIndex,
+      pruningIndex,
+      const DeepCollectionEquality().hash(features));
 
   @JsonKey(ignore: true)
   @override
@@ -563,47 +548,47 @@ abstract class _InfoData implements InfoData {
 
   @override
   @JsonKey(name: 'name')
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
   @JsonKey(name: 'version')
-  String get version => throw _privateConstructorUsedError;
+  String get version;
   @override
   @JsonKey(name: 'isHealthy')
-  bool get isHealthy => throw _privateConstructorUsedError;
+  bool get isHealthy;
   @override
   @JsonKey(name: 'networkId')
-  String get networkId => throw _privateConstructorUsedError;
+  String get networkId;
   @override
   @JsonKey(name: 'bech32HRP')
-  String get bech32Hrp => throw _privateConstructorUsedError;
+  String get bech32Hrp;
   @override
   @JsonKey(name: 'minPoWScore')
-  int get minPoWScore => throw _privateConstructorUsedError;
+  int get minPoWScore;
   @override
   @JsonKey(name: 'messagesPerSecond')
-  double get messagesPerSecond => throw _privateConstructorUsedError;
+  double get messagesPerSecond;
   @override
   @JsonKey(name: 'referencedMessagesPerSecond')
-  double get referencedMessagesPerSecond => throw _privateConstructorUsedError;
+  double get referencedMessagesPerSecond;
   @override
   @JsonKey(name: 'referencedRate')
-  double get referencedRate => throw _privateConstructorUsedError;
+  double get referencedRate;
   @override
   @JsonKey(name: 'latestMilestoneTimestamp')
   @SecondsSinceEpochDateTimeConverter()
-  DateTime? get latestMilestoneTimestamp => throw _privateConstructorUsedError;
+  DateTime? get latestMilestoneTimestamp;
   @override
   @JsonKey(name: 'latestMilestoneIndex')
-  int get latestMilestoneIndex => throw _privateConstructorUsedError;
+  int get latestMilestoneIndex;
   @override
   @JsonKey(name: 'confirmedMilestoneIndex')
-  int get confirmedMilestoneIndex => throw _privateConstructorUsedError;
+  int get confirmedMilestoneIndex;
   @override
   @JsonKey(name: 'pruningIndex')
-  int get pruningIndex => throw _privateConstructorUsedError;
+  int get pruningIndex;
   @override
   @JsonKey(name: 'features')
-  List<String> get features => throw _privateConstructorUsedError;
+  List<String> get features;
   @override
   @JsonKey(ignore: true)
   _$InfoDataCopyWith<_InfoData> get copyWith =>

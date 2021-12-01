@@ -27,7 +27,7 @@ class _$PeersTearOff {
     );
   }
 
-  Peers fromJson(Map<String, Object> json) {
+  Peers fromJson(Map<String, Object?> json) {
     return Peers.fromJson(json);
   }
 }
@@ -123,14 +123,14 @@ class _$_Peers implements _Peers {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Peers &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
+        (other.runtimeType == runtimeType &&
+            other is _Peers &&
+            const DeepCollectionEquality().equals(other.data, data));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
@@ -150,7 +150,7 @@ abstract class _Peers implements Peers {
 
   @override
   @JsonKey(name: 'data')
-  List<Peer> get data => throw _privateConstructorUsedError;
+  List<Peer> get data;
   @override
   @JsonKey(ignore: true)
   _$PeersCopyWith<_Peers> get copyWith => throw _privateConstructorUsedError;

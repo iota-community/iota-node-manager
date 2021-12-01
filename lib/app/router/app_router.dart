@@ -13,16 +13,16 @@ import 'package:hornet_node/features/node_wrapper/pages/peers/peers.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AutoRoute(
+    AutoRoute<CupertinoRoute>(
       path: '/',
       page: AppWrapperPage,
       children: [
-        AutoRoute(
+        AutoRoute<CupertinoRoute>(
           path: 'home',
           name: 'HomeRouter',
           page: EmptyRouterPage,
           children: [
-            AutoRoute(
+            AutoRoute<CupertinoRoute>(
               path: '',
               page: HomePage,
             ),
@@ -42,33 +42,33 @@ import 'package:hornet_node/features/node_wrapper/pages/peers/peers.dart';
         //   ],
         // ),
 
-        AutoRoute(
+        AutoRoute<CupertinoRoute>(
           path: 'explorer',
           name: 'ExplorerRouter',
           page: EmptyRouterPage,
           children: [
-            AutoRoute(
+            AutoRoute<CupertinoRoute>(
               path: '',
               page: ExplorerPage,
             ),
-            AutoRoute(path: 'milestone/:messageId', page: MessagePage),
+            AutoRoute<CupertinoRoute>(path: 'milestone/:messageId', page: MessagePage),
             RedirectRoute(path: '*', redirectTo: ''),
           ],
         ),
-        AutoRoute(
+        AutoRoute<CupertinoRoute>(
           path: 'peers',
           name: 'PeersRouter',
           page: EmptyRouterPage,
           children: [
-            AutoRoute(
+            AutoRoute<CupertinoRoute>(
               path: '',
               page: PeersPage,
             ),
-            AutoRoute(
+            AutoRoute<CupertinoRoute>(
               path: 'edit/:peerId',
               page: EditPeerPage,
             ),
-            AutoRoute(
+            AutoRoute<CupertinoRoute>(
               path: 'detail/:peerId',
               page: PeerDetailPage,
             ),
@@ -78,9 +78,9 @@ import 'package:hornet_node/features/node_wrapper/pages/peers/peers.dart';
         RedirectRoute(path: '*', redirectTo: '/'),
       ],
     ),
-    AutoRoute(path: '/edit/:uuid', page: EditNodePage, name: 'EditNodeRoute'),
-    AutoRoute(path: '/add', page: EditNodePage, name: 'AddNodeRoute'),
-    AutoRoute(
+    AutoRoute<CupertinoRoute>(path: '/edit/:uuid', page: EditNodePage, name: 'EditNodeRoute'),
+    AutoRoute<CupertinoRoute>(path: '/add', page: EditNodePage, name: 'AddNodeRoute'),
+    AutoRoute<CupertinoRoute>(
       path: '/list',
       page: NodeOverviewPage,
     ),

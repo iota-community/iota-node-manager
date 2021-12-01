@@ -38,7 +38,7 @@ class _$PeerTearOff {
     );
   }
 
-  Peer fromJson(Map<String, Object> json) {
+  Peer fromJson(Map<String, Object?> json) {
     return Peer.fromJson(json);
   }
 }
@@ -242,33 +242,28 @@ class _$_Peer implements _Peer {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Peer &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.multiAddresses, multiAddresses) ||
-                const DeepCollectionEquality()
-                    .equals(other.multiAddresses, multiAddresses)) &&
-            (identical(other.alias, alias) ||
-                const DeepCollectionEquality().equals(other.alias, alias)) &&
+        (other.runtimeType == runtimeType &&
+            other is _Peer &&
+            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality()
+                .equals(other.multiAddresses, multiAddresses) &&
+            (identical(other.alias, alias) || other.alias == alias) &&
             (identical(other.relation, relation) ||
-                const DeepCollectionEquality()
-                    .equals(other.relation, relation)) &&
+                other.relation == relation) &&
             (identical(other.connected, connected) ||
-                const DeepCollectionEquality()
-                    .equals(other.connected, connected)) &&
-            (identical(other.gossip, gossip) ||
-                const DeepCollectionEquality().equals(other.gossip, gossip)));
+                other.connected == connected) &&
+            (identical(other.gossip, gossip) || other.gossip == gossip));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(multiAddresses) ^
-      const DeepCollectionEquality().hash(alias) ^
-      const DeepCollectionEquality().hash(relation) ^
-      const DeepCollectionEquality().hash(connected) ^
-      const DeepCollectionEquality().hash(gossip);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      const DeepCollectionEquality().hash(multiAddresses),
+      alias,
+      relation,
+      connected,
+      gossip);
 
   @JsonKey(ignore: true)
   @override
@@ -294,22 +289,22 @@ abstract class _Peer implements Peer {
 
   @override
   @JsonKey(name: 'id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
   @JsonKey(name: 'multiAddresses')
-  List<String> get multiAddresses => throw _privateConstructorUsedError;
+  List<String> get multiAddresses;
   @override
   @JsonKey(name: 'alias')
-  String? get alias => throw _privateConstructorUsedError;
+  String? get alias;
   @override
   @JsonKey(name: 'relation')
-  String get relation => throw _privateConstructorUsedError;
+  String get relation;
   @override
   @JsonKey(name: 'connected')
-  bool get connected => throw _privateConstructorUsedError;
+  bool get connected;
   @override
   @JsonKey(name: 'gossip')
-  Gossip? get gossip => throw _privateConstructorUsedError;
+  Gossip? get gossip;
   @override
   @JsonKey(ignore: true)
   _$PeerCopyWith<_Peer> get copyWith => throw _privateConstructorUsedError;

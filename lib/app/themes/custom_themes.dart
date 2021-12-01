@@ -28,6 +28,7 @@ class CustomTheme {
       accentColor: const Color(0xFF353f60),
       appBarTheme: const AppBarTheme(
         backgroundColor: Color(0xFF2b3658),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       cardColor: const Color(0xFF2b3658),
       fontFamily: 'Roboto',
@@ -38,6 +39,7 @@ class CustomTheme {
 
   static ThemeData get lightTheme {
     return ThemeData(
+      colorScheme: const ColorScheme.highContrastLight(),
       brightness: Brightness.light,
       scaffoldBackgroundColor: const Color(0xfff6f9fe),
       canvasColor: const Color(0xfff6f9fe),
@@ -62,6 +64,7 @@ class CustomTheme {
       accentColor: const Color(0xFFf6f8fc),
       appBarTheme: const AppBarTheme(
         backgroundColor: Color(0xffffffff),
+        iconTheme: IconThemeData(color: Colors.black),
       ),
       cardColor: const Color(0xffffffff),
       fontFamily: 'Roboto',

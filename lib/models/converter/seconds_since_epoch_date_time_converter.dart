@@ -23,7 +23,7 @@ class IntToStringConverter implements JsonConverter<String, dynamic> {
     if (json is int) {
       return json.toString();
     } else {
-      return json;
+      return json as String;
     }
   }
 

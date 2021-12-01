@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
             _refreshCompleter.complete();
             _refreshCompleter = Completer();
           },
-          orElse: () => {},
+          orElse: () => <void>{},
         );
       },
       builder: (context, state) {

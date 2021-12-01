@@ -27,7 +27,7 @@ class _$MessageTearOff {
     );
   }
 
-  Message fromJson(Map<String, Object> json) {
+  Message fromJson(Map<String, Object?> json) {
     return Message.fromJson(json);
   }
 }
@@ -135,14 +135,13 @@ class _$_Message implements _Message {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Message &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
+        (other.runtimeType == runtimeType &&
+            other is _Message &&
+            (identical(other.data, data) || other.data == data));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+  int get hashCode => Object.hash(runtimeType, data);
 
   @JsonKey(ignore: true)
   @override
@@ -163,7 +162,7 @@ abstract class _Message implements Message {
 
   @override
   @JsonKey(name: 'data')
-  MessageData get data => throw _privateConstructorUsedError;
+  MessageData get data;
   @override
   @JsonKey(ignore: true)
   _$MessageCopyWith<_Message> get copyWith =>

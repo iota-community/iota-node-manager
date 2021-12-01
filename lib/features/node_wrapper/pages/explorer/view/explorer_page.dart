@@ -40,7 +40,7 @@ class _ExplorerPageState extends State<ExplorerPage> {
                       _refreshCompleter.complete();
                       _refreshCompleter = Completer();
                     },
-                    orElse: () => {},
+                    orElse: () => <void>{},
                   );
                 },
                 builder: (context, state) {

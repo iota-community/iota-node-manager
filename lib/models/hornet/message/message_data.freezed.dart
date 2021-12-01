@@ -34,7 +34,7 @@ class _$MessageDataTearOff {
     );
   }
 
-  MessageData fromJson(Map<String, Object> json) {
+  MessageData fromJson(Map<String, Object?> json) {
     return MessageData.fromJson(json);
   }
 }
@@ -208,27 +208,19 @@ class _$_MessageData implements _MessageData {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _MessageData &&
+        (other.runtimeType == runtimeType &&
+            other is _MessageData &&
             (identical(other.networkId, networkId) ||
-                const DeepCollectionEquality()
-                    .equals(other.networkId, networkId)) &&
-            (identical(other.parentMessageIds, parentMessageIds) ||
-                const DeepCollectionEquality()
-                    .equals(other.parentMessageIds, parentMessageIds)) &&
-            (identical(other.payload, payload) ||
-                const DeepCollectionEquality()
-                    .equals(other.payload, payload)) &&
-            (identical(other.nonce, nonce) ||
-                const DeepCollectionEquality().equals(other.nonce, nonce)));
+                other.networkId == networkId) &&
+            const DeepCollectionEquality()
+                .equals(other.parentMessageIds, parentMessageIds) &&
+            (identical(other.payload, payload) || other.payload == payload) &&
+            (identical(other.nonce, nonce) || other.nonce == nonce));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(networkId) ^
-      const DeepCollectionEquality().hash(parentMessageIds) ^
-      const DeepCollectionEquality().hash(payload) ^
-      const DeepCollectionEquality().hash(nonce);
+  int get hashCode => Object.hash(runtimeType, networkId,
+      const DeepCollectionEquality().hash(parentMessageIds), payload, nonce);
 
   @JsonKey(ignore: true)
   @override
@@ -253,16 +245,16 @@ abstract class _MessageData implements MessageData {
 
   @override
   @JsonKey(name: 'networkId')
-  String get networkId => throw _privateConstructorUsedError;
+  String get networkId;
   @override
   @JsonKey(name: 'parentMessageIds')
-  List<String> get parentMessageIds => throw _privateConstructorUsedError;
+  List<String> get parentMessageIds;
   @override
   @JsonKey(name: 'payload')
-  Payload? get payload => throw _privateConstructorUsedError;
+  Payload? get payload;
   @override
   @JsonKey(name: 'nonce')
-  String? get nonce => throw _privateConstructorUsedError;
+  String? get nonce;
   @override
   @JsonKey(ignore: true)
   _$MessageDataCopyWith<_MessageData> get copyWith =>

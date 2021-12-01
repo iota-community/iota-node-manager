@@ -30,7 +30,7 @@ class _$AddPeerBodyTearOff {
     );
   }
 
-  AddPeerBody fromJson(Map<String, Object> json) {
+  AddPeerBody fromJson(Map<String, Object?> json) {
     return AddPeerBody.fromJson(json);
   }
 }
@@ -152,19 +152,15 @@ class _$_AddPeerBody implements _AddPeerBody {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AddPeerBody &&
+        (other.runtimeType == runtimeType &&
+            other is _AddPeerBody &&
             (identical(other.multiAddress, multiAddress) ||
-                const DeepCollectionEquality()
-                    .equals(other.multiAddress, multiAddress)) &&
-            (identical(other.alias, alias) ||
-                const DeepCollectionEquality().equals(other.alias, alias)));
+                other.multiAddress == multiAddress) &&
+            (identical(other.alias, alias) || other.alias == alias));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(multiAddress) ^
-      const DeepCollectionEquality().hash(alias);
+  int get hashCode => Object.hash(runtimeType, multiAddress, alias);
 
   @JsonKey(ignore: true)
   @override
@@ -187,10 +183,10 @@ abstract class _AddPeerBody implements AddPeerBody {
 
   @override
   @JsonKey(name: 'multiAddress')
-  String get multiAddress => throw _privateConstructorUsedError;
+  String get multiAddress;
   @override
   @JsonKey(name: 'alias')
-  String get alias => throw _privateConstructorUsedError;
+  String get alias;
   @override
   @JsonKey(ignore: true)
   _$AddPeerBodyCopyWith<_AddPeerBody> get copyWith =>

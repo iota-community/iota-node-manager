@@ -8,7 +8,7 @@ class SentryInterceptor extends Interceptor {
       Breadcrumb(
         type: 'http',
         category: 'http',
-        data: {
+        data: <String, dynamic> {
           'url': options.uri.toString(),
           'method': options.method,
         },
@@ -23,7 +23,7 @@ class SentryInterceptor extends Interceptor {
       Breadcrumb(
         type: 'http',
         category: 'http',
-        data: {
+        data: <String, dynamic>{
           'url': response.requestOptions.uri.toString(),
           'method': response.requestOptions.method,
           'status_code': response.statusCode,
@@ -39,7 +39,7 @@ class SentryInterceptor extends Interceptor {
       Breadcrumb(
         type: 'http',
         category: 'http',
-        data: {
+        data: <String, dynamic>{
           'url': err.requestOptions.uri.toString(),
           'method': err.requestOptions.method,
           'status_code': err.response?.statusCode ?? 'NA',
