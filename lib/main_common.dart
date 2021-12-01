@@ -10,6 +10,7 @@ import 'package:hornet_node/endpoints/hornet/hornet_node_rest_client.dart';
 import 'package:hornet_node/repository/moor/database.dart';
 import 'package:hornet_node/repository/node_repository.dart';
 import 'package:hornet_node/utils/constants/hive_box_constants.dart';
+import 'package:safe_device/safe_device.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:uuid/uuid.dart';
 
@@ -22,8 +23,10 @@ Future<void> mainCommon() async {
   await Hive.initFlutter();
 
   await Hive.openBox(HiveBoxConstants.appBox);
-  //await configureScheduledTasks();
 
+  if (await SafeDevice.isRealDevice) {
+    await configureScheduledTasks();
+  }
   await initNotification();
   await initPlatformState();
 

@@ -25,12 +25,9 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    final _prefs = RxSharedPreferences.getInstance();
-
-    return StreamBuilder(
-      initialData: false,
-      stream: _prefs.getBoolStream(HiveBoxConstants.darkModeKey),
-      builder: (BuildContext context, AsyncSnapshot<bool?> snapshot) {
+    return ValueListenableBuilder(
+      valueListenable: Hive.box(HiveBoxConstants.appBox).listenable(),
+      builder: (BuildContext context, Box box, Widget? child) {
         return MultiBlocProvider(
           providers: [
             BlocProvider(

@@ -33,6 +33,7 @@ dependencies:
   responsive_framework: ^0.1.5
   retrofit: ^3.0.0
   rx_shared_preferences: ^2.2.0
+  safe_device: ^1.0.9
   sentry_flutter: ^6.1.2
   sqlite3_flutter_libs: ^0.5.1
   url_launcher: ^6.0.17

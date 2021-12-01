@@ -12,8 +12,8 @@ void main() {
   late Box _appBox;
 
   void mockAppBox() {
-    when(() => _appBox.put(HiveBoxConstants.darkModeKey, any()))
-        .thenAnswer((_) async => {});
+    when(() => _appBox.put(HiveBoxConstants.darkModeKey, any<bool>()))
+        .thenAnswer((_) async => <void>{});
     when(() => _appBox.get(HiveBoxConstants.darkModeKey, defaultValue: false))
         .thenReturn(false);
     when(() => _appBox.get(HiveBoxConstants.languageKey, defaultValue: 0))

@@ -12,8 +12,8 @@ import '../../../helpers/helpers.dart';
 
 void main() {
   setUpAll(() {
-    registerFallbackValue<InitialNodeState>(FakeInitialNodeCubitState());
-    registerFallbackValue<NodeState>(FakeNodeCubitState());
+    registerFallbackValue(FakeInitialNodeCubitState());
+    registerFallbackValue(FakeNodeCubitState());
   });
 
   tearDown(() {});
@@ -21,7 +21,7 @@ void main() {
     late NodeCubit nodeCubit;
     late InitialNodeCubit initialNodeCubit;
     final snackBarFailureFinder = find.byKey(const Key('saveFailureSnackbar'));
-    var submissionFailureState = InitialNodeState.initial()
+    final submissionFailureState = InitialNodeState.initial()
         .copyWith(status: FormzStatus.submissionFailure);
 
     setUp(() {
@@ -51,7 +51,7 @@ void main() {
       getIt.unregister<InitialNodeCubit>();
     });
     testWidgets('Update app status if saving was successful', (tester) async {
-      var submissionSuccessState = InitialNodeState.initial()
+      final submissionSuccessState = InitialNodeState.initial()
           .copyWith(status: FormzStatus.submissionSuccess);
       whenListen<InitialNodeState>(
         initialNodeCubit,
@@ -87,8 +87,8 @@ void main() {
       when(() => initialNodeCubit.nameChanged(node.name)).thenReturn(null);
       when(() => initialNodeCubit.urlChanged(node.url)).thenReturn(null);
       when(() => initialNodeCubit.jwtChanged(node.jwtToken!)).thenReturn(null);
-      when(() => initialNodeCubit.saveNode()).thenAnswer((_) async => {});
-      var formValidatedState =
+      when(() => initialNodeCubit.saveNode()).thenAnswer((_) async => <void>{});
+      final formValidatedState =
           InitialNodeState.initial().copyWith(status: FormzStatus.valid);
       whenListen<InitialNodeState>(
         initialNodeCubit,
@@ -104,28 +104,28 @@ void main() {
           child: const InitialNodePage(),
         ),
       );
-      var name = node.name;
-      var nameInput = find.byKey(const Key('addNodeForm_nameInput_textField'));
+      final name = node.name;
+      final nameInput = find.byKey(const Key('addNodeForm_nameInput_textField'));
       expect(nameInput, findsOneWidget);
       await tester.enterText(nameInput, name);
       expect(find.text(name), findsOneWidget);
       verify(() => initialNodeCubit.nameChanged(any())).called(1);
 
-      var url = node.url;
-      var urlInput = find.byKey(const Key('addNodeForm_urlInput_textField'));
+      final url = node.url;
+      final urlInput = find.byKey(const Key('addNodeForm_urlInput_textField'));
       expect(urlInput, findsOneWidget);
       await tester.enterText(urlInput, url);
       expect(find.text(url), findsOneWidget);
       verify(() => initialNodeCubit.urlChanged(any())).called(1);
 
-      var jwt = node.jwtToken!;
-      var jwtInput = find.byKey(const Key('addNodeForm_JwtInput_textField'));
+      final jwt = node.jwtToken!;
+      final jwtInput = find.byKey(const Key('addNodeForm_JwtInput_textField'));
       expect(jwtInput, findsOneWidget);
       await tester.enterText(jwtInput, jwt);
       expect(find.text(jwt), findsOneWidget);
       verify(() => initialNodeCubit.jwtChanged(node.jwtToken!)).called(1);
 
-      var saveButton =
+      final saveButton =
           find.byKey(const Key('addNodeForm_continue_raisedButton'));
       expect(saveButton, findsOneWidget);
       await tester.tap(saveButton);
