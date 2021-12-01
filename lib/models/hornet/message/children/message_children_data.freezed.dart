@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'message_children_data.dart';
 
@@ -174,7 +175,7 @@ class _$_MessageChildrenData implements _MessageChildrenData {
       @JsonKey(name: 'childrenMessageIds') required this.childrenMessageIds});
 
   factory _$_MessageChildrenData.fromJson(Map<String, dynamic> json) =>
-      _$_$_MessageChildrenDataFromJson(json);
+      _$$_MessageChildrenDataFromJson(json);
 
   @override
   @JsonKey(name: 'messageId')
@@ -227,7 +228,7 @@ class _$_MessageChildrenData implements _MessageChildrenData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_MessageChildrenDataToJson(this);
+    return _$$_MessageChildrenDataToJson(this);
   }
 }
 

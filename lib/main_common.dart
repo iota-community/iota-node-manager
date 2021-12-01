@@ -22,7 +22,7 @@ Future<void> mainCommon() async {
   await Hive.initFlutter();
 
   await Hive.openBox(HiveBoxConstants.appBox);
-  await configureScheduledTasks();
+  //await configureScheduledTasks();
 
   await initNotification();
   await initPlatformState();

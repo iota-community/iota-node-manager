@@ -85,9 +85,11 @@ class _MobilePortraitWidget extends StatelessWidget {
         ];
         return AutoTabsScaffold(
           appBarBuilder: (context, tabsRouter) {
-            return CustomAppBar(
-              tabsRouter: tabsRouter,
-            );
+            return PreferredSize(
+                preferredSize: const Size.fromHeight(kToolbarHeight),
+                child: CustomAppBar(
+                  tabsRouter: tabsRouter,
+                ));
           },
           drawerEnableOpenDragGesture: false,
           drawer: const CustomDrawer(),

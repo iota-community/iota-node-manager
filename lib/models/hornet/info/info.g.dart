@@ -6,12 +6,10 @@ part of 'info.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Info _$_$_InfoFromJson(Map<String, dynamic> json) {
-  return _$_Info(
-    data: InfoData.fromJson(json['data'] as Map<String, dynamic>),
-  );
-}
+_$_Info _$$_InfoFromJson(Map<String, dynamic> json) => _$_Info(
+      data: InfoData.fromJson(json['data'] as Map<String, dynamic>),
+    );
 
-Map<String, dynamic> _$_$_InfoToJson(_$_Info instance) => <String, dynamic>{
+Map<String, dynamic> _$$_InfoToJson(_$_Info instance) => <String, dynamic>{
       'data': instance.data,
     };

@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'peer.dart';
 
@@ -212,8 +213,7 @@ class _$_Peer implements _Peer {
       @JsonKey(name: 'connected') required this.connected,
       @JsonKey(name: 'gossip') this.gossip});
 
-  factory _$_Peer.fromJson(Map<String, dynamic> json) =>
-      _$_$_PeerFromJson(json);
+  factory _$_Peer.fromJson(Map<String, dynamic> json) => _$$_PeerFromJson(json);
 
   @override
   @JsonKey(name: 'id')
@@ -277,7 +277,7 @@ class _$_Peer implements _Peer {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_PeerToJson(this);
+    return _$$_PeerToJson(this);
   }
 }
 

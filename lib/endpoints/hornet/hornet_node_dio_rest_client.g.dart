@@ -17,12 +17,11 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
   Future<Info> info(baseUrl, jwtToken) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': jwtToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<Info>(
-        Options(
-                method: 'GET',
-                headers: <String, dynamic>{r'Authorization': jwtToken},
-                extra: _extra)
+        Options(method: 'GET', headers: _headers, extra: _extra)
             .compose(_dio.options, '$baseUrl/api/v1/info',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
@@ -34,12 +33,11 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
   Future<Tips> tips(baseUrl, jwtToken) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': jwtToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<Tips>(
-        Options(
-                method: 'GET',
-                headers: <String, dynamic>{r'Authorization': jwtToken},
-                extra: _extra)
+        Options(method: 'GET', headers: _headers, extra: _extra)
             .compose(_dio.options, '$baseUrl/api/v1/tips',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
@@ -51,15 +49,15 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
   Future<Treasury> treasury(baseUrl, jwtToken) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': jwtToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<Treasury>(Options(
-                method: 'GET',
-                headers: <String, dynamic>{r'Authorization': jwtToken},
-                extra: _extra)
-            .compose(_dio.options, '$baseUrl/api/v1/treasury',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+        _setStreamType<Treasury>(
+            Options(method: 'GET', headers: _headers, extra: _extra)
+                .compose(_dio.options, '$baseUrl/api/v1/treasury',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = Treasury.fromJson(_result.data!);
     return value;
   }
@@ -68,12 +66,11 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
   Future<HttpResponse<void>> health(baseUrl, jwtToken) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': jwtToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<void>(_setStreamType<HttpResponse<void>>(
-        Options(
-                method: 'GET',
-                headers: <String, dynamic>{r'Authorization': jwtToken},
-                extra: _extra)
+        Options(method: 'GET', headers: _headers, extra: _extra)
             .compose(_dio.options, '$baseUrl/health',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
@@ -85,15 +82,15 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
   Future<Milestone> milestone(baseUrl, jwtToken, index) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': jwtToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<Milestone>(Options(
-                method: 'GET',
-                headers: <String, dynamic>{r'Authorization': jwtToken},
-                extra: _extra)
-            .compose(_dio.options, '$baseUrl/api/v1/milestones/$index',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+        _setStreamType<Milestone>(
+            Options(method: 'GET', headers: _headers, extra: _extra)
+                .compose(_dio.options, '$baseUrl/api/v1/milestones/$index',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = Milestone.fromJson(_result.data!);
     return value;
   }
@@ -102,15 +99,15 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
   Future<Message> message(baseUrl, jwtToken, messageId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': jwtToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<Message>(Options(
-                method: 'GET',
-                headers: <String, dynamic>{r'Authorization': jwtToken},
-                extra: _extra)
-            .compose(_dio.options, '$baseUrl/api/v1/messages/$messageId',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+        _setStreamType<Message>(
+            Options(method: 'GET', headers: _headers, extra: _extra)
+                .compose(_dio.options, '$baseUrl/api/v1/messages/$messageId',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = Message.fromJson(_result.data!);
     return value;
   }
@@ -119,12 +116,12 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
   Future<MessageMetadata> messageMetadata(baseUrl, jwtToken, messageId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': jwtToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<MessageMetadata>(Options(
-                method: 'GET',
-                headers: <String, dynamic>{r'Authorization': jwtToken},
-                extra: _extra)
+                method: 'GET', headers: _headers, extra: _extra)
             .compose(
                 _dio.options, '$baseUrl/api/v1/messages/$messageId/metadata',
                 queryParameters: queryParameters, data: _data)
@@ -137,12 +134,12 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
   Future<MessageChildren> messageChildren(baseUrl, jwtToken, messageId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': jwtToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<MessageChildren>(Options(
-                method: 'GET',
-                headers: <String, dynamic>{r'Authorization': jwtToken},
-                extra: _extra)
+                method: 'GET', headers: _headers, extra: _extra)
             .compose(
                 _dio.options, '$baseUrl/api/v1/messages/$messageId/children',
                 queryParameters: queryParameters, data: _data)
@@ -155,14 +152,16 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
   Future<List<int>> messageRaw(baseUrl, jwtToken, messageId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{
+      r'Content-Type': 'application/octet-stream',
+      r'Authorization': jwtToken
+    };
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(_setStreamType<List<int>>(
         Options(
                 method: 'GET',
-                headers: <String, dynamic>{
-                  r'Content-Type': 'application/octet-stream',
-                  r'Authorization': jwtToken
-                },
+                headers: _headers,
                 extra: _extra,
                 contentType: 'application/octet-stream',
                 responseType: ResponseType.bytes)
@@ -177,15 +176,15 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
   Future<Peers> peers(baseUrl, jwtToken) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': jwtToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<Peers>(Options(
-                method: 'GET',
-                headers: <String, dynamic>{r'Authorization': jwtToken},
-                extra: _extra)
-            .compose(_dio.options, '$baseUrl/api/v1/peers',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+        _setStreamType<Peers>(
+            Options(method: 'GET', headers: _headers, extra: _extra)
+                .compose(_dio.options, '$baseUrl/api/v1/peers',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = Peers.fromJson(_result.data!);
     return value;
   }
@@ -194,15 +193,15 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
   Future<PeerDetail> peer(baseUrl, jwtToken, peerId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': jwtToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<PeerDetail>(Options(
-                method: 'GET',
-                headers: <String, dynamic>{r'Authorization': jwtToken},
-                extra: _extra)
-            .compose(_dio.options, '$baseUrl/api/v1/peers/$peerId',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+        _setStreamType<PeerDetail>(
+            Options(method: 'GET', headers: _headers, extra: _extra)
+                .compose(_dio.options, '$baseUrl/api/v1/peers/$peerId',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = PeerDetail.fromJson(_result.data!);
     return value;
   }
@@ -211,15 +210,15 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
   Future<dynamic> addPeer(baseUrl, jwtToken, body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': jwtToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
-            method: 'POST',
-            headers: <String, dynamic>{r'Authorization': jwtToken},
-            extra: _extra)
-        .compose(_dio.options, '$baseUrl/api/v1/peers',
-            queryParameters: queryParameters, data: _data)
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final _result = await _dio.fetch(_setStreamType<dynamic>(
+        Options(method: 'POST', headers: _headers, extra: _extra)
+            .compose(_dio.options, '$baseUrl/api/v1/peers',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = _result.data;
     return value;
   }
@@ -228,14 +227,14 @@ class _HornetNodeDioRestClientImpl implements HornetNodeDioRestClientImpl {
   Future<dynamic> removePeer(baseUrl, jwtToken, peerId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': jwtToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
-            method: 'DELETE',
-            headers: <String, dynamic>{r'Authorization': jwtToken},
-            extra: _extra)
-        .compose(_dio.options, '$baseUrl/api/v1/peers/$peerId',
-            queryParameters: queryParameters, data: _data)
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final _result = await _dio.fetch(_setStreamType<dynamic>(
+        Options(method: 'DELETE', headers: _headers, extra: _extra)
+            .compose(_dio.options, '$baseUrl/api/v1/peers/$peerId',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = _result.data;
     return value;
   }

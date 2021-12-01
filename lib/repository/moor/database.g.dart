@@ -90,8 +90,7 @@ class Node extends DataClass implements Insertable<Node> {
   }
 
   @override
-  int get hashCode => $mrjf($mrjc(id.hashCode,
-      $mrjc(name.hashCode, $mrjc(url.hashCode, jwtToken.hashCode))));
+  int get hashCode => Object.hash(id, name, url, jwtToken);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||

@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'metrics.dart';
 
@@ -304,7 +305,7 @@ class _$_Metrics implements _Metrics {
           required this.droppedPackets});
 
   factory _$_Metrics.fromJson(Map<String, dynamic> json) =>
-      _$_$_MetricsFromJson(json);
+      _$$_MetricsFromJson(json);
 
   @override
   @JsonKey(name: 'newMessages')
@@ -409,7 +410,7 @@ class _$_Metrics implements _Metrics {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_MetricsToJson(this);
+    return _$$_MetricsToJson(this);
   }
 }
 
