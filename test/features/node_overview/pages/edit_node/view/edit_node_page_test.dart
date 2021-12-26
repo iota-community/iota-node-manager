@@ -146,7 +146,7 @@ void main() {
 
       testWidgets('Tests the whole add node flow if a new node is created',
           (tester) async {
-            when(() => _editNodeCubit.saveNode(null))
+        when(() => _editNodeCubit.saveNode(null))
             .thenAnswer((_) async => <void>{});
         when(() => _nodeRepository.addNode(
               node.name,
