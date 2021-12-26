@@ -1,10 +1,11 @@
-# Hornet Node Mobile App
+# IOTA Node Manager
 ![Hornet Mobile App][logo]
+
 ![coverage][coverage_badge]
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![License: MIT][license_badge]][license_link]
 
-A mobile app running on Android and iOS to manage multiple Hornet Nodes on the go!
+A mobile app running on Android and iOS to manage multiple IOTA Nodes on the go! Supporting Hornet and Bee nodes.
 
 ---
 
@@ -102,6 +103,7 @@ It depends on how you installed the node.
 
 * (A) APT:  run the following command ```./hornet tool jwt-api```
 *  (B) Nuriel Playbook: https://github.com/nuriel77/hornet-playbook#get-jwt-token
+*  (C) Swarm: Go to Hornet Configuration, select JWT in the menu and generate a new Token.
 
 Unfortunately this requires you to temporary shutdown the node before generating it.
 
@@ -119,6 +121,6 @@ Unfortunately this requires you to temporary shutdown the node before generating
 [internationalization_link]: https://flutter.dev/docs/development/accessibility-and-localization/internationalization
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license_link]: https://opensource.org/licenses/MIT
-[logo]: https://raw.githubusercontent.com/pauli2406/iota_hornet_mobile_app/main/assets/svg/hornet_banner.svg
+[logo]: https://raw.githubusercontent.com/pauli2406/iota_hornet_mobile_app/main/assets/svg/manager_banner.svg
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
