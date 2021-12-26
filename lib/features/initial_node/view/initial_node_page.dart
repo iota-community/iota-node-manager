@@ -10,11 +10,8 @@ import 'package:hornet_node/l10n/l10n.dart';
 import 'package:hornet_node/utils/widgets/node_type_toggle_form_field.dart';
 
 part '../widgets/jwt_input.dart';
-
 part '../widgets/name_input.dart';
-
 part '../widgets/node_type_input.dart';
-
 part '../widgets/save_button.dart';
 part '../widgets/url_input.dart';
 
