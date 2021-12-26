@@ -3,7 +3,11 @@ linter:
   rules:
     public_member_api_docs: false
 analyzer:
+  strong-mode:
+    implicit-casts: true
+    implicit-dynamic: true
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
+    - "**/*.gr.dart"
     - "lib/configure_dependencies.config.dart"

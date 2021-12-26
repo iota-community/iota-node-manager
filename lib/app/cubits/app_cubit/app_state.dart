@@ -8,14 +8,12 @@ class AppState with _$AppState {
   }) = _AppState;
 
   factory AppState.initial() {
-    var appBox = getIt<Box>(instanceName: HiveBoxConstants.appBox);
-    var darkmode =
-        appBox.get(HiveBoxConstants.darkModeKey, defaultValue: false);
-    var languageIndex =
-        appBox.get(HiveBoxConstants.languageKey, defaultValue: 0);
+    final appBox = getIt<Box>(instanceName: HiveBoxConstants.appBox);
+    final bool darkMode = appBox.get(HiveBoxConstants.darkModeKey) ?? false;
+    final int languageIndex = appBox.get(HiveBoxConstants.languageKey) ?? 0;
     return AppState(
       selectedLanguage: Languages.languages[languageIndex],
-      darkTheme: darkmode ? true : false,
+      darkTheme: darkMode,
     );
   }
 }

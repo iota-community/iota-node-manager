@@ -14,8 +14,8 @@ import '../helpers/helpers.dart';
 
 void main() {
   setUpAll(() {
-    registerFallbackValue<NodeState>(FakeNodeCubitState());
-    registerFallbackValue<InitialNodeState>(FakeInitialNodeCubitState());
+    registerFallbackValue(FakeNodeCubitState());
+    registerFallbackValue(FakeInitialNodeCubitState());
   });
   group('AppWrapperPage', () {
     late NodeCubit nodeCubit;
@@ -26,9 +26,9 @@ void main() {
       initialNodeCubit = MockInitialNodeCubit();
     });
     testWidgets('renders NodeWrapperPage', (tester) async {
-      var dummyNode = Node(id: 1, name: 'name', url: 'url');
+      final dummyNode = Node(id: 1, name: 'name', url: 'url');
 
-      var state = NodeState(
+      final state = NodeState(
           selectedNode: dummyNode,
           nodes: [dummyNode],
           status: NodeStatusEnum.nodeSelected);
@@ -44,14 +44,14 @@ void main() {
     });
 
     testWidgets('renders InitialNodePage', (tester) async {
-      var dummyNode = Node(id: 1, name: 'name', url: 'url');
+      final dummyNode = Node(id: 1, name: 'name', url: 'url');
 
-      var nodeCubitState = NodeState(
+      final nodeCubitState = NodeState(
           selectedNode: dummyNode,
           nodes: [dummyNode],
           status: NodeStatusEnum.noNodeAdded);
       when(() => nodeCubit.state).thenReturn(nodeCubitState);
-      var initialNodeCubitState = InitialNodeState.initial();
+      final initialNodeCubitState = InitialNodeState.initial();
       when(() => initialNodeCubit.state).thenReturn(initialNodeCubitState);
       getIt.registerSingleton<InitialNodeCubit>(initialNodeCubit);
 
@@ -66,13 +66,12 @@ void main() {
       );
       expect(find.byType(InitialNodePage), findsOneWidget);
       getIt.unregister<InitialNodeCubit>();
-
     });
 
     testWidgets('renders NodeOverviewPage', (tester) async {
-      var dummyNode = Node(id: 1, name: 'name', url: 'url');
+      final dummyNode = Node(id: 1, name: 'name', url: 'url');
 
-      var state = NodeState(
+      final state = NodeState(
           selectedNode: dummyNode,
           nodes: [dummyNode],
           status: NodeStatusEnum.noNodeSelected);
@@ -88,15 +87,15 @@ void main() {
     });
 
     testWidgets('renders initial state loading page', (tester) async {
-      var dummyNode = Node(id: 1, name: 'name', url: 'url');
+      final dummyNode = Node(id: 1, name: 'name', url: 'url');
 
-      var state = NodeState(
+      final state = NodeState(
           selectedNode: dummyNode,
           nodes: [dummyNode],
           status: NodeStatusEnum.initial);
 
       when(() => nodeCubit.state).thenReturn(state);
-      when(() => nodeCubit.initState()).thenAnswer((_) async => {});
+      when(() => nodeCubit.initState()).thenAnswer((_) async => <void>{});
       await tester.pumpApp(
         BlocProvider.value(
           value: nodeCubit,

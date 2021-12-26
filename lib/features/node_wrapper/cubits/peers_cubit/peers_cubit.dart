@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hornet_node/endpoints/hornet/hornet_node_rest_client.dart';
 import 'package:hornet_node/models/hornet/peers/add_peer/add_peer_body.dart';
@@ -8,10 +9,9 @@ import 'package:hornet_node/repository/node_repository.dart';
 import 'package:hornet_node/utils/error/dio_helpers.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:dio/dio.dart';
 
-part 'peers_state.dart';
 part 'peers_cubit.freezed.dart';
+part 'peers_state.dart';
 
 enum FailureStatusEnum {
   nodeNotAvailable,
@@ -32,13 +32,13 @@ class PeersCubit extends Cubit<PeersState> {
   Future<Peers?> peers() async {
     emit(const PeersState.loadInProgress());
     try {
-      var selectedNode = await _nodeRepository.getSelectedNode();
+      final selectedNode = await _nodeRepository.getSelectedNode();
       if (selectedNode != null) {
         if (selectedNode.jwtToken == null || selectedNode.jwtToken!.isEmpty) {
           emit(const PeersState.jwtMissing());
           return null;
         }
-        var response = await _loadPeers(selectedNode);
+        final response = await _loadPeers(selectedNode);
         emit(PeersState.loadSuccess(response));
         return response;
       }
@@ -47,32 +47,32 @@ class PeersCubit extends Cubit<PeersState> {
         e,
         stackTrace: e.stackTrace,
       );
-      var failureCode = retrieveFailureCode(e);
+      final failureCode = retrieveFailureCode(e);
       emit(PeersState.loadFailure(failureCode));
     }
   }
 
   Future peerRemoved(String peerId) async {
-    var selectedNode = await _nodeRepository.getSelectedNode();
+    final selectedNode = await _nodeRepository.getSelectedNode();
     await _removePeer(selectedNode!, peerId);
-    var response = await _loadPeers(selectedNode);
+    final response = await _loadPeers(selectedNode);
 
     emit(PeersState.loadSuccess(response));
   }
 
   Future peerUpdated(String peerId, String? name, String address) async {
-    var selectedNode = await _nodeRepository.getSelectedNode();
+    final selectedNode = await _nodeRepository.getSelectedNode();
     await _removePeer(selectedNode!, peerId);
     await _addPeer(selectedNode, name, address);
-    var response = await _loadPeers(selectedNode);
+    final response = await _loadPeers(selectedNode);
 
     emit(PeersState.loadSuccess(response));
   }
 
   Future peerAdded(String peerId, String? name, String address) async {
-    var selectedNode = await _nodeRepository.getSelectedNode();
+    final selectedNode = await _nodeRepository.getSelectedNode();
     await _addPeer(selectedNode!, name, address);
-    var response = await _loadPeers(selectedNode);
+    final response = await _loadPeers(selectedNode);
     emit(PeersState.loadSuccess(response));
   }
 

@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'tips_data.dart';
 
@@ -27,7 +28,7 @@ class _$TipsDataTearOff {
     );
   }
 
-  TipsData fromJson(Map<String, Object> json) {
+  TipsData fromJson(Map<String, Object?> json) {
     return TipsData.fromJson(json);
   }
 }
@@ -110,7 +111,7 @@ class _$_TipsData implements _TipsData {
   _$_TipsData({@JsonKey(name: 'tipMessageIds') this.tipMessageIds});
 
   factory _$_TipsData.fromJson(Map<String, dynamic> json) =>
-      _$_$_TipsDataFromJson(json);
+      _$$_TipsDataFromJson(json);
 
   @override
   @JsonKey(name: 'tipMessageIds')
@@ -124,15 +125,15 @@ class _$_TipsData implements _TipsData {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _TipsData &&
-            (identical(other.tipMessageIds, tipMessageIds) ||
-                const DeepCollectionEquality()
-                    .equals(other.tipMessageIds, tipMessageIds)));
+        (other.runtimeType == runtimeType &&
+            other is _TipsData &&
+            const DeepCollectionEquality()
+                .equals(other.tipMessageIds, tipMessageIds));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(tipMessageIds);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(tipMessageIds));
 
   @JsonKey(ignore: true)
   @override
@@ -141,7 +142,7 @@ class _$_TipsData implements _TipsData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_TipsDataToJson(this);
+    return _$$_TipsDataToJson(this);
   }
 }
 
@@ -154,7 +155,7 @@ abstract class _TipsData implements TipsData {
 
   @override
   @JsonKey(name: 'tipMessageIds')
-  List<String>? get tipMessageIds => throw _privateConstructorUsedError;
+  List<String>? get tipMessageIds;
   @override
   @JsonKey(ignore: true)
   _$TipsDataCopyWith<_TipsData> get copyWith =>

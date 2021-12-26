@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'peers.dart';
 
@@ -26,7 +27,7 @@ class _$PeersTearOff {
     );
   }
 
-  Peers fromJson(Map<String, Object> json) {
+  Peers fromJson(Map<String, Object?> json) {
     return Peers.fromJson(json);
   }
 }
@@ -108,7 +109,7 @@ class _$_Peers implements _Peers {
   _$_Peers({@JsonKey(name: 'data') required this.data});
 
   factory _$_Peers.fromJson(Map<String, dynamic> json) =>
-      _$_$_PeersFromJson(json);
+      _$$_PeersFromJson(json);
 
   @override
   @JsonKey(name: 'data')
@@ -122,14 +123,14 @@ class _$_Peers implements _Peers {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Peers &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
+        (other.runtimeType == runtimeType &&
+            other is _Peers &&
+            const DeepCollectionEquality().equals(other.data, data));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
@@ -138,7 +139,7 @@ class _$_Peers implements _Peers {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_PeersToJson(this);
+    return _$$_PeersToJson(this);
   }
 }
 
@@ -149,7 +150,7 @@ abstract class _Peers implements Peers {
 
   @override
   @JsonKey(name: 'data')
-  List<Peer> get data => throw _privateConstructorUsedError;
+  List<Peer> get data;
   @override
   @JsonKey(ignore: true)
   _$PeersCopyWith<_Peers> get copyWith => throw _privateConstructorUsedError;

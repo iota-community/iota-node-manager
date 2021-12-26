@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'peer.dart';
 
@@ -37,7 +38,7 @@ class _$PeerTearOff {
     );
   }
 
-  Peer fromJson(Map<String, Object> json) {
+  Peer fromJson(Map<String, Object?> json) {
     return Peer.fromJson(json);
   }
 }
@@ -212,8 +213,7 @@ class _$_Peer implements _Peer {
       @JsonKey(name: 'connected') required this.connected,
       @JsonKey(name: 'gossip') this.gossip});
 
-  factory _$_Peer.fromJson(Map<String, dynamic> json) =>
-      _$_$_PeerFromJson(json);
+  factory _$_Peer.fromJson(Map<String, dynamic> json) => _$$_PeerFromJson(json);
 
   @override
   @JsonKey(name: 'id')
@@ -242,33 +242,26 @@ class _$_Peer implements _Peer {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Peer &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.multiAddresses, multiAddresses) ||
-                const DeepCollectionEquality()
-                    .equals(other.multiAddresses, multiAddresses)) &&
-            (identical(other.alias, alias) ||
-                const DeepCollectionEquality().equals(other.alias, alias)) &&
-            (identical(other.relation, relation) ||
-                const DeepCollectionEquality()
-                    .equals(other.relation, relation)) &&
-            (identical(other.connected, connected) ||
-                const DeepCollectionEquality()
-                    .equals(other.connected, connected)) &&
-            (identical(other.gossip, gossip) ||
-                const DeepCollectionEquality().equals(other.gossip, gossip)));
+        (other.runtimeType == runtimeType &&
+            other is _Peer &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality()
+                .equals(other.multiAddresses, multiAddresses) &&
+            const DeepCollectionEquality().equals(other.alias, alias) &&
+            const DeepCollectionEquality().equals(other.relation, relation) &&
+            const DeepCollectionEquality().equals(other.connected, connected) &&
+            const DeepCollectionEquality().equals(other.gossip, gossip));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(multiAddresses) ^
-      const DeepCollectionEquality().hash(alias) ^
-      const DeepCollectionEquality().hash(relation) ^
-      const DeepCollectionEquality().hash(connected) ^
-      const DeepCollectionEquality().hash(gossip);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(multiAddresses),
+      const DeepCollectionEquality().hash(alias),
+      const DeepCollectionEquality().hash(relation),
+      const DeepCollectionEquality().hash(connected),
+      const DeepCollectionEquality().hash(gossip));
 
   @JsonKey(ignore: true)
   @override
@@ -277,7 +270,7 @@ class _$_Peer implements _Peer {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_PeerToJson(this);
+    return _$$_PeerToJson(this);
   }
 }
 
@@ -294,22 +287,22 @@ abstract class _Peer implements Peer {
 
   @override
   @JsonKey(name: 'id')
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
   @JsonKey(name: 'multiAddresses')
-  List<String> get multiAddresses => throw _privateConstructorUsedError;
+  List<String> get multiAddresses;
   @override
   @JsonKey(name: 'alias')
-  String? get alias => throw _privateConstructorUsedError;
+  String? get alias;
   @override
   @JsonKey(name: 'relation')
-  String get relation => throw _privateConstructorUsedError;
+  String get relation;
   @override
   @JsonKey(name: 'connected')
-  bool get connected => throw _privateConstructorUsedError;
+  bool get connected;
   @override
   @JsonKey(name: 'gossip')
-  Gossip? get gossip => throw _privateConstructorUsedError;
+  Gossip? get gossip;
   @override
   @JsonKey(ignore: true)
   _$PeerCopyWith<_Peer> get copyWith => throw _privateConstructorUsedError;

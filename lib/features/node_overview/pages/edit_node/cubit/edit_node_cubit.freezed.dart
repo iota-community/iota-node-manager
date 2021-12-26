@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'edit_node_cubit.dart';
 
@@ -20,6 +21,7 @@ class _$EditNodeStateTearOff {
       {required Name name,
       required Url url,
       required Jwt jwt,
+      required Type type,
       required FormzStatus status,
       required int? id,
       required bool selected}) {
@@ -27,6 +29,7 @@ class _$EditNodeStateTearOff {
       name: name,
       url: url,
       jwt: jwt,
+      type: type,
       status: status,
       id: id,
       selected: selected,
@@ -42,6 +45,7 @@ mixin _$EditNodeState {
   Name get name => throw _privateConstructorUsedError;
   Url get url => throw _privateConstructorUsedError;
   Jwt get jwt => throw _privateConstructorUsedError;
+  Type get type => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
   int? get id => throw _privateConstructorUsedError;
   bool get selected => throw _privateConstructorUsedError;
@@ -60,6 +64,7 @@ abstract class $EditNodeStateCopyWith<$Res> {
       {Name name,
       Url url,
       Jwt jwt,
+      Type type,
       FormzStatus status,
       int? id,
       bool selected});
@@ -79,6 +84,7 @@ class _$EditNodeStateCopyWithImpl<$Res>
     Object? name = freezed,
     Object? url = freezed,
     Object? jwt = freezed,
+    Object? type = freezed,
     Object? status = freezed,
     Object? id = freezed,
     Object? selected = freezed,
@@ -96,6 +102,10 @@ class _$EditNodeStateCopyWithImpl<$Res>
           ? _value.jwt
           : jwt // ignore: cast_nullable_to_non_nullable
               as Jwt,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as Type,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -123,6 +133,7 @@ abstract class _$EditNodeStateCopyWith<$Res>
       {Name name,
       Url url,
       Jwt jwt,
+      Type type,
       FormzStatus status,
       int? id,
       bool selected});
@@ -144,6 +155,7 @@ class __$EditNodeStateCopyWithImpl<$Res>
     Object? name = freezed,
     Object? url = freezed,
     Object? jwt = freezed,
+    Object? type = freezed,
     Object? status = freezed,
     Object? id = freezed,
     Object? selected = freezed,
@@ -161,6 +173,10 @@ class __$EditNodeStateCopyWithImpl<$Res>
           ? _value.jwt
           : jwt // ignore: cast_nullable_to_non_nullable
               as Jwt,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as Type,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -184,6 +200,7 @@ class _$_EditNodeState implements _EditNodeState {
       {required this.name,
       required this.url,
       required this.jwt,
+      required this.type,
       required this.status,
       required this.id,
       required this.selected});
@@ -195,6 +212,8 @@ class _$_EditNodeState implements _EditNodeState {
   @override
   final Jwt jwt;
   @override
+  final Type type;
+  @override
   final FormzStatus status;
   @override
   final int? id;
@@ -203,37 +222,33 @@ class _$_EditNodeState implements _EditNodeState {
 
   @override
   String toString() {
-    return 'EditNodeState(name: $name, url: $url, jwt: $jwt, status: $status, id: $id, selected: $selected)';
+    return 'EditNodeState(name: $name, url: $url, jwt: $jwt, type: $type, status: $status, id: $id, selected: $selected)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _EditNodeState &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)) &&
-            (identical(other.jwt, jwt) ||
-                const DeepCollectionEquality().equals(other.jwt, jwt)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.selected, selected) ||
-                const DeepCollectionEquality()
-                    .equals(other.selected, selected)));
+        (other.runtimeType == runtimeType &&
+            other is _EditNodeState &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.url, url) &&
+            const DeepCollectionEquality().equals(other.jwt, jwt) &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.selected, selected));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(url) ^
-      const DeepCollectionEquality().hash(jwt) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(selected);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(url),
+      const DeepCollectionEquality().hash(jwt),
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(selected));
 
   @JsonKey(ignore: true)
   @override
@@ -246,22 +261,25 @@ abstract class _EditNodeState implements EditNodeState {
       {required Name name,
       required Url url,
       required Jwt jwt,
+      required Type type,
       required FormzStatus status,
       required int? id,
       required bool selected}) = _$_EditNodeState;
 
   @override
-  Name get name => throw _privateConstructorUsedError;
+  Name get name;
   @override
-  Url get url => throw _privateConstructorUsedError;
+  Url get url;
   @override
-  Jwt get jwt => throw _privateConstructorUsedError;
+  Jwt get jwt;
   @override
-  FormzStatus get status => throw _privateConstructorUsedError;
+  Type get type;
   @override
-  int? get id => throw _privateConstructorUsedError;
+  FormzStatus get status;
   @override
-  bool get selected => throw _privateConstructorUsedError;
+  int? get id;
+  @override
+  bool get selected;
   @override
   @JsonKey(ignore: true)
   _$EditNodeStateCopyWith<_EditNodeState> get copyWith =>

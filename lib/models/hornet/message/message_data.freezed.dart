@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'message_data.dart';
 
@@ -33,7 +34,7 @@ class _$MessageDataTearOff {
     );
   }
 
-  MessageData fromJson(Map<String, Object> json) {
+  MessageData fromJson(Map<String, Object?> json) {
     return MessageData.fromJson(json);
   }
 }
@@ -184,7 +185,7 @@ class _$_MessageData implements _MessageData {
       @JsonKey(name: 'nonce') this.nonce});
 
   factory _$_MessageData.fromJson(Map<String, dynamic> json) =>
-      _$_$_MessageDataFromJson(json);
+      _$$_MessageDataFromJson(json);
 
   @override
   @JsonKey(name: 'networkId')
@@ -207,27 +208,22 @@ class _$_MessageData implements _MessageData {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _MessageData &&
-            (identical(other.networkId, networkId) ||
-                const DeepCollectionEquality()
-                    .equals(other.networkId, networkId)) &&
-            (identical(other.parentMessageIds, parentMessageIds) ||
-                const DeepCollectionEquality()
-                    .equals(other.parentMessageIds, parentMessageIds)) &&
-            (identical(other.payload, payload) ||
-                const DeepCollectionEquality()
-                    .equals(other.payload, payload)) &&
-            (identical(other.nonce, nonce) ||
-                const DeepCollectionEquality().equals(other.nonce, nonce)));
+        (other.runtimeType == runtimeType &&
+            other is _MessageData &&
+            const DeepCollectionEquality().equals(other.networkId, networkId) &&
+            const DeepCollectionEquality()
+                .equals(other.parentMessageIds, parentMessageIds) &&
+            const DeepCollectionEquality().equals(other.payload, payload) &&
+            const DeepCollectionEquality().equals(other.nonce, nonce));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(networkId) ^
-      const DeepCollectionEquality().hash(parentMessageIds) ^
-      const DeepCollectionEquality().hash(payload) ^
-      const DeepCollectionEquality().hash(nonce);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(networkId),
+      const DeepCollectionEquality().hash(parentMessageIds),
+      const DeepCollectionEquality().hash(payload),
+      const DeepCollectionEquality().hash(nonce));
 
   @JsonKey(ignore: true)
   @override
@@ -236,7 +232,7 @@ class _$_MessageData implements _MessageData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_MessageDataToJson(this);
+    return _$$_MessageDataToJson(this);
   }
 }
 
@@ -252,16 +248,16 @@ abstract class _MessageData implements MessageData {
 
   @override
   @JsonKey(name: 'networkId')
-  String get networkId => throw _privateConstructorUsedError;
+  String get networkId;
   @override
   @JsonKey(name: 'parentMessageIds')
-  List<String> get parentMessageIds => throw _privateConstructorUsedError;
+  List<String> get parentMessageIds;
   @override
   @JsonKey(name: 'payload')
-  Payload? get payload => throw _privateConstructorUsedError;
+  Payload? get payload;
   @override
   @JsonKey(name: 'nonce')
-  String? get nonce => throw _privateConstructorUsedError;
+  String? get nonce;
   @override
   @JsonKey(ignore: true)
   _$MessageDataCopyWith<_MessageData> get copyWith =>

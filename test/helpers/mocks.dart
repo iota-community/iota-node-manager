@@ -22,4 +22,4 @@ class FakeEditNodeCubitState extends Fake implements EditNodeState {}
 
 class MockNodeRepository extends Mock implements NodeRepository {}
 
-class MockBox extends Mock implements Box {}
+class MockBox extends Mock implements Box<dynamic> {}

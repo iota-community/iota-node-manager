@@ -78,16 +78,18 @@ class _MobilePortraitWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NodeCubit, NodeState>(
       builder: (context, state) {
-        var routes = const [
+        const routes = [
           HomeRouter(),
           ExplorerRouter(),
           PeersRouter(),
         ];
         return AutoTabsScaffold(
           appBarBuilder: (context, tabsRouter) {
-            return CustomAppBar(
-              tabsRouter: tabsRouter,
-            );
+            return PreferredSize(
+                preferredSize: const Size.fromHeight(kToolbarHeight),
+                child: CustomAppBar(
+                  tabsRouter: tabsRouter,
+                ));
           },
           drawerEnableOpenDragGesture: false,
           drawer: const CustomDrawer(),

@@ -1,12 +1,13 @@
 import 'dart:io';
 
+import 'package:hornet_node/repository/moor/constants/node_types.dart';
 import 'package:moor/ffi.dart';
 import 'package:moor/moor.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
 
-part 'tables/hornet_node.dart';
 part 'database.g.dart';
+part 'tables/hornet_node.dart';
 
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {
@@ -21,14 +22,23 @@ class HornetNodeDB extends _$HornetNodeDB {
   HornetNodeDB() : super(_openConnection());
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
-      onCreate: (Migrator m) {
-        return m.createAll();
-      },
-      onUpgrade: (Migrator m, int from, int to) async {});
+        onCreate: (Migrator m) {
+          return m.createAll();
+        },
+        onUpgrade: (Migrator m, int from, int to) async {
+          if (from == 1) {
+            await m.addColumn(nodes, nodes.type).then((value) async {
+              await customStatement(
+                ''' UPDATE nodes SET type = '${NodeTypes.hornet.index}' ''',
+              );
+            });
+          }
+        },
+      );
 
   Future<List<Node>> get findAll => select(nodes).get();
 
@@ -60,7 +70,7 @@ class HornetNodeDB extends _$HornetNodeDB {
 
   Future<int> get amountOfNodes async {
     final count = countAll();
-    var res = await (selectOnly(nodes)..addColumns([count]))
+    final res = await (selectOnly(nodes)..addColumns([count]))
         .map((row) => row.read(count))
         .getSingle();
     return res;

@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'gossip.dart';
 
@@ -29,7 +30,7 @@ class _$GossipTearOff {
     );
   }
 
-  Gossip fromJson(Map<String, Object> json) {
+  Gossip fromJson(Map<String, Object?> json) {
     return Gossip.fromJson(json);
   }
 }
@@ -151,7 +152,7 @@ class _$_Gossip implements _Gossip {
       @JsonKey(name: 'metrics') required this.metrics});
 
   factory _$_Gossip.fromJson(Map<String, dynamic> json) =>
-      _$_$_GossipFromJson(json);
+      _$$_GossipFromJson(json);
 
   @override
   @JsonKey(name: 'heartbeat')
@@ -168,19 +169,17 @@ class _$_Gossip implements _Gossip {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Gossip &&
-            (identical(other.heartbeat, heartbeat) ||
-                const DeepCollectionEquality()
-                    .equals(other.heartbeat, heartbeat)) &&
-            (identical(other.metrics, metrics) ||
-                const DeepCollectionEquality().equals(other.metrics, metrics)));
+        (other.runtimeType == runtimeType &&
+            other is _Gossip &&
+            const DeepCollectionEquality().equals(other.heartbeat, heartbeat) &&
+            const DeepCollectionEquality().equals(other.metrics, metrics));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(heartbeat) ^
-      const DeepCollectionEquality().hash(metrics);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(heartbeat),
+      const DeepCollectionEquality().hash(metrics));
 
   @JsonKey(ignore: true)
   @override
@@ -189,7 +188,7 @@ class _$_Gossip implements _Gossip {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GossipToJson(this);
+    return _$$_GossipToJson(this);
   }
 }
 
@@ -202,10 +201,10 @@ abstract class _Gossip implements Gossip {
 
   @override
   @JsonKey(name: 'heartbeat')
-  Heartbeat get heartbeat => throw _privateConstructorUsedError;
+  Heartbeat get heartbeat;
   @override
   @JsonKey(name: 'metrics')
-  Metrics get metrics => throw _privateConstructorUsedError;
+  Metrics get metrics;
   @override
   @JsonKey(ignore: true)
   _$GossipCopyWith<_Gossip> get copyWith => throw _privateConstructorUsedError;

@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter_test/flutter_test.dart';
 import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:hornet_node/app/cubits/node_cubit/node_cubit.dart';
 import 'package:hornet_node/repository/node_repository.dart';
 import 'package:mocktail/mocktail.dart';
@@ -15,7 +15,7 @@ void main() {
     _nodeRepository = MockNodeRepository();
   });
 
-  var secondNode =
+  final secondNode =
       node.copyWith(id: 2, name: 'Second', url: 'https//second.test.com');
 
   NodeRepository fakeReturnValuesForHappyFlow(NodeRepository _nodeRepository) {
@@ -28,7 +28,7 @@ void main() {
     return _nodeRepository;
   }
 
-  var initalEmptyNodeState = const NodeState(
+  const initalEmptyNodeState = NodeState(
     nodes: [],
     selectedNode: null,
     status: NodeStatusEnum.initial,
@@ -46,7 +46,7 @@ void main() {
         },
         act: (cubit) => cubit.initState(),
         expect: () {
-          var expectedNodeState = NodeState(
+          final expectedNodeState = NodeState(
             nodes: [node],
             selectedNode: node,
             status: NodeStatusEnum.nodeSelected,
@@ -71,7 +71,7 @@ void main() {
         },
         act: (cubit) => cubit.initState(),
         expect: () {
-          var expectedNodeState = NodeState(
+          final expectedNodeState = NodeState(
             nodes: [node],
             selectedNode: null,
             status: NodeStatusEnum.noNodeSelected,
@@ -95,7 +95,7 @@ void main() {
         },
         act: (cubit) => cubit.initState(),
         expect: () {
-          var expectedNodeState = const NodeState(
+          const expectedNodeState = NodeState(
             nodes: [],
             selectedNode: null,
             status: NodeStatusEnum.noNodeAdded,
@@ -135,7 +135,7 @@ void main() {
                   _nodeRepository.addNode(node.name, node.url, node.jwtToken!))
               .thenAnswer((_) async => node);
           when(() => _nodeRepository.setSelectedNode(node.id))
-              .thenAnswer((_) async => {});
+              .thenAnswer((_) async => <void>{});
           return NodeCubit(_nodeRepository);
         },
         act: (cubit) => cubit
@@ -156,9 +156,9 @@ void main() {
         build: () {
           _nodeRepository = fakeReturnValuesForHappyFlow(_nodeRepository);
           when(() => _nodeRepository.setSelectedNode(any()))
-              .thenAnswer((_) async => {});
+              .thenAnswer((_) async => <void>{});
           when(() => _nodeRepository.removeNode(node.id))
-              .thenAnswer((_) async => {});
+              .thenAnswer((_) async => <void>{});
           return NodeCubit(_nodeRepository);
         },
         act: (cubit) => cubit
@@ -182,9 +182,9 @@ void main() {
           when(() => _nodeRepository.getSelectedNodeStream())
               .thenAnswer((_) => Stream.value(node));
           when(() => _nodeRepository.setSelectedNode(secondNode.id))
-              .thenAnswer((_) async => {});
+              .thenAnswer((_) async => <void>{});
           when(() => _nodeRepository.removeNode(node.id))
-              .thenAnswer((_) async => {});
+              .thenAnswer((_) async => <void>{});
           return NodeCubit(_nodeRepository);
         },
         act: (cubit) => cubit
@@ -209,12 +209,12 @@ void main() {
           ..initState()
           ..updateStatus(NodeStatusEnum.noNodeAdded),
         expect: () {
-          var initialNodeState = const NodeState(
+          const initialNodeState = NodeState(
             nodes: [],
             selectedNode: null,
             status: NodeStatusEnum.noNodeAdded,
           );
-          var expectedNodeState = NodeState(
+          final expectedNodeState = NodeState(
             nodes: [node],
             selectedNode: node,
             status: NodeStatusEnum.nodeSelected,

@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'payload.dart';
 
@@ -57,7 +58,7 @@ class _$PayloadTearOff {
     );
   }
 
-  Payload fromJson(Map<String, Object> json) {
+  Payload fromJson(Map<String, Object?> json) {
     return Payload.fromJson(json);
   }
 }
@@ -309,7 +310,7 @@ class _$_Payload implements _Payload {
           this.signatures});
 
   factory _$_Payload.fromJson(Map<String, dynamic> json) =>
-      _$_$_PayloadFromJson(json);
+      _$$_PayloadFromJson(json);
 
   @override
   @JsonKey(name: 'type')
@@ -352,52 +353,39 @@ class _$_Payload implements _Payload {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Payload &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
-            (identical(other.index, index) ||
-                const DeepCollectionEquality().equals(other.index, index)) &&
-            (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.timestamp, timestamp)) &&
-            (identical(other.parentMessageIds, parentMessageIds) ||
-                const DeepCollectionEquality()
-                    .equals(other.parentMessageIds, parentMessageIds)) &&
-            (identical(other.inclusionMerkleProof, inclusionMerkleProof) ||
-                const DeepCollectionEquality().equals(
-                    other.inclusionMerkleProof, inclusionMerkleProof)) &&
-            (identical(other.nextPoWScore, nextPoWScore) ||
-                const DeepCollectionEquality()
-                    .equals(other.nextPoWScore, nextPoWScore)) &&
-            (identical(other.nextPoWScoreMilestoneIndex,
-                    nextPoWScoreMilestoneIndex) ||
-                const DeepCollectionEquality().equals(
-                    other.nextPoWScoreMilestoneIndex,
-                    nextPoWScoreMilestoneIndex)) &&
-            (identical(other.publicKeys, publicKeys) ||
-                const DeepCollectionEquality()
-                    .equals(other.publicKeys, publicKeys)) &&
-            (identical(other.receipt, receipt) ||
-                const DeepCollectionEquality()
-                    .equals(other.receipt, receipt)) &&
-            (identical(other.signatures, signatures) ||
-                const DeepCollectionEquality()
-                    .equals(other.signatures, signatures)));
+        (other.runtimeType == runtimeType &&
+            other is _Payload &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.index, index) &&
+            const DeepCollectionEquality().equals(other.timestamp, timestamp) &&
+            const DeepCollectionEquality()
+                .equals(other.parentMessageIds, parentMessageIds) &&
+            const DeepCollectionEquality()
+                .equals(other.inclusionMerkleProof, inclusionMerkleProof) &&
+            const DeepCollectionEquality()
+                .equals(other.nextPoWScore, nextPoWScore) &&
+            const DeepCollectionEquality().equals(
+                other.nextPoWScoreMilestoneIndex, nextPoWScoreMilestoneIndex) &&
+            const DeepCollectionEquality()
+                .equals(other.publicKeys, publicKeys) &&
+            const DeepCollectionEquality().equals(other.receipt, receipt) &&
+            const DeepCollectionEquality()
+                .equals(other.signatures, signatures));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(type) ^
-      const DeepCollectionEquality().hash(index) ^
-      const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(parentMessageIds) ^
-      const DeepCollectionEquality().hash(inclusionMerkleProof) ^
-      const DeepCollectionEquality().hash(nextPoWScore) ^
-      const DeepCollectionEquality().hash(nextPoWScoreMilestoneIndex) ^
-      const DeepCollectionEquality().hash(publicKeys) ^
-      const DeepCollectionEquality().hash(receipt) ^
-      const DeepCollectionEquality().hash(signatures);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(index),
+      const DeepCollectionEquality().hash(timestamp),
+      const DeepCollectionEquality().hash(parentMessageIds),
+      const DeepCollectionEquality().hash(inclusionMerkleProof),
+      const DeepCollectionEquality().hash(nextPoWScore),
+      const DeepCollectionEquality().hash(nextPoWScoreMilestoneIndex),
+      const DeepCollectionEquality().hash(publicKeys),
+      const DeepCollectionEquality().hash(receipt),
+      const DeepCollectionEquality().hash(signatures));
 
   @JsonKey(ignore: true)
   @override
@@ -406,7 +394,7 @@ class _$_Payload implements _Payload {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_PayloadToJson(this);
+    return _$$_PayloadToJson(this);
   }
 }
 
@@ -439,36 +427,36 @@ abstract class _Payload implements Payload {
 
   @override
   @JsonKey(name: 'type')
-  int get type => throw _privateConstructorUsedError;
+  int get type;
   @override
   @JsonKey(name: 'index')
   @IntToStringConverter()
-  String get index => throw _privateConstructorUsedError;
+  String get index;
   @override
   @JsonKey(name: 'timestamp')
   @SecondsSinceEpochDateTimeConverter()
-  DateTime? get timestamp => throw _privateConstructorUsedError;
+  DateTime? get timestamp;
   @override
   @JsonKey(name: 'parentMessageIds')
-  List<String>? get parentMessageIds => throw _privateConstructorUsedError;
+  List<String>? get parentMessageIds;
   @override
   @JsonKey(name: 'inclusionMerkleProof')
-  String? get inclusionMerkleProof => throw _privateConstructorUsedError;
+  String? get inclusionMerkleProof;
   @override
   @JsonKey(name: 'nextPoWScore')
-  int? get nextPoWScore => throw _privateConstructorUsedError;
+  int? get nextPoWScore;
   @override
   @JsonKey(name: 'nextPoWScoreMilestoneIndex')
-  int? get nextPoWScoreMilestoneIndex => throw _privateConstructorUsedError;
+  int? get nextPoWScoreMilestoneIndex;
   @override
   @JsonKey(name: 'publicKeys')
-  List<String>? get publicKeys => throw _privateConstructorUsedError;
+  List<String>? get publicKeys;
   @override
   @JsonKey(name: 'receipt')
-  Object? get receipt => throw _privateConstructorUsedError;
+  Object? get receipt;
   @override
   @JsonKey(name: 'signatures')
-  List<String>? get signatures => throw _privateConstructorUsedError;
+  List<String>? get signatures;
   @override
   @JsonKey(ignore: true)
   _$PayloadCopyWith<_Payload> get copyWith =>

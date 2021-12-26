@@ -60,26 +60,29 @@ void main() {
         when(() => _nodeRepository.addNode(node.name, node.url, node.jwtToken!))
             .thenAnswer((_) async => node);
         when(() => _nodeRepository.setSelectedNode(node.id))
-            .thenAnswer((_) async => {});
+            .thenAnswer((_) async => <void>{});
         return InitialNodeCubit(_nodeRepository);
       },
       seed: () => InitialNodeState(
-          name: Name.dirty(value: node.name),
-          url: Url.dirty(value: node.url),
-          jwt: Jwt.dirty(value: node.jwtToken!),
-          status: FormzStatus.valid),
+        name: Name.dirty(value: node.name),
+        url: Url.dirty(value: node.url),
+        jwt: Jwt.dirty(value: node.jwtToken!),
+        status: FormzStatus.valid,
+      ),
       act: (cubit) => cubit..saveNode(),
       expect: () => [
         InitialNodeState(
-            name: Name.dirty(value: node.name),
-            url: Url.dirty(value: node.url),
-            jwt: Jwt.dirty(value: node.jwtToken!),
-            status: FormzStatus.submissionInProgress),
+          name: Name.dirty(value: node.name),
+          url: Url.dirty(value: node.url),
+          jwt: Jwt.dirty(value: node.jwtToken!),
+          status: FormzStatus.submissionInProgress,
+        ),
         InitialNodeState(
-            name: Name.dirty(value: node.name),
-            url: Url.dirty(value: node.url),
-            jwt: Jwt.dirty(value: node.jwtToken!),
-            status: FormzStatus.submissionSuccess),
+          name: Name.dirty(value: node.name),
+          url: Url.dirty(value: node.url),
+          jwt: Jwt.dirty(value: node.jwtToken!),
+          status: FormzStatus.submissionSuccess,
+        ),
       ],
     );
 
@@ -91,22 +94,25 @@ void main() {
         return InitialNodeCubit(_nodeRepository);
       },
       seed: () => InitialNodeState(
-          name: Name.dirty(value: node.name),
-          url: Url.dirty(value: node.url),
-          jwt: Jwt.dirty(value: node.jwtToken!),
-          status: FormzStatus.valid),
+        name: Name.dirty(value: node.name),
+        url: Url.dirty(value: node.url),
+        jwt: Jwt.dirty(value: node.jwtToken!),
+        status: FormzStatus.valid,
+      ),
       act: (cubit) => cubit..saveNode(),
       expect: () => [
         InitialNodeState(
-            name: Name.dirty(value: node.name),
-            url: Url.dirty(value: node.url),
-            jwt: Jwt.dirty(value: node.jwtToken!),
-            status: FormzStatus.submissionInProgress),
+          name: Name.dirty(value: node.name),
+          url: Url.dirty(value: node.url),
+          jwt: Jwt.dirty(value: node.jwtToken!),
+          status: FormzStatus.submissionInProgress,
+        ),
         InitialNodeState(
-            name: Name.dirty(value: node.name),
-            url: Url.dirty(value: node.url),
-            jwt: Jwt.dirty(value: node.jwtToken!),
-            status: FormzStatus.submissionFailure),
+          name: Name.dirty(value: node.name),
+          url: Url.dirty(value: node.url),
+          jwt: Jwt.dirty(value: node.jwtToken!),
+          status: FormzStatus.submissionFailure,
+        ),
       ],
     );
   });

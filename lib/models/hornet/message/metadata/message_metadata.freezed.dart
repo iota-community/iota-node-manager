@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'message_metadata.dart';
 
@@ -27,7 +28,7 @@ class _$MessageMetadataTearOff {
     );
   }
 
-  MessageMetadata fromJson(Map<String, Object> json) {
+  MessageMetadata fromJson(Map<String, Object?> json) {
     return MessageMetadata.fromJson(json);
   }
 }
@@ -128,7 +129,7 @@ class _$_MessageMetadata implements _MessageMetadata {
   _$_MessageMetadata({@JsonKey(name: 'data') required this.data});
 
   factory _$_MessageMetadata.fromJson(Map<String, dynamic> json) =>
-      _$_$_MessageMetadataFromJson(json);
+      _$$_MessageMetadataFromJson(json);
 
   @override
   @JsonKey(name: 'data')
@@ -142,14 +143,14 @@ class _$_MessageMetadata implements _MessageMetadata {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _MessageMetadata &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
+        (other.runtimeType == runtimeType &&
+            other is _MessageMetadata &&
+            const DeepCollectionEquality().equals(other.data, data));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
@@ -158,7 +159,7 @@ class _$_MessageMetadata implements _MessageMetadata {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_MessageMetadataToJson(this);
+    return _$$_MessageMetadataToJson(this);
   }
 }
 
@@ -172,7 +173,7 @@ abstract class _MessageMetadata implements MessageMetadata {
 
   @override
   @JsonKey(name: 'data')
-  MessageMetadataData get data => throw _privateConstructorUsedError;
+  MessageMetadataData get data;
   @override
   @JsonKey(ignore: true)
   _$MessageMetadataCopyWith<_MessageMetadata> get copyWith =>

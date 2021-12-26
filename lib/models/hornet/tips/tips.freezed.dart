@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'tips.dart';
 
@@ -26,7 +27,7 @@ class _$TipsTearOff {
     );
   }
 
-  Tips fromJson(Map<String, Object> json) {
+  Tips fromJson(Map<String, Object?> json) {
     return Tips.fromJson(json);
   }
 }
@@ -123,8 +124,7 @@ class __$TipsCopyWithImpl<$Res> extends _$TipsCopyWithImpl<$Res>
 class _$_Tips implements _Tips {
   _$_Tips({@JsonKey(name: 'data') this.data});
 
-  factory _$_Tips.fromJson(Map<String, dynamic> json) =>
-      _$_$_TipsFromJson(json);
+  factory _$_Tips.fromJson(Map<String, dynamic> json) => _$$_TipsFromJson(json);
 
   @override
   @JsonKey(name: 'data')
@@ -138,14 +138,14 @@ class _$_Tips implements _Tips {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Tips &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
+        (other.runtimeType == runtimeType &&
+            other is _Tips &&
+            const DeepCollectionEquality().equals(other.data, data));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
@@ -154,7 +154,7 @@ class _$_Tips implements _Tips {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_TipsToJson(this);
+    return _$$_TipsToJson(this);
   }
 }
 
@@ -165,7 +165,7 @@ abstract class _Tips implements Tips {
 
   @override
   @JsonKey(name: 'data')
-  TipsData? get data => throw _privateConstructorUsedError;
+  TipsData? get data;
   @override
   @JsonKey(ignore: true)
   _$TipsCopyWith<_Tips> get copyWith => throw _privateConstructorUsedError;

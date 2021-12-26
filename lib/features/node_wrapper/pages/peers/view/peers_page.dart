@@ -8,6 +8,7 @@ import 'package:hornet_node/app/router/app_router.gr.dart';
 import 'package:hornet_node/app/themes/custom_themes.dart';
 import 'package:hornet_node/features/node_wrapper/cubits/peers_cubit/peers_cubit.dart';
 import 'package:hornet_node/features/node_wrapper/widgets/circle_indicator.dart';
+import 'package:hornet_node/repository/moor/constants/node_types.dart';
 import 'package:hornet_node/utils/widgets/error_card_widget.dart';
 import 'package:hornet_node/utils/widgets/hornet_card.dart';
 
@@ -15,10 +16,10 @@ class PeersPage extends StatefulWidget {
   const PeersPage({Key? key}) : super(key: key);
 
   @override
-  _PeersPageState createState() => _PeersPageState();
+  PeersPageState createState() => PeersPageState();
 }
 
-class _PeersPageState extends State<PeersPage> {
+class PeersPageState extends State<PeersPage> {
   late Completer<void> _refreshCompleter;
 
   @override
@@ -29,8 +30,6 @@ class _PeersPageState extends State<PeersPage> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO Clean up build method
-
     return BlocConsumer<NodeCubit, NodeState>(
       listenWhen: (previous, current) =>
           previous.selectedNode != current.selectedNode,
@@ -38,6 +37,14 @@ class _PeersPageState extends State<PeersPage> {
         context.read<PeersCubit>().peers();
       },
       builder: (context, state) {
+        if (state.selectedNode!.type == NodeTypes.bee.index) {
+          return const Padding(
+            padding: EdgeInsets.all(20),
+            child: Text(
+              'Bee does not support loading Peers yet. It will be implemented when JWT Tokens are possible.',
+            ),
+          );
+        }
         return BlocBuilder<PeersCubit, PeersState>(
           builder: (context, state) {
             return AnimatedSwitcher(
@@ -47,7 +54,7 @@ class _PeersPageState extends State<PeersPage> {
                   return const Text('JWT is missing!');
                 },
                 loadSuccess: (value) {
-                  var peers = value.peers;
+                  final peers = value.peers;
                   peers.data.sort((a, b) {
                     if (b.relation == 'unknown') {
                       return -1;
@@ -69,8 +76,8 @@ class _PeersPageState extends State<PeersPage> {
                           child: ListView.builder(
                             itemCount: peers.data.length,
                             itemBuilder: (context, index) {
-                              var peer = peers.data[index];
-                              var known = peer.relation == 'known';
+                              final peer = peers.data[index];
+                              final known = peer.relation == 'known';
                               return HornetCard(
                                   child: Row(
                                 children: [
@@ -241,7 +248,8 @@ class _PeersPageState extends State<PeersPage> {
                           child: Text(
                             'Reload',
                             style: TextStyle(
-                                color: ThemeHelper.of(context).blackOrWhite),
+                              color: ThemeHelper.of(context).blackOrWhite,
+                            ),
                           ),
                         ),
                       ),

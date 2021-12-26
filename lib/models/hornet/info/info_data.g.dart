@@ -6,29 +6,27 @@ part of 'info_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_InfoData _$_$_InfoDataFromJson(Map<String, dynamic> json) {
-  return _$_InfoData(
-    name: json['name'] as String,
-    version: json['version'] as String,
-    isHealthy: json['isHealthy'] as bool,
-    networkId: json['networkId'] as String,
-    bech32Hrp: json['bech32HRP'] as String,
-    minPoWScore: json['minPoWScore'] as int,
-    messagesPerSecond: (json['messagesPerSecond'] as num).toDouble(),
-    referencedMessagesPerSecond:
-        (json['referencedMessagesPerSecond'] as num).toDouble(),
-    referencedRate: (json['referencedRate'] as num).toDouble(),
-    latestMilestoneTimestamp: const SecondsSinceEpochDateTimeConverter()
-        .fromJson(json['latestMilestoneTimestamp'] as int?),
-    latestMilestoneIndex: json['latestMilestoneIndex'] as int,
-    confirmedMilestoneIndex: json['confirmedMilestoneIndex'] as int,
-    pruningIndex: json['pruningIndex'] as int,
-    features:
-        (json['features'] as List<dynamic>).map((e) => e as String).toList(),
-  );
-}
+_$_InfoData _$$_InfoDataFromJson(Map<String, dynamic> json) => _$_InfoData(
+      name: json['name'] as String,
+      version: json['version'] as String,
+      isHealthy: json['isHealthy'] as bool,
+      networkId: json['networkId'] as String,
+      bech32Hrp: json['bech32HRP'] as String,
+      minPoWScore: (json['minPoWScore'] as num).toDouble(),
+      messagesPerSecond: (json['messagesPerSecond'] as num).toDouble(),
+      referencedMessagesPerSecond:
+          (json['referencedMessagesPerSecond'] as num).toDouble(),
+      referencedRate: (json['referencedRate'] as num).toDouble(),
+      latestMilestoneTimestamp: const SecondsSinceEpochDateTimeConverter()
+          .fromJson(json['latestMilestoneTimestamp'] as int?),
+      latestMilestoneIndex: json['latestMilestoneIndex'] as int,
+      confirmedMilestoneIndex: json['confirmedMilestoneIndex'] as int,
+      pruningIndex: json['pruningIndex'] as int,
+      features:
+          (json['features'] as List<dynamic>).map((e) => e as String).toList(),
+    );
 
-Map<String, dynamic> _$_$_InfoDataToJson(_$_InfoData instance) =>
+Map<String, dynamic> _$$_InfoDataToJson(_$_InfoData instance) =>
     <String, dynamic>{
       'name': instance.name,
       'version': instance.version,

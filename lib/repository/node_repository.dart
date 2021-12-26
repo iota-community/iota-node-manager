@@ -4,17 +4,30 @@ import 'package:moor/moor.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 abstract class NodeRepository {
-  Future<Node> addNode(String name, String url, String jwt,
-      {bool selected = false});
+  Future<Node> addNode(
+    String name,
+    String url,
+    String jwt,
+    int type, {
+    bool selected = false,
+  });
+
   Future<void> updateNode(Node node);
+
   Future<void> removeNode(int id);
+
   Future<void> setSelectedNode(int? id);
 
   Future<List<Node>> getNodes();
+
   Stream<List<Node>> getNodesStream();
+
   Future<Node?> getNode(int id);
+
   Stream<Node?> getNodeStream(int id);
+
   Future<Node?> getSelectedNode();
+
   Stream<Node?> getSelectedNodeStream();
   Future<bool> areNodesAvailable();
   Future<bool> isANodeSelected();
@@ -29,10 +42,16 @@ class NodeRepositoryMoorImpl extends NodeRepository {
   final RxSharedPreferences _prefs;
 
   @override
-  Future<Node> addNode(String name, String url, String jwt,
+  Future<Node> addNode(String name, String url, String jwt, int type,
       {bool selected = false}) async {
-    var node = await _database.addNode(
-        NodesCompanion.insert(name: name, url: url, jwtToken: Value(jwt)));
+    final node = await _database.addNode(
+      NodesCompanion.insert(
+        name: name,
+        url: url,
+        jwtToken: Value(jwt),
+        type: Value(type),
+      ),
+    );
     if (selected) {
       await _prefs.setInt(selectedNodeKey, node.id);
     }
@@ -46,17 +65,17 @@ class NodeRepositoryMoorImpl extends NodeRepository {
 
   @override
   Future<Node?> getNode(int id) async {
-    return await _database.findNode(id);
+    return _database.findNode(id);
   }
 
   @override
   Future<List<Node>> getNodes() async {
-    return await _database.findAll;
+    return _database.findAll;
   }
 
   @override
   Future<Node?> getSelectedNode() async {
-    var id = await _prefs.getInt(selectedNodeKey);
+    final id = await _prefs.getInt(selectedNodeKey);
     if (id != null) {
       return _database.findNode(id);
     } else {

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="800" height="500" viewBox="0 0 800 500" version="1.1" xmlns="http://www.w3.org/2000/svg"
+     xml:space="preserve"
+     style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g opacity="0.8">
+        <g transform="matrix(3.14666,0,0,3.14666,-224.372,46.7973)">
+            <text x="175px" y="82px"
+                  style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:6.98px;fill:rgb(132,147,173);">COMMUNITY<tspan
+                    x="217.914px 219.853px " y="82px 82px "> D</tspan>RIVEN NODE MANAGER</text>
+        </g>
+    </g>
+    <g transform="matrix(1,0,0,1,-13,13)">
+        <text x="329px" y="257px"
+              style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:83.763px;fill:rgb(72,87,118);">MANAGER</text>
+    </g>
+
+</svg>

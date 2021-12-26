@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'heartbeat.dart';
 
@@ -35,7 +36,7 @@ class _$HeartbeatTearOff {
     );
   }
 
-  Heartbeat fromJson(Map<String, Object> json) {
+  Heartbeat fromJson(Map<String, Object?> json) {
     return Heartbeat.fromJson(json);
   }
 }
@@ -182,7 +183,7 @@ class _$_Heartbeat implements _Heartbeat {
       @JsonKey(name: 'syncedNeighbors') required this.syncedNeighbors});
 
   factory _$_Heartbeat.fromJson(Map<String, dynamic> json) =>
-      _$_$_HeartbeatFromJson(json);
+      _$$_HeartbeatFromJson(json);
 
   @override
   @JsonKey(name: 'solidMilestoneIndex')
@@ -208,32 +209,28 @@ class _$_Heartbeat implements _Heartbeat {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Heartbeat &&
-            (identical(other.solidMilestoneIndex, solidMilestoneIndex) ||
-                const DeepCollectionEquality()
-                    .equals(other.solidMilestoneIndex, solidMilestoneIndex)) &&
-            (identical(other.prunedMilestoneIndex, prunedMilestoneIndex) ||
-                const DeepCollectionEquality().equals(
-                    other.prunedMilestoneIndex, prunedMilestoneIndex)) &&
-            (identical(other.latestMilestoneIndex, latestMilestoneIndex) ||
-                const DeepCollectionEquality().equals(
-                    other.latestMilestoneIndex, latestMilestoneIndex)) &&
-            (identical(other.connectedNeighbors, connectedNeighbors) ||
-                const DeepCollectionEquality()
-                    .equals(other.connectedNeighbors, connectedNeighbors)) &&
-            (identical(other.syncedNeighbors, syncedNeighbors) ||
-                const DeepCollectionEquality()
-                    .equals(other.syncedNeighbors, syncedNeighbors)));
+        (other.runtimeType == runtimeType &&
+            other is _Heartbeat &&
+            const DeepCollectionEquality()
+                .equals(other.solidMilestoneIndex, solidMilestoneIndex) &&
+            const DeepCollectionEquality()
+                .equals(other.prunedMilestoneIndex, prunedMilestoneIndex) &&
+            const DeepCollectionEquality()
+                .equals(other.latestMilestoneIndex, latestMilestoneIndex) &&
+            const DeepCollectionEquality()
+                .equals(other.connectedNeighbors, connectedNeighbors) &&
+            const DeepCollectionEquality()
+                .equals(other.syncedNeighbors, syncedNeighbors));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(solidMilestoneIndex) ^
-      const DeepCollectionEquality().hash(prunedMilestoneIndex) ^
-      const DeepCollectionEquality().hash(latestMilestoneIndex) ^
-      const DeepCollectionEquality().hash(connectedNeighbors) ^
-      const DeepCollectionEquality().hash(syncedNeighbors);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(solidMilestoneIndex),
+      const DeepCollectionEquality().hash(prunedMilestoneIndex),
+      const DeepCollectionEquality().hash(latestMilestoneIndex),
+      const DeepCollectionEquality().hash(connectedNeighbors),
+      const DeepCollectionEquality().hash(syncedNeighbors));
 
   @JsonKey(ignore: true)
   @override
@@ -242,7 +239,7 @@ class _$_Heartbeat implements _Heartbeat {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_HeartbeatToJson(this);
+    return _$$_HeartbeatToJson(this);
   }
 }
 
@@ -264,19 +261,19 @@ abstract class _Heartbeat implements Heartbeat {
 
   @override
   @JsonKey(name: 'solidMilestoneIndex')
-  int get solidMilestoneIndex => throw _privateConstructorUsedError;
+  int get solidMilestoneIndex;
   @override
   @JsonKey(name: 'prunedMilestoneIndex')
-  int get prunedMilestoneIndex => throw _privateConstructorUsedError;
+  int get prunedMilestoneIndex;
   @override
   @JsonKey(name: 'latestMilestoneIndex')
-  int get latestMilestoneIndex => throw _privateConstructorUsedError;
+  int get latestMilestoneIndex;
   @override
   @JsonKey(name: 'connectedNeighbors')
-  int get connectedNeighbors => throw _privateConstructorUsedError;
+  int get connectedNeighbors;
   @override
   @JsonKey(name: 'syncedNeighbors')
-  int get syncedNeighbors => throw _privateConstructorUsedError;
+  int get syncedNeighbors;
   @override
   @JsonKey(ignore: true)
   _$HeartbeatCopyWith<_Heartbeat> get copyWith =>

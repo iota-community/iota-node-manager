@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'milestone.dart';
 
@@ -26,7 +27,7 @@ class _$MilestoneTearOff {
     );
   }
 
-  Milestone fromJson(Map<String, Object> json) {
+  Milestone fromJson(Map<String, Object?> json) {
     return Milestone.fromJson(json);
   }
 }
@@ -122,7 +123,7 @@ class _$_Milestone implements _Milestone {
   _$_Milestone({@JsonKey(name: 'data') required this.data});
 
   factory _$_Milestone.fromJson(Map<String, dynamic> json) =>
-      _$_$_MilestoneFromJson(json);
+      _$$_MilestoneFromJson(json);
 
   @override
   @JsonKey(name: 'data')
@@ -136,14 +137,14 @@ class _$_Milestone implements _Milestone {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Milestone &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
+        (other.runtimeType == runtimeType &&
+            other is _Milestone &&
+            const DeepCollectionEquality().equals(other.data, data));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
@@ -152,7 +153,7 @@ class _$_Milestone implements _Milestone {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_MilestoneToJson(this);
+    return _$$_MilestoneToJson(this);
   }
 }
 
@@ -165,7 +166,7 @@ abstract class _Milestone implements Milestone {
 
   @override
   @JsonKey(name: 'data')
-  MilestoneData get data => throw _privateConstructorUsedError;
+  MilestoneData get data;
   @override
   @JsonKey(ignore: true)
   _$MilestoneCopyWith<_Milestone> get copyWith =>

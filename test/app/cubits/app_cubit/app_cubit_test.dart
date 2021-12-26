@@ -12,14 +12,20 @@ void main() {
   late Box _appBox;
 
   void mockAppBox() {
-    when(() => _appBox.put(HiveBoxConstants.darkModeKey, any()))
-        .thenAnswer((_) async => {});
-    when(() => _appBox.get(HiveBoxConstants.darkModeKey, defaultValue: false))
-        .thenReturn(false);
-    when(() => _appBox.get(HiveBoxConstants.languageKey, defaultValue: 0))
+    when(() => _appBox.put(HiveBoxConstants.darkModeKey, any<bool>()))
+        .thenAnswer((_) async => <void>{});
+    when<bool>(
+      () => _appBox.get(
+        HiveBoxConstants.darkModeKey,
+        defaultValue: false,
+      ),
+    ).thenReturn(false);
+    when<int>(() => _appBox.get(HiveBoxConstants.languageKey, defaultValue: 0))
         .thenReturn(0);
-    getIt.registerSingleton<Box<dynamic>>(_appBox,
-        instanceName: HiveBoxConstants.appBox);
+    getIt.registerSingleton<Box<dynamic>>(
+      _appBox,
+      instanceName: HiveBoxConstants.appBox,
+    );
   }
 
   setUpAll(() {

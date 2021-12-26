@@ -10,6 +10,7 @@ import 'package:hornet_node/endpoints/hornet/hornet_node_rest_client.dart';
 import 'package:hornet_node/repository/moor/database.dart';
 import 'package:hornet_node/repository/node_repository.dart';
 import 'package:hornet_node/utils/constants/hive_box_constants.dart';
+import 'package:safe_device/safe_device.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:uuid/uuid.dart';
 
@@ -22,8 +23,10 @@ Future<void> mainCommon() async {
   await Hive.initFlutter();
 
   await Hive.openBox(HiveBoxConstants.appBox);
-  await configureScheduledTasks();
 
+  if (await SafeDevice.isRealDevice) {
+    await configureScheduledTasks();
+  }
   await initNotification();
   await initPlatformState();
 
@@ -31,8 +34,7 @@ Future<void> mainCommon() async {
 }
 
 SentryEvent beforeSend(SentryEvent event, {dynamic hint}) {
-  event = event.copyWith(serverName: null);
-  return event;
+  return event.copyWith(serverName: '');
 }
 
 Future<void> configureScheduledTasks() async {
@@ -59,9 +61,9 @@ Future<void> configureScheduledTasks() async {
   );
 }
 
-void backgroundFetchHeadlessTask(HeadlessTask task) async {
-  var taskId = task.taskId;
-  var timeout = task.timeout;
+Future<void> backgroundFetchHeadlessTask(HeadlessTask task) async {
+  final taskId = task.taskId;
+  final timeout = task.timeout;
   if (timeout) {
     await Sentry.captureMessage(
         '[BackgroundFetch] Headless task timed-out: $taskId');
@@ -73,7 +75,7 @@ void backgroundFetchHeadlessTask(HeadlessTask task) async {
 }
 
 Future<void> initNotification() async {
-  var flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   const initializationSettingsAndroid =
       AndroidInitializationSettings('app_icon');
   const initializationSettingsIOS = IOSInitializationSettings();
@@ -118,32 +120,32 @@ Future<void> initPlatformState() async {
   }
 }
 
-void _onBackgroundFetch(String taskId) async {
+Future<void> _onBackgroundFetch(String taskId) async {
   await nodeHealthCheck();
   BackgroundFetch.finish(taskId);
 }
 
-void _onBackgroundFetchTimeout(String taskId) async {
+Future<void> _onBackgroundFetchTimeout(String taskId) async {
   await Sentry.captureMessage('[BackgroundFetch] TIMEOUT: $taskId');
   BackgroundFetch.finish(taskId);
 }
 
 Future<void> showNotification(String text) async {
-  var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-      const Uuid().v4(),
-      'node_notifier',
-      'Notifies the user if something is wrong with his nodes',
+  final androidPlatformChannelSpecifics = AndroidNotificationDetails(
+      const Uuid().v4(), 'node_notifier',
+      channelDescription:
+          'Notifies the user if something is wrong with his nodes',
       importance: Importance.max,
       priority: Priority.high);
-  var platformChannelSpecifics =
+  final platformChannelSpecifics =
       NotificationDetails(android: androidPlatformChannelSpecifics);
   await flutterLocalNotificationsPlugin.show(
       0, 'Your node seems to be unhealthy...', text, platformChannelSpecifics);
 }
 
 Future<void> nodeHealthCheck() async {
-  var nodeRepository = getIt<NodeRepository>();
-  var nodes = await nodeRepository.getNodes();
+  final nodeRepository = getIt<NodeRepository>();
+  final nodes = await nodeRepository.getNodes();
   for (var node in nodes) {
     if (!await isNodeHealthy(node)) {
       await notifyUserIfNodeIsUnhealthy(node);
@@ -153,7 +155,7 @@ Future<void> nodeHealthCheck() async {
 
 Future<bool> isNodeHealthy(Node node) async {
   try {
-    var response = await getIt<HornetNodeRestClient>()
+    final response = await getIt<HornetNodeRestClient>()
         .health(node.url, 'Bearer ${node.jwtToken ?? ''}');
     if (response.response.statusCode != 200) {
       return false;

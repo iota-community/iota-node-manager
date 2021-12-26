@@ -6,8 +6,8 @@ import 'package:hornet_node/repository/moor/database.dart';
 import 'package:hornet_node/repository/node_repository.dart';
 import 'package:injectable/injectable.dart';
 
-part 'node_state.dart';
 part 'node_cubit.freezed.dart';
+part 'node_state.dart';
 
 @injectable
 class NodeCubit extends Cubit<NodeState> {
@@ -18,8 +18,8 @@ class NodeCubit extends Cubit<NodeState> {
   late StreamSubscription<Node?> _selectedNodeStream;
 
   Future<void> initState() async {
-    var selectedNode = await _nodeRepository.getSelectedNode();
-    var nodes = await _nodeRepository.getNodes();
+    final selectedNode = await _nodeRepository.getSelectedNode();
+    final nodes = await _nodeRepository.getNodes();
     NodeStatusEnum status;
     if (nodes.isEmpty) {
       status = NodeStatusEnum.noNodeAdded;
@@ -62,8 +62,12 @@ class NodeCubit extends Cubit<NodeState> {
   }
 
   Future<void> nodeAdded(Node node) async {
-    var result =
-        await _nodeRepository.addNode(node.name, node.url, node.jwtToken!);
+    final result = await _nodeRepository.addNode(
+      node.name,
+      node.url,
+      node.jwtToken!,
+      node.type,
+    );
     await _nodeRepository.setSelectedNode(result.id);
     emit(
       state.copyWith(
@@ -74,7 +78,7 @@ class NodeCubit extends Cubit<NodeState> {
 
   Future<void> nodeRemoved(int id) async {
     var selectedNode = await _nodeRepository.getSelectedNode();
-    var nodes = await _nodeRepository.getNodes();
+    final nodes = await _nodeRepository.getNodes();
 
     if (selectedNode?.id == id) {
       selectedNode = nodes.firstWhereOrNull((element) => element.id != id);

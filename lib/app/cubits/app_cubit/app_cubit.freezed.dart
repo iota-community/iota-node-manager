@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'app_cubit.dart';
 
@@ -124,20 +125,18 @@ class _$_AppState implements _AppState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AppState &&
-            (identical(other.selectedLanguage, selectedLanguage) ||
-                const DeepCollectionEquality()
-                    .equals(other.selectedLanguage, selectedLanguage)) &&
-            (identical(other.darkTheme, darkTheme) ||
-                const DeepCollectionEquality()
-                    .equals(other.darkTheme, darkTheme)));
+        (other.runtimeType == runtimeType &&
+            other is _AppState &&
+            const DeepCollectionEquality()
+                .equals(other.selectedLanguage, selectedLanguage) &&
+            const DeepCollectionEquality().equals(other.darkTheme, darkTheme));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(selectedLanguage) ^
-      const DeepCollectionEquality().hash(darkTheme);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(selectedLanguage),
+      const DeepCollectionEquality().hash(darkTheme));
 
   @JsonKey(ignore: true)
   @override
@@ -151,9 +150,9 @@ abstract class _AppState implements AppState {
       required bool darkTheme}) = _$_AppState;
 
   @override
-  LanguageEntity get selectedLanguage => throw _privateConstructorUsedError;
+  LanguageEntity get selectedLanguage;
   @override
-  bool get darkTheme => throw _privateConstructorUsedError;
+  bool get darkTheme;
   @override
   @JsonKey(ignore: true)
   _$AppStateCopyWith<_AppState> get copyWith =>

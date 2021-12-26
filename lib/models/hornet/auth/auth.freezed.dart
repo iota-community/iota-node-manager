@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'auth.dart';
 
@@ -29,7 +30,7 @@ class _$AuthTearOff {
     );
   }
 
-  Auth fromJson(Map<String, Object> json) {
+  Auth fromJson(Map<String, Object?> json) {
     return Auth.fromJson(json);
   }
 }
@@ -128,8 +129,7 @@ class _$_Auth implements _Auth {
       {@JsonKey(name: 'user') this.user,
       @JsonKey(name: 'password') this.password});
 
-  factory _$_Auth.fromJson(Map<String, dynamic> json) =>
-      _$_$_AuthFromJson(json);
+  factory _$_Auth.fromJson(Map<String, dynamic> json) => _$$_AuthFromJson(json);
 
   @override
   @JsonKey(name: 'user')
@@ -146,19 +146,17 @@ class _$_Auth implements _Auth {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Auth &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)) &&
-            (identical(other.password, password) ||
-                const DeepCollectionEquality()
-                    .equals(other.password, password)));
+        (other.runtimeType == runtimeType &&
+            other is _Auth &&
+            const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality().equals(other.password, password));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(password);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(password));
 
   @JsonKey(ignore: true)
   @override
@@ -167,7 +165,7 @@ class _$_Auth implements _Auth {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_AuthToJson(this);
+    return _$$_AuthToJson(this);
   }
 }
 
@@ -180,10 +178,10 @@ abstract class _Auth implements Auth {
 
   @override
   @JsonKey(name: 'user')
-  String? get user => throw _privateConstructorUsedError;
+  String? get user;
   @override
   @JsonKey(name: 'password')
-  String? get password => throw _privateConstructorUsedError;
+  String? get password;
   @override
   @JsonKey(ignore: true)
   _$AuthCopyWith<_Auth> get copyWith => throw _privateConstructorUsedError;

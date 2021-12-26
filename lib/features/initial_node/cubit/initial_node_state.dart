@@ -7,6 +7,7 @@ class InitialNodeState with _$InitialNodeState {
     required Url url,
     required Jwt jwt,
     required FormzStatus status,
+    required Type type,
   }) = _InitialNodeState;
 
   factory InitialNodeState.initial() => const InitialNodeState(
@@ -14,5 +15,6 @@ class InitialNodeState with _$InitialNodeState {
         url: Url.pure(),
         jwt: Jwt.pure(),
         status: FormzStatus.pure,
+        type: Type.pure(),
       );
 }

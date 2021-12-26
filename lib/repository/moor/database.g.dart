@@ -12,8 +12,13 @@ class Node extends DataClass implements Insertable<Node> {
   final String name;
   final String url;
   final String? jwtToken;
+  final int type;
   Node(
-      {required this.id, required this.name, required this.url, this.jwtToken});
+      {required this.id,
+      required this.name,
+      required this.url,
+      this.jwtToken,
+      required this.type});
   factory Node.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String? prefix}) {
     final effectivePrefix = prefix ?? '';
@@ -26,6 +31,8 @@ class Node extends DataClass implements Insertable<Node> {
           .mapFromDatabaseResponse(data['${effectivePrefix}url'])!,
       jwtToken: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}jwt_token']),
+      type: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}type'])!,
     );
   }
   @override
@@ -37,6 +44,7 @@ class Node extends DataClass implements Insertable<Node> {
     if (!nullToAbsent || jwtToken != null) {
       map['jwt_token'] = Variable<String?>(jwtToken);
     }
+    map['type'] = Variable<int>(type);
     return map;
   }
 
@@ -48,6 +56,7 @@ class Node extends DataClass implements Insertable<Node> {
       jwtToken: jwtToken == null && nullToAbsent
           ? const Value.absent()
           : Value(jwtToken),
+      type: Value(type),
     );
   }
 
@@ -59,6 +68,7 @@ class Node extends DataClass implements Insertable<Node> {
       name: serializer.fromJson<String>(json['name']),
       url: serializer.fromJson<String>(json['url']),
       jwtToken: serializer.fromJson<String?>(json['jwtToken']),
+      type: serializer.fromJson<int>(json['type']),
     );
   }
   @override
@@ -69,14 +79,18 @@ class Node extends DataClass implements Insertable<Node> {
       'name': serializer.toJson<String>(name),
       'url': serializer.toJson<String>(url),
       'jwtToken': serializer.toJson<String?>(jwtToken),
+      'type': serializer.toJson<int>(type),
     };
   }
 
-  Node copyWith({int? id, String? name, String? url, String? jwtToken}) => Node(
+  Node copyWith(
+          {int? id, String? name, String? url, String? jwtToken, int? type}) =>
+      Node(
         id: id ?? this.id,
         name: name ?? this.name,
         url: url ?? this.url,
         jwtToken: jwtToken ?? this.jwtToken,
+        type: type ?? this.type,
       );
   @override
   String toString() {
@@ -84,14 +98,14 @@ class Node extends DataClass implements Insertable<Node> {
           ..write('id: $id, ')
           ..write('name: $name, ')
           ..write('url: $url, ')
-          ..write('jwtToken: $jwtToken')
+          ..write('jwtToken: $jwtToken, ')
+          ..write('type: $type')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => $mrjf($mrjc(id.hashCode,
-      $mrjc(name.hashCode, $mrjc(url.hashCode, jwtToken.hashCode))));
+  int get hashCode => Object.hash(id, name, url, jwtToken, type);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -99,7 +113,8 @@ class Node extends DataClass implements Insertable<Node> {
           other.id == this.id &&
           other.name == this.name &&
           other.url == this.url &&
-          other.jwtToken == this.jwtToken);
+          other.jwtToken == this.jwtToken &&
+          other.type == this.type);
 }
 
 class NodesCompanion extends UpdateCompanion<Node> {
@@ -107,17 +122,20 @@ class NodesCompanion extends UpdateCompanion<Node> {
   final Value<String> name;
   final Value<String> url;
   final Value<String?> jwtToken;
+  final Value<int> type;
   const NodesCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
     this.url = const Value.absent(),
     this.jwtToken = const Value.absent(),
+    this.type = const Value.absent(),
   });
   NodesCompanion.insert({
     this.id = const Value.absent(),
     required String name,
     required String url,
     this.jwtToken = const Value.absent(),
+    this.type = const Value.absent(),
   })  : name = Value(name),
         url = Value(url);
   static Insertable<Node> custom({
@@ -125,12 +143,14 @@ class NodesCompanion extends UpdateCompanion<Node> {
     Expression<String>? name,
     Expression<String>? url,
     Expression<String?>? jwtToken,
+    Expression<int>? type,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (name != null) 'name': name,
       if (url != null) 'url': url,
       if (jwtToken != null) 'jwt_token': jwtToken,
+      if (type != null) 'type': type,
     });
   }
 
@@ -138,12 +158,14 @@ class NodesCompanion extends UpdateCompanion<Node> {
       {Value<int>? id,
       Value<String>? name,
       Value<String>? url,
-      Value<String?>? jwtToken}) {
+      Value<String?>? jwtToken,
+      Value<int>? type}) {
     return NodesCompanion(
       id: id ?? this.id,
       name: name ?? this.name,
       url: url ?? this.url,
       jwtToken: jwtToken ?? this.jwtToken,
+      type: type ?? this.type,
     );
   }
 
@@ -162,6 +184,9 @@ class NodesCompanion extends UpdateCompanion<Node> {
     if (jwtToken.present) {
       map['jwt_token'] = Variable<String?>(jwtToken.value);
     }
+    if (type.present) {
+      map['type'] = Variable<int>(type.value);
+    }
     return map;
   }
 
@@ -171,7 +196,8 @@ class NodesCompanion extends UpdateCompanion<Node> {
           ..write('id: $id, ')
           ..write('name: $name, ')
           ..write('url: $url, ')
-          ..write('jwtToken: $jwtToken')
+          ..write('jwtToken: $jwtToken, ')
+          ..write('type: $type')
           ..write(')'))
         .toString();
   }
@@ -202,8 +228,14 @@ class $NodesTable extends Nodes with TableInfo<$NodesTable, Node> {
   late final GeneratedColumn<String?> jwtToken = GeneratedColumn<String?>(
       'jwt_token', aliasedName, true,
       typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _typeMeta = const VerificationMeta('type');
+  late final GeneratedColumn<int?> type = GeneratedColumn<int?>(
+      'type', aliasedName, false,
+      typeName: 'INTEGER',
+      requiredDuringInsert: false,
+      defaultValue: const Constant(0));
   @override
-  List<GeneratedColumn> get $columns => [id, name, url, jwtToken];
+  List<GeneratedColumn> get $columns => [id, name, url, jwtToken, type];
   @override
   String get aliasedName => _alias ?? 'nodes';
   @override
@@ -231,6 +263,10 @@ class $NodesTable extends Nodes with TableInfo<$NodesTable, Node> {
     if (data.containsKey('jwt_token')) {
       context.handle(_jwtTokenMeta,
           jwtToken.isAcceptableOrUnknown(data['jwt_token']!, _jwtTokenMeta));
+    }
+    if (data.containsKey('type')) {
+      context.handle(
+          _typeMeta, type.isAcceptableOrUnknown(data['type']!, _typeMeta));
     }
     return context;
   }

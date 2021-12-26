@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hornet_node/app/themes/custom_themes.dart';
 import 'package:hornet_node/features/node_wrapper/cubits/peers_cubit/peers_cubit.dart';
-import 'package:hornet_node/main_common.dart';
 
 class ErrorCardWidget extends StatelessWidget {
   const ErrorCardWidget({Key? key, this.child, required this.errorCode})
@@ -30,30 +28,16 @@ class ErrorCardWidget extends StatelessWidget {
                     style: Theme.of(context).textTheme.headline5,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 6.0, horizontal: 15.0),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 6, horizontal: 15),
                     child: DioErrorWidget(errorCode: errorCode),
                   )
                 ],
               ),
             ),
             Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 50.0, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
               child: child ?? const SizedBox(),
-            ),
-            ElevatedButton(
-              onPressed: nodeHealthCheck,
-              child: SizedBox(
-                width: double.infinity,
-                child: Center(
-                  child: Text(
-                    'Fetch test and notify',
-                    style:
-                        TextStyle(color: ThemeHelper.of(context).blackOrWhite),
-                  ),
-                ),
-              ),
             ),
           ],
         ),

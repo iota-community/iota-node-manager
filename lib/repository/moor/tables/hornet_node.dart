@@ -5,4 +5,6 @@ class Nodes extends Table {
   TextColumn get name => text().withLength(min: 1, max: 64)();
   TextColumn get url => text()();
   TextColumn get jwtToken => text().nullable()();
+
+  IntColumn get type => integer().withDefault(const Constant(0))();
 }

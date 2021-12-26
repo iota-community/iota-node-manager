@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'peer_detail.dart';
 
@@ -26,7 +27,7 @@ class _$PeerDetailTearOff {
     );
   }
 
-  PeerDetail fromJson(Map<String, Object> json) {
+  PeerDetail fromJson(Map<String, Object?> json) {
     return PeerDetail.fromJson(json);
   }
 }
@@ -124,7 +125,7 @@ class _$_PeerDetail implements _PeerDetail {
   _$_PeerDetail({@JsonKey(name: 'data') required this.data});
 
   factory _$_PeerDetail.fromJson(Map<String, dynamic> json) =>
-      _$_$_PeerDetailFromJson(json);
+      _$$_PeerDetailFromJson(json);
 
   @override
   @JsonKey(name: 'data')
@@ -138,14 +139,14 @@ class _$_PeerDetail implements _PeerDetail {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PeerDetail &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
+        (other.runtimeType == runtimeType &&
+            other is _PeerDetail &&
+            const DeepCollectionEquality().equals(other.data, data));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
@@ -154,7 +155,7 @@ class _$_PeerDetail implements _PeerDetail {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_PeerDetailToJson(this);
+    return _$$_PeerDetailToJson(this);
   }
 }
 
@@ -167,7 +168,7 @@ abstract class _PeerDetail implements PeerDetail {
 
   @override
   @JsonKey(name: 'data')
-  Peer get data => throw _privateConstructorUsedError;
+  Peer get data;
   @override
   @JsonKey(ignore: true)
   _$PeerDetailCopyWith<_PeerDetail> get copyWith =>

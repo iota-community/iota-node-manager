@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'message_children_data.dart';
 
@@ -37,7 +38,7 @@ class _$MessageChildrenDataTearOff {
     );
   }
 
-  MessageChildrenData fromJson(Map<String, Object> json) {
+  MessageChildrenData fromJson(Map<String, Object?> json) {
     return MessageChildrenData.fromJson(json);
   }
 }
@@ -174,7 +175,7 @@ class _$_MessageChildrenData implements _MessageChildrenData {
       @JsonKey(name: 'childrenMessageIds') required this.childrenMessageIds});
 
   factory _$_MessageChildrenData.fromJson(Map<String, dynamic> json) =>
-      _$_$_MessageChildrenDataFromJson(json);
+      _$$_MessageChildrenDataFromJson(json);
 
   @override
   @JsonKey(name: 'messageId')
@@ -197,27 +198,23 @@ class _$_MessageChildrenData implements _MessageChildrenData {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _MessageChildrenData &&
-            (identical(other.messageId, messageId) ||
-                const DeepCollectionEquality()
-                    .equals(other.messageId, messageId)) &&
-            (identical(other.maxResults, maxResults) ||
-                const DeepCollectionEquality()
-                    .equals(other.maxResults, maxResults)) &&
-            (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)) &&
-            (identical(other.childrenMessageIds, childrenMessageIds) ||
-                const DeepCollectionEquality()
-                    .equals(other.childrenMessageIds, childrenMessageIds)));
+        (other.runtimeType == runtimeType &&
+            other is _MessageChildrenData &&
+            const DeepCollectionEquality().equals(other.messageId, messageId) &&
+            const DeepCollectionEquality()
+                .equals(other.maxResults, maxResults) &&
+            const DeepCollectionEquality().equals(other.count, count) &&
+            const DeepCollectionEquality()
+                .equals(other.childrenMessageIds, childrenMessageIds));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(messageId) ^
-      const DeepCollectionEquality().hash(maxResults) ^
-      const DeepCollectionEquality().hash(count) ^
-      const DeepCollectionEquality().hash(childrenMessageIds);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(messageId),
+      const DeepCollectionEquality().hash(maxResults),
+      const DeepCollectionEquality().hash(count),
+      const DeepCollectionEquality().hash(childrenMessageIds));
 
   @JsonKey(ignore: true)
   @override
@@ -227,7 +224,7 @@ class _$_MessageChildrenData implements _MessageChildrenData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_MessageChildrenDataToJson(this);
+    return _$$_MessageChildrenDataToJson(this);
   }
 }
 
@@ -247,16 +244,16 @@ abstract class _MessageChildrenData implements MessageChildrenData {
 
   @override
   @JsonKey(name: 'messageId')
-  String get messageId => throw _privateConstructorUsedError;
+  String get messageId;
   @override
   @JsonKey(name: 'maxResults')
-  int get maxResults => throw _privateConstructorUsedError;
+  int get maxResults;
   @override
   @JsonKey(name: 'count')
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
   @JsonKey(name: 'childrenMessageIds')
-  List<String> get childrenMessageIds => throw _privateConstructorUsedError;
+  List<String> get childrenMessageIds;
   @override
   @JsonKey(ignore: true)
   _$MessageChildrenDataCopyWith<_MessageChildrenData> get copyWith =>

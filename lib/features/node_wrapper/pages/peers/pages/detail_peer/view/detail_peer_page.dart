@@ -55,7 +55,7 @@ class _PeerDetailPageState extends State<PeerDetailPage> {
                   _refreshCompleter.complete();
                   _refreshCompleter = Completer();
                 },
-                orElse: () => {},
+                orElse: () => <void>{},
               );
             },
             builder: (context, state) {

@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'initial_node_cubit.dart';
 
@@ -20,12 +21,14 @@ class _$InitialNodeStateTearOff {
       {required Name name,
       required Url url,
       required Jwt jwt,
-      required FormzStatus status}) {
+      required FormzStatus status,
+      required Type type}) {
     return _InitialNodeState(
       name: name,
       url: url,
       jwt: jwt,
       status: status,
+      type: type,
     );
   }
 }
@@ -39,6 +42,7 @@ mixin _$InitialNodeState {
   Url get url => throw _privateConstructorUsedError;
   Jwt get jwt => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
+  Type get type => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $InitialNodeStateCopyWith<InitialNodeState> get copyWith =>
@@ -50,7 +54,7 @@ abstract class $InitialNodeStateCopyWith<$Res> {
   factory $InitialNodeStateCopyWith(
           InitialNodeState value, $Res Function(InitialNodeState) then) =
       _$InitialNodeStateCopyWithImpl<$Res>;
-  $Res call({Name name, Url url, Jwt jwt, FormzStatus status});
+  $Res call({Name name, Url url, Jwt jwt, FormzStatus status, Type type});
 }
 
 /// @nodoc
@@ -68,6 +72,7 @@ class _$InitialNodeStateCopyWithImpl<$Res>
     Object? url = freezed,
     Object? jwt = freezed,
     Object? status = freezed,
+    Object? type = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -86,6 +91,10 @@ class _$InitialNodeStateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as Type,
     ));
   }
 }
@@ -97,7 +106,7 @@ abstract class _$InitialNodeStateCopyWith<$Res>
           _InitialNodeState value, $Res Function(_InitialNodeState) then) =
       __$InitialNodeStateCopyWithImpl<$Res>;
   @override
-  $Res call({Name name, Url url, Jwt jwt, FormzStatus status});
+  $Res call({Name name, Url url, Jwt jwt, FormzStatus status, Type type});
 }
 
 /// @nodoc
@@ -117,6 +126,7 @@ class __$InitialNodeStateCopyWithImpl<$Res>
     Object? url = freezed,
     Object? jwt = freezed,
     Object? status = freezed,
+    Object? type = freezed,
   }) {
     return _then(_InitialNodeState(
       name: name == freezed
@@ -135,6 +145,10 @@ class __$InitialNodeStateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as Type,
     ));
   }
 }
@@ -146,7 +160,8 @@ class _$_InitialNodeState implements _InitialNodeState {
       {required this.name,
       required this.url,
       required this.jwt,
-      required this.status});
+      required this.status,
+      required this.type});
 
   @override
   final Name name;
@@ -156,33 +171,34 @@ class _$_InitialNodeState implements _InitialNodeState {
   final Jwt jwt;
   @override
   final FormzStatus status;
+  @override
+  final Type type;
 
   @override
   String toString() {
-    return 'InitialNodeState(name: $name, url: $url, jwt: $jwt, status: $status)';
+    return 'InitialNodeState(name: $name, url: $url, jwt: $jwt, status: $status, type: $type)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _InitialNodeState &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)) &&
-            (identical(other.jwt, jwt) ||
-                const DeepCollectionEquality().equals(other.jwt, jwt)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)));
+        (other.runtimeType == runtimeType &&
+            other is _InitialNodeState &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.url, url) &&
+            const DeepCollectionEquality().equals(other.jwt, jwt) &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.type, type));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(url) ^
-      const DeepCollectionEquality().hash(jwt) ^
-      const DeepCollectionEquality().hash(status);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(url),
+      const DeepCollectionEquality().hash(jwt),
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(type));
 
   @JsonKey(ignore: true)
   @override
@@ -195,16 +211,19 @@ abstract class _InitialNodeState implements InitialNodeState {
       {required Name name,
       required Url url,
       required Jwt jwt,
-      required FormzStatus status}) = _$_InitialNodeState;
+      required FormzStatus status,
+      required Type type}) = _$_InitialNodeState;
 
   @override
-  Name get name => throw _privateConstructorUsedError;
+  Name get name;
   @override
-  Url get url => throw _privateConstructorUsedError;
+  Url get url;
   @override
-  Jwt get jwt => throw _privateConstructorUsedError;
+  Jwt get jwt;
   @override
-  FormzStatus get status => throw _privateConstructorUsedError;
+  FormzStatus get status;
+  @override
+  Type get type;
   @override
   @JsonKey(ignore: true)
   _$InitialNodeStateCopyWith<_InitialNodeState> get copyWith =>
