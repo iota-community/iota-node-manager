@@ -131,9 +131,12 @@ void main() {
         'adds a new node to the list',
         build: () {
           _nodeRepository = fakeReturnValuesForHappyFlow(_nodeRepository);
-          when(() =>
-                  _nodeRepository.addNode(node.name, node.url, node.jwtToken!))
-              .thenAnswer((_) async => node);
+          when(() => _nodeRepository.addNode(
+                node.name,
+                node.url,
+                node.jwtToken!,
+                node.type,
+              )).thenAnswer((_) async => node);
           when(() => _nodeRepository.setSelectedNode(node.id))
               .thenAnswer((_) async => <void>{});
           return NodeCubit(_nodeRepository);
@@ -142,9 +145,12 @@ void main() {
           ..initState()
           ..nodeAdded(node),
         verify: (_) {
-          verify(() =>
-                  _nodeRepository.addNode(node.name, node.url, node.jwtToken!))
-              .called(1);
+          verify(() => _nodeRepository.addNode(
+                node.name,
+                node.url,
+                node.jwtToken!,
+                node.type,
+              )).called(1);
           verify(() => _nodeRepository.setSelectedNode(node.id)).called(1);
         },
       );

@@ -66,7 +66,8 @@ Future<void> backgroundFetchHeadlessTask(HeadlessTask task) async {
   final timeout = task.timeout;
   if (timeout) {
     await Sentry.captureMessage(
-        '[BackgroundFetch] Headless task timed-out: $taskId');
+      '[BackgroundFetch] Headless task timed-out: $taskId',
+    );
     BackgroundFetch.finish(taskId);
     return;
   }

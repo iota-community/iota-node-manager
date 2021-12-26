@@ -6,6 +6,7 @@ import 'package:formz/formz.dart';
 import 'package:hornet_node/app/cubits/node_cubit/node_cubit.dart';
 import 'package:hornet_node/configure_dependencies.dart';
 import 'package:hornet_node/features/node_overview/pages/edit_node/edit_node.dart';
+import 'package:hornet_node/repository/moor/constants/node_types.dart';
 import 'package:hornet_node/repository/moor/database.dart';
 import 'package:hornet_node/repository/node_repository.dart';
 import 'package:mocktail/mocktail.dart';
@@ -65,6 +66,8 @@ void main() {
         when(() => _editNodeCubit.nameChanged(node.name)).thenReturn(null);
         when(() => _editNodeCubit.urlChanged(node.url)).thenReturn(null);
         when(() => _editNodeCubit.jwtChanged(node.jwtToken!)).thenReturn(null);
+        when(() => _editNodeCubit.typeChanged(NodeTypes.values[node.type]))
+            .thenReturn(null);
 
         final formValidatedState =
             EditNodeState.initial().copyWith(status: FormzStatus.valid);
@@ -145,8 +148,12 @@ void main() {
           (tester) async {
         when(() => _editNodeCubit.saveNode(null))
             .thenAnswer((_) async => <void>{});
-        when(() => _nodeRepository.addNode(node.name, node.url, node.jwtToken!))
-            .thenAnswer((_) async => node);
+        when(() => _nodeRepository.addNode(
+              node.name,
+              node.url,
+              node.jwtToken!,
+              node.type,
+            )).thenAnswer((_) async => node);
 
         getIt
           ..registerSingleton<NodeRepository>(_nodeRepository)

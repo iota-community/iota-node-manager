@@ -49,9 +49,9 @@ class InitialNodePage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   SvgPicture.asset(
-                    'assets/svg/hornet.svg',
+                    'assets/svg/manager.svg',
                     height: 250,
-                    semanticsLabel: 'Hornet',
+                    semanticsLabel: 'Manager',
                     color: ThemeHelper.of(context).blackOrWhite,
                     fit: BoxFit.fitHeight,
                   ),

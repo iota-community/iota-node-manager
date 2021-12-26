@@ -1,6 +1,6 @@
 {
     "@@locale": "en",
-    "addInitialNodeTitle": "Add a new Hornet Node",
+    "addInitialNodeTitle": "Add a new IOTA Node",
     "@addInitialNodeTitle": {
         "description": "Text shown on the page to add a new node"
     },
