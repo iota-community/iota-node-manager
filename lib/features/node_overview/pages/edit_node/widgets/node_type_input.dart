@@ -10,7 +10,7 @@ class _NodeTypeInput extends StatelessWidget {
           padding: const EdgeInsets.only(left: 30, right: 30, top: 10),
           child: NodeTypeToggleFormField(
             key: const Key('editNodeForm_nodeTypeInput_toggleField'),
-            initialValue: state.type.value!.index,
+            initialValue: state.type.value?.index ?? 0,
             onChanged: (type) =>
                 context.read<EditNodeCubit>().typeChanged(type),
           ),

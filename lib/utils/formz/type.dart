@@ -4,7 +4,7 @@ import 'package:hornet_node/repository/moor/constants/node_types.dart';
 enum TypeValidationError { empty, wrongType }
 
 class Type extends FormzInput<NodeTypes?, TypeValidationError> {
-  const Type.pure() : super.pure(null);
+  const Type.pure() : super.pure(NodeTypes.hornet);
 
   const Type.dirty({required NodeTypes value}) : super.dirty(value);
 
