@@ -7,7 +7,6 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
 part 'database.g.dart';
-
 part 'tables/hornet_node.dart';
 
 LazyDatabase _openConnection() {

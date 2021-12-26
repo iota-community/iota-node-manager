@@ -13,13 +13,9 @@ import 'package:hornet_node/repository/node_repository.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 part '../widgets/jwt_input.dart';
-
 part '../widgets/name_input.dart';
-
 part '../widgets/node_type_input.dart';
-
 part '../widgets/save_button.dart';
-
 part '../widgets/url_input.dart';
 
 class EditNodePage extends StatelessWidget {

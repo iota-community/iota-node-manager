@@ -11,7 +11,7 @@ class InitialNodeState with _$InitialNodeState {
   }) = _InitialNodeState;
 
   factory InitialNodeState.initial() => const InitialNodeState(
-    name: Name.pure(),
+        name: Name.pure(),
         url: Url.pure(),
         jwt: Jwt.pure(),
         status: FormzStatus.pure,

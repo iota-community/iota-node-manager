@@ -11,7 +11,6 @@ import 'package:injectable/injectable.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 part 'peers_cubit.freezed.dart';
-
 part 'peers_state.dart';
 
 enum FailureStatusEnum {

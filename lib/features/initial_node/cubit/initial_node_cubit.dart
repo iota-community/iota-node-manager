@@ -9,7 +9,6 @@ import 'package:hornet_node/utils/formz/url.dart';
 import 'package:injectable/injectable.dart';
 
 part 'initial_node_cubit.freezed.dart';
-
 part 'initial_node_state.dart';
 
 @injectable

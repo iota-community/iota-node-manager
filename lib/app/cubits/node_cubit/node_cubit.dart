@@ -7,7 +7,6 @@ import 'package:hornet_node/repository/node_repository.dart';
 import 'package:injectable/injectable.dart';
 
 part 'node_cubit.freezed.dart';
-
 part 'node_state.dart';
 
 @injectable

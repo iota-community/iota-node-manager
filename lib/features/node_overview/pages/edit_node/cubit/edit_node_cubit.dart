@@ -13,7 +13,6 @@ import 'package:hornet_node/utils/formz/url.dart';
 import 'package:injectable/injectable.dart';
 
 part 'edit_node_cubit.freezed.dart';
-
 part 'edit_node_state.dart';
 
 @injectable
