@@ -2,9 +2,11 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:formz/formz.dart';
 import 'package:hornet_node/features/initial_node/cubit/initial_node_cubit.dart';
+import 'package:hornet_node/repository/moor/constants/node_types.dart';
 import 'package:hornet_node/repository/node_repository.dart';
 import 'package:hornet_node/utils/formz/jwt.dart';
 import 'package:hornet_node/utils/formz/name.dart';
+import 'package:hornet_node/utils/formz/type.dart';
 import 'package:hornet_node/utils/formz/url.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -57,8 +59,12 @@ void main() {
     blocTest<InitialNodeCubit, InitialNodeState>(
       'emits submission on progress and success after saving',
       build: () {
-        when(() => _nodeRepository.addNode(node.name, node.url, node.jwtToken!))
-            .thenAnswer((_) async => node);
+        when(() => _nodeRepository.addNode(
+              node.name,
+              node.url,
+              node.jwtToken!,
+              node.type,
+            )).thenAnswer((_) async => node);
         when(() => _nodeRepository.setSelectedNode(node.id))
             .thenAnswer((_) async => <void>{});
         return InitialNodeCubit(_nodeRepository);
@@ -67,6 +73,7 @@ void main() {
         name: Name.dirty(value: node.name),
         url: Url.dirty(value: node.url),
         jwt: Jwt.dirty(value: node.jwtToken!),
+        type: Type.dirty(value: NodeTypes.values[node.type]),
         status: FormzStatus.valid,
       ),
       act: (cubit) => cubit..saveNode(),
@@ -75,12 +82,14 @@ void main() {
           name: Name.dirty(value: node.name),
           url: Url.dirty(value: node.url),
           jwt: Jwt.dirty(value: node.jwtToken!),
+          type: Type.dirty(value: NodeTypes.values[node.type]),
           status: FormzStatus.submissionInProgress,
         ),
         InitialNodeState(
           name: Name.dirty(value: node.name),
           url: Url.dirty(value: node.url),
           jwt: Jwt.dirty(value: node.jwtToken!),
+          type: Type.dirty(value: NodeTypes.values[node.type]),
           status: FormzStatus.submissionSuccess,
         ),
       ],
@@ -89,14 +98,19 @@ void main() {
     blocTest<InitialNodeCubit, InitialNodeState>(
       'emits submission on progress and failure after saving failed',
       build: () {
-        when(() => _nodeRepository.addNode(node.name, node.url, node.jwtToken!))
-            .thenThrow(Exception());
+        when(() => _nodeRepository.addNode(
+              node.name,
+              node.url,
+              node.jwtToken!,
+              node.type,
+            )).thenThrow(Exception());
         return InitialNodeCubit(_nodeRepository);
       },
       seed: () => InitialNodeState(
         name: Name.dirty(value: node.name),
         url: Url.dirty(value: node.url),
         jwt: Jwt.dirty(value: node.jwtToken!),
+        type: Type.dirty(value: NodeTypes.values[node.type]),
         status: FormzStatus.valid,
       ),
       act: (cubit) => cubit..saveNode(),
@@ -106,12 +120,14 @@ void main() {
           url: Url.dirty(value: node.url),
           jwt: Jwt.dirty(value: node.jwtToken!),
           status: FormzStatus.submissionInProgress,
+          type: Type.dirty(value: NodeTypes.values[node.type]),
         ),
         InitialNodeState(
           name: Name.dirty(value: node.name),
           url: Url.dirty(value: node.url),
           jwt: Jwt.dirty(value: node.jwtToken!),
           status: FormzStatus.submissionFailure,
+          type: Type.dirty(value: NodeTypes.values[node.type]),
         ),
       ],
     );
