@@ -15,10 +15,10 @@ class PeersPage extends StatefulWidget {
   const PeersPage({Key? key}) : super(key: key);
 
   @override
-  _PeersPageState createState() => _PeersPageState();
+  PeersPageState createState() => PeersPageState();
 }
 
-class _PeersPageState extends State<PeersPage> {
+class PeersPageState extends State<PeersPage> {
   late Completer<void> _refreshCompleter;
 
   @override
@@ -29,8 +29,6 @@ class _PeersPageState extends State<PeersPage> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO Clean up build method
-
     return BlocConsumer<NodeCubit, NodeState>(
       listenWhen: (previous, current) =>
           previous.selectedNode != current.selectedNode,
@@ -241,7 +239,8 @@ class _PeersPageState extends State<PeersPage> {
                           child: Text(
                             'Reload',
                             style: TextStyle(
-                                color: ThemeHelper.of(context).blackOrWhite),
+                              color: ThemeHelper.of(context).blackOrWhite,
+                            ),
                           ),
                         ),
                       ),

@@ -11,7 +11,6 @@ import 'package:hornet_node/configure_dependencies.dart';
 import 'package:hornet_node/l10n/l10n.dart';
 import 'package:hornet_node/utils/constants/hive_box_constants.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);

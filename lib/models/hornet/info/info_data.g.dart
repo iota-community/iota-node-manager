@@ -12,7 +12,7 @@ _$_InfoData _$$_InfoDataFromJson(Map<String, dynamic> json) => _$_InfoData(
       isHealthy: json['isHealthy'] as bool,
       networkId: json['networkId'] as String,
       bech32Hrp: json['bech32HRP'] as String,
-      minPoWScore: json['minPoWScore'] as int,
+      minPoWScore: (json['minPoWScore'] as num).toDouble(),
       messagesPerSecond: (json['messagesPerSecond'] as num).toDouble(),
       referencedMessagesPerSecond:
           (json['referencedMessagesPerSecond'] as num).toDouble(),

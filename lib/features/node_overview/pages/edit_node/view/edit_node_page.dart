@@ -1,20 +1,26 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
 import 'package:hornet_node/app/cubits/node_cubit/node_cubit.dart';
 import 'package:hornet_node/app/themes/custom_themes.dart';
 import 'package:hornet_node/configure_dependencies.dart';
-import 'package:formz/formz.dart';
+import 'package:hornet_node/features/node_overview/pages/edit_node/edit_node.dart';
 import 'package:hornet_node/l10n/l10n.dart';
+import 'package:hornet_node/repository/moor/constants/node_types.dart';
 import 'package:hornet_node/repository/moor/database.dart';
 import 'package:hornet_node/repository/node_repository.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
-import '../edit_node.dart';
+part '../widgets/jwt_input.dart';
+
+part '../widgets/name_input.dart';
+
+part '../widgets/node_type_input.dart';
 
 part '../widgets/save_button.dart';
+
 part '../widgets/url_input.dart';
-part '../widgets/name_input.dart';
-part '../widgets/jwt_input.dart';
 
 class EditNodePage extends StatelessWidget {
   const EditNodePage({
@@ -81,7 +87,7 @@ class EditNodePage extends StatelessWidget {
 
   Widget buildPage(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(20),
       child: Align(
         alignment: Alignment.topCenter,
         child: SingleChildScrollView(
@@ -93,17 +99,21 @@ class EditNodePage extends StatelessWidget {
                 style: Theme.of(context).primaryTextTheme.headline5,
               ),
               _NameInput(),
-              const SizedBox(height: 8.0),
+              const SizedBox(height: 8),
               _UrlInput(),
-              const SizedBox(height: 20.0),
-              Text(
+              const SizedBox(height: 8),
+              _NodeTypeInput(),
+              const SizedBox(height: 30),
+              const Text(
                 'Optional',
-                style: Theme.of(context).textTheme.subtitle1,
+                style: TextStyle(
+                  fontSize: 20,
+                ),
               ),
               _JwtInput(),
-              const SizedBox(height: 8.0),
+              const SizedBox(height: 8),
               _Buttons(id: id),
-              const SizedBox(height: 8.0),
+              const SizedBox(height: 8),
             ],
           ),
         ),

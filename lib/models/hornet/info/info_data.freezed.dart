@@ -33,7 +33,7 @@ class _$InfoDataTearOff {
       @JsonKey(name: 'bech32HRP')
           required String bech32Hrp,
       @JsonKey(name: 'minPoWScore')
-          required int minPoWScore,
+          required double minPoWScore,
       @JsonKey(name: 'messagesPerSecond')
           required double messagesPerSecond,
       @JsonKey(name: 'referencedMessagesPerSecond')
@@ -87,10 +87,13 @@ mixin _$InfoData {
   bool get isHealthy => throw _privateConstructorUsedError;
   @JsonKey(name: 'networkId')
   String get networkId => throw _privateConstructorUsedError;
+
   @JsonKey(name: 'bech32HRP')
   String get bech32Hrp => throw _privateConstructorUsedError;
+
   @JsonKey(name: 'minPoWScore')
-  int get minPoWScore => throw _privateConstructorUsedError;
+  double get minPoWScore => throw _privateConstructorUsedError;
+
   @JsonKey(name: 'messagesPerSecond')
   double get messagesPerSecond => throw _privateConstructorUsedError;
   @JsonKey(name: 'referencedMessagesPerSecond')
@@ -131,7 +134,7 @@ abstract class $InfoDataCopyWith<$Res> {
       @JsonKey(name: 'bech32HRP')
           String bech32Hrp,
       @JsonKey(name: 'minPoWScore')
-          int minPoWScore,
+          double minPoWScore,
       @JsonKey(name: 'messagesPerSecond')
           double messagesPerSecond,
       @JsonKey(name: 'referencedMessagesPerSecond')
@@ -200,7 +203,7 @@ class _$InfoDataCopyWithImpl<$Res> implements $InfoDataCopyWith<$Res> {
       minPoWScore: minPoWScore == freezed
           ? _value.minPoWScore
           : minPoWScore // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       messagesPerSecond: messagesPerSecond == freezed
           ? _value.messagesPerSecond
           : messagesPerSecond // ignore: cast_nullable_to_non_nullable
@@ -254,7 +257,7 @@ abstract class _$InfoDataCopyWith<$Res> implements $InfoDataCopyWith<$Res> {
       @JsonKey(name: 'bech32HRP')
           String bech32Hrp,
       @JsonKey(name: 'minPoWScore')
-          int minPoWScore,
+          double minPoWScore,
       @JsonKey(name: 'messagesPerSecond')
           double messagesPerSecond,
       @JsonKey(name: 'referencedMessagesPerSecond')
@@ -324,7 +327,7 @@ class __$InfoDataCopyWithImpl<$Res> extends _$InfoDataCopyWithImpl<$Res>
       minPoWScore: minPoWScore == freezed
           ? _value.minPoWScore
           : minPoWScore // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       messagesPerSecond: messagesPerSecond == freezed
           ? _value.messagesPerSecond
           : messagesPerSecond // ignore: cast_nullable_to_non_nullable
@@ -415,7 +418,7 @@ class _$_InfoData implements _InfoData {
   final String bech32Hrp;
   @override
   @JsonKey(name: 'minPoWScore')
-  final int minPoWScore;
+  final double minPoWScore;
   @override
   @JsonKey(name: 'messagesPerSecond')
   final double messagesPerSecond;
@@ -525,7 +528,7 @@ abstract class _InfoData implements InfoData {
       @JsonKey(name: 'bech32HRP')
           required String bech32Hrp,
       @JsonKey(name: 'minPoWScore')
-          required int minPoWScore,
+          required double minPoWScore,
       @JsonKey(name: 'messagesPerSecond')
           required double messagesPerSecond,
       @JsonKey(name: 'referencedMessagesPerSecond')
@@ -558,12 +561,15 @@ abstract class _InfoData implements InfoData {
   @override
   @JsonKey(name: 'networkId')
   String get networkId;
+
   @override
   @JsonKey(name: 'bech32HRP')
   String get bech32Hrp;
+
   @override
   @JsonKey(name: 'minPoWScore')
-  int get minPoWScore;
+  double get minPoWScore;
+
   @override
   @JsonKey(name: 'messagesPerSecond')
   double get messagesPerSecond;

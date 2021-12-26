@@ -9,13 +9,11 @@ class AppState with _$AppState {
 
   factory AppState.initial() {
     final appBox = getIt<Box>(instanceName: HiveBoxConstants.appBox);
-    final darkmode =
-        appBox.get(HiveBoxConstants.darkModeKey) ?? false;
-    final languageIndex =
-        appBox.get(HiveBoxConstants.languageKey) ?? 0;
+    final bool darkMode = appBox.get(HiveBoxConstants.darkModeKey) ?? false;
+    final int languageIndex = appBox.get(HiveBoxConstants.languageKey) ?? 0;
     return AppState(
       selectedLanguage: Languages.languages[languageIndex],
-      darkTheme: darkmode ? true : false,
+      darkTheme: darkMode,
     );
   }
 }

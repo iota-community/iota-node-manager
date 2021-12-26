@@ -34,8 +34,7 @@ Future<void> mainCommon() async {
 }
 
 SentryEvent beforeSend(SentryEvent event, {dynamic hint}) {
-  event = event.copyWith(serverName: null);
-  return event;
+  return event.copyWith(serverName: '');
 }
 
 Future<void> configureScheduledTasks() async {

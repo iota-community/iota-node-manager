@@ -4,17 +4,30 @@ import 'package:moor/moor.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 abstract class NodeRepository {
-  Future<Node> addNode(String name, String url, String jwt,
-      {bool selected = false});
+  Future<Node> addNode(
+    String name,
+    String url,
+    String jwt,
+    int type, {
+    bool selected = false,
+  });
+
   Future<void> updateNode(Node node);
+
   Future<void> removeNode(int id);
+
   Future<void> setSelectedNode(int? id);
 
   Future<List<Node>> getNodes();
+
   Stream<List<Node>> getNodesStream();
+
   Future<Node?> getNode(int id);
+
   Stream<Node?> getNodeStream(int id);
+
   Future<Node?> getSelectedNode();
+
   Stream<Node?> getSelectedNodeStream();
   Future<bool> areNodesAvailable();
   Future<bool> isANodeSelected();
@@ -29,10 +42,16 @@ class NodeRepositoryMoorImpl extends NodeRepository {
   final RxSharedPreferences _prefs;
 
   @override
-  Future<Node> addNode(String name, String url, String jwt,
+  Future<Node> addNode(String name, String url, String jwt, int type,
       {bool selected = false}) async {
     final node = await _database.addNode(
-        NodesCompanion.insert(name: name, url: url, jwtToken: Value(jwt)));
+      NodesCompanion.insert(
+        name: name,
+        url: url,
+        jwtToken: Value(jwt),
+        type: Value(type),
+      ),
+    );
     if (selected) {
       await _prefs.setInt(selectedNodeKey, node.id);
     }

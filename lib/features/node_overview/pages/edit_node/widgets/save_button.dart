@@ -32,34 +32,37 @@ class _Buttons extends StatelessWidget {
                             child: Text(
                           id != null ? 'SAVE' : 'ADD',
                           style: TextStyle(
-                              color: ThemeHelper.of(context).blackOrWhite),
+                            color: ThemeHelper.of(context).blackOrWhite,
+                          ),
                         )),
                       ),
                     ),
-                    id != null
-                        ? const SizedBox(
-                            width: 15,
-                          )
-                        : const SizedBox(),
-                    id != null
-                        ? ElevatedButton(
-                            key: const Key('editNodeForm_remove_raisedButton'),
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.red,
-                            ),
-                            onPressed: () {
-                              context.read<NodeCubit>().nodeRemoved(id!);
-                              context.popRoute();
-                            },
-                            child: const SizedBox(
-                              child: Center(
-                                  child: Icon(
-                                Icons.delete_forever,
-                                color: Colors.white,
-                              )),
-                            ),
-                          )
-                        : const SizedBox()
+                    if (id != null)
+                      const SizedBox(
+                        width: 15,
+                      )
+                    else
+                      const SizedBox(),
+                    if (id != null)
+                      ElevatedButton(
+                        key: const Key('editNodeForm_remove_raisedButton'),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.red,
+                        ),
+                        onPressed: () {
+                          context.read<NodeCubit>().nodeRemoved(id!);
+                          context.popRoute();
+                        },
+                        child: const SizedBox(
+                          child: Center(
+                              child: Icon(
+                            Icons.delete_forever,
+                            color: Colors.white,
+                          )),
+                        ),
+                      )
+                    else
+                      const SizedBox()
                   ],
                 ),
               );

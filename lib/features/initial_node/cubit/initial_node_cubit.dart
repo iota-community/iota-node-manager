@@ -4,11 +4,13 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hornet_node/repository/node_repository.dart';
 import 'package:hornet_node/utils/formz/jwt.dart';
 import 'package:hornet_node/utils/formz/name.dart';
+import 'package:hornet_node/utils/formz/type.dart';
 import 'package:hornet_node/utils/formz/url.dart';
 import 'package:injectable/injectable.dart';
 
-part 'initial_node_state.dart';
 part 'initial_node_cubit.freezed.dart';
+
+part 'initial_node_state.dart';
 
 @injectable
 class InitialNodeCubit extends Cubit<InitialNodeState> {
@@ -46,10 +48,11 @@ class InitialNodeCubit extends Cubit<InitialNodeState> {
     if (!state.status.isValidated) return;
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
-      var node = await _nodeRepository.addNode(
+      final node = await _nodeRepository.addNode(
         state.name.value,
         state.url.value,
         state.jwt.value,
+        state.type.value!.index,
       );
       await _nodeRepository.setSelectedNode(node.id);
       emit(state.copyWith(status: FormzStatus.submissionSuccess));

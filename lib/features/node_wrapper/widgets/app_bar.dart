@@ -53,7 +53,8 @@ class CustomAppBar extends StatelessWidget {
                     await BlocProvider.of<NodeCubit>(context)
                         .selectedNodeChanged(selectedNodeUuid);
                     await BlocProvider.of<HealthCubit>(context).health();
-                    final info = await BlocProvider.of<InfoCubit>(context).info();
+                    final info =
+                        await BlocProvider.of<InfoCubit>(context).info();
                     await BlocProvider.of<MilestonesCubit>(context)
                         .milestones(info!.data.latestMilestoneIndex);
                   }

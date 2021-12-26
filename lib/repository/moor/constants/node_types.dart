@@ -1,0 +1,1 @@
+enum NodeTypes { hornet, bee }

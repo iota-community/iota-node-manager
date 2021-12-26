@@ -12,7 +12,7 @@ class InfoData with _$InfoData {
     @JsonKey(name: 'isHealthy') required bool isHealthy,
     @JsonKey(name: 'networkId') required String networkId,
     @JsonKey(name: 'bech32HRP') required String bech32Hrp,
-    @JsonKey(name: 'minPoWScore') required int minPoWScore,
+    @JsonKey(name: 'minPoWScore') required double minPoWScore,
     @JsonKey(name: 'messagesPerSecond') required double messagesPerSecond,
     @JsonKey(name: 'referencedMessagesPerSecond')
         required double referencedMessagesPerSecond,
