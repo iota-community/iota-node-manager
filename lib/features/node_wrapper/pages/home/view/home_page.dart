@@ -2,17 +2,19 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hornet_node/app/cubits/node_cubit/node_cubit.dart';
 import 'package:hornet_node/app/themes/custom_themes.dart';
 import 'package:hornet_node/features/node_wrapper/cubits/health_cubit/health_cubit.dart';
 import 'package:hornet_node/features/node_wrapper/cubits/info_cubit/info_cubit.dart';
-import 'package:hornet_node/main_common.dart';
 import 'package:hornet_node/models/hornet/info/info.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hornet_node/utils/widgets/error_card_widget.dart';
 import 'package:hornet_node/utils/widgets/home_card_widget.dart';
 
 part '../widgets/features_card.dart';
+
 part '../widgets/messages_card.dart';
+
 part '../widgets/milestones_card.dart';
 part '../widgets/pruning_card.dart';
 part '../widgets/title_card.dart';
@@ -50,7 +52,7 @@ class _HomePageState extends State<HomePage> {
           duration: const Duration(milliseconds: 350),
           child: state.map(
             loadSuccess: (value) {
-              var info = value.info;
+              final info = value.info;
               return RefreshIndicator(
                 color: ThemeHelper.of(context).blackOrWhite,
                 onRefresh: () {

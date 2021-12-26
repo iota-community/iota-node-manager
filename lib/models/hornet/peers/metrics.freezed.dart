@@ -351,46 +351,44 @@ class _$_Metrics implements _Metrics {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Metrics &&
-            (identical(other.newMessages, newMessages) ||
-                other.newMessages == newMessages) &&
-            (identical(other.knownMessages, knownMessages) ||
-                other.knownMessages == knownMessages) &&
-            (identical(other.receivedMessages, receivedMessages) ||
-                other.receivedMessages == receivedMessages) &&
-            (identical(
-                    other.receivedMessageRequests, receivedMessageRequests) ||
-                other.receivedMessageRequests == receivedMessageRequests) &&
-            (identical(other.receivedMilestoneRequests,
-                    receivedMilestoneRequests) ||
-                other.receivedMilestoneRequests == receivedMilestoneRequests) &&
-            (identical(other.receivedHeartbeats, receivedHeartbeats) ||
-                other.receivedHeartbeats == receivedHeartbeats) &&
-            (identical(other.sentMessages, sentMessages) ||
-                other.sentMessages == sentMessages) &&
-            (identical(other.sentMessageRequests, sentMessageRequests) ||
-                other.sentMessageRequests == sentMessageRequests) &&
-            (identical(other.sentMilestoneRequests, sentMilestoneRequests) ||
-                other.sentMilestoneRequests == sentMilestoneRequests) &&
-            (identical(other.sentHeartbeats, sentHeartbeats) ||
-                other.sentHeartbeats == sentHeartbeats) &&
-            (identical(other.droppedPackets, droppedPackets) ||
-                other.droppedPackets == droppedPackets));
+            const DeepCollectionEquality()
+                .equals(other.newMessages, newMessages) &&
+            const DeepCollectionEquality()
+                .equals(other.knownMessages, knownMessages) &&
+            const DeepCollectionEquality()
+                .equals(other.receivedMessages, receivedMessages) &&
+            const DeepCollectionEquality().equals(
+                other.receivedMessageRequests, receivedMessageRequests) &&
+            const DeepCollectionEquality().equals(
+                other.receivedMilestoneRequests, receivedMilestoneRequests) &&
+            const DeepCollectionEquality()
+                .equals(other.receivedHeartbeats, receivedHeartbeats) &&
+            const DeepCollectionEquality()
+                .equals(other.sentMessages, sentMessages) &&
+            const DeepCollectionEquality()
+                .equals(other.sentMessageRequests, sentMessageRequests) &&
+            const DeepCollectionEquality()
+                .equals(other.sentMilestoneRequests, sentMilestoneRequests) &&
+            const DeepCollectionEquality()
+                .equals(other.sentHeartbeats, sentHeartbeats) &&
+            const DeepCollectionEquality()
+                .equals(other.droppedPackets, droppedPackets));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      newMessages,
-      knownMessages,
-      receivedMessages,
-      receivedMessageRequests,
-      receivedMilestoneRequests,
-      receivedHeartbeats,
-      sentMessages,
-      sentMessageRequests,
-      sentMilestoneRequests,
-      sentHeartbeats,
-      droppedPackets);
+      const DeepCollectionEquality().hash(newMessages),
+      const DeepCollectionEquality().hash(knownMessages),
+      const DeepCollectionEquality().hash(receivedMessages),
+      const DeepCollectionEquality().hash(receivedMessageRequests),
+      const DeepCollectionEquality().hash(receivedMilestoneRequests),
+      const DeepCollectionEquality().hash(receivedHeartbeats),
+      const DeepCollectionEquality().hash(sentMessages),
+      const DeepCollectionEquality().hash(sentMessageRequests),
+      const DeepCollectionEquality().hash(sentMilestoneRequests),
+      const DeepCollectionEquality().hash(sentHeartbeats),
+      const DeepCollectionEquality().hash(droppedPackets));
 
   @JsonKey(ignore: true)
   @override

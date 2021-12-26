@@ -308,36 +308,33 @@ class _$_MessageMetadataData implements _MessageMetadataData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _MessageMetadataData &&
-            (identical(other.messageId, messageId) ||
-                other.messageId == messageId) &&
+            const DeepCollectionEquality().equals(other.messageId, messageId) &&
             const DeepCollectionEquality()
                 .equals(other.parentMessageIds, parentMessageIds) &&
-            (identical(other.isSolid, isSolid) || other.isSolid == isSolid) &&
-            (identical(other.shouldPromote, shouldPromote) ||
-                other.shouldPromote == shouldPromote) &&
-            (identical(other.shouldReattach, shouldReattach) ||
-                other.shouldReattach == shouldReattach) &&
-            (identical(other.referencedByMilestoneIndex,
-                    referencedByMilestoneIndex) ||
-                other.referencedByMilestoneIndex ==
-                    referencedByMilestoneIndex) &&
-            (identical(other.milestoneIndex, milestoneIndex) ||
-                other.milestoneIndex == milestoneIndex) &&
-            (identical(other.ledgerInclusionState, ledgerInclusionState) ||
-                other.ledgerInclusionState == ledgerInclusionState));
+            const DeepCollectionEquality().equals(other.isSolid, isSolid) &&
+            const DeepCollectionEquality()
+                .equals(other.shouldPromote, shouldPromote) &&
+            const DeepCollectionEquality()
+                .equals(other.shouldReattach, shouldReattach) &&
+            const DeepCollectionEquality().equals(
+                other.referencedByMilestoneIndex, referencedByMilestoneIndex) &&
+            const DeepCollectionEquality()
+                .equals(other.milestoneIndex, milestoneIndex) &&
+            const DeepCollectionEquality()
+                .equals(other.ledgerInclusionState, ledgerInclusionState));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      messageId,
+      const DeepCollectionEquality().hash(messageId),
       const DeepCollectionEquality().hash(parentMessageIds),
-      isSolid,
-      shouldPromote,
-      shouldReattach,
-      referencedByMilestoneIndex,
-      milestoneIndex,
-      ledgerInclusionState);
+      const DeepCollectionEquality().hash(isSolid),
+      const DeepCollectionEquality().hash(shouldPromote),
+      const DeepCollectionEquality().hash(shouldReattach),
+      const DeepCollectionEquality().hash(referencedByMilestoneIndex),
+      const DeepCollectionEquality().hash(milestoneIndex),
+      const DeepCollectionEquality().hash(ledgerInclusionState));
 
   @JsonKey(ignore: true)
   @override

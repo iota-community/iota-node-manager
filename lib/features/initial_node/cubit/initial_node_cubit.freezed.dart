@@ -41,9 +41,7 @@ mixin _$InitialNodeState {
   Name get name => throw _privateConstructorUsedError;
   Url get url => throw _privateConstructorUsedError;
   Jwt get jwt => throw _privateConstructorUsedError;
-
   FormzStatus get status => throw _privateConstructorUsedError;
-
   Type get type => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -56,7 +54,6 @@ abstract class $InitialNodeStateCopyWith<$Res> {
   factory $InitialNodeStateCopyWith(
           InitialNodeState value, $Res Function(InitialNodeState) then) =
       _$InitialNodeStateCopyWithImpl<$Res>;
-
   $Res call({Name name, Url url, Jwt jwt, FormzStatus status, Type type});
 }
 
@@ -108,7 +105,6 @@ abstract class _$InitialNodeStateCopyWith<$Res>
   factory _$InitialNodeStateCopyWith(
           _InitialNodeState value, $Res Function(_InitialNodeState) then) =
       __$InitialNodeStateCopyWithImpl<$Res>;
-
   @override
   $Res call({Name name, Url url, Jwt jwt, FormzStatus status, Type type});
 }
@@ -188,15 +184,21 @@ class _$_InitialNodeState implements _InitialNodeState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _InitialNodeState &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.url, url) || other.url == url) &&
-            (identical(other.jwt, jwt) || other.jwt == jwt) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.type, type) || other.type == type));
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.url, url) &&
+            const DeepCollectionEquality().equals(other.jwt, jwt) &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.type, type));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, url, jwt, status, type);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(url),
+      const DeepCollectionEquality().hash(jwt),
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(type));
 
   @JsonKey(ignore: true)
   @override
@@ -214,19 +216,14 @@ abstract class _InitialNodeState implements InitialNodeState {
 
   @override
   Name get name;
-
   @override
   Url get url;
-
   @override
   Jwt get jwt;
-
   @override
   FormzStatus get status;
-
   @override
   Type get type;
-
   @override
   @JsonKey(ignore: true)
   _$InitialNodeStateCopyWith<_InitialNodeState> get copyWith =>

@@ -44,11 +44,8 @@ const $EditNodeState = _$EditNodeStateTearOff();
 mixin _$EditNodeState {
   Name get name => throw _privateConstructorUsedError;
   Url get url => throw _privateConstructorUsedError;
-
   Jwt get jwt => throw _privateConstructorUsedError;
-
   Type get type => throw _privateConstructorUsedError;
-
   FormzStatus get status => throw _privateConstructorUsedError;
   int? get id => throw _privateConstructorUsedError;
   bool get selected => throw _privateConstructorUsedError;
@@ -233,19 +230,25 @@ class _$_EditNodeState implements _EditNodeState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _EditNodeState &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.url, url) || other.url == url) &&
-            (identical(other.jwt, jwt) || other.jwt == jwt) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.selected, selected) ||
-                other.selected == selected));
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.url, url) &&
+            const DeepCollectionEquality().equals(other.jwt, jwt) &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.selected, selected));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, url, jwt, type, status, id, selected);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(url),
+      const DeepCollectionEquality().hash(jwt),
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(selected));
 
   @JsonKey(ignore: true)
   @override
@@ -265,25 +268,18 @@ abstract class _EditNodeState implements EditNodeState {
 
   @override
   Name get name;
-
   @override
   Url get url;
-
   @override
   Jwt get jwt;
-
   @override
   Type get type;
-
   @override
   FormzStatus get status;
-
   @override
   int? get id;
-
   @override
   bool get selected;
-
   @override
   @JsonKey(ignore: true)
   _$EditNodeStateCopyWith<_EditNodeState> get copyWith =>

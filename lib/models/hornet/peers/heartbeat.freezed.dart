@@ -211,26 +211,26 @@ class _$_Heartbeat implements _Heartbeat {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Heartbeat &&
-            (identical(other.solidMilestoneIndex, solidMilestoneIndex) ||
-                other.solidMilestoneIndex == solidMilestoneIndex) &&
-            (identical(other.prunedMilestoneIndex, prunedMilestoneIndex) ||
-                other.prunedMilestoneIndex == prunedMilestoneIndex) &&
-            (identical(other.latestMilestoneIndex, latestMilestoneIndex) ||
-                other.latestMilestoneIndex == latestMilestoneIndex) &&
-            (identical(other.connectedNeighbors, connectedNeighbors) ||
-                other.connectedNeighbors == connectedNeighbors) &&
-            (identical(other.syncedNeighbors, syncedNeighbors) ||
-                other.syncedNeighbors == syncedNeighbors));
+            const DeepCollectionEquality()
+                .equals(other.solidMilestoneIndex, solidMilestoneIndex) &&
+            const DeepCollectionEquality()
+                .equals(other.prunedMilestoneIndex, prunedMilestoneIndex) &&
+            const DeepCollectionEquality()
+                .equals(other.latestMilestoneIndex, latestMilestoneIndex) &&
+            const DeepCollectionEquality()
+                .equals(other.connectedNeighbors, connectedNeighbors) &&
+            const DeepCollectionEquality()
+                .equals(other.syncedNeighbors, syncedNeighbors));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      solidMilestoneIndex,
-      prunedMilestoneIndex,
-      latestMilestoneIndex,
-      connectedNeighbors,
-      syncedNeighbors);
+      const DeepCollectionEquality().hash(solidMilestoneIndex),
+      const DeepCollectionEquality().hash(prunedMilestoneIndex),
+      const DeepCollectionEquality().hash(latestMilestoneIndex),
+      const DeepCollectionEquality().hash(connectedNeighbors),
+      const DeepCollectionEquality().hash(syncedNeighbors));
 
   @JsonKey(ignore: true)
   @override

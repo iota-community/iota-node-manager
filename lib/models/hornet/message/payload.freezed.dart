@@ -355,20 +355,17 @@ class _$_Payload implements _Payload {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Payload &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.index, index) || other.index == index) &&
-            (identical(other.timestamp, timestamp) ||
-                other.timestamp == timestamp) &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.index, index) &&
+            const DeepCollectionEquality().equals(other.timestamp, timestamp) &&
             const DeepCollectionEquality()
                 .equals(other.parentMessageIds, parentMessageIds) &&
-            (identical(other.inclusionMerkleProof, inclusionMerkleProof) ||
-                other.inclusionMerkleProof == inclusionMerkleProof) &&
-            (identical(other.nextPoWScore, nextPoWScore) ||
-                other.nextPoWScore == nextPoWScore) &&
-            (identical(other.nextPoWScoreMilestoneIndex,
-                    nextPoWScoreMilestoneIndex) ||
-                other.nextPoWScoreMilestoneIndex ==
-                    nextPoWScoreMilestoneIndex) &&
+            const DeepCollectionEquality()
+                .equals(other.inclusionMerkleProof, inclusionMerkleProof) &&
+            const DeepCollectionEquality()
+                .equals(other.nextPoWScore, nextPoWScore) &&
+            const DeepCollectionEquality().equals(
+                other.nextPoWScoreMilestoneIndex, nextPoWScoreMilestoneIndex) &&
             const DeepCollectionEquality()
                 .equals(other.publicKeys, publicKeys) &&
             const DeepCollectionEquality().equals(other.receipt, receipt) &&
@@ -379,13 +376,13 @@ class _$_Payload implements _Payload {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      type,
-      index,
-      timestamp,
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(index),
+      const DeepCollectionEquality().hash(timestamp),
       const DeepCollectionEquality().hash(parentMessageIds),
-      inclusionMerkleProof,
-      nextPoWScore,
-      nextPoWScoreMilestoneIndex,
+      const DeepCollectionEquality().hash(inclusionMerkleProof),
+      const DeepCollectionEquality().hash(nextPoWScore),
+      const DeepCollectionEquality().hash(nextPoWScoreMilestoneIndex),
       const DeepCollectionEquality().hash(publicKeys),
       const DeepCollectionEquality().hash(receipt),
       const DeepCollectionEquality().hash(signatures));

@@ -148,7 +148,7 @@ class _$_NodeState implements _NodeState {
             const DeepCollectionEquality()
                 .equals(other.selectedNode, selectedNode) &&
             const DeepCollectionEquality().equals(other.nodes, nodes) &&
-            (identical(other.status, status) || other.status == status));
+            const DeepCollectionEquality().equals(other.status, status));
   }
 
   @override
@@ -156,7 +156,7 @@ class _$_NodeState implements _NodeState {
       runtimeType,
       const DeepCollectionEquality().hash(selectedNode),
       const DeepCollectionEquality().hash(nodes),
-      status);
+      const DeepCollectionEquality().hash(status));
 
   @JsonKey(ignore: true)
   @override

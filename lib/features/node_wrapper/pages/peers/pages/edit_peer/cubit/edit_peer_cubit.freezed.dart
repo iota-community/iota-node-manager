@@ -170,14 +170,19 @@ class _$_EditPeerState implements _EditPeerState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _EditPeerState &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.address, address) || other.address == address) &&
-            (identical(other.alias, alias) || other.alias == alias) &&
-            (identical(other.status, status) || other.status == status));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.address, address) &&
+            const DeepCollectionEquality().equals(other.alias, alias) &&
+            const DeepCollectionEquality().equals(other.status, status));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, address, alias, status);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(address),
+      const DeepCollectionEquality().hash(alias),
+      const DeepCollectionEquality().hash(status));
 
   @JsonKey(ignore: true)
   @override

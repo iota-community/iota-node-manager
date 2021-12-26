@@ -148,13 +148,15 @@ class _$_Auth implements _Auth {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Auth &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.password, password) ||
-                other.password == password));
+            const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality().equals(other.password, password));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, password);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(password));
 
   @JsonKey(ignore: true)
   @override

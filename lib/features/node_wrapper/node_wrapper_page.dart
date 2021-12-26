@@ -78,7 +78,7 @@ class _MobilePortraitWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NodeCubit, NodeState>(
       builder: (context, state) {
-        var routes = const [
+        const routes = [
           HomeRouter(),
           ExplorerRouter(),
           PeersRouter(),

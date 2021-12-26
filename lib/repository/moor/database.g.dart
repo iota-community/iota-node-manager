@@ -13,14 +13,12 @@ class Node extends DataClass implements Insertable<Node> {
   final String url;
   final String? jwtToken;
   final int type;
-
   Node(
       {required this.id,
       required this.name,
       required this.url,
       this.jwtToken,
       required this.type});
-
   factory Node.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String? prefix}) {
     final effectivePrefix = prefix ?? '';
@@ -94,7 +92,6 @@ class Node extends DataClass implements Insertable<Node> {
         jwtToken: jwtToken ?? this.jwtToken,
         type: type ?? this.type,
       );
-
   @override
   String toString() {
     return (StringBuffer('Node(')
@@ -126,7 +123,6 @@ class NodesCompanion extends UpdateCompanion<Node> {
   final Value<String> url;
   final Value<String?> jwtToken;
   final Value<int> type;
-
   const NodesCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
@@ -134,7 +130,6 @@ class NodesCompanion extends UpdateCompanion<Node> {
     this.jwtToken = const Value.absent(),
     this.type = const Value.absent(),
   });
-
   NodesCompanion.insert({
     this.id = const Value.absent(),
     required String name,
@@ -239,16 +234,12 @@ class $NodesTable extends Nodes with TableInfo<$NodesTable, Node> {
       typeName: 'INTEGER',
       requiredDuringInsert: false,
       defaultValue: const Constant(0));
-
   @override
   List<GeneratedColumn> get $columns => [id, name, url, jwtToken, type];
-
   @override
   String get aliasedName => _alias ?? 'nodes';
-
   @override
   String get actualTableName => 'nodes';
-
   @override
   VerificationContext validateIntegrity(Insertable<Node> instance,
       {bool isInserting = false}) {

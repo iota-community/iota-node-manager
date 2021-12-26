@@ -23,10 +23,10 @@ class CustomDrawer extends StatelessWidget {
               color: Theme.of(context).accentColor,
             ),
             child: SvgPicture.asset(
-              'assets/svg/hornet_banner.svg',
-              semanticsLabel: 'Hornet Banner',
+              'assets/svg/manager_banner.svg',
+              semanticsLabel: 'Manager Banner',
               color: ThemeHelper.of(context).blackOrWhite,
-              fit: BoxFit.fitHeight,
+              fit: BoxFit.fitWidth,
             ),
           ),
           ListTile(
@@ -73,7 +73,7 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             title: const Text('Help'),
             onTap: () async {
-              var _url =
+              const _url =
                   'https://github.com/pauli2406/iota_hornet_mobile_app#hornet-node-mobile-app';
               await canLaunch(_url)
                   ? await launch(_url)

@@ -200,17 +200,20 @@ class _$_MessageChildrenData implements _MessageChildrenData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _MessageChildrenData &&
-            (identical(other.messageId, messageId) ||
-                other.messageId == messageId) &&
-            (identical(other.maxResults, maxResults) ||
-                other.maxResults == maxResults) &&
-            (identical(other.count, count) || other.count == count) &&
+            const DeepCollectionEquality().equals(other.messageId, messageId) &&
+            const DeepCollectionEquality()
+                .equals(other.maxResults, maxResults) &&
+            const DeepCollectionEquality().equals(other.count, count) &&
             const DeepCollectionEquality()
                 .equals(other.childrenMessageIds, childrenMessageIds));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, messageId, maxResults, count,
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(messageId),
+      const DeepCollectionEquality().hash(maxResults),
+      const DeepCollectionEquality().hash(count),
       const DeepCollectionEquality().hash(childrenMessageIds));
 
   @JsonKey(ignore: true)

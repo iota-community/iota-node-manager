@@ -244,26 +244,24 @@ class _$_Peer implements _Peer {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Peer &&
-            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.multiAddresses, multiAddresses) &&
-            (identical(other.alias, alias) || other.alias == alias) &&
-            (identical(other.relation, relation) ||
-                other.relation == relation) &&
-            (identical(other.connected, connected) ||
-                other.connected == connected) &&
-            (identical(other.gossip, gossip) || other.gossip == gossip));
+            const DeepCollectionEquality().equals(other.alias, alias) &&
+            const DeepCollectionEquality().equals(other.relation, relation) &&
+            const DeepCollectionEquality().equals(other.connected, connected) &&
+            const DeepCollectionEquality().equals(other.gossip, gossip));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(multiAddresses),
-      alias,
-      relation,
-      connected,
-      gossip);
+      const DeepCollectionEquality().hash(alias),
+      const DeepCollectionEquality().hash(relation),
+      const DeepCollectionEquality().hash(connected),
+      const DeepCollectionEquality().hash(gossip));
 
   @JsonKey(ignore: true)
   @override

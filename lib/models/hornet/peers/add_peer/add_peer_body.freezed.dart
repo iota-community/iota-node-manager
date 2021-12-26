@@ -154,13 +154,16 @@ class _$_AddPeerBody implements _AddPeerBody {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AddPeerBody &&
-            (identical(other.multiAddress, multiAddress) ||
-                other.multiAddress == multiAddress) &&
-            (identical(other.alias, alias) || other.alias == alias));
+            const DeepCollectionEquality()
+                .equals(other.multiAddress, multiAddress) &&
+            const DeepCollectionEquality().equals(other.alias, alias));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, multiAddress, alias);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(multiAddress),
+      const DeepCollectionEquality().hash(alias));
 
   @JsonKey(ignore: true)
   @override

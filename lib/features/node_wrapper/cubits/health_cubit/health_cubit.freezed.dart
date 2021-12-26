@@ -413,12 +413,13 @@ class _$_LoadSuccess with DiagnosticableTreeMixin implements _LoadSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _LoadSuccess &&
-            (identical(other.statusCode, statusCode) ||
-                other.statusCode == statusCode));
+            const DeepCollectionEquality()
+                .equals(other.statusCode, statusCode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, statusCode);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(statusCode));
 
   @JsonKey(ignore: true)
   @override
@@ -566,11 +567,12 @@ class _$_LoadFailure with DiagnosticableTreeMixin implements _LoadFailure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _LoadFailure &&
-            (identical(other.failure, failure) || other.failure == failure));
+            const DeepCollectionEquality().equals(other.failure, failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, failure);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
 
   @JsonKey(ignore: true)
   @override

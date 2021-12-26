@@ -154,13 +154,16 @@ class _$_TreasuryData implements _TreasuryData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _TreasuryData &&
-            (identical(other.milestoneId, milestoneId) ||
-                other.milestoneId == milestoneId) &&
-            (identical(other.amount, amount) || other.amount == amount));
+            const DeepCollectionEquality()
+                .equals(other.milestoneId, milestoneId) &&
+            const DeepCollectionEquality().equals(other.amount, amount));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, milestoneId, amount);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(milestoneId),
+      const DeepCollectionEquality().hash(amount));
 
   @JsonKey(ignore: true)
   @override

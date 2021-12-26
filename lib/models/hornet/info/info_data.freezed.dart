@@ -87,13 +87,10 @@ mixin _$InfoData {
   bool get isHealthy => throw _privateConstructorUsedError;
   @JsonKey(name: 'networkId')
   String get networkId => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'bech32HRP')
   String get bech32Hrp => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'minPoWScore')
   double get minPoWScore => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'messagesPerSecond')
   double get messagesPerSecond => throw _privateConstructorUsedError;
   @JsonKey(name: 'referencedMessagesPerSecond')
@@ -455,53 +452,47 @@ class _$_InfoData implements _InfoData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _InfoData &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.version, version) || other.version == version) &&
-            (identical(other.isHealthy, isHealthy) ||
-                other.isHealthy == isHealthy) &&
-            (identical(other.networkId, networkId) ||
-                other.networkId == networkId) &&
-            (identical(other.bech32Hrp, bech32Hrp) ||
-                other.bech32Hrp == bech32Hrp) &&
-            (identical(other.minPoWScore, minPoWScore) ||
-                other.minPoWScore == minPoWScore) &&
-            (identical(other.messagesPerSecond, messagesPerSecond) ||
-                other.messagesPerSecond == messagesPerSecond) &&
-            (identical(other.referencedMessagesPerSecond,
-                    referencedMessagesPerSecond) ||
-                other.referencedMessagesPerSecond ==
-                    referencedMessagesPerSecond) &&
-            (identical(other.referencedRate, referencedRate) ||
-                other.referencedRate == referencedRate) &&
-            (identical(
-                    other.latestMilestoneTimestamp, latestMilestoneTimestamp) ||
-                other.latestMilestoneTimestamp == latestMilestoneTimestamp) &&
-            (identical(other.latestMilestoneIndex, latestMilestoneIndex) ||
-                other.latestMilestoneIndex == latestMilestoneIndex) &&
-            (identical(
-                    other.confirmedMilestoneIndex, confirmedMilestoneIndex) ||
-                other.confirmedMilestoneIndex == confirmedMilestoneIndex) &&
-            (identical(other.pruningIndex, pruningIndex) ||
-                other.pruningIndex == pruningIndex) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.version, version) &&
+            const DeepCollectionEquality().equals(other.isHealthy, isHealthy) &&
+            const DeepCollectionEquality().equals(other.networkId, networkId) &&
+            const DeepCollectionEquality().equals(other.bech32Hrp, bech32Hrp) &&
+            const DeepCollectionEquality()
+                .equals(other.minPoWScore, minPoWScore) &&
+            const DeepCollectionEquality()
+                .equals(other.messagesPerSecond, messagesPerSecond) &&
+            const DeepCollectionEquality().equals(
+                other.referencedMessagesPerSecond,
+                referencedMessagesPerSecond) &&
+            const DeepCollectionEquality()
+                .equals(other.referencedRate, referencedRate) &&
+            const DeepCollectionEquality().equals(
+                other.latestMilestoneTimestamp, latestMilestoneTimestamp) &&
+            const DeepCollectionEquality()
+                .equals(other.latestMilestoneIndex, latestMilestoneIndex) &&
+            const DeepCollectionEquality().equals(
+                other.confirmedMilestoneIndex, confirmedMilestoneIndex) &&
+            const DeepCollectionEquality()
+                .equals(other.pruningIndex, pruningIndex) &&
             const DeepCollectionEquality().equals(other.features, features));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      name,
-      version,
-      isHealthy,
-      networkId,
-      bech32Hrp,
-      minPoWScore,
-      messagesPerSecond,
-      referencedMessagesPerSecond,
-      referencedRate,
-      latestMilestoneTimestamp,
-      latestMilestoneIndex,
-      confirmedMilestoneIndex,
-      pruningIndex,
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(version),
+      const DeepCollectionEquality().hash(isHealthy),
+      const DeepCollectionEquality().hash(networkId),
+      const DeepCollectionEquality().hash(bech32Hrp),
+      const DeepCollectionEquality().hash(minPoWScore),
+      const DeepCollectionEquality().hash(messagesPerSecond),
+      const DeepCollectionEquality().hash(referencedMessagesPerSecond),
+      const DeepCollectionEquality().hash(referencedRate),
+      const DeepCollectionEquality().hash(latestMilestoneTimestamp),
+      const DeepCollectionEquality().hash(latestMilestoneIndex),
+      const DeepCollectionEquality().hash(confirmedMilestoneIndex),
+      const DeepCollectionEquality().hash(pruningIndex),
       const DeepCollectionEquality().hash(features));
 
   @JsonKey(ignore: true)
@@ -561,15 +552,12 @@ abstract class _InfoData implements InfoData {
   @override
   @JsonKey(name: 'networkId')
   String get networkId;
-
   @override
   @JsonKey(name: 'bech32HRP')
   String get bech32Hrp;
-
   @override
   @JsonKey(name: 'minPoWScore')
   double get minPoWScore;
-
   @override
   @JsonKey(name: 'messagesPerSecond')
   double get messagesPerSecond;

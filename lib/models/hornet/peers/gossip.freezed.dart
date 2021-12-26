@@ -171,13 +171,15 @@ class _$_Gossip implements _Gossip {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Gossip &&
-            (identical(other.heartbeat, heartbeat) ||
-                other.heartbeat == heartbeat) &&
-            (identical(other.metrics, metrics) || other.metrics == metrics));
+            const DeepCollectionEquality().equals(other.heartbeat, heartbeat) &&
+            const DeepCollectionEquality().equals(other.metrics, metrics));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, heartbeat, metrics);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(heartbeat),
+      const DeepCollectionEquality().hash(metrics));
 
   @JsonKey(ignore: true)
   @override

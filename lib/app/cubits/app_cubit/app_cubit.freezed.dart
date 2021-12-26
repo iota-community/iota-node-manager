@@ -127,14 +127,16 @@ class _$_AppState implements _AppState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AppState &&
-            (identical(other.selectedLanguage, selectedLanguage) ||
-                other.selectedLanguage == selectedLanguage) &&
-            (identical(other.darkTheme, darkTheme) ||
-                other.darkTheme == darkTheme));
+            const DeepCollectionEquality()
+                .equals(other.selectedLanguage, selectedLanguage) &&
+            const DeepCollectionEquality().equals(other.darkTheme, darkTheme));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, selectedLanguage, darkTheme);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(selectedLanguage),
+      const DeepCollectionEquality().hash(darkTheme));
 
   @JsonKey(ignore: true)
   @override

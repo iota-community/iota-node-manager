@@ -210,17 +210,20 @@ class _$_MessageData implements _MessageData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _MessageData &&
-            (identical(other.networkId, networkId) ||
-                other.networkId == networkId) &&
+            const DeepCollectionEquality().equals(other.networkId, networkId) &&
             const DeepCollectionEquality()
                 .equals(other.parentMessageIds, parentMessageIds) &&
-            (identical(other.payload, payload) || other.payload == payload) &&
-            (identical(other.nonce, nonce) || other.nonce == nonce));
+            const DeepCollectionEquality().equals(other.payload, payload) &&
+            const DeepCollectionEquality().equals(other.nonce, nonce));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, networkId,
-      const DeepCollectionEquality().hash(parentMessageIds), payload, nonce);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(networkId),
+      const DeepCollectionEquality().hash(parentMessageIds),
+      const DeepCollectionEquality().hash(payload),
+      const DeepCollectionEquality().hash(nonce));
 
   @JsonKey(ignore: true)
   @override

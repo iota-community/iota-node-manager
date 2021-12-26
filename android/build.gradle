@@ -3,7 +3,7 @@ buildscript {
     ext {
         compileSdkVersion   = 30                // or latest
         targetSdkVersion    = 30                // or latest
-        minSdkVersion       = 16
+        minSdkVersion = 21
         appCompatVersion    = "1.1.0"           // or latest
     }
 

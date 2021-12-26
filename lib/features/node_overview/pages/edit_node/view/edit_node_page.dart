@@ -27,7 +27,7 @@ class EditNodePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _nodeRepository = getIt<NodeRepository>();
+    final _nodeRepository = getIt<NodeRepository>();
     return Scaffold(
       appBar: AppBar(),
       drawerEnableOpenDragGesture: false,

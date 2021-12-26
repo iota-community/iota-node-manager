@@ -176,15 +176,17 @@ class _$_MilestoneData implements _MilestoneData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _MilestoneData &&
-            (identical(other.index, index) || other.index == index) &&
-            (identical(other.messageId, messageId) ||
-                other.messageId == messageId) &&
-            (identical(other.timestamp, timestamp) ||
-                other.timestamp == timestamp));
+            const DeepCollectionEquality().equals(other.index, index) &&
+            const DeepCollectionEquality().equals(other.messageId, messageId) &&
+            const DeepCollectionEquality().equals(other.timestamp, timestamp));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, index, messageId, timestamp);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(index),
+      const DeepCollectionEquality().hash(messageId),
+      const DeepCollectionEquality().hash(timestamp));
 
   @JsonKey(ignore: true)
   @override
