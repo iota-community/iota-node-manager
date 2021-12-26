@@ -12,9 +12,7 @@ import 'package:hornet_node/utils/widgets/error_card_widget.dart';
 import 'package:hornet_node/utils/widgets/home_card_widget.dart';
 
 part '../widgets/features_card.dart';
-
 part '../widgets/messages_card.dart';
-
 part '../widgets/milestones_card.dart';
 part '../widgets/pruning_card.dart';
 part '../widgets/title_card.dart';
