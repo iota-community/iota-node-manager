@@ -7,10 +7,9 @@ import 'package:hornet_node/app/themes/custom_themes.dart';
 import 'package:hornet_node/configure_dependencies.dart';
 import 'package:hornet_node/features/node_overview/pages/edit_node/edit_node.dart';
 import 'package:hornet_node/l10n/l10n.dart';
-import 'package:hornet_node/repository/moor/constants/node_types.dart';
 import 'package:hornet_node/repository/moor/database.dart';
 import 'package:hornet_node/repository/node_repository.dart';
-import 'package:toggle_switch/toggle_switch.dart';
+import 'package:hornet_node/utils/widgets/node_type_toggle_form_field.dart';
 
 part '../widgets/jwt_input.dart';
 part '../widgets/name_input.dart';

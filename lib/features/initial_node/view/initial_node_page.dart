@@ -7,9 +7,14 @@ import 'package:hornet_node/app/themes/custom_themes.dart';
 import 'package:hornet_node/configure_dependencies.dart';
 import 'package:hornet_node/features/initial_node/initial_node.dart';
 import 'package:hornet_node/l10n/l10n.dart';
+import 'package:hornet_node/utils/widgets/node_type_toggle_form_field.dart';
 
 part '../widgets/jwt_input.dart';
+
 part '../widgets/name_input.dart';
+
+part '../widgets/node_type_input.dart';
+
 part '../widgets/save_button.dart';
 part '../widgets/url_input.dart';
 
@@ -31,8 +36,9 @@ class InitialNodePage extends StatelessWidget {
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
                   SnackBar(
-                      key: const Key('saveFailureSnackbar'),
-                      content: Text(l10n.addInitialNodeSaveError)),
+                    key: const Key('saveFailureSnackbar'),
+                    content: Text(l10n.addInitialNodeSaveError),
+                  ),
                 );
             } else if (state.status.isSubmissionSuccess) {
               BlocProvider.of<NodeCubit>(context)
@@ -61,6 +67,8 @@ class InitialNodePage extends StatelessWidget {
                   const SizedBox(height: 8),
                   _UrlInput(),
                   const SizedBox(height: 8),
+                  _NodeTypeInput(),
+                  const SizedBox(height: 30),
                   Text(
                     'Optional',
                     style: Theme.of(context).textTheme.subtitle1,
@@ -69,11 +77,6 @@ class InitialNodePage extends StatelessWidget {
                   const SizedBox(height: 8),
                   _SaveButton(),
                   const SizedBox(height: 8),
-                  // const Divider(),
-                  // Text(
-                  //   'Or scan a QR code',
-                  //   style: Theme.of(context).primaryTextTheme.subtitle1,
-                  // ),
                 ],
               ),
             ),

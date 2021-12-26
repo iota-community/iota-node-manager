@@ -54,7 +54,7 @@ class PeersPageState extends State<PeersPage> {
                   return const Text('JWT is missing!');
                 },
                 loadSuccess: (value) {
-                  var peers = value.peers;
+                  final peers = value.peers;
                   peers.data.sort((a, b) {
                     if (b.relation == 'unknown') {
                       return -1;
@@ -76,8 +76,8 @@ class PeersPageState extends State<PeersPage> {
                           child: ListView.builder(
                             itemCount: peers.data.length,
                             itemBuilder: (context, index) {
-                              var peer = peers.data[index];
-                              var known = peer.relation == 'known';
+                              final peer = peers.data[index];
+                              final known = peer.relation == 'known';
                               return HornetCard(
                                   child: Row(
                                 children: [

@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hornet_node/repository/moor/constants/node_types.dart';
 import 'package:hornet_node/repository/node_repository.dart';
 import 'package:hornet_node/utils/formz/jwt.dart';
 import 'package:hornet_node/utils/formz/name.dart';
@@ -21,26 +22,62 @@ class InitialNodeCubit extends Cubit<InitialNodeState> {
 
   void nameChanged(String value) {
     final name = Name.dirty(value: value);
-    emit(state.copyWith(
-      name: name,
-      status: Formz.validate(<FormzInput>[name, state.jwt, state.url]),
-    ));
+    emit(
+      state.copyWith(
+        name: name,
+        status: Formz.validate(<FormzInput>[
+          name,
+          state.jwt,
+          state.url,
+          state.type,
+        ]),
+      ),
+    );
   }
 
   void jwtChanged(String value) {
     final jwt = Jwt.dirty(value: value);
-    emit(state.copyWith(
-      jwt: jwt,
-      status: Formz.validate(<FormzInput>[jwt, state.name, state.url]),
-    ));
+    emit(
+      state.copyWith(
+        jwt: jwt,
+        status: Formz.validate(<FormzInput>[
+          jwt,
+          state.name,
+          state.url,
+          state.type,
+        ]),
+      ),
+    );
   }
 
   void urlChanged(String value) {
     final url = Url.dirty(value: value);
-    emit(state.copyWith(
-      url: url,
-      status: Formz.validate(<FormzInput>[state.name, state.jwt, url]),
-    ));
+    emit(
+      state.copyWith(
+        url: url,
+        status: Formz.validate(<FormzInput>[
+          state.name,
+          state.jwt,
+          url,
+          state.type,
+        ]),
+      ),
+    );
+  }
+
+  void typeChanged(NodeTypes value) {
+    final type = Type.dirty(value: value);
+    emit(
+      state.copyWith(
+        type: Type.dirty(value: value),
+        status: Formz.validate(<FormzInput>[
+          type,
+          state.name,
+          state.url,
+          state.jwt,
+        ]),
+      ),
+    );
   }
 
   Future<void> saveNode() async {
