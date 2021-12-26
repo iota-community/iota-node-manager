@@ -7,6 +7,8 @@
 
 A mobile app running on Android and iOS to manage multiple IOTA Nodes on the go! Supporting Hornet and Bee nodes.
 
+![App Preview][info_graphic]
+
 ---
 
 ## Peers are not available and app shows not connected to the internet error
@@ -122,5 +124,6 @@ Unfortunately this requires you to temporary shutdown the node before generating
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license_link]: https://opensource.org/licenses/MIT
 [logo]: https://raw.githubusercontent.com/pauli2406/iota_hornet_mobile_app/main/assets/svg/manager_banner.svg
+[info_graphic]:  https://github.com/iota-community/iota-node-manager/blob/main/image_assets/Google%20presentation%20screen.png?raw=true
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
