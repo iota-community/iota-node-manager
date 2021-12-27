@@ -7,6 +7,8 @@
 
 A mobile app running on Android and iOS to manage multiple IOTA Nodes on the go! Supporting Hornet and Bee nodes.
 
+Find out more here: https://iota-node-manager.devster-hh.de/
+
 ![App Preview][info_graphic]
 
 ---
