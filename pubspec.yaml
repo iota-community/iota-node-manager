@@ -1,6 +1,6 @@
 name: hornet_node
 description: IOTA Node Manager
-version: 2.0.1+11
+version: 2.0.2+12
 publish_to: none
 
 environment:
